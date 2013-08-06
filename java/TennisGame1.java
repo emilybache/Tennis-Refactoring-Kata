@@ -34,9 +34,6 @@ public class TennisGame1 implements TennisGame {
                 case 2:
                         score = "Thirty-All";
                     break;
-                case 3:
-                        score = "Forty-All";
-                    break;
                 default:
                         score = "Deuce";
                     break;
