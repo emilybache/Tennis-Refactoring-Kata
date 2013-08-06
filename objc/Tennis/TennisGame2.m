@@ -25,7 +25,7 @@
 
 - (NSString *)score {
     NSString *score = @"";
-    if (P1point == P2point && P1point < 4)
+    if (P1point == P2point && P1point < 3)
     {
         if (P1point==0)
             score = @"Love";
@@ -33,11 +33,9 @@
             score = @"Fifteen";
         if (P1point==2)
             score = @"Thirty";
-        if (P1point==3)
-            score = @"Forty";
         score = [NSString stringWithFormat:@"%@-All", score];
     }
-    if (P1point==P2point && P1point>3)
+    if (P1point==P2point && P1point>2)
         score = @"Deuce";
 
     if (P1point > 0 && P2point==0)

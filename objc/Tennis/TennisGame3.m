@@ -23,7 +23,7 @@
 
 - (NSString *)score {
     NSString *s;
-    if (p1 < 4 && p2 < 4) {
+    if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6)) {
         NSArray* p = @[@"Love", @"Fifteen", @"Thirty", @"Forty"];
         s = p[p1];
         return (p1 == p2) ? [NSString stringWithFormat:@"%@-All",s] : [NSString stringWithFormat:@"%@-%@",s,p[p2]];

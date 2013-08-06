@@ -16,9 +16,6 @@ const std::string tennis_score(int p1Score, int p2Score) {
             case 2:
                     score = "Thirty-All";
                 break;
-            case 3:
-                    score = "Deuce";
-                break;
             default:
                     score = "Deuce";
                 break;

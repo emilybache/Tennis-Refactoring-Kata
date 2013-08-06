@@ -12,8 +12,6 @@ const std::string tennis_score(int p1Score, int p2Score) {
             score = "Fifteen";
         if (p1Score==2)
             score = "Thirty";
-        if (p1Score==3)
-            score = "Forty";
         score += "-All";
     }
     if (p1Score==p2Score && p1Score>2)

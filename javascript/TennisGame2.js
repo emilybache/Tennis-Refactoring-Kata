@@ -12,18 +12,16 @@ var TennisGame2 = function(player1Name, player2Name) {
 TennisGame2.prototype.getScore = function() {
     var score = "";
 
-    if (this.P1point === this.P2point && this.P1point < 4) {
+    if (this.P1point === this.P2point && this.P1point < 3) {
         if (this.P1point === 0)
             score = "Love";
         if (this.P1point === 1)
             score = "Fifteen";
         if (this.P1point === 2)
             score = "Thirty";
-        if (this.P1point === 3)
-            score = "Forty";
         score += "-All";
     }
-    if (this.P1point === this.P2point && this.P1point > 3)
+    if (this.P1point === this.P2point && this.P1point > 2)
         score = "Deuce";
 
     if (this.P1point > 0 && this.P2point === 0) {

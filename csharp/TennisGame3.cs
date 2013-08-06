@@ -17,7 +17,7 @@ namespace Tennis
 
     public string GetScore() {
       string s;
-      if (p1 < 4 && p2 < 4) {
+      if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6)) {
         string[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
         s = p[p1];
         return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
