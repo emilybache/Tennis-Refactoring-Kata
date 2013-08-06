@@ -22,7 +22,6 @@ class TennisGame1:
                 0 : "Love-All",
                 1 : "Fifteen-All",
                 2 : "Thirty-All",
-                3 : "Forty-All",
             }.get(self.p1points, "Deuce")
         elif (self.p1points>=4 or self.p2points>=4):
             minusResult = self.p1points-self.p2points
@@ -65,17 +64,15 @@ class TennisGame2:
     
     def score(self):
         result = ""
-        if (self.p1points == self.p2points and self.p1points < 4):
+        if (self.p1points == self.p2points and self.p1points < 3):
             if (self.p1points==0):
                 result = "Love"
             if (self.p1points==1):
                 result = "Fifteen"
             if (self.p1points==2):
                 result = "Thirty"
-            if (self.p1points==3):
-                result = "Forty"
             result += "-All"
-        if (self.p1points==self.p2points and self.p1points>3):
+        if (self.p1points==self.p2points and self.p1points>2):
             result = "Deuce"
         
         P1res = ""
@@ -164,7 +161,7 @@ class TennisGame3:
             self.p2 += 1
     
     def score(self):
-        if (self.p1 < 4 and self.p2 < 4):
+        if (self.p1 < 4 and self.p2 < 4) and (self.p1 + self.p2 < 6):
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.p1]
             return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
