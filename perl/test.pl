@@ -1,5 +1,10 @@
-# # -*- coding: utf-8 -*-
-# 
+use strict;
+use warnings;
+
+use Test::More 'no_plan';
+
+ok 1;
+
 # import unittest
 #
 # from tennis import TennisGame1, TennisGame2, TennisGame3
