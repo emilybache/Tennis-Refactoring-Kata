@@ -4,14 +4,15 @@ use warnings;
 package Tennis::Game1;
 
 sub new {
-    return bless {}, $_[0];
+    my ( $cls, $player_1_name, $player_2_name ) = @_;
+    my $self = {
+        player_1_name => $player_1_name,
+        player_2_name => $player_2_name,
+        p1points      => 0,
+        p2points      => 0,
+    };
+    return bless $self, $cls;
 }
-
-#     def __init__(self, player1Name, player2Name):
-#         self.player1Name = player1Name
-#         self.player2Name = player2Name
-#         self.p1points = 0
-#         self.p2points = 0
 
 sub won_point { 1; }
 
