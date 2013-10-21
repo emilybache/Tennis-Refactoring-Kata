@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More 'no_plan';
+use Test::More;
 
 use_ok "Tennis";
 
@@ -85,4 +85,5 @@ my @test_cases = (
 #
 # if __name__ == "__main__":
 #     unittest.main()
-#
+
+done_testing();
