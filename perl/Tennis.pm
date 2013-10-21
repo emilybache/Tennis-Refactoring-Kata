@@ -1,5 +1,8 @@
-# # -*- coding: utf-8 -*-
-#
+use strict;
+use warnings;
+
+package Tennis;
+
 # class TennisGame1:
 #
 #     def __init__(self, player1Name, player2Name):
@@ -170,3 +173,5 @@
 #                 return "Deuce"
 #             s = self.p1N if self.p1 > self.p2 else self.p2N
 #             return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+
+1;
