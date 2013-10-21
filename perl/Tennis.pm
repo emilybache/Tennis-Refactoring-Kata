@@ -38,16 +38,19 @@ sub score {
           || "Deuce";
     }
 
-    # elif (self.p1points>=4 or self.p2points>=4):
-    #     minusResult = self.p1points-self.p2points
-    #     if (minusResult==1):
-    #         result ="Advantage " + self.player1Name
-    #     elif (minusResult ==-1):
-    #         result ="Advantage " + self.player2Name
-    #     elif (minusResult>=2):
-    #         result = "Win for " + self.player1Name
-    #     else:
-    #         result ="Win for " + self.player2Name
+    elsif ($self->{p1points}>=4 or $self->{p2points}>=4) {
+        my $minusResult = $self->{p1points}-$self->{p2points};
+        if ($minusResult==1) {
+            $result ="Advantage " . $self->{player_1_name};
+        } elsif ($minusResult ==-1) {
+            $result ="Advantage " . $self->{player_2_name};
+        } elsif ($minusResult>=2) {
+            $result = "Win for " . $self->{player_1_name};
+        } else {
+            $result ="Win for " . $self->{player_2_name};
+        }
+    }
+
     # else:
     #     for i in range(1,3):
     #         if (i==1):
