@@ -21,7 +21,9 @@ sub won_point { 1; }
 #             self.p1points += 1
 #         else:
 #             self.p2points += 1
-#
+
+sub score { "Love-All"; }
+
 #     def score(self):
 #         result = ""
 #         tempScore=0
