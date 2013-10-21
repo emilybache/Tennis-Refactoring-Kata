@@ -1,15 +1,20 @@
 use strict;
 use warnings;
 
-package Tennis;
+package Tennis::Game1;
 
-# class TennisGame1:
-#
+sub new {
+    return bless {}, $_[0];
+}
+
 #     def __init__(self, player1Name, player2Name):
 #         self.player1Name = player1Name
 #         self.player2Name = player2Name
 #         self.p1points = 0
 #         self.p2points = 0
+
+sub won_point { 1; }
+
 #
 #     def won_point(self, playerName):
 #         if playerName == self.player1Name:

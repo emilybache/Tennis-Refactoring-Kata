@@ -53,7 +53,6 @@ my @test_cases = (
     [ 5, 6, 'Advantage Two', 'player1', 'Two' ],
 );
 
-
 sub play_game {
     my ( $module, $p1_score, $p2_score, $p1_name, $p2_name ) = @_;
     my $game = $module->new( $p1_name, $p2_name );
@@ -65,29 +64,27 @@ sub play_game {
     return $game;
 }
 
-#
-#
-# class TestTennis(unittest.TestCase):
-#
-#     def test_Score_Game1(self):
-#         for testcase in test_cases:
-#             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-#             game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
-#             self.assertEqual(score, game.score())
-#
-#     def test_Score_Game2(self):
-#         for testcase in test_cases:
-#             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-#             game = play_game(TennisGame2, p1Points, p2Points, p1Name, p2Name)
-#             self.assertEqual(score, game.score())
-#
-#     def test_Score_Game3(self):
-#         for testcase in test_cases:
-#             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-#             game = play_game(TennisGame3, p1Points, p2Points, p1Name, p2Name)
-#             self.assertEqual(score, game.score())
-#
-# if __name__ == "__main__":
-#     unittest.main()
+my @modules_to_test = (
+    "Tennis::Game1",    # "Tennis::Game2", "Tennis::Game3"
+);
+
+foreach my $module (@modules_to_test) {
+
+    subtest "Testing $module" => sub {
+
+        plan tests => scalar @test_cases;
+
+        foreach my $test_data (@test_cases) {
+            my ( $p1_score, $p2_score, $score, $p1_name, $p2_name ) =
+              @$test_data;
+            my $game =
+              play_game( $module, $p1_score, $p2_score, $p1_name, $p2_name );
+
+            # is( $score, $game->score);
+            pass;
+        }
+
+    };
+}
 
 done_testing();
