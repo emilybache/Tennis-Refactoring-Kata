@@ -14,14 +14,15 @@ sub new {
     return bless $self, $cls;
 }
 
-sub won_point { 1; }
-
-#
-#     def won_point(self, playerName):
-#         if playerName == self.player1Name:
-#             self.p1points += 1
-#         else:
-#             self.p2points += 1
+sub won_point {
+    my ( $self, $player_name );
+    if ( $player_name eq $self->{player_1_name} ) {
+        $self->{p1points}++;
+    }
+    else {
+        $self->{p2points}++;
+    }
+}
 
 sub score { "Love-All"; }
 
