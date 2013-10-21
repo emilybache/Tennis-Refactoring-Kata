@@ -53,15 +53,19 @@ my @test_cases = (
     [ 5, 6, 'Advantage Two', 'player1', 'Two' ],
 );
 
+
+sub play_game {
+    my ( $module, $p1_score, $p2_score, $p1_name, $p2_name ) = @_;
+    my $game = $module->new( $p1_name, $p2_name );
+    my $max_score = $p1_score > $p2_score ? $p1_score : $p2_score;
+    foreach my $current_score ( 0 .. $max_score ) {
+        $game->won_point($p1_name) if $current_score < $p1_score;
+        $game->won_point($p2_name) if $current_score < $p2_score;
+    }
+    return $game;
+}
+
 #
-# def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
-#     game = TennisGame(p1Name, p2Name)
-#     for i in range(max(p1Points, p2Points)):
-#         if i < p1Points:
-#             game.won_point(p1Name)
-#         if i < p2Points:
-#             game.won_point(p2Name)
-#     return game
 #
 # class TestTennis(unittest.TestCase):
 #
