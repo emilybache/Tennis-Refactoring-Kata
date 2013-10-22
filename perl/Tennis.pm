@@ -4,10 +4,10 @@ use warnings;
 package Tennis::Game1;
 
 sub new {
-    my ( $cls, $player_1_name, $player_2_name ) = @_;
+    my ( $cls, $player1Name, $player2Name ) = @_;
     my $self = {
-        player_1_name => $player_1_name,
-        player_2_name => $player_2_name,
+        player1Name => $player1Name,
+        player2Name => $player2Name,
         p1points      => 0,
         p2points      => 0,
     };
@@ -16,7 +16,7 @@ sub new {
 
 sub won_point {
     my ( $self, $player_name ) = @_;
-    if ( $player_name eq $self->{player_1_name} ) {
+    if ( $player_name eq $self->{player1Name} ) {
         $self->{p1points}++;
     }
     else {
@@ -41,13 +41,13 @@ sub score {
     elsif ($self->{p1points}>=4 or $self->{p2points}>=4) {
         my $minusResult = $self->{p1points}-$self->{p2points};
         if ($minusResult==1) {
-            $result ="Advantage " . $self->{player_1_name};
+            $result ="Advantage " . $self->{player1Name};
         } elsif ($minusResult ==-1) {
-            $result ="Advantage " . $self->{player_2_name};
+            $result ="Advantage " . $self->{player2Name};
         } elsif ($minusResult>=2) {
-            $result = "Win for " . $self->{player_1_name};
+            $result = "Win for " . $self->{player1Name};
         } else {
-            $result ="Win for " . $self->{player_2_name};
+            $result ="Win for " . $self->{player2Name};
         }
     }
 
