@@ -3,10 +3,6 @@ use warnings;
 
 use Test::More;
 
-use_ok "Tennis";
-
-# from tennis import TennisGame1, TennisGame2, TennisGame3
-
 my @test_cases = (
     [ 0, 0, "Love-All",    'player1', 'player2' ],
     [ 1, 1, "Fifteen-All", 'player1', 'player2' ],
@@ -53,16 +49,7 @@ my @test_cases = (
     [ 5, 6, 'Advantage Two', 'player1', 'Two' ],
 );
 
-sub play_game {
-    my ( $module, $p1_score, $p2_score, $p1_name, $p2_name ) = @_;
-    my $game = $module->new( $p1_name, $p2_name );
-    my $max_score = $p1_score > $p2_score ? $p1_score : $p2_score;
-    foreach my $current_score ( 0 .. $max_score ) {
-        $game->won_point($p1_name) if $current_score < $p1_score;
-        $game->won_point($p2_name) if $current_score < $p2_score;
-    }
-    return $game;
-}
+use_ok "Tennis";
 
 my @modules_to_test = (
     "Tennis::Game1",    # "Tennis::Game2", "Tennis::Game3"
@@ -77,10 +64,17 @@ foreach my $module (@modules_to_test) {
         foreach my $test_data (@test_cases) {
             my ( $p1_score, $p2_score, $score, $p1_name, $p2_name ) =
               @$test_data;
-            my $game =
-              play_game( $module, $p1_score, $p2_score, $p1_name, $p2_name );
 
-            is( $game->score, $score );
+            my $game = $module->new( $p1_name, $p2_name );
+
+            my $max_score = $p1_score > $p2_score ? $p1_score : $p2_score;
+
+            foreach my $current_score ( 0 .. $max_score ) {
+                $game->won_point($p1_name) if $current_score < $p1_score;
+                $game->won_point($p2_name) if $current_score < $p2_score;
+            }
+
+            is( $game->score, $score, "$p1_score, $p2_score --> $score" );
         }
 
     };
