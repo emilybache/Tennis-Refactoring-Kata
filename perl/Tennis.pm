@@ -27,7 +27,7 @@ sub won_point {
 sub score {
     my $self       = shift;
     my $result     = "";
-    my $temp_score = 0;
+    my $tempScore = 0;
 
     if ( $self->{p1points} == $self->{p2points} ) {
         $result = {
@@ -51,19 +51,23 @@ sub score {
         }
     }
 
-    # else:
-    #     for i in range(1,3):
-    #         if (i==1):
-    #             tempScore = self.p1points
-    #         else:
-    #             result+="-"
-    #             tempScore = self.p2points
-    #         result += {
-    #             0 : "Love",
-    #             1 : "Fifteen",
-    #             2 : "Thirty",
-    #             3 : "Forty",
-    #         }[tempScore]
+    else {
+        foreach  my $i (1 .. 2) {
+            if ($i==1) {
+                $tempScore = $self->{p1points};
+            } else {
+                $result.="-";
+                $tempScore = $self->{p2points};
+            }
+
+            $result .= {
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+            }->{$tempScore};
+        }
+    }
 
     return $result;
 }
