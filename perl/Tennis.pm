@@ -222,14 +222,12 @@ sub P2Score {
 package Tennis::Game3;
 
 sub new {
-    my ( $cls, $player1Name, $player2Name ) = @_;
-    my $self = {
-        p1N => $player1Name,
-        p2N => $player2Name,
+    bless {
+        p1N => $_[1],
+        p2N => $_[2],
         p1  => 0,
         p2  => 0,
-    };
-    return bless $self, $cls;
+    }, $_[0];
 }
 
 sub won_point {
@@ -243,17 +241,16 @@ sub won_point {
 
 sub score {
     my $self = shift;
-    my $p1 = $self->{p1};
-    my $p2 = $self->{p2};
+    my ($p1, $p2) = @$self{"p1", "p2"};
 
     if (($p1 < 4 && $p2 < 4) && ($p1 + $p2 < 6)) {
         my @p = ("Love", "Fifteen", "Thirty", "Forty");
         my $s = $p[$p1];
-        return $p1 == $p2 ? "$s-All" : $s . "-" . $p[$p2];
+        $p1 == $p2 ? "$s-All" : $s . "-" . $p[$p2];
     } else {
         return "Deuce" if ($p1 == $p2);
         my $s = $p1 > $p2 ? $self->{p1N} : $self->{p2N};
-        return (($p1-$p2)*($p1-$p2) == 1) ? "Advantage $s" : "Win for $s";
+        (($p1-$p2)*($p1-$p2) == 1) ? "Advantage $s" : "Win for $s";
     }
 }
 
