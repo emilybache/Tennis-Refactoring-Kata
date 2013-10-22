@@ -218,28 +218,43 @@ sub P2Score {
     $self->{p2points} +=1;
 }
 
-# class TennisGame3:
-#     def __init__(self, player1Name, player2Name):
-#         self.p1N = player1Name
-#         self.p2N = player2Name
-#         self.p1 = 0
-#         self.p2 = 0
-#
-#     def won_point(self, n):
-#         if n == self.p1N:
-#             self.p1 += 1
-#         else:
-#             self.p2 += 1
-#
-#     def score(self):
-#         if (self.p1 < 4 and self.p2 < 4) and (self.p1 + self.p2 < 6):
-#             p = ["Love", "Fifteen", "Thirty", "Forty"]
-#             s = p[self.p1]
-#             return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
-#         else:
-#             if (self.p1 == self.p2):
-#                 return "Deuce"
-#             s = self.p1N if self.p1 > self.p2 else self.p2N
-#             return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+
+package Tennis::Game3;
+
+sub new {
+    my ( $cls, $player1Name, $player2Name ) = @_;
+    my $self = {
+        p1N => $player1Name,
+        p2N => $player2Name,
+        p1  => 0,
+        p2  => 0,
+    };
+    return bless $self, $cls;
+}
+
+sub won_point {
+    my ($self, $n) = @_;
+    if ($n eq $self->{p1N}) {
+        $self->{p1} += 1;
+    } else {
+        $self->{p2} += 1;
+    }
+}
+
+sub score {
+    my $self = shift;
+    my $p1 = $self->{p1};
+    my $p2 = $self->{p2};
+
+    if (($p1 < 4 && $p2 < 4) && ($p1 + $p2 < 6)) {
+        my @p = ("Love", "Fifteen", "Thirty", "Forty");
+        my $s = $p[$p1];
+        return $p1 == $p2 ? "$s-All" : $s . "-" . $p[$p2];
+    } else {
+        return "Deuce" if ($p1 == $p2);
+        my $s = $p1 > $p2 ? $self->{p1N} : $self->{p2N};
+        return (($p1-$p2)*($p1-$p2) == 1) ? "Advantage $s" : "Win for $s";
+    }
+}
 
 1;

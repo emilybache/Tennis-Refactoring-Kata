@@ -51,9 +51,7 @@ my @test_cases = (
 
 use_ok "Tennis";
 
-my @modules_to_test = (
-    "Tennis::Game1", "Tennis::Game2" #, "Tennis::Game3"
-);
+my @modules_to_test = ( "Tennis::Game1", "Tennis::Game2", "Tennis::Game3" );
 
 foreach my $module (@modules_to_test) {
 
