@@ -233,9 +233,9 @@ sub new {
 sub won_point {
     my ($self, $n) = @_;
     if ($n eq $self->{p1N}) {
-        $self->{p1} += 1;
+        $self->{p1}++;
     } else {
-        $self->{p2} += 1;
+        $self->{p2}++;
     }
 }
 
