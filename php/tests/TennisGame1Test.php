@@ -6,7 +6,7 @@ require_once "../TennisGame1.php";
 /**
  * TennisGame1 test case.
  */
-class UnitTests_NewsletterServiceTest extends TestMaster
+class TennisGame1Test extends TestMaster
 {
 	/**
 	 * Prepares the environment before running a test.
