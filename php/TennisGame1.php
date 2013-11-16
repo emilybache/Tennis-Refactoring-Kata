@@ -26,7 +26,6 @@ class TennisGame1 implements TennisGame
 	public function getScore()
 	{
 		$score = "";
-		$tempScore = 0;
 		if ($this->m_score1 == $this->m_score2) {
 			switch ($this->m_score1) {
 				case 0:
