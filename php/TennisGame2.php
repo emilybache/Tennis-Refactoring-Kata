@@ -4,11 +4,11 @@ require_once "TennisGame.php";
 
 class TennisGame2 implements TennisGame
 {
-	public $P1point = 0;
-	public $P2point = 0;
+	private $P1point = 0;
+	private $P2point = 0;
 
-	public $P1res = "";
-	public $P2res = "";
+	private $P1res = "";
+	private $P2res = "";
 	private $player1Name = "";
 	private $player2Name = "";
 
@@ -43,7 +43,7 @@ class TennisGame2 implements TennisGame
 				$this->P1res = "Forty";
 
 			$this->P2res = "Love";
-			$score = $this->P1res . "-" . $this->P2res;
+			$score = "{$this->P1res}-{$this->P2res}";
 		}
 
 		if ($this->P2point > 0 && $this->P1point == 0) {
@@ -53,9 +53,8 @@ class TennisGame2 implements TennisGame
 				$this->P2res = "Thirty";
 			if ($this->P2point == 3)
 				$this->P2res = "Forty";
-
 			$this->P1res = "Love";
-			$score = $this->P1res . "-" . $this->P2res;
+			$score = "{$this->P1res}-{$this->P2res}";
 		}
 
 		if ($this->P1point > $this->P2point && $this->P1point < 4) {
@@ -67,7 +66,7 @@ class TennisGame2 implements TennisGame
 				$this->P2res = "Fifteen";
 			if ($this->P2point == 2)
 				$this->P2res = "Thirty";
-			$score = $this->P1res . "-" . $this->P2res;
+			$score = "{$this->P1res}-{$this->P2res}";
 		}
 
 		if ($this->P2point > $this->P1point && $this->P2point < 4) {
@@ -79,7 +78,7 @@ class TennisGame2 implements TennisGame
 				$this->P1res = "Fifteen";
 			if ($this->P1point == 2)
 				$this->P1res = "Thirty";
-			$score = $this->P1res . "-" . $this->P2res;
+			$score = "{$this->P1res}-{$this->P2res}";
 		}
 
 		if ($this->P1point > $this->P2point && $this->P2point >= 3) {
@@ -101,7 +100,7 @@ class TennisGame2 implements TennisGame
 		return $score;
 	}
 
-	public function SetP1Score($number)
+	private function SetP1Score($number)
 	{
 		for ($i = 0; $i < $number; $i++) {
 			$this->P1Score();
@@ -109,20 +108,19 @@ class TennisGame2 implements TennisGame
 
 	}
 
-	public function SetP2Score($number)
+	private function SetP2Score($number)
 	{
 		for ($i = 0; $i < $number; $i++) {
 			$this->P2Score();
 		}
-
 	}
 
-	public function P1Score()
+	private function P1Score()
 	{
 		$this->P1point++;
 	}
 
-	public function P2Score()
+	private function P2Score()
 	{
 		$this->P2point++;
 	}
