@@ -1,6 +1,6 @@
 <?php
 
-include "TennisGame.php";
+require_once "TennisGame.php";
 
 class TennisGame3 implements TennisGame
 {
