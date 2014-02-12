@@ -1,3 +1,4 @@
 *.class
 *.pyc
 .idea/workspace.xml
+/cpp/run.tests
