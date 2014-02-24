@@ -25,8 +25,8 @@ You need only report the score for the current game. Sets and Matches are out of
 
 As an alternative to downloading the code, click one of the links below to create a new cyber-dojo to work in, then press "start" to get going coding.
 
-- [Python](http://cyber-dojo.com/forker/fork/FFEB8EE18C?avatar=cheetah&tag=4)
-- [Ruby](http://cyber-dojo.com/forker/fork/9197D6B12C?avatar=cheetah&tag=4)
+- [Python](http://cyber-dojo.com/forker/fork/435E5C1C88?avatar=moose&tag=5)
+- [Ruby](http://cyber-dojo.com/forker/fork/3367E4B0E9?avatar=raccoon&tag=4)
 - [Java](http://cyber-dojo.com/forker/fork/426FA07B60?avatar=raccoon&tag=3)
-- [C++](http://cyber-dojo.com/forker/fork/CD6FC41518?avatar=deer&tag=45)
+- [C++](http://cyber-dojo.com/forker/fork/A06DCDA217?avatar=wolf&tag=5)
 - [C#](http://cyber-dojo.com/forker/fork/672E047F5D?avatar=buffalo&tag=8)
