@@ -1,0 +1,9 @@
+GEM
+  specs:
+    test-unit (2.5.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  test-unit
