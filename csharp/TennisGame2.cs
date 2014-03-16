@@ -20,7 +20,7 @@ namespace Tennis
 
     public string GetScore(){
       string score = "";
-      if (P1point == P2point && P1point < 4)
+      if (P1point == P2point && P1point < 3)
       {
         if (P1point==0)
           score = "Love";
@@ -28,11 +28,9 @@ namespace Tennis
           score = "Fifteen";
         if (P1point==2)
           score = "Thirty";
-        if (P1point==3)
-          score = "Forty";
         score += "-All";
       }
-      if (P1point==P2point && P1point>3)
+      if (P1point==P2point && P1point>2)
         score = "Deuce";
       
       if (P1point > 0 && P2point==0)

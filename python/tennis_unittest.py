@@ -8,7 +8,7 @@ test_cases = [
     (0, 0, "Love-All", 'player1', 'player2'),
     (1, 1, "Fifteen-All", 'player1', 'player2'),
     (2, 2, "Thirty-All", 'player1', 'player2'),
-    (3, 3, "Forty-All", 'player1', 'player2'),
+    (3, 3, "Deuce", 'player1', 'player2'),
     (4, 4, "Deuce", 'player1', 'player2'),
 
     (1, 0, "Fifteen-Love", 'player1', 'player2'),
@@ -66,19 +66,19 @@ class TestTennis(unittest.TestCase):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
             game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
-            self.assertEquals(score, game.score())
+            self.assertEqual(score, game.score())
 
     def test_Score_Game2(self):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
             game = play_game(TennisGame2, p1Points, p2Points, p1Name, p2Name)
-            self.assertEquals(score, game.score())
+            self.assertEqual(score, game.score())
 
     def test_Score_Game3(self):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
             game = play_game(TennisGame3, p1Points, p2Points, p1Name, p2Name)
-            self.assertEquals(score, game.score())
+            self.assertEqual(score, game.score())
  
 if __name__ == "__main__":
     unittest.main() 

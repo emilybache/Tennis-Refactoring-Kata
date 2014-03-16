@@ -6,7 +6,7 @@ namespace Tennis
   [TestFixture(0, 0, "Love-All")]
   [TestFixture( 1, 1, "Fifteen-All" )]
   [TestFixture( 2, 2, "Thirty-All")]
-  [TestFixture( 3, 3, "Forty-All")]
+  [TestFixture( 3, 3, "Deuce")]
   [TestFixture( 4, 4, "Deuce")]
   [TestFixture( 1, 0, "Fifteen-Love")]
   [TestFixture( 0, 1, "Love-Fifteen")]
