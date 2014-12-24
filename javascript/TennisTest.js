@@ -8,7 +8,7 @@ if (typeof TennisGame3 === "undefined") {
     var TennisGame3 = require("./TennisGame3.js");
 }
 if (typeof TennisGameMorenoNir === "undefined") {
-  var TennisGame3 = require("./TennisGameMorenoNir.js");
+  var TennisGameMorenoNir = require("./TennisGameMorenoNir.js");
 }
 
 var allScores = [
