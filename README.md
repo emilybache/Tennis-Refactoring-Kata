@@ -32,7 +32,7 @@ You need only report the score for the current game. Sets and Matches are out of
 
 # Get going quickly with Cyber-dojo
 
-As an alternative to downloading the code, click one of the links below to create a new cyber-dojo to work in, then press "start" to get going coding.
+As an alternative to downloading the code, click one of the links below to create a new cyber-dojo to work in, then press "enter" to get going coding.
 
 - [Python](http://cyber-dojo.org/forker/fork/435E5C1C88?avatar=moose&tag=5)
 - [Ruby](http://cyber-dojo.org/forker/fork/3367E4B0E9?avatar=raccoon&tag=4)
