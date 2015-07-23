@@ -7,4 +7,4 @@
 	`php composer.phar install`
 3. Run the tests
 
-	`phpunit`
+	`./vendor/bin/phpunit`
