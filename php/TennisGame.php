@@ -2,14 +2,14 @@
 
 interface TennisGame
 {
-	/**
-	 * @param  $playerName
-	 * @return void
-	 */
-	public function wonPoint($playerName);
+    /**
+     * @param  $playerName
+     * @return void
+     */
+    public function wonPoint($playerName);
 
-	/**
-	 * @return string
-	 */
-	public function getScore();
+    /**
+     * @return string
+     */
+    public function getScore();
 }
