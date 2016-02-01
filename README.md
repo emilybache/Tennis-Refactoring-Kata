@@ -36,6 +36,6 @@ As an alternative to downloading the code, click one of the links below to creat
 
 - [Python](http://cyber-dojo.org/forker/fork/435E5C1C88?avatar=moose&tag=5)
 - [Ruby](http://cyber-dojo.org/forker/fork/3367E4B0E9?avatar=raccoon&tag=4)
-- [Java](http://cyber-dojo.org/forker/fork/426FA07B60?avatar=raccoon&tag=3)
+- [Java](http://cyber-dojo.org/forker/fork/4D363A34A7?avatar=vulture&tag=3)
 - [C++](http://cyber-dojo.org/forker/fork/A06DCDA217?avatar=wolf&tag=5)
 - [C#](http://cyber-dojo.org/forker/fork/672E047F5D?avatar=buffalo&tag=8)
