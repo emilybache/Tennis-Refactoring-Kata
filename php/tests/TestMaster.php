@@ -1,6 +1,6 @@
 <?php
 
-class TestMaster extends PHPUnit_Framework_TestCase
+abstract class TestMaster extends PHPUnit_Framework_TestCase
 {
     /** @var TennisGame */
     protected $_game = null;
@@ -46,10 +46,4 @@ class TestMaster extends PHPUnit_Framework_TestCase
             '14-16' => array(14, 16, "Win for player2"),
         );
     }
-
-    public function testData()
-    {
-        $this->assertEquals($this->data(), $this->data());
-    }
-
 }
