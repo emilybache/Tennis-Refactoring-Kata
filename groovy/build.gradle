@@ -1,0 +1,17 @@
+group 'com.github.emilybache'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = "com.github.emilybache"
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy-all:2.3.11'
+	compile 'cglib:cglib-nodep:3.2.1'
+	testCompile 'org.spockframework:spock-core:1.0-groovy-2.3'
+}
