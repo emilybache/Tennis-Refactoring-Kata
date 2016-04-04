@@ -3,22 +3,32 @@ import spock.lang.*
 public class TennisSpec extends Specification {
 
 	@Shared
-	def game
+	def game1
+
+    @Shared
+    def game2
+
+    @Shared
+    def game3
 
 	def setup() {
-//		game = new TennisGame1(player1Name: "player1", player2Name: "player2")
-//		game = new TennisGame2(player1Name: "player1", player2Name: "player2")
-		game = new TennisGame3(p1N: "player1", p2N: "player2")
+		game1 = new TennisGame1(player1Name: "player1", player2Name: "player2")
+		game2 = new TennisGame2(player1Name: "player1", player2Name: "player2")
+		game3 = new TennisGame3(p1N: "player1", p2N: "player2")
 
 	}
 
 	@Unroll
 	def "expecting '#expectedScore' for #player1Score-#player2Score"() {
 		when:
-		playGame(game, player1Score, player2Score)
+		playGame(game1, player1Score, player2Score)
+        playGame(game2, player1Score, player2Score)
+        playGame(game3, player1Score, player2Score)
 
 		then:
-		expectedScore == game.score
+		expectedScore == game1.score
+        expectedScore == game2.score
+        expectedScore == game3.score
 
 		where:
 		player1Score | player2Score || expectedScore
