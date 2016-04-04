@@ -1,14 +1,14 @@
-public class TennisGame2 implements TennisGame {
-	public int P1point = 0
-	public int P2point = 0
+class TennisGame2 implements TennisGame {
+	int P1point = 0
+	int P2point = 0
 
-	public String P1res = ""
-	public String P2res = ""
+	String P1res = ""
+	String P2res = ""
 
 	def player1Name
 	def player2Name
 
-	public def getScore() {
+	def getScore() {
 		String score = ""
 		if (P1point == P2point && P1point < 4) {
 			if (P1point == 0)
@@ -85,29 +85,29 @@ public class TennisGame2 implements TennisGame {
 		return score
 	}
 
-	public void SetP1Score(number) {
+	void SetP1Score(number) {
 		for (int i = 0; i < number; i++) {
 			P1Score()
 		}
 
 	}
 
-	public void SetP2Score(number) {
+	void SetP2Score(number) {
 		for (int i = 0; i < number; i++) {
 			P2Score()
 		}
 
 	}
 
-	public void P1Score() {
+	void P1Score() {
 		P1point++
 	}
 
-	public void P2Score() {
+	void P2Score() {
 		P2point++
 	}
 
-	public void wonPoint(player) {
+	void wonPoint(player) {
 		if (player == "player1")
 			P1Score()
 		else

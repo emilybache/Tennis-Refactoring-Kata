@@ -5,7 +5,7 @@ public class TennisGame3 implements TennisGame {
 	def p1N
 	def p2N
 
-	public def getScore() {
+	def getScore() {
 		String s
 		if (p1 < 4 && p2 < 4 && !(p1 + p2 == 6)) {
 			String[] p = ["Love", "Fifteen", "Thirty", "Forty"]
@@ -19,7 +19,7 @@ public class TennisGame3 implements TennisGame {
 		}
 	}
 
-	public void wonPoint(playerName) {
+	void wonPoint(playerName) {
 		if (playerName == "player1")
 			this.p1 += 1
 		else
