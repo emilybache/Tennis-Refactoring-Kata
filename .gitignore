@@ -4,3 +4,7 @@
 /cpp/run.tests
 /ocaml/_build
 /ocaml/*.native
+csharp/packages/
+csharp/Tennis/bin/
+csharp/Tennis/obj/
+csharp/*.suo
