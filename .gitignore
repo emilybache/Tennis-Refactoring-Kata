@@ -8,3 +8,5 @@ csharp/packages/
 csharp/Tennis/bin/
 csharp/Tennis/obj/
 csharp/*.suo
+*.swp
+.DS_Store
