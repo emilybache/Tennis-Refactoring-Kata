@@ -1,76 +1,89 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class TennisGame1 implements TennisGame {
-    
-    private int m_score1 = 0;
-    private int m_score2 = 0;
-    private String player1Name;
-    private String player2Name;
 
-    public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
-    }
+	private static final String DASH = "-";
+	private static final String WIN_FOR = "Win for ";
+	private static final String ADVANTAGE = "Advantage ";
+	private static final String ALL = "All";
+	private static final String LOVE = "Love";
+	private static final String FORTY = "Forty";
+	private static final String FIFTEEN = "Fifteen";
+	private static final String THIRTY = "Thirty";
+	private static final String DEUCE = "Deuce";
 
-    public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            m_score1 += 1;
-        else
-            m_score2 += 1;
-    }
+	private int player1Score = 0;
+	private int player2Score = 0;
+	private String player1Name;
+	private String player2Name;
+	private Map<Integer, String> scores = new HashMap<>();
 
-    public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (m_score1==m_score2)
-        {
-            switch (m_score1)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
-        }
-        else if (m_score1>=4 || m_score2>=4)
-        {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
-    }
+	public TennisGame1(String player1Name, String player2Name) {
+		this.player1Name = player1Name;
+		this.player2Name = player2Name;
+		scores.put(0, LOVE);
+		scores.put(1, FIFTEEN);
+		scores.put(2, THIRTY);
+	}
+
+	public void wonPoint(String playerName) {
+		if (playerName == player1Name)
+			player1Score += 1;
+		else
+			player2Score += 1;
+	}
+
+	public String getScore() {
+		if (isScoresEquals()) {
+			return getTennisScoreNameIfScoreEquals(player1Score);
+		} else if (existsAdvantage()) {
+			return getIsWinOrAdvantage() + getWinningPlayerName(player1Score, player2Score);
+		} else {
+			return getTennisScoreName(player1Score) + DASH + getTennisScoreName(player2Score);
+		}
+
+	}
+
+	private String getIsWinOrAdvantage() {
+		if (existsWin(player1Score, player2Score)) {
+			return WIN_FOR;
+		} else {
+			return ADVANTAGE;
+		}
+	}
+
+	private String getTennisScoreName(int tempScore) {
+		if (scores.containsKey(tempScore)) {
+			return scores.get(tempScore);
+		}
+		return FORTY;
+	}
+
+	private String getTennisScoreNameIfScoreEquals(int playerScore) {
+		if (scores.containsKey(playerScore)) {
+			String score = scores.get(playerScore);
+			score += DASH + ALL;
+			return score;
+		}
+		return DEUCE;
+	}
+
+	private boolean existsWin(int player1Score, int player2Score) {
+		int signedPlayersScoreDifference = player1Score - player2Score;
+		return (signedPlayersScoreDifference >= 2 || signedPlayersScoreDifference <= -2);
+	}
+
+	private boolean existsAdvantage() {
+		return player1Score >= 4 || player2Score >= 4;
+	}
+
+	private boolean isScoresEquals() {
+		return player1Score == player2Score;
+	}
+
+	private String getWinningPlayerName(Integer player1Score, Integer player2Score) {
+		return player1Score > player2Score ? player1Name : player2Name;
+	}
+
 }
