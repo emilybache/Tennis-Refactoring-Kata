@@ -7,6 +7,9 @@ if (typeof TennisGame2 === "undefined") {
 if (typeof TennisGame3 === "undefined") {
     var TennisGame3 = require("./TennisGame3.js");
 }
+if (typeof TennisGameMorenoNir === "undefined") {
+  var TennisGameMorenoNir = require("./TennisGameMorenoNir.js");
+}
 
 var allScores = [
     [0, 0, "Love-All"],
@@ -147,4 +150,5 @@ if (typeof window !== "undefined") {
 runSuiteOnGame(reporter, TennisGame1, "TennisGame1");
 runSuiteOnGame(reporter, TennisGame2, "TennisGame2");
 runSuiteOnGame(reporter, TennisGame3, "TennisGame3");
+runSuiteOnGame(reporter, TennisGameMorenoNir, "TennisGame - MorenoNir");
 reporter.done();
