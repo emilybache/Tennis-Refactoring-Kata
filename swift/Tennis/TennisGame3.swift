@@ -2,7 +2,7 @@
 //  TennisGame3.swift
 //  TennisTests
 //
-//  Created by Test on 08/10/2017.
+//  Created by Ivan Rublev on 08/10/2017.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  TennisTests.swift
 //  TennisTests
 //
-//  Created by Test on 07/10/2017.
+//  Created by Ivan Rublev on 07/10/2017.
 //
 
 import XCTest
