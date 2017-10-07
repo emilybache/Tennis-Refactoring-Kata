@@ -87,6 +87,10 @@ extension TennisTests {
         instantiateAndCheckGame(class: TennisGame2.self)
     }
 
+    func testAllScoresTennisGame3() {
+        instantiateAndCheckGame(class: TennisGame3.self)
+    }
+
     private func instantiateAndCheckGame(class aClass: TennisGame.Type) {
         let game = instantiateGame(class: aClass)
         checkAllScores(for: game)
