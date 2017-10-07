@@ -66,7 +66,7 @@ extension TennisTests {
         return testSuite
     }
     
-    class func addTest(forEachInvocationWith scores: (Int, Int, String), to testSuite: XCTestSuite) {
+    private class func addTest(forEachInvocationWith scores: (Int, Int, String), to testSuite: XCTestSuite) {
         for testInvocation in testInvocations {
             let test = TennisTests(invocation: testInvocation)
             test.player1Score = scores.0
@@ -80,16 +80,24 @@ extension TennisTests {
 // MARK: Invocations
 extension TennisTests {
     func testAllScoresTennisGame1() {
-        let game = instantiateGame(class: TennisGame1.self)
-        checkAllScores(for: game)
+        instantiateAndCheckGame(class: TennisGame1.self)
+    }
+    
+    func testAllScoresTennisGame2() {
+        instantiateAndCheckGame(class: TennisGame2.self)
     }
 
-    func instantiateGame(class aClass: TennisGame.Type) -> TennisGame {
+    private func instantiateAndCheckGame(class aClass: TennisGame.Type) {
+        let game = instantiateGame(class: aClass)
+        checkAllScores(for: game)
+    }
+    
+    private func instantiateGame(class aClass: TennisGame.Type) -> TennisGame {
         let instance = aClass.init(player1: "player1", player2: "player2")
         return instance
     }
     
-    func checkAllScores(for game: TennisGame) {
+    private func checkAllScores(for game: TennisGame) {
         print("\(player1Score!), \(player2Score!), \(expectedScore!)")
         let highestScore = max(player1Score, player2Score);
         for i in 0..<highestScore {

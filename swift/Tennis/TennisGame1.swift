@@ -21,7 +21,7 @@ class TennisGame1: TennisGame {
     }
 
     func wonPoint(_ playerName: String) {
-        if playerName == player1 {
+        if playerName == "player1" {
             score1 += 1
         } else {
             score2 += 1

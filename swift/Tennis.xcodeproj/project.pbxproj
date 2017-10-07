@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520065DE1F8972C5006EDBDF /* TennisGame2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520065DD1F8972C5006EDBDF /* TennisGame2.swift */; };
 		52EF22791F892FF600CAD019 /* TennisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF22781F892FF600CAD019 /* TennisTests.swift */; };
 		52EF22801F89307F00CAD019 /* TennisGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF227F1F89307F00CAD019 /* TennisGame.swift */; };
 		52EF22821F89316100CAD019 /* TennisGame1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF22811F89316100CAD019 /* TennisGame1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520065DD1F8972C5006EDBDF /* TennisGame2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisGame2.swift; sourceTree = "<group>"; };
 		52EF22751F892FF600CAD019 /* TennisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EF22781F892FF600CAD019 /* TennisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisTests.swift; sourceTree = "<group>"; };
 		52EF227A1F892FF600CAD019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				52EF22811F89316100CAD019 /* TennisGame1.swift */,
+				520065DD1F8972C5006EDBDF /* TennisGame2.swift */,
 				52EF227F1F89307F00CAD019 /* TennisGame.swift */,
 			);
 			path = Tennis;
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EF22821F89316100CAD019 /* TennisGame1.swift in Sources */,
+				520065DE1F8972C5006EDBDF /* TennisGame2.swift in Sources */,
 				52EF22801F89307F00CAD019 /* TennisGame.swift in Sources */,
 				52EF22791F892FF600CAD019 /* TennisTests.swift in Sources */,
 			);
