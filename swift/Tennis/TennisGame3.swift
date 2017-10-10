@@ -1,10 +1,3 @@
-//
-//  TennisGame3.swift
-//  TennisTests
-//
-//  Created by Ivan Rublev on 08/10/2017.
-//
-
 import Foundation
 
 class TennisGame3: TennisGame {

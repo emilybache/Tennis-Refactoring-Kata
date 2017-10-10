@@ -1,10 +1,3 @@
-//
-//  TennisTests.swift
-//  TennisTests
-//
-//  Created by Ivan Rublev on 07/10/2017.
-//
-
 import XCTest
 
 let parameters = [
