@@ -29,20 +29,9 @@ TennisGame1.prototype.getScore = function() {
                 score += "-";
                 tempScore = this.m_score2;
             }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+
+            const result = ['Love', 'Fifteen', 'Thirty', 'Forty'];
+            score += result[tempScore]; 
         }
     }
     return score;
