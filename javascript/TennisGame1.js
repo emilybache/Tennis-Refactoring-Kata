@@ -7,28 +7,25 @@ class TennisGame1 {
     }
 
     wonPoint(playerName) {
-        playerName === 'player1' ? this.m_score1++ : this.m_score2++
+        playerName === 'player1' ? this.m_score1++ : this.m_score2++;
     }
 
     getScore() {
-        let score = '';
-
         if (this.m_score1 === this.m_score2) {           
             const equality = ['Love-All', 'Fifteen-All', 'Thirty-All', 'Deuce'];
-            this.m_score1 > 3 ? score = equality[3] : score = equality[this.m_score1];
+
+            return this.m_score1 > 3 ? equality[3] : equality[this.m_score1];
         } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
             const minusResult = this.m_score1 - this.m_score2;
+            const isWin = minusResult >= 2 || minusResult <= -2;
+            const playerResult = minusResult > 0 ? 'player1' : 'player2';
 
-            minusResult === 1 && (score = `Advantage player1`);
-            minusResult === -1 && (score = `Advantage player2`);
-            minusResult >= 2 && (score = `Win for player1`);
-            minusResult <= -2 && (score = `Win for player2`);
+            return isWin ? `Win for ${playerResult}` : `Advantage ${playerResult}`;
         } else {
             const result = ['Love', 'Fifteen', 'Thirty', 'Forty'];
             
-            score = `${result[this.m_score1]}-${result[this.m_score2]}`;
+            return `${result[this.m_score1]}-${result[this.m_score2]}`;
         }
-        return score;
     }
 };
 
