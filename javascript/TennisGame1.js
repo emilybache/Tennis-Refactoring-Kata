@@ -11,11 +11,7 @@ class TennisGame1 {
     }
 
     getScore() {
-        if (this.m_score1 === this.m_score2) {           
-            const equality = ['Love-All', 'Fifteen-All', 'Thirty-All', 'Deuce'];
-
-            return this.m_score1 > 3 ? equality[3] : equality[this.m_score1];
-        } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
+        if ((this.m_score1 >= 4 || this.m_score2 >= 4) && (this.m_score1 !== this.m_score2)) {
             const minusResult = this.m_score1 - this.m_score2;
             const isWin = minusResult >= 2 || minusResult <= -2;
             const playerResult = minusResult > 0 ? 'player1' : 'player2';
@@ -23,7 +19,11 @@ class TennisGame1 {
             return isWin ? `Win for ${playerResult}` : `Advantage ${playerResult}`;
         } else {
             const result = ['Love', 'Fifteen', 'Thirty', 'Forty'];
-            
+
+            if (this.m_score1 === this.m_score2) {
+                return this.m_score1 >= 3 ? 'Deuce' : `${result[this.m_score1]}-All`;
+            }
+
             return `${result[this.m_score1]}-${result[this.m_score2]}`;
         }
     }
