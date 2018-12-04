@@ -13,7 +13,7 @@ export class TennisGame1 implements TennisGame {
   }
 
   wonPoint(playerName: string): void {
-    if (playerName === 'player1')
+    if (playerName === this.player1Name)
       this.m_score1 += 1;
     else
       this.m_score2 += 1;
