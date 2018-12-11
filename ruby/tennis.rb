@@ -9,7 +9,7 @@ class TennisGame1
   end
         
   def won_point(playerName)
-    if playerName == @player1Name
+    if playerName == "player1"
       @p1points += 1
     else
       @p2points += 1
@@ -28,13 +28,13 @@ class TennisGame1
     elsif (@p1points>=4 or @p2points>=4)
       minusResult = @p1points-@p2points
       if (minusResult==1)
-        result ="Advantage " + @player1Name
+        result ="Advantage player1"
       elsif (minusResult ==-1)
-        result ="Advantage " + @player2Name
+        result ="Advantage player2"
       elsif (minusResult>=2)
-        result = "Win for " + @player1Name
+        result = "Win for player1"
       else
-        result ="Win for " + @player2Name
+        result ="Win for player2"
       end
     else
       (1...3).each do |i|
