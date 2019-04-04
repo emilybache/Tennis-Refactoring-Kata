@@ -15,15 +15,6 @@ class TennisGame3Test extends TestMaster
     }
 
     /**
-     * Cleans up the environment after running a test.
-     */
-    protected function tearDown(): void
-    {
-        $this->game = null;
-        parent::tearDown();
-    }
-
-    /**
      * @param int $score1
      * @param int $score2
      * @param string $expectedResult
