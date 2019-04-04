@@ -8,7 +8,7 @@ class TennisGame2Test extends TestMaster
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_game = new TennisGame2('player1', 'player2');
@@ -17,7 +17,7 @@ class TennisGame2Test extends TestMaster
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->_game = null;
         parent::tearDown();
