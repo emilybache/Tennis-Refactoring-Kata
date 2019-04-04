@@ -12,3 +12,4 @@ csharp/*.suo
 .DS_Store
 csharp/.vs
 .vs
+.phpunit.result.cache

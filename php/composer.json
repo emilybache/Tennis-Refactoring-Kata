@@ -2,8 +2,11 @@
     "name": "emilybache/tennis-refactoring-kata-php",
     "description": "Tennis Refactoring Kata",
     "license": "MIT",
+    "require": {
+        "php": "^7.2"
+    },
     "require-dev": {
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "^8.0.0"
     },
     "autoload": {
         "psr-4": {
