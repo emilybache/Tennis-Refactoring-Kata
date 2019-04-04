@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 abstract class TestMaster extends TestCase
 {
     /** @var TennisGame */
-    protected $_game = null;
+    protected $game = null;
 
     /**
      * @return mixed[][]

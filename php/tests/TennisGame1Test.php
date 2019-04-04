@@ -11,7 +11,7 @@ class TennisGame1Test extends TestMaster
     protected function setUp(): void
     {
         parent::setUp();
-        $this->_game = new TennisGame1('player1', 'player2');
+        $this->game = new TennisGame1('player1', 'player2');
     }
 
     /**
@@ -19,7 +19,7 @@ class TennisGame1Test extends TestMaster
      */
     protected function tearDown(): void
     {
-        $this->_game = null;
+        $this->game = null;
         parent::tearDown();
     }
 
@@ -34,13 +34,13 @@ class TennisGame1Test extends TestMaster
         $highestScore = max($score1, $score2);
         for ($i = 0; $i < $highestScore; $i++) {
             if ($i < $score1) {
-                $this->_game->wonPoint("player1");
+                $this->game->wonPoint("player1");
             }
             if ($i < $score2) {
-                $this->_game->wonPoint("player2");
+                $this->game->wonPoint("player2");
             }
         }
-        $this->assertEquals($expectedResult, $this->_game->getScore());
+        $this->assertEquals($expectedResult, $this->game->getScore());
     }
 }
 
