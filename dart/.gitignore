@@ -1,0 +1,10 @@
+bin/
+.packages
+pubspec.lock
+
+# IntelliJ files
+*.iml
+.idea/
+
+# VS Code files
+.vscode/
