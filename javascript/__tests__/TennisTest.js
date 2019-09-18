@@ -94,43 +94,6 @@ var runSuiteOnGame = function(reporter, TennisGame, title) {
   });
 };
 
-var getBrowserReporter = function() {
-  var results = document.getElementById("results");
-  var total = document.getElementById("total");
-  var reporter = {
-    errors: 0,
-    addSuite: function(title) {
-      results.innerHTML +=
-        '<tr style="background:#D0D0D0;"><td>' + title + " </td><td></td></tr>";
-    },
-    addCase: function(title, ok, message) {
-      var color = ok ? "#20FF20" : "#FF2020";
-      results.innerHTML +=
-        "<tr><td>" +
-        title +
-        '</td><td style="background:' +
-        color +
-        ';">' +
-        message +
-        "</td></tr>";
-      if (!ok) {
-        this.errors++;
-      }
-    },
-    done: function() {
-      var color = this.errors === 0 ? "#20FF20" : "#FF2020";
-      total.innerHTML =
-        '<div style="background:' +
-        color +
-        ';">' +
-        this.errors +
-        " failure(s)!</div>";
-    }
-  };
-
-  return reporter;
-};
-
 var getConsoleReporter = function() {
   var reporter = {
     errors: 0,
