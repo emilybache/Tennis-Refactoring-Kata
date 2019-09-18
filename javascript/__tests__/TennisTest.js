@@ -1,14 +1,4 @@
-if (typeof TennisGame1 === "undefined") {
-  var TennisGame1 = require("./TennisGame1.js");
-}
-if (typeof TennisGame2 === "undefined") {
-  var TennisGame2 = require("./TennisGame2.js");
-}
-if (typeof TennisGame3 === "undefined") {
-  var TennisGame3 = require("./TennisGame3.js");
-}
-
-var allScores = [
+const cases = [
   [0, 0, "Love-All"],
   [1, 1, "Fifteen-All"],
   [2, 2, "Thirty-All"],
@@ -49,78 +39,27 @@ var allScores = [
   [14, 16, "Win for player2"]
 ];
 
-var checkScore = function(
-  reporter,
-  TennisGame,
-  player1Score,
-  player2Score,
-  expectedScore
-) {
-  var highestScore = Math.max(player1Score, player2Score);
-  var game;
-  var result;
-  var message = "";
-  var ok = false;
-  var i;
+const games = [
+  ["Game 1", TennisGame1],
+  ["Game 2", TennisGame2],
+  ["Game 3", TennisGame3]
+];
 
-  try {
-    game = new TennisGame("player1", "player2");
-    for (i = 0; i < highestScore; i++) {
-      if (i < player1Score) {
-        game.wonPoint("player1");
+describe.each(games)("%p", (_, GameClass) => {
+  test.each(cases)(
+    "for %p-%p it can report game score of %p",
+    (player1Score, player2Score, expectedScore) => {
+      const game = new GameClass("player1", "player2");
+      const highestScore = Math.max(player1Score, player2Score);
+      for (let i = 0; i < highestScore; i++) {
+        if (i < player1Score) {
+          game.wonPoint("player1");
+        }
+        if (i < player2Score) {
+          game.wonPoint("player2");
+        }
       }
-      if (i < player2Score) {
-        game.wonPoint("player2");
-      }
+      expect(game.getScore()).toBe(expectedScore);
     }
-    result = game.getScore();
-
-    if (result === expectedScore) {
-      ok = true;
-    } else {
-      message = "Result = '" + result + "'";
-    }
-  } catch (ex) {
-    message = "Exception: " + ex;
-  }
-
-  reporter.addCase(expectedScore, ok, message);
-};
-
-var runSuiteOnGame = function(reporter, TennisGame, title) {
-  reporter.addSuite(title);
-  allScores.forEach(function(score) {
-    checkScore(reporter, TennisGame, score[0], score[1], score[2]);
-  });
-};
-
-var getConsoleReporter = function() {
-  var reporter = {
-    errors: 0,
-    addSuite: function(title) {
-      console.log("Running suite '" + title + "'...");
-    },
-    addCase: function(title, ok, message) {
-      if (!ok) {
-        console.log("Case '" + title + "': " + message);
-        this.errors++;
-      }
-    },
-    done: function() {
-      if (this.errors > 0) {
-        console.log("Got " + this.errors + " failure(s)!");
-      } else {
-        console.log("Done, all OK ");
-      }
-    }
-  };
-
-  return reporter;
-};
-
-let reporter = getConsoleReporter();
-
-runSuiteOnGame(reporter, TennisGame1, "TennisGame1");
-runSuiteOnGame(reporter, TennisGame2, "TennisGame2");
-runSuiteOnGame(reporter, TennisGame3, "TennisGame3");
-reporter.done();
+  );
+});
