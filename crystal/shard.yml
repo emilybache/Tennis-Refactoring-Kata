@@ -1,0 +1,9 @@
+name: Tennis-Refactoring-Kata
+version: 0.1.0
+
+authors:
+  - Eloy <ej.perezgomez@gmail.com>
+
+crystal: 0.31.1
+
+license: MIT
