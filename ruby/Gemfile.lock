@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    test-unit (2.5.5)
+    minitest (5.12.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  test-unit
+  minitest
 
 BUNDLED WITH
-   1.10.6
+   1.17.2
