@@ -6,14 +6,7 @@ public class EqualityScore {
         this.playerGameScore = playerGameScore;
     }
 
-    String equalityScore(int score1) {
-        String score;
-        if (score1 <= 2) {
-            String stringScore = playerGameScore.score(score1);
-            score = stringScore + "-All";
-        } else {
-            score = "Deuce";
-        }
-        return score;
+    String equalityScore(String score) {
+        return score + "-All";
     }
 }
