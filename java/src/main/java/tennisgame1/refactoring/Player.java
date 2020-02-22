@@ -5,8 +5,12 @@ public class Player {
 	private final int point;
 	
 	public Player(String name) {
+		this(name, 0);
+	}
+	
+	private Player(String name, int point) {
 		this.name = name;
-		point = 0;
+		this.point = point;
 	}
 	
 	public String getName() {
@@ -18,7 +22,7 @@ public class Player {
 	}
 	
 	public Player wonPoint() {
-		return null;
+		return new Player(name, point + 1);
 	}
 	
 }
