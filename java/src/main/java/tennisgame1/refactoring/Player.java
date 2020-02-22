@@ -29,4 +29,13 @@ public class Player {
 		return point > NumericScore.FORTY.getPoint();
 	}
 	
+	public boolean hasAdvantageOver(Player player2) {
+		return isInPostFortyPhase() && (point - player2.point) == 1;
+	}
+
+	public boolean hasWonOver(Player player2) {
+		return isInPostFortyPhase() && (point - player2.point) >= 2;
+	}
+	
+	
 }
