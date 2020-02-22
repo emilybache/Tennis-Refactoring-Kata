@@ -17,4 +17,8 @@ public class Player {
 		return point;
 	}
 	
+	public Player wonPoint() {
+		return null;
+	}
+	
 }

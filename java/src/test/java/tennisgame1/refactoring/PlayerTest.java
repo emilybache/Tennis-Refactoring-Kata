@@ -11,4 +11,9 @@ public class PlayerTest {
 		Assert.assertEquals(0, player.getPoint());
 	}
 
+	@Test
+	public void testWonPoint() {
+		final Player player = new Player("player");
+		Assert.assertEquals(player.getPoint() + 1, player.wonPoint().getPoint());
+	}
 }

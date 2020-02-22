@@ -11,8 +11,12 @@ public class TennisGame1Refactored implements TennisGame {
 
 	@Override
 	public void wonPoint(String playerName) {
-		// TODO Auto-generated method stub
-		
+		if (player1.getName().equals(playerName)) {
+			player1 = player1.wonPoint();
+		}
+		if (player1.getName().equals(playerName)) {
+			player2 = player2.wonPoint();
+		}
 	}
 
 	@Override
