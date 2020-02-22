@@ -21,8 +21,20 @@ public class TennisGame1Refactored implements TennisGame {
 
 	@Override
 	public String getScore() {
-		// TODO Auto-generated method stub
-		return null;
+		return isPastDeuce() ? computePostDeuceScore() : computePreDeuceScore();
 	}
 
+	private boolean isPastDeuce() {
+		// 0 = love, 1 = 15, 2 = 30, 3 = 40/deuce
+		return player1.getPoint() > 3 || player2.getPoint() > 3;
+	}
+	
+	private String computePostDeuceScore() {
+		return null;
+		
+	}
+	
+	private String computePreDeuceScore() {
+		return null;
+	}
 }
