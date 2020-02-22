@@ -6,8 +6,6 @@ import org.junit.Test;
 import tennisgame1.refactoring.ExamplePlayers;
 import tennisgame1.refactoring.Player;
 import tennisgame1.refactoring.ScoreNames;
-import tennisgame1.refactoring.gamemode.GameMode;
-import tennisgame1.refactoring.gamemode.WinningGameMode;
 
 public class WinningGameModeTest {
 	private final GameMode gameMode = new WinningGameMode();
