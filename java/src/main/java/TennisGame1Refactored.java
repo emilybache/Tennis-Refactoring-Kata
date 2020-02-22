@@ -23,15 +23,6 @@ public class TennisGame1Refactored implements TennisGame {
 
 	@Override
 	public String getScore() {
-		return isPastDeuce() ? computePostDeuceScore() : computePreDeuceScore();
-	}
-
-	private boolean isPastDeuce() {
-		// 0 = love, 1 = 15, 2 = 30, 3 = 40/deuce
-		return player1.isInPostFortyPhase() || player2.isInPostFortyPhase();
-	}
-
-	private String computePostDeuceScore() {
 		if (player1.hasWonOver(player2)) {
 			return ScoreNames.WIN_PREFIX + player1.getName();
 		}
@@ -50,8 +41,11 @@ public class TennisGame1Refactored implements TennisGame {
 			return ScoreNames.DEUCE;
 		}
 		
-		return "";
+		
+		// all scenarios handled for post deuce modes
+		return computePreDeuceScore();
 	}
+
 
 	private String computePreDeuceScore() {
 		final NumericScore score1 = NumericScore.forPoint(player1.getPoint());
