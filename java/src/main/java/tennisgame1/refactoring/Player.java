@@ -25,4 +25,8 @@ public class Player {
 		return new Player(name, point + 1);
 	}
 	
+	public boolean isInPostFortyPhase() {
+		return point > NumericScore.FORTY.getPoint();
+	}
+	
 }

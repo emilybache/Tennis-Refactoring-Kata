@@ -27,7 +27,7 @@ public class TennisGame1Refactored implements TennisGame {
 
 	private boolean isPastDeuce() {
 		// 0 = love, 1 = 15, 2 = 30, 3 = 40/deuce
-		return player1.getPoint() > 3 || player2.getPoint() > 3;
+		return player1.isInPostFortyPhase() || player2.isInPostFortyPhase();
 	}
 	
 	private String computePostDeuceScore() {

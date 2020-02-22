@@ -16,4 +16,20 @@ public class PlayerTest {
 		final Player player = new Player("player");
 		Assert.assertEquals(player.getPoint() + 1, player.wonPoint().getPoint());
 	}
+	
+	@Test
+	public void testIsInPostFortyPhaseLoveScore() {
+		final Player player = new Player("player");
+		Assert.assertFalse(player.isInPostFortyPhase());
+	}
+	
+	@Test
+	public void testIsInPostFortyPhaseAdvScore() {
+		Assert.assertTrue(new Player("player") //
+				.wonPoint() // 15
+				.wonPoint() // 30
+				.wonPoint() // 40 
+				.wonPoint() // adv
+				.isInPostFortyPhase());
+	}
 }
