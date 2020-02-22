@@ -43,7 +43,7 @@ public class Player {
 		return score1.pairDescription(score2);
 	}
 	
-	private boolean isInPostFortyPhase() {
+	public boolean isInPostFortyPhase() {
 		return point > NumericScore.FORTY.getPoint();
 	}
 	

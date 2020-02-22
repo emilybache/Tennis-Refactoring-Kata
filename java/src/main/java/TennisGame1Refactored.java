@@ -1,7 +1,20 @@
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import tennisgame1.refactoring.Player;
-import tennisgame1.refactoring.ScoreNames;
+import tennisgame1.refactoring.gamemode.AdvantageGameMode;
+import tennisgame1.refactoring.gamemode.DeuceAfterAdvantageGameMode;
+import tennisgame1.refactoring.gamemode.GameMode;
+import tennisgame1.refactoring.gamemode.NumericScoreGameMode;
+import tennisgame1.refactoring.gamemode.WinningGameMode;
 
 public class TennisGame1Refactored implements TennisGame {
+	private static Set<GameMode> ALL_GAME_MODES = Stream.of(new WinningGameMode(), //
+			new AdvantageGameMode(), //
+			new DeuceAfterAdvantageGameMode(), //
+			new NumericScoreGameMode()).collect(Collectors.toSet());
+	
 	private Player player1;
 	private Player player2;
 
@@ -22,26 +35,11 @@ public class TennisGame1Refactored implements TennisGame {
 
 	@Override
 	public String getScore() {
-		if (player1.hasWonOver(player2)) {
-			return ScoreNames.WIN_PREFIX + player1.getName();
+		for (GameMode gameMode: ALL_GAME_MODES) {
+			if (gameMode.isApplicable(player1, player2)) {
+				return gameMode.computeScore(player1, player2);
+			}
 		}
-		if (player2.hasWonOver(player1)) {
-			return ScoreNames.WIN_PREFIX + player2.getName();
-		}
-
-		if (player1.hasAdvantageOver(player2)) {
-			return ScoreNames.ADV_PREFIX + player1.getName();
-		}
-		if (player2.hasAdvantageOver(player1)) {
-			return ScoreNames.ADV_PREFIX + player2.getName();
-		}
-
-		if (player1.isInDeuceAfterAdvantage(player2)) {
-			return ScoreNames.DEUCE;
-		}
-		
-		// all scenarios handled for post deuce modes
-		// simply compute numeric score 
-		return player1.getNumericScoreValue(player2);
+		throw new IllegalStateException("This Should never occur as we have covered all possible game modes by now");
 	}
 }
