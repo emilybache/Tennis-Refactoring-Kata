@@ -1,5 +1,6 @@
 import tennisgame1.refactoring.NumericScore;
 import tennisgame1.refactoring.Player;
+import tennisgame1.refactoring.ScoreNames;
 
 public class TennisGame1Refactored implements TennisGame {
 	private Player player1;
@@ -31,8 +32,22 @@ public class TennisGame1Refactored implements TennisGame {
 	}
 	
 	private String computePostDeuceScore() {
-		return null;
+		if (player1.hasWonOver(player2)) {
+			return ScoreNames.WIN_PREFIX + player1.getName();
+		}
+		if (player2.hasWonOver(player1)) {
+			return ScoreNames.WIN_PREFIX + player2.getName();
+		}
 		
+		if (player1.hasAdvantageOver(player2)) {
+			return ScoreNames.ADV_PREFIX + player1.getName();
+		}
+		if (player2.hasAdvantageOver(player1)) {
+			return ScoreNames.ADV_PREFIX + player2.getName();
+		}
+		
+		// has to be deuce #2, or #3 ... #n
+		return ScoreNames.DEUCE;
 	}
 	
 	private String computePreDeuceScore() {
