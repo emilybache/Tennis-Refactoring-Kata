@@ -16,7 +16,7 @@ public class TennisGame1Refactored implements TennisGame {
 		if (player1.getName().equals(playerName)) {
 			player1 = player1.wonPoint();
 		}
-		if (player1.getName().equals(playerName)) {
+		if (player2.getName().equals(playerName)) {
 			player2 = player2.wonPoint();
 		}
 	}
