@@ -25,10 +25,6 @@ public class Player {
 		return new Player(name, point + 1);
 	}
 	
-	public boolean isInPostFortyPhase() {
-		return point > NumericScore.FORTY.getPoint();
-	}
-	
 	public boolean hasAdvantageOver(Player player2) {
 		return isInPostFortyPhase() && pointDiff(player2) == 1;
 	}
@@ -39,6 +35,16 @@ public class Player {
 	
 	public boolean isInDeuceAfterAdvantage(Player player2) {
 		return isInPostFortyPhase() && pointDiff(player2) == 0;
+	}
+	
+	public String getNumericScoreValue(Player player2) {
+		final NumericScore score1 = NumericScore.forPoint(point);
+		final NumericScore score2 = NumericScore.forPoint(player2.point);
+		return score1.pairDescription(score2);
+	}
+	
+	private boolean isInPostFortyPhase() {
+		return point > NumericScore.FORTY.getPoint();
 	}
 	
 	private int pointDiff(Player player2) {

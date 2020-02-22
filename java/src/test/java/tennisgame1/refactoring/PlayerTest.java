@@ -21,22 +21,6 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testIsInPostFortyPhaseLoveScore() {
-		final Player player = new Player("player");
-		Assert.assertFalse(player.isInPostFortyPhase());
-	}
-	
-	@Test
-	public void testIsInPostFortyPhaseAdvScore() {
-		Assert.assertTrue(new Player("player") //
-				.wonPoint() // 15
-				.wonPoint() // 30
-				.wonPoint() // 40 
-				.wonPoint() // adv
-				.isInPostFortyPhase());
-	}
-	
-	@Test
 	public void testHasAdvantageOverDeuce1() {
 		setUpDeuce1();
 		Assert.assertFalse(player1.hasAdvantageOver(player2));
@@ -99,6 +83,16 @@ public class PlayerTest {
 		Assert.assertTrue(player1.isInDeuceAfterAdvantage(player2));
 		Assert.assertTrue(player2.isInDeuceAfterAdvantage(player1));
 	}
+	
+	@Test
+	public void testGetNumericScoreValue() {
+		final Player player1 = ExamplePlayers.forScore30("player");
+		final Player player2 = ExamplePlayers.forScore15("player2");
+		
+		Assert.assertEquals(NumericScore.THIRTY.pairDescription(NumericScore.FIFTEEN),
+				player1.getNumericScoreValue(player2));
+	}
+
 
 	private void setUpDeuce1() {
 		player1 = ExamplePlayers.forScore40("player1");

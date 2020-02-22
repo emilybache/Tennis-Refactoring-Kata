@@ -41,15 +41,8 @@ public class TennisGame1Refactored implements TennisGame {
 			return ScoreNames.DEUCE;
 		}
 		
-		
 		// all scenarios handled for post deuce modes
-		return computePreDeuceScore();
-	}
-
-
-	private String computePreDeuceScore() {
-		final NumericScore score1 = NumericScore.forPoint(player1.getPoint());
-		final NumericScore score2 = NumericScore.forPoint(player2.getPoint());
-		return score1.pairDescription(score2);
+		// simply compute numeric score 
+		return player1.getNumericScoreValue(player2);
 	}
 }
