@@ -22,6 +22,21 @@ public enum NumericScore {
 		return description;
 	}
 	
+	public String pairDescription(NumericScore score2) {
+		return (getPoint() == score2.getPoint()) ? //
+				equalPointDescription() : //
+				description + '-' + score2.description;
+	}
+
+	private String equalPointDescription() {
+		return this == FORTY ? ScoreNames.DEUCE : description + ScoreNames.ALL_SUFFIX;
+	}
+
+	@Override
+	public String toString() {
+		return description + '(' + getPoint() + ')';
+	}
+	
 	public static NumericScore forPoint(int point) {
 		return EnumSet.allOf(NumericScore.class).stream() //
 				.filter(score -> point == score.getPoint()) //

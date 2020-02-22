@@ -1,3 +1,4 @@
+import tennisgame1.refactoring.NumericScore;
 import tennisgame1.refactoring.Player;
 
 public class TennisGame1Refactored implements TennisGame {
@@ -35,6 +36,8 @@ public class TennisGame1Refactored implements TennisGame {
 	}
 	
 	private String computePreDeuceScore() {
-		return null;
+		final NumericScore score1 = NumericScore.forPoint(player1.getPoint());
+		final NumericScore score2 = NumericScore.forPoint(player2.getPoint());
+		return score1.pairDescription(score2);
 	}
 }
