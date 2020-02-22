@@ -5,7 +5,7 @@ public class Player {
 	private final int point;
 	
 	public Player(String name) {
-		this(name, 0);
+		this(name, NumericScore.LOVE.getPoint());
 	}
 	
 	private Player(String name, int point) {
