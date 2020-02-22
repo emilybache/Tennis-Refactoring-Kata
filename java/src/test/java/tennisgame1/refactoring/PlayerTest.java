@@ -78,6 +78,27 @@ public class PlayerTest {
 		Assert.assertTrue(player1.hasWonOver(player2));
 		Assert.assertFalse(player2.hasWonOver(player1));
 	}
+	
+	@Test
+	public void testIsInDeuceAfterAdvantageDeuce1() {
+		setUpDeuce1();
+		Assert.assertFalse(player1.isInDeuceAfterAdvantage(player2));
+		Assert.assertFalse(player2.isInDeuceAfterAdvantage(player1));
+	}
+
+	@Test
+	public void testIsInDeuceAfterAdvantagePlayer1Adv1() {
+		setUpPlayer1Adv1();
+		Assert.assertFalse(player1.isInDeuceAfterAdvantage(player2));
+		Assert.assertFalse(player2.isInDeuceAfterAdvantage(player1));
+	}
+
+	@Test
+	public void testIsInDeuceAfterAdvantageDeuce2() {
+		setUpDeuce2();
+		Assert.assertTrue(player1.isInDeuceAfterAdvantage(player2));
+		Assert.assertTrue(player2.isInDeuceAfterAdvantage(player1));
+	}
 
 	private void setUpDeuce1() {
 		player1 = ExamplePlayers.forScore40("player1");

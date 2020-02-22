@@ -5,7 +5,7 @@ import tennisgame1.refactoring.ScoreNames;
 public class TennisGame1Refactored implements TennisGame {
 	private Player player1;
 	private Player player2;
-	
+
 	public TennisGame1Refactored(String player1Name, String player2Name) {
 		player1 = new Player(player1Name);
 		player2 = new Player(player2Name);
@@ -30,7 +30,7 @@ public class TennisGame1Refactored implements TennisGame {
 		// 0 = love, 1 = 15, 2 = 30, 3 = 40/deuce
 		return player1.isInPostFortyPhase() || player2.isInPostFortyPhase();
 	}
-	
+
 	private String computePostDeuceScore() {
 		if (player1.hasWonOver(player2)) {
 			return ScoreNames.WIN_PREFIX + player1.getName();
@@ -38,18 +38,21 @@ public class TennisGame1Refactored implements TennisGame {
 		if (player2.hasWonOver(player1)) {
 			return ScoreNames.WIN_PREFIX + player2.getName();
 		}
-		
+
 		if (player1.hasAdvantageOver(player2)) {
 			return ScoreNames.ADV_PREFIX + player1.getName();
 		}
 		if (player2.hasAdvantageOver(player1)) {
 			return ScoreNames.ADV_PREFIX + player2.getName();
 		}
+
+		if (player1.isInDeuceAfterAdvantage(player2)) {
+			return ScoreNames.DEUCE;
+		}
 		
-		// has to be deuce #2, or #3 ... #n
-		return ScoreNames.DEUCE;
+		return "";
 	}
-	
+
 	private String computePreDeuceScore() {
 		final NumericScore score1 = NumericScore.forPoint(player1.getPoint());
 		final NumericScore score2 = NumericScore.forPoint(player2.getPoint());

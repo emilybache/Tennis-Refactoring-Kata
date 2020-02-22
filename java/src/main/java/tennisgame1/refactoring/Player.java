@@ -30,12 +30,19 @@ public class Player {
 	}
 	
 	public boolean hasAdvantageOver(Player player2) {
-		return isInPostFortyPhase() && (point - player2.point) == 1;
+		return isInPostFortyPhase() && pointDiff(player2) == 1;
 	}
 
 	public boolean hasWonOver(Player player2) {
-		return isInPostFortyPhase() && (point - player2.point) >= 2;
+		return isInPostFortyPhase() && pointDiff(player2) >= 2;
 	}
 	
+	public boolean isInDeuceAfterAdvantage(Player player2) {
+		return isInPostFortyPhase() && pointDiff(player2) == 0;
+	}
+	
+	private int pointDiff(Player player2) {
+		return point - player2.point;
+	}
 	
 }
