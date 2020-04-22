@@ -1,0 +1,36 @@
+---
+Language:        Cpp
+# Reference here: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+BasedOnStyle:  Google
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: true
+BinPackParameters: true
+BraceWrapping:
+  AfterClass:      true
+  AfterControlStatement: true
+  AfterEnum:       true
+  AfterFunction:   true
+  AfterNamespace:  true
+  AfterStruct:     true
+  AfterUnion:      true
+  BeforeCatch:     true
+  BeforeElse:      true
+BreakBeforeBraces: Custom
+BreakConstructorInitializersBeforeComma: true
+BreakStringLiterals: false
+ColumnLimit:     120
+ContinuationIndentWidth: 4
+DerivePointerAlignment: false
+FixNamespaceComments: true
+IndentPPDirectives: AfterHash
+IndentWidth:     4
+MaxEmptyLinesToKeep: 2
+NamespaceIndentation: None
+SortIncludes:    false
