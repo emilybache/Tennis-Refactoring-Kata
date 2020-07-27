@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests;
+
+use TennisGame\TennisGame3;
+
 /**
  * TennisGame1 test case.
  */
@@ -15,15 +21,11 @@ class TennisGame3Test extends TestMaster
     }
 
     /**
-     * @param int $score1
-     * @param int $score2
-     * @param string $expectedResult
      * @dataProvider data
      */
-    public function testScores($score1, $score2, $expectedResult)
+    public function testScores(int $score1, int $score2, string $expectedResult): void
     {
         $this->seedScores($score1, $score2);
-        $this->assertEquals($expectedResult, $this->game->getScore());
+        $this->assertSame($expectedResult, $this->game->getScore());
     }
 }
-

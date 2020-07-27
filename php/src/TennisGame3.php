@@ -1,5 +1,7 @@
 <?php
 
+namespace TennisGame;
+
 class TennisGame3 implements TennisGame
 {
     private $p2 = 0;
@@ -38,4 +40,3 @@ class TennisGame3 implements TennisGame
     }
 
 }
-

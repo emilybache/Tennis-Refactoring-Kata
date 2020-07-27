@@ -1,5 +1,7 @@
 <?php
 
+namespace TennisGame;
+
 class TennisGame2 implements TennisGame
 {
     private $P1point = 0;

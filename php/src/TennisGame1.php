@@ -1,5 +1,7 @@
 <?php
 
+namespace TennisGame;
+
 class TennisGame1 implements TennisGame
 {
     private $m_score1 = 0;
@@ -78,4 +80,3 @@ class TennisGame1 implements TennisGame
         return $score;
     }
 }
-
