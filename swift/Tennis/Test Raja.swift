@@ -27,8 +27,8 @@ protocol Testing {
 
 class newClass: Testing {
     
-    func hello() {
-        
+    func hello(_ A: Int, _B: Int) {
+        print("Dustinson")
     }
     
     func hereYouGo() {
