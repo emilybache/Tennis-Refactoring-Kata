@@ -26,9 +26,16 @@ protocol Testing {
 }
 
 class newClass: Testing {
+    
+    func hello() {
+        
+    }
+    
     func hereYouGo() {
         print("not going good??")
         
         print("test some stuff here")
+        
+        print("new change3s")
     }
 }
