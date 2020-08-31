@@ -28,5 +28,7 @@ protocol Testing {
 class newClass: Testing {
     func hereYouGo() {
         print("not going good??")
+        
+        print("test some stuff here")
     }
 }
