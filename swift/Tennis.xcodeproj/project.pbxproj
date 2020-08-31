@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0604F11C24FD489B00D7B56F /* Test Raja.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0604F11B24FD489B00D7B56F /* Test Raja.swift */; };
 		520065DE1F8972C5006EDBDF /* TennisGame2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520065DD1F8972C5006EDBDF /* TennisGame2.swift */; };
 		520065E01F897A01006EDBDF /* TennisGame3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520065DF1F897A01006EDBDF /* TennisGame3.swift */; };
 		52EF22791F892FF600CAD019 /* TennisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF22781F892FF600CAD019 /* TennisTests.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0604F11B24FD489B00D7B56F /* Test Raja.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test Raja.swift"; sourceTree = "<group>"; };
 		520065DD1F8972C5006EDBDF /* TennisGame2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisGame2.swift; sourceTree = "<group>"; };
 		520065DF1F897A01006EDBDF /* TennisGame3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisGame3.swift; sourceTree = "<group>"; };
 		52EF22751F892FF600CAD019 /* TennisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TennisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				520065DD1F8972C5006EDBDF /* TennisGame2.swift */,
 				520065DF1F897A01006EDBDF /* TennisGame3.swift */,
 				52EF227F1F89307F00CAD019 /* TennisGame.swift */,
+				0604F11B24FD489B00D7B56F /* Test Raja.swift */,
 			);
 			path = Tennis;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			files = (
 				520065E01F897A01006EDBDF /* TennisGame3.swift in Sources */,
 				52EF22821F89316100CAD019 /* TennisGame1.swift in Sources */,
+				0604F11C24FD489B00D7B56F /* Test Raja.swift in Sources */,
 				520065DE1F8972C5006EDBDF /* TennisGame2.swift in Sources */,
 				52EF22801F89307F00CAD019 /* TennisGame.swift in Sources */,
 				52EF22791F892FF600CAD019 /* TennisTests.swift in Sources */,
