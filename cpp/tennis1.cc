@@ -19,7 +19,7 @@ const std::string tennis_score(int p1Score, int p2Score) {
             default:
                     score = "Deuce";
                 break;
-            
+
         }
     }
     else if (p1Score>=4 || p2Score>=4)

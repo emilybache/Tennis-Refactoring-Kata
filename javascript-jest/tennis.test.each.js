@@ -46,7 +46,7 @@ const allScores = [
 ];
 
 
-describe('getScore', () => {
+describe('getScore1', () => {
   each(allScores).it("when the points are %s", (p1, p2, expected) => {
     expect(getScore1(p1, p2)).toEqual(expected);
   });
