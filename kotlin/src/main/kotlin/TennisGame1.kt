@@ -1,3 +1,5 @@
+import java.lang.IllegalArgumentException
+
 class TennisGame1(
         private val player1Name: String,
         private val player2Name: String
@@ -14,33 +16,27 @@ class TennisGame1(
     }
 
     override fun getScore(): String {
-        if (scorePlayer1 == scorePlayer2) {
-            return equalScore()
+        return if (scorePlayer1 == scorePlayer2) {
+            equalScore()
         } else if (scorePlayer1 >= 4 || scorePlayer2 >= 4) {
-            return winOrAdvantageScore()
+            winOrAdvantageScore()
         } else {
-            return normalScore()
+            normalScore()
         }
     }
 
     private fun normalScore(): String {
-        var score = ""
-        var tempScore = 0
-        for (i in 1..2) {
-            if (i == 1)
-                tempScore = scorePlayer1
-            else {
-                score += "-"
-                tempScore = scorePlayer2
-            }
-            when (tempScore) {
-                0 -> score += "Love"
-                1 -> score += "Fifteen"
-                2 -> score += "Thirty"
-                3 -> score += "Forty"
-            }
+        return "${score(scorePlayer1)}-${score(scorePlayer2)}"
+    }
+
+    private fun score(points: Int): String {
+        return when (points) {
+            0 -> "Love"
+            1 -> "Fifteen"
+            2 -> "Thirty"
+            3 -> "Forty"
+            else -> throw IllegalArgumentException()
         }
-        return score
     }
 
     private fun winOrAdvantageScore(): String {
