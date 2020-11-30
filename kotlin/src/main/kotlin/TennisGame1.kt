@@ -14,41 +14,51 @@ class TennisGame1(
     }
 
     override fun getScore(): String {
+        if (scorePlayer1 == scorePlayer2) {
+            return equalScore()
+        } else if (scorePlayer1 >= 4 || scorePlayer2 >= 4) {
+            return winOrAdvantageScore()
+        } else {
+            return normalScore()
+        }
+    }
+
+    private fun normalScore(): String {
         var score = ""
         var tempScore = 0
-        if (scorePlayer1 == scorePlayer2) {
-            when (scorePlayer1) {
-                0 -> return "Love-All"
-                1 -> return "Fifteen-All"
-                2 -> return "Thirty-All"
-                else -> return "Deuce"
+        for (i in 1..2) {
+            if (i == 1)
+                tempScore = scorePlayer1
+            else {
+                score += "-"
+                tempScore = scorePlayer2
             }
-        } else if (scorePlayer1 >= 4 || scorePlayer2 >= 4) {
-            val minusResult = scorePlayer1 - scorePlayer2
-            if (minusResult == 1)
-                return "Advantage player1"
-            else if (minusResult == -1)
-                return "Advantage player2"
-            else if (minusResult >= 2)
-                return "Win for player1"
-            else
-                return "Win for player2"
-        } else {
-            for (i in 1..2) {
-                if (i == 1)
-                    tempScore = scorePlayer1
-                else {
-                    score += "-"
-                    tempScore = scorePlayer2
-                }
-                when (tempScore) {
-                    0 -> score += "Love"
-                    1 -> score += "Fifteen"
-                    2 -> score += "Thirty"
-                    3 -> score += "Forty"
-                }
+            when (tempScore) {
+                0 -> score += "Love"
+                1 -> score += "Fifteen"
+                2 -> score += "Thirty"
+                3 -> score += "Forty"
             }
         }
         return score
+    }
+
+    private fun winOrAdvantageScore(): String {
+        val minusResult = scorePlayer1 - scorePlayer2
+        return when {
+            minusResult == 1 -> "Advantage player1"
+            minusResult == -1 -> "Advantage player2"
+            minusResult >= 2 -> "Win for player1"
+            else -> "Win for player2"
+        }
+    }
+
+    private fun equalScore(): String {
+        return when (scorePlayer1) {
+            0 -> "Love-All"
+            1 -> "Fifteen-All"
+            2 -> "Thirty-All"
+            else -> "Deuce"
+        }
     }
 }
