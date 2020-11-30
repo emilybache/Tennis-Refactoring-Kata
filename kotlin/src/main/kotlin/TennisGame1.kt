@@ -3,8 +3,14 @@ class TennisGame1(
         player2Name: String
 ) : TennisGame {
     private val player1 = Player(player1Name)
-
     private val player2 = Player(player2Name)
+
+    private val scoreByPoints = mapOf(
+            0 to "Love",
+            1 to "Fifteen",
+            2 to "Thirty",
+            3 to "Forty"
+    )
 
     override fun wonPoint(playerName: String) {
         playerWithName(playerName).wonPoint()
@@ -17,7 +23,7 @@ class TennisGame1(
             player2.hasAdvantageOver(player1) -> "Advantage ${player2.name}"
             player1.hasWonAgainst(player2) -> "Win for ${player1.name}"
             player2.hasWonAgainst(player1) -> "Win for ${player2.name}"
-            else -> "${score(player1.score)}-${score(player2.score)}"
+            else -> "${scoreByPoints[player1.points]}-${scoreByPoints[player2.points]}"
         }
     }
 
@@ -25,18 +31,8 @@ class TennisGame1(
             player1.takeIf { player -> player.isCalled(name) }
                     ?: player2
 
-    private fun score(points: Int): String {
-        return when (points) {
-            0 -> "Love"
-            1 -> "Fifteen"
-            2 -> "Thirty"
-            3 -> "Forty"
-            else -> throw IllegalArgumentException()
-        }
-    }
-
     private fun equalScore(): String {
-        return when (player1.score) {
+        return when (player1.points) {
             0 -> "Love-All"
             1 -> "Fifteen-All"
             2 -> "Thirty-All"
