@@ -11,22 +11,19 @@ class TennisGame1(
     }
 
     override fun getScore(): String {
-        return if (player1.isInTieWith(player2)) {
-            equalScore()
-        } else if (player1.score >= 4 || player2.score >= 4) {
-            winOrAdvantageScore()
-        } else {
-            normalScore()
+        return when {
+            player1.isInTieWith(player2) -> equalScore()
+            player1.hasAdvantageOver(player2) -> "Advantage ${player1.name}"
+            player2.hasAdvantageOver(player1) -> "Advantage ${player2.name}"
+            player1.hasWonAgainst(player2) -> "Win for ${player1.name}"
+            player2.hasWonAgainst(player1) -> "Win for ${player2.name}"
+            else -> "${score(player1.score)}-${score(player2.score)}"
         }
     }
 
     private fun playerWithName(name: String): Player =
             player1.takeIf { player -> player.isCalled(name) }
                     ?: player2
-
-    private fun normalScore(): String {
-        return "${score(player1.score)}-${score(player2.score)}"
-    }
 
     private fun score(points: Int): String {
         return when (points) {
@@ -35,16 +32,6 @@ class TennisGame1(
             2 -> "Thirty"
             3 -> "Forty"
             else -> throw IllegalArgumentException()
-        }
-    }
-
-    private fun winOrAdvantageScore(): String {
-        val minusResult = player1.score - player2.score
-        return when {
-            minusResult == 1 -> "Advantage player1"
-            minusResult == -1 -> "Advantage player2"
-            minusResult >= 2 -> "Win for player1"
-            else -> "Win for player2"
         }
     }
 
