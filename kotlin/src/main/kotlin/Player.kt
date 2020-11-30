@@ -7,4 +7,6 @@ class Player(private val name: String) {
     }
 
     fun isCalled(playerName: String) = playerName == name
+
+    fun isInTieWith(anotherPlayer: Player) = score == anotherPlayer.score
 }

@@ -3,18 +3,15 @@ class TennisGame1(
         player2Name: String
 ) : TennisGame {
     private val player1 = Player(player1Name)
+
     private val player2 = Player(player2Name)
 
     override fun wonPoint(playerName: String) {
         playerWithName(playerName).wonPoint()
     }
 
-    private fun playerWithName(name: String): Player =
-            player1.takeIf { player -> player.isCalled(name) }
-                    ?: player2
-
     override fun getScore(): String {
-        return if (player1.score == player2.score) {
+        return if (player1.isInTieWith(player2)) {
             equalScore()
         } else if (player1.score >= 4 || player2.score >= 4) {
             winOrAdvantageScore()
@@ -22,6 +19,10 @@ class TennisGame1(
             normalScore()
         }
     }
+
+    private fun playerWithName(name: String): Player =
+            player1.takeIf { player -> player.isCalled(name) }
+                    ?: player2
 
     private fun normalScore(): String {
         return "${score(player1.score)}-${score(player2.score)}"
