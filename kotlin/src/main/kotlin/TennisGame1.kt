@@ -7,9 +7,9 @@ class TennisGame1(
     private var scorePlayer2: Int = 0
 
     override fun wonPoint(playerName: String) {
-        if (playerName === "player1")
+        if (playerName == player1Name)
             scorePlayer1 += 1
-        else
+        else if (playerName == player2Name)
             scorePlayer2 += 1
     }
 
