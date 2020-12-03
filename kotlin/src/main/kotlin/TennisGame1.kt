@@ -28,5 +28,3 @@ class TennisGame1(
         player1.takeIf { player -> player.isCalled(name) }
             ?: player2
 }
-
-
