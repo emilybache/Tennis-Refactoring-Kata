@@ -21,8 +21,8 @@ class TennisGame1(
             player1.isInTieWith(player2) -> TieScore(player1).toString()
             player1.hasAdvantageOver(player2) -> AdvantageScore(player1).toString()
             player2.hasAdvantageOver(player1) -> AdvantageScore(player2).toString()
-            player1.hasWonAgainst(player2) -> "Win for ${player1.name}"
-            player2.hasWonAgainst(player1) -> "Win for ${player2.name}"
+            player1.hasWonAgainst(player2) -> WinScore(player1).toString()
+            player2.hasWonAgainst(player1) -> WinScore(player2).toString()
             else -> "${scoreByPoints[player1.points]}-${scoreByPoints[player2.points]}"
         }
     }
@@ -34,6 +34,13 @@ class TennisGame1(
 
 abstract class Score {
     abstract override fun toString(): String
+}
+
+class WinScore(
+    private val player: Player
+) : Score() {
+
+    override fun toString(): String = "Win for ${player.name}"
 }
 
 class AdvantageScore(
