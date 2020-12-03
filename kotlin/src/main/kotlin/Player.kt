@@ -11,8 +11,10 @@ class Player(val name: String) {
     fun isInTieWith(anotherPlayer: Player) = points == anotherPlayer.points
 
     fun hasAdvantageOver(anotherPlayer: Player) =
-            points >= 4 && points - anotherPlayer.points == 1
+        points >= 4 && points - anotherPlayer.points == 1
 
     fun hasWonAgainst(anotherPlayer: Player) =
-            points >= 4 && points - anotherPlayer.points >= 2
+        points >= 4 && points - anotherPlayer.points >= 2
+
+    fun hasNormalScore() = points <= 3
 }
