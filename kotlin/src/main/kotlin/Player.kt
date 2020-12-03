@@ -11,10 +11,17 @@ class Player(val name: String) {
     fun isInTieWith(anotherPlayer: Player) = points == anotherPlayer.points
 
     fun hasAdvantageOver(anotherPlayer: Player) =
-        points >= 4 && points - anotherPlayer.points == 1
+        points >= WON_SCORE_THRESHOLD && points - anotherPlayer.points == POINTS_DIFFERENCE_FOR_ADVANTAGE
 
     fun hasWonAgainst(anotherPlayer: Player) =
-        points >= 4 && points - anotherPlayer.points >= 2
+        points >= WON_SCORE_THRESHOLD && points - anotherPlayer.points >= POINTS_DIFFERENCE_FOR_WIN
 
-    fun hasNormalScore() = points <= 3
+    fun hasNormalScore() = points <= NORMAL_SCORE_THRESHOLD
+
+    companion object {
+        private const val NORMAL_SCORE_THRESHOLD = 3
+        private const val WON_SCORE_THRESHOLD = 4
+        private const val POINTS_DIFFERENCE_FOR_ADVANTAGE = 1
+        private const val POINTS_DIFFERENCE_FOR_WIN = 2
+    }
 }
