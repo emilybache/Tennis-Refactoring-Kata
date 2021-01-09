@@ -7,7 +7,7 @@ See the [top level readme](../README.md) for general information about this exer
 
 The kata uses:
 
-- PHP 7.2+
+- [PHP 7.2-7.4 or 8.0+](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org)
 
 Recommended:
@@ -50,9 +50,9 @@ The kata uses composer to install:
 ## Folders
 
 - `src` - contains the TennisGame interface and three TennisGame classes, which need improving (see
- [top level readme](../README.md) for more information) 
+  [top level readme](../README.md) for more information) 
 - `tests` - contains the three corresponding TennisGameTests, one for each class. All the tests are passing, and
- shouldn't need to be changed.
+  shouldn't need to be changed.
 
 ## Testing
 
@@ -94,7 +94,7 @@ composer check-cs
 ``` 
 
 On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias cc="composer check-cs"`), the
- same PHPUnit `composer check-cs` can be run:
+ same `composer check-cs` can be run:
 
 ```shell script
 cc
@@ -109,7 +109,7 @@ composer fix-cs
 ```
 
 On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias fc="composer fix-cs"`), the same
- PHPUnit `composer fix-cs` can be run:
+ `composer fix-cs` can be run:
 
 ```shell script
 fc
@@ -117,15 +117,14 @@ fc
 
 ## Static Analysis
 
-PHPStan is used to run static analysis checks.  The current code is not
- upto standard!
+PHPStan is used to run static analysis checks.  The current code is not upto standard!
 
 ```shell script
 composer phpstan
 ```
 
 On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias ps="composer phpstan"`), the
- same PHPUnit `composer phpstan` can be run:
+ same `composer phpstan` can be run:
 
 ```shell script
 ps
