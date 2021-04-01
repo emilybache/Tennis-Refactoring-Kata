@@ -4,6 +4,7 @@ project(Tennis-Refactoring)
 option(USE_GOOGLE_TEST "If to use google test" ON)
 
 if (USE_GOOGLE_TEST)
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     include(FetchContent)
 
     FetchContent_Declare(
