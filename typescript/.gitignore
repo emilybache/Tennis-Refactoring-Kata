@@ -1,6 +1,0 @@
-.idea
-.vscode
-*.log
-build
-tests_build
-node_modules

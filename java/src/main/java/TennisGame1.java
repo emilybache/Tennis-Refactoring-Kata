@@ -19,8 +19,7 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore = 0;
-        if (player1.getScore() == player2.getScore()) {
+        if (player1.hasSameScore(player2)) {
             score = equalityScore();
         } else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
             score = advantageScore();
@@ -33,10 +32,8 @@ public class TennisGame1 implements TennisGame {
     private String advantageScore() {
         String score;
         int minusResult = player1.getScore() - player2.getScore();
-        if (minusResult == 1) score = "Advantage player1";
-        else if (minusResult == -1) score = "Advantage player2";
-        else if (minusResult >= 2) score = "Win for player1";
-        else score = "Win for player2";
+        score = Math.abs(minusResult) == 1 ? "Advantage " : "Win for ";
+        score += player1.getScore() > player2.getScore() ? "player1" : "player2";
         return score;
     }
 
