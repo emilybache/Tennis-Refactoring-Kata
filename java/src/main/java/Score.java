@@ -22,6 +22,10 @@ enum Score {
             .orElseThrow(IllegalArgumentException::new);
     }
 
+    public static String between(Player player1, Player player2) {
+        return fromPoint(player1.getScore()) + "-" + fromPoint(player2.getScore());
+    }
+
     public int getPoint() {
         return point;
     }

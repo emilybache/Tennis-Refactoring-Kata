@@ -18,23 +18,28 @@ public class TennisGame1 implements TennisGame {
 
 
     public String getScore() {
-        String score = "";
-        if (player1.hasSameScore(player2)) {
-            score = equalityScore();
-        } else if (player1.getScore() >= 4 || player2.getScore() >= 4) {
-            score = advantageScore();
-        } else {
-            score = Score.fromPoint(player1.getScore()) + "-" + Score.fromPoint(player2.getScore());
+        if (player1.hasSameScoreAs(player2)) {
+            return equalityScore();
         }
-        return score;
+        if (isBothPlayersHaveLessThan4Points()) {
+            return Score.between(player1, player2);
+        }
+        if (Math.abs(player1.getScore() - player2.getScore()) == 1) {
+            return advantageScore();
+        }
+        return winScore();
+    }
+
+    private String winScore() {
+        return "Win for " + getLeadingPlayerName();
     }
 
     private String advantageScore() {
-        String score;
-        int minusResult = player1.getScore() - player2.getScore();
-        score = Math.abs(minusResult) == 1 ? "Advantage " : "Win for ";
-        score += player1.getScore() > player2.getScore() ? "player1" : "player2";
-        return score;
+        return "Advantage " + getLeadingPlayerName();
+    }
+
+    private String getLeadingPlayerName() {
+        return player1.getScore() > player2.getScore() ? player1.getName() : player2.getName();
     }
 
     private String equalityScore() {
@@ -57,4 +62,7 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
+    private boolean isBothPlayersHaveLessThan4Points() {
+        return player1.getScore() < 4 && player2.getScore() < 4;
+    }
 }

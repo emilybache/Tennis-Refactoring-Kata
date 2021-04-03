@@ -20,7 +20,7 @@ public class Player {
         return name;
     }
 
-    boolean hasSameScore(Player tennisPlayer) {
+    boolean hasSameScoreAs(Player tennisPlayer) {
         return getScore() == tennisPlayer.getScore();
     }
 }
