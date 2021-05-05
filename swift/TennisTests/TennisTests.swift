@@ -1,5 +1,4 @@
 import XCTest
-@testable import Tennis
 
 let parameters = [
     (0, 0, "Love-All"),
