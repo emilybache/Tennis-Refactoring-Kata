@@ -29,23 +29,23 @@ public class TennisGame4 implements TennisGame {
         return result.format();
     }
 
-    public boolean receiverHasAdvantage() {
+    boolean receiverHasAdvantage() {
         return receiverScore >= 4 && (receiverScore - serverScore) == 1;
     }
 
-    public boolean serverHasAdvantage() {
+    boolean serverHasAdvantage() {
         return serverScore >= 4 && (serverScore - receiverScore) == 1;
     }
 
-    public boolean receiverHasWon() {
+    boolean receiverHasWon() {
         return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
     }
 
-    public boolean serverHasWon() {
+    boolean serverHasWon() {
         return serverScore >= 4 && (serverScore - receiverScore) >= 2;
     }
 
-    public boolean isDeuce() {
+    boolean isDeuce() {
         return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
     }
 }
