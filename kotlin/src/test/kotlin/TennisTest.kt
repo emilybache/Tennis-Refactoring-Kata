@@ -77,4 +77,10 @@ class TennisTest(private val player1Score: Int, private val player2Score: Int, p
         val game = TennisGame3("player1", "player2")
         checkAllScores(game)
     }
+
+    @Test
+    fun checkAllScoresTennisGame4() {
+        val game = TennisGame4("player1", "player2")
+        checkAllScores(game)
+    }
 }
