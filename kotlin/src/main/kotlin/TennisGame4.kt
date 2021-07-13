@@ -1,7 +1,7 @@
 class TennisGame4(val server: String, val receiver: String) : TennisGame {
 
-    var serverScore = 0
-    var receiverScore = 0
+    internal var serverScore = 0
+    internal var receiverScore = 0
 
     override fun wonPoint(playerName: String) {
         if (server == playerName) serverScore += 1 else receiverScore += 1
@@ -22,23 +22,23 @@ class TennisGame4(val server: String, val receiver: String) : TennisGame {
         return result.format()
     }
 
-    fun receiverHasAdvantage(): Boolean {
+    internal fun receiverHasAdvantage(): Boolean {
         return receiverScore >= 4 && receiverScore - serverScore == 1
     }
 
-    fun serverHasAdvantage(): Boolean {
+    internal fun serverHasAdvantage(): Boolean {
         return serverScore >= 4 && serverScore - receiverScore == 1
     }
 
-    fun receiverHasWon(): Boolean {
+    internal fun receiverHasWon(): Boolean {
         return receiverScore >= 4 && receiverScore - serverScore >= 2
     }
 
-    fun serverHasWon(): Boolean {
+    internal fun serverHasWon(): Boolean {
         return serverScore >= 4 && serverScore - receiverScore >= 2
     }
 
-    fun isDeuce(): Boolean {
+    internal fun isDeuce(): Boolean {
         return serverScore >= 3 && receiverScore >= 3 && serverScore == receiverScore
     }
 }
@@ -92,7 +92,7 @@ internal class DefaultResult(private val game: TennisGame4) : ResultProvider {
             scores[game.serverScore], scores[game.receiverScore]
         )
 
-    companion object {
+    internal companion object {
         private val scores = arrayOf("Love", "Fifteen", "Thirty", "Forty")
     }
 }
