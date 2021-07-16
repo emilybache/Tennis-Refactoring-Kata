@@ -17,36 +17,30 @@ export class TennisGame1 implements TennisGame {
   }
 
   getScore(): string {
-    let score: string = ''
-    // Drow
-
-    if (this.m_score1 === this.m_score2) {
-      switch (this.m_score1) {
-        case 0:
-          score = 'Love-All'
-          break
-        case 1:
-          score = 'Fifteen-All'
-          break
-        case 2:
-          score = 'Thirty-All'
-          break
-        default:
-          score = 'Deuce'
-          break
-      }
+    if (this.isDraw()) {
+      return this.scoreWhenDraw();
+    }
+    if (this.oneOfTheTwoScoredForty()) {
+      return this.calculateWinnerOrAdvantage()
     }
 
-    // Wins one
-    else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-      score = this.calculateWinnerOrAdvantage()
-    }
+    return  this.nonWinningScore();
+  }
 
-    // Not won yet
-    else {
-      score = this.nonWinningScore();
+  private scoreWhenDraw() {
+    if (this.m_score1 < 3) {
+      return this.getScoreName(this.m_score1) + '-All'
+    } else {
+      return 'Deuce'
     }
-    return score
+  }
+
+  private oneOfTheTwoScoredForty() {
+    return this.m_score1 >= 4 || this.m_score2 >= 4;
+  }
+
+  private isDraw() {
+    return this.m_score1 === this.m_score2;
   }
 
   private nonWinningScore() {
