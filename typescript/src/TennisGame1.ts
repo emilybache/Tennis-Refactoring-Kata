@@ -19,6 +19,8 @@ export class TennisGame1 implements TennisGame {
   getScore(): string {
     let score: string = ''
     let tempScore: number = 0
+
+    // Drow
     if (this.m_score1 === this.m_score2) {
       switch (this.m_score1) {
         case 0:
@@ -34,13 +36,15 @@ export class TennisGame1 implements TennisGame {
           score = 'Deuce'
           break
       }
-    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-      const minusResult: number = this.m_score1 - this.m_score2
-      if (minusResult === 1) score = 'Advantage player1'
-      else if (minusResult === -1) score = 'Advantage player2'
-      else if (minusResult >= 2) score = 'Win for player1'
-      else score = 'Win for player2'
-    } else {
+    }
+
+    // Wins one
+    else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
+      score = this.calculateWinnerOrAdvantage()
+    }
+
+    // Not won yet
+    else {
       for (let i = 1; i < 3; i++) {
         if (i === 1) tempScore = this.m_score1
         else {
@@ -64,5 +68,14 @@ export class TennisGame1 implements TennisGame {
       }
     }
     return score
+  }
+
+  private calculateWinnerOrAdvantage(): string {
+    const scoreDifference = Math.abs(this.m_score1 - this.m_score2)
+    const winningPlayer =
+      this.m_score1 > this.m_score2 ? this.player1Name : this.player2Name
+
+    if (scoreDifference === 1) return 'Advantage ' + winningPlayer
+    if (scoreDifference >= 2) return 'Win for ' + winningPlayer
   }
 }
