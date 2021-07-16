@@ -18,9 +18,8 @@ export class TennisGame1 implements TennisGame {
 
   getScore(): string {
     let score: string = ''
-    let tempScore: number = 0
-
     // Drow
+
     if (this.m_score1 === this.m_score2) {
       switch (this.m_score1) {
         case 0:
@@ -45,29 +44,23 @@ export class TennisGame1 implements TennisGame {
 
     // Not won yet
     else {
-      for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.m_score1
-        else {
-          score += '-'
-          tempScore = this.m_score2
-        }
-        switch (tempScore) {
-          case 0:
-            score += 'Love'
-            break
-          case 1:
-            score += 'Fifteen'
-            break
-          case 2:
-            score += 'Thirty'
-            break
-          case 3:
-            score += 'Forty'
-            break
-        }
-      }
+      score = this.nonWinningScore();
     }
     return score
+  }
+
+  private nonWinningScore() {
+    return this.getScoreName(this.m_score1) + '-' + this.getScoreName(this.m_score2);
+  }
+
+  private getScoreName(score: number) {
+    switch (score) {
+      case 0: return  'Love'
+      case 1: return  'Fifteen'
+      case 2: return  'Thirty'
+      case 3: return  'Forty'
+      default: return ''
+    }
   }
 
   private calculateWinnerOrAdvantage(): string {
