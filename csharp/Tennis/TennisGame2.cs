@@ -175,8 +175,6 @@ namespace Tennis
         private int p1point;
         private int p2point;
 
-        private string p1res = "";
-        private string p2res = "";
         private string player1Name;
         private string player2Name;
 
