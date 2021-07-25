@@ -108,12 +108,16 @@ namespace Tennis
     {
         private readonly int score1;
         private readonly int score2;
+        private readonly string player1Name;
+        private readonly string player2Name;
         private readonly IScore next;
 
-        public Advantage(int score1, int score2, IScore next = null)
+        public Advantage(int score1, int score2, string player1Name, string player2Name, IScore next = null)
         {
             this.score1 = score1;
             this.score2 = score2;
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
             this.next = next;
         }
 
@@ -125,10 +129,10 @@ namespace Tennis
                 switch (score1 - score2)
                 {
                     case 1:
-                        player = "player1";
+                        player = player1Name;
                         break;
                     case -1:
-                        player = "player2";
+                        player = player2Name;
                         break;
                 }
                 return $"Advantage {player}";
@@ -141,12 +145,16 @@ namespace Tennis
     {
         private readonly int score1;
         private readonly int score2;
+        private readonly string player1Name;
+        private readonly string player2Name;
         private readonly IScore next;
 
-        public Win(int score1, int score2, IScore next = null)
+        public Win(int score1, int score2, string player1Name, string player2Name, IScore next = null)
         {
             this.score1 = score1;
             this.score2 = score2;
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
             this.next = next;
         }
 
@@ -158,10 +166,10 @@ namespace Tennis
                 switch (score1 - score2)
                 {
                     case >= 2:
-                        player = "player1";
+                        player = player1Name;
                         break;
                     default:
-                        player = "player2";
+                        player = player2Name;
                         break;
                 }
                 return $"Win for {player}";
@@ -190,8 +198,8 @@ namespace Tennis
                 new All(p1point, p2point,
                     new Deuce(p1point, p2point,
                         new Default(p1point, p2point,
-                            new Advantage(p1point, p2point,
-                                new Win(p1point, p2point))))).GetScore();
+                            new Advantage(p1point, p2point, player1Name, player2Name,
+                                new Win(p1point, p2point, player1Name, player2Name))))).GetScore();
 
             return score;
         }
