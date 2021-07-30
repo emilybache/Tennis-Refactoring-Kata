@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TennisGame2Component } from './tennis-game2/tennis-game2.component';
 import { TennisGame1Component } from './tennis-game1/tennis-game1.component';
 import { TennisGame3Component } from './tennis-game3/tennis-game3.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TennisGame3Component } from './tennis-game3/tennis-game3.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

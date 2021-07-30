@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TennisGame3Component } from './tennis-game3.component';
-import {expectedScores, getScore} from "../../test/testHelper";
+import {expectedScores, getScore} from '../../test/testHelper';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('TennisGame3Component', () => {
   let component: TennisGame3Component;
@@ -9,6 +10,7 @@ describe('TennisGame3Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule],
       declarations: [ TennisGame3Component ]
     })
     .compileComponents();
