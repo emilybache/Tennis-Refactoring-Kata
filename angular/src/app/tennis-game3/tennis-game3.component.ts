@@ -12,7 +12,6 @@ export class TennisGame3Component implements OnInit, TennisGame {
   private p1 = 0;
   private p1N = 'player1';
   private p2N = 'player2';
-
   player1Score = new FormControl(0);
 
   constructor() { }
