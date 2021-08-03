@@ -38,9 +38,9 @@ describe('TennisGame3Component', () => {
       expect(component.overallScore).toBe(expectedScore as string);
     });
 
-    function setInputValue(inputSelector: string, newPlayer1Score: number | string) {
+    function setInputValue(inputSelector: string, newValue: number | string) {
       const player1ScoreInput = element.querySelector(inputSelector);
-      player1ScoreInput.value = newPlayer1Score;
+      player1ScoreInput.value = newValue;
       player1ScoreInput.dispatchEvent(new Event('input'));
     }
 
