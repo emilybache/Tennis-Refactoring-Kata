@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TennisGame} from '../TennisGame';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-tennis-game3',
@@ -12,7 +12,11 @@ export class TennisGame3Component implements OnInit, TennisGame {
   private p1 = 0;
   private p1N = 'player1';
   private p2N = 'player2';
-  player1Score = new FormControl(0);
+  public tennisGameForm = new FormGroup({
+    player1Score: new FormControl(0),
+    player2Score: new FormControl(0)
+  });
+  public overallScore = '';
 
   constructor() { }
 
@@ -40,4 +44,9 @@ export class TennisGame3Component implements OnInit, TennisGame {
     }
   }
 
+  onSubmit() {
+    this.p1 = this.tennisGameForm.controls.player1Score.value;
+    this.p2 = this.tennisGameForm.controls.player2Score.value;
+    this.overallScore = this.getScore();
+  }
 }
