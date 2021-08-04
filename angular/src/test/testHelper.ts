@@ -42,6 +42,10 @@ export class TennisComponentTester {
   }
 }
 
+export const overallScoreLabel = '#overall-score';
+export const player1ScoreInput = '#player-one-score';
+export const player2ScoreInput = '#player-two-score';
+export const getScoreButton = '#get-score-button';
 export const expectedTennisScores = [
   [0, 0, 'Love-All'],
   [1, 1, 'Fifteen-All'],

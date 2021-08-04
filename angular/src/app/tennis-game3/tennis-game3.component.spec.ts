@@ -1,6 +1,13 @@
 import {async} from '@angular/core/testing';
 import {TennisGame3Component} from './tennis-game3.component';
-import {expectedTennisScores, TennisComponentTester} from '../../test/testHelper';
+import {
+  expectedTennisScores,
+  getScoreButton,
+  overallScoreLabel,
+  player1ScoreInput,
+  player2ScoreInput,
+  TennisComponentTester
+} from '../../test/testHelper';
 
 describe('TennisGame3Component', () => {
   let tennisTester: TennisComponentTester;
@@ -16,13 +23,13 @@ describe('TennisGame3Component', () => {
 
   expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
     it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
-      tennisTester.verifyLabelText('#overall-score', '');
+      tennisTester.verifyLabelText(overallScoreLabel, '');
 
-      tennisTester.setInputValue('#player-one-score', player1Score);
-      tennisTester.setInputValue('#player-two-score', player2Score);
-      tennisTester.selectElement('#get-score-button');
+      tennisTester.setInputValue(player1ScoreInput, player1Score);
+      tennisTester.setInputValue(player2ScoreInput, player2Score);
+      tennisTester.selectElement(getScoreButton);
 
-      tennisTester.verifyLabelText('#overall-score', expectedScore);
+      tennisTester.verifyLabelText(overallScoreLabel, expectedScore);
     });
   });
 });
