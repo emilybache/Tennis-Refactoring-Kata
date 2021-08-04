@@ -42,6 +42,13 @@ if (USE_GOOGLE_TEST)
     target_compile_features(tennis3_google_test PUBLIC cxx_std_11)
     gtest_discover_tests(tennis3_google_test)
 
+    add_executable(tennis4_google_test
+            tennis4.cc
+            gtest_all.cpp)
+    target_link_libraries(tennis4_google_test gtest gmock gtest_main)
+    target_compile_features(tennis4_google_test PUBLIC cxx_std_11)
+    gtest_discover_tests(tennis4_google_test)
+
 
 else()
 
@@ -65,5 +72,10 @@ else()
         tennis3.cc
         ${trivial_test_sources})
     add_test(NAME tennis3_tests COMMAND tennis3_tests)
+
+    add_executable(tennis4_tests
+        tennis4.cc
+        ${trivial_test_sources})
+    add_test(NAME tennis4_tests COMMAND tennis4_tests)
 
 endif ()
