@@ -82,17 +82,3 @@ export const expectedScores = [
   [16, 14, 'Win for player1'],
   [14, 16, 'Win for player2']
 ];
-
-export function getScore(game: TennisGame, player1Score: string | number, player2Score: number | string): string {
-  const highestScore: number = Math.max(player1Score as number, player2Score as number);
-  for (let i = 0; i < highestScore; i++) {
-    if (i < player1Score) {
-      game.wonPoint('player1');
-    }
-    if (i < player2Score) {
-      game.wonPoint('player2');
-    }
-  }
-
-  return game.getScore();
-}
