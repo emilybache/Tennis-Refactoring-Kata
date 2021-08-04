@@ -42,7 +42,7 @@ export class TennisComponentTester {
   }
 }
 
-export const expectedScores = [
+export const expectedTennisScores = [
   [0, 0, 'Love-All'],
   [1, 1, 'Fifteen-All'],
   [2, 2, 'Thirty-All'],

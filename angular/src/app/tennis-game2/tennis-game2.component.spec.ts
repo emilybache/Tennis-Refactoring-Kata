@@ -1,6 +1,6 @@
 import {async} from '@angular/core/testing';
 import {TennisGame2Component} from './tennis-game2.component';
-import {expectedScores, TennisComponentTester} from '../../test/testHelper';
+import {expectedTennisScores, TennisComponentTester} from '../../test/testHelper';
 
 describe('TennisGame2Component', () => {
   let tennisTester: TennisComponentTester;
@@ -10,7 +10,7 @@ describe('TennisGame2Component', () => {
     tennisTester.beforeEach([TennisGame2Component]);
   }));
 
-  expectedScores.forEach(([player1Score, player2Score, expectedScore]) => {
+  expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
     it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
       tennisTester.verifyLabelText('#overall-score', '');
 
