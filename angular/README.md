@@ -1,7 +1,6 @@
+##Tennis Kata in Angular
 
 ![alt text](TennisKataGui.PNG)
-
-#Tennis Kata in Angular
 
 ## How to Run Tests
 
