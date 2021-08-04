@@ -9,17 +9,13 @@ import {
   TennisComponentTester
 } from '../../test/testHelper';
 
-describe('TennisGame3Component', () => {
+describe('Tennis Game 3', () => {
   let tennisTester: TennisComponentTester;
 
   beforeEach(async(() => {
     tennisTester = new TennisComponentTester();
     tennisTester.beforeEach([ TennisGame3Component ]);
   }));
-
-  it('should create', () => {
-    expect(tennisTester.component).toBeTruthy();
-  });
 
   expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
     it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {

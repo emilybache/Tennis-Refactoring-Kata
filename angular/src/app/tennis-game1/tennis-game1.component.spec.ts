@@ -9,7 +9,7 @@ import {
   TennisComponentTester
 } from '../../test/testHelper';
 
-describe('TennisGame1Component', () => {
+describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
 
   beforeEach(async(() => {
