@@ -123,7 +123,7 @@ class GameReceiver implements ResultProvider {
         if (game.receiverHasWon())
             return new TennisResult("Win for " + game.receiver, "");
         return this.nextResult.getResult();
-    }
+    }t
 }
 
 class AdvantageServer implements ResultProvider {
@@ -178,9 +178,27 @@ class DefaultResult implements ResultProvider {
 }
  */
 
+class TennisResult {
+    std::string serverScore;
+    std::string receiverScore;
+
+    TennisResult(std::string serverScore, std::string receiverScore) {
+        this->serverScore = serverScore;
+        this->receiverScore = receiverScore;
+    }
+
+    std::string format() {
+        if ("" == this->receiverScore)
+            return this->serverScore;
+        if (serverScore == this->receiverScore)
+            return serverScore + "-All";
+        return this->serverScore + "-" + this->receiverScore;
+    }
+};
+
 class ResultProvider {
     virtual ~ResultProvider() {}
-    virtual /*TennisResult*/ void getResult() = 0;
+    virtual TennisResult getResult() = 0;
 };
 
 
