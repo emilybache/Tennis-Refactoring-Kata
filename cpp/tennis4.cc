@@ -178,12 +178,14 @@ class DefaultResult implements ResultProvider {
 }
  */
 
-//public class TennisGame4 implements TennisGame {
+
+class TennisGame4 {
+public:
+    int serverScore, receiverScore;
+};
 
 class TennisResult {
-    std::string serverScore;
-    std::string receiverScore;
-
+public:
     TennisResult(std::string serverScore, std::string receiverScore) {
         this->serverScore = serverScore;
         this->receiverScore = receiverScore;
@@ -196,11 +198,16 @@ class TennisResult {
             return serverScore + "-All";
         return this->serverScore + "-" + this->receiverScore;
     }
+
+private:
+    std::string serverScore;
+    std::string receiverScore;
 };
 
 class ResultProvider {
-    virtual ~ResultProvider() {}
+public:
     virtual TennisResult getResult() = 0;
+    virtual ~ResultProvider() {}
 };
 
 //class Deuce implements ResultProvider {
@@ -214,11 +221,11 @@ public:
     DefaultResult(TennisGame4& game) : game(game) { }
 
     TennisResult getResult() override {
-        return TennisResult(scores[game->serverScore], scores[game->receiverScore]);
+        return TennisResult(scores[game.serverScore], scores[game.receiverScore]);
     }
 
 private:
-    static const std::string[] scores;
+    static const std::string scores[];
     const TennisGame4& game;
 };
 
