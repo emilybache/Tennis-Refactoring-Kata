@@ -202,8 +202,34 @@ class ResultProvider {
 };
 
 
+/*
+public class TennisGame4 implements TennisGame {
+##class TennisResult {
+##interface ResultProvider {
+class Deuce implements ResultProvider {
+class GameServer implements ResultProvider {
+class GameReceiver implements ResultProvider {
+class AdvantageServer implements ResultProvider {
+class AdvantageReceiver implements ResultProvider {
+class DefaultResult implements ResultProvider {
+ */
 
 
+
+
+// tennis3 function below (TODO: re-implement using class mess above!)
+/* relevant inspiration from Java Unit Test
+    public void checkAllScores(TennisGame game) {
+        int highestScore = Math.max(this.player1Score, this.player2Score);
+        for (int i = 0; i < highestScore; i++) {
+            if (i < this.player1Score)
+                game.wonPoint("player1");
+            if (i < this.player2Score)
+                game.wonPoint("player2");
+        }
+        assertEquals(this.expectedScore, game.getScore());
+    }
+*/
 const std::string tennis_score(int p1, int p2) {
     std::string s;
     std::string p1N = "player1";
