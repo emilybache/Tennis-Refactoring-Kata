@@ -178,6 +178,8 @@ class DefaultResult implements ResultProvider {
 }
  */
 
+//public class TennisGame4 implements TennisGame {
+
 class TennisResult {
     std::string serverScore;
     std::string receiverScore;
@@ -201,20 +203,26 @@ class ResultProvider {
     virtual TennisResult getResult() = 0;
 };
 
+//class Deuce implements ResultProvider {
+//class GameServer implements ResultProvider {
+//class GameReceiver implements ResultProvider {
+//class AdvantageServer implements ResultProvider {
+//class AdvantageReceiver implements ResultProvider {
 
-/*
-public class TennisGame4 implements TennisGame {
-##class TennisResult {
-##interface ResultProvider {
-class Deuce implements ResultProvider {
-class GameServer implements ResultProvider {
-class GameReceiver implements ResultProvider {
-class AdvantageServer implements ResultProvider {
-class AdvantageReceiver implements ResultProvider {
-class DefaultResult implements ResultProvider {
- */
+class DefaultResult : ResultProvider {
+public:
+    DefaultResult(TennisGame4& game) : game(game) { }
 
+    TennisResult getResult() override {
+        return TennisResult(scores[game->serverScore], scores[game->receiverScore]);
+    }
 
+private:
+    static const std::string[] scores;
+    const TennisGame4& game;
+};
+
+const std::string DefaultResult::scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
 
 
 // tennis3 function below (TODO: re-implement using class mess above!)
