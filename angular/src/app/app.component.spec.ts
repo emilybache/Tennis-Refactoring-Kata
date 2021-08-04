@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {TennisGame3Component} from './tennis-game3/tennis-game3.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TennisGame1Component} from './tennis-game1/tennis-game1.component';
+import {TennisGame2Component} from './tennis-game2/tennis-game2.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,7 +16,9 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        TennisGame3Component
+        TennisGame1Component,
+        TennisGame2Component,
+        TennisGame3Component,
       ],
     }).compileComponents();
   }));
@@ -23,11 +27,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'TennisKata'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('TennisKata');
   });
 });

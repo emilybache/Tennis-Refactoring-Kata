@@ -1,4 +1,46 @@
 import {TennisGame} from '../app/TennisGame';
+import {TennisGame3Component} from '../app/tennis-game3/tennis-game3.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+
+export class TennisComponentTester {
+  component: TennisGame;
+  fixture: ComponentFixture<TennisGame3Component>;
+  element: any;
+  private readonly tennisComponentIndex = 0;
+
+  async beforeEach(declarations: any[]) {
+    await TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations
+    }).compileComponents();
+    this.fixture = TestBed.createComponent(declarations[this.tennisComponentIndex]);
+    this.component = this.fixture.componentInstance;
+    this.element = this.fixture.nativeElement;
+    this.fixture.detectChanges();
+    // @ts-ignore
+    expect(this.component).toBeTruthy();
+  }
+
+  setInputValue(inputSelector: string, newValue: number | string) {
+    const player1ScoreInput = this.element.querySelector(inputSelector);
+    player1ScoreInput.value = newValue;
+    player1ScoreInput.dispatchEvent(new Event('input'));
+  }
+
+  selectElement(elementSelector: string) {
+    const getScoreButton = this.element.querySelector(elementSelector);
+    getScoreButton.click();
+    this.fixture.detectChanges();
+  }
+
+  verifyLabelText(labelSelector: string, expectedText: number | string) {
+    const overallScore = this.fixture.debugElement.query(By.css(labelSelector));
+    // @ts-ignore
+    expect(overallScore.nativeElement.outerText).toBe(expectedText);
+  }
+}
 
 export const expectedScores = [
   [0, 0, 'Love-All'],
