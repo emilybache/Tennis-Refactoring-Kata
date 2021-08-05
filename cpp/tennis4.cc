@@ -123,7 +123,7 @@ class GameReceiver implements ResultProvider {
         if (game.receiverHasWon())
             return new TennisResult("Win for " + game.receiver, "");
         return this.nextResult.getResult();
-    }t
+    }
 }
 
 class AdvantageServer implements ResultProvider {
@@ -188,6 +188,18 @@ public:
     bool receiverHasAdvantage() const {
         return receiverScore >= 4 && (receiverScore - serverScore) == 1;
     }
+
+    bool serverHasAdvantage() const {
+        return serverScore >= 4 && (serverScore - receiverScore) == 1;
+    }
+
+    bool receiverHasWon() const {
+        return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
+    }
+
+    bool serverHasWon() const {
+        return serverScore >= 4 && (serverScore - receiverScore) >= 2;
+    }
 };
 
 class TennisResult {
@@ -218,13 +230,41 @@ public:
 
 //class Deuce implements ResultProvider {
 //class GameServer implements ResultProvider {
-//class GameReceiver implements ResultProvider {
-//class AdvantageServer implements ResultProvider {
+
+class GameReceiver : ResultProvider {
+private:
+    TennisGame4 const & game;
+    ResultProvider const & nextResult;
+
+public:
+    GameReceiver(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+
+public:
+    TennisResult getResult() const override {
+        if (game.receiverHasWon())
+            return TennisResult("Win for " + game.receiver, "");
+        return this->nextResult.getResult();
+    }
+};
+
+class AdvantageServer : ResultProvider {
+public:
+    AdvantageServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+
+    TennisResult getResult() const override {
+        if (game.serverHasAdvantage())
+            return TennisResult("Advantage " + game.server, "");
+        return this->nextResult.getResult();
+    }
+
+private:
+    TennisGame4 const & game;
+    ResultProvider const & nextResult;
+};
 
 class AdvantageReceiver : ResultProvider {
 public:
-    AdvantageReceiver(TennisGame4 game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) {
-    }
+    AdvantageReceiver(TennisGame4 game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
 
     TennisResult getResult() const override {
         if (game.receiverHasAdvantage())
