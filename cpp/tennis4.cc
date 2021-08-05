@@ -207,7 +207,7 @@ private:
 class ResultProvider {
 public:
     virtual TennisResult getResult() = 0;
-    virtual ~ResultProvider() {}
+    virtual ~ResultProvider() = default;
 };
 
 //class Deuce implements ResultProvider {
@@ -218,7 +218,7 @@ public:
 
 class DefaultResult : ResultProvider {
 public:
-    DefaultResult(TennisGame4& game) : game(game) { }
+    explicit DefaultResult(TennisGame4& game) : game(game) { }
 
     TennisResult getResult() override {
         return TennisResult(scores[game.serverScore], scores[game.receiverScore]);
