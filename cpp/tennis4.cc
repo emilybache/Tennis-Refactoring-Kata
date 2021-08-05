@@ -182,6 +182,12 @@ class DefaultResult implements ResultProvider {
 class TennisGame4 {
 public:
     int serverScore, receiverScore;
+    std::string server;
+    std::string receiver;
+
+    bool receiverHasAdvantage() const {
+        return receiverScore >= 4 && (receiverScore - serverScore) == 1;
+    }
 };
 
 class TennisResult {
@@ -206,7 +212,7 @@ private:
 
 class ResultProvider {
 public:
-    virtual TennisResult getResult() = 0;
+    virtual TennisResult getResult() const = 0;
     virtual ~ResultProvider() = default;
 };
 
@@ -214,13 +220,29 @@ public:
 //class GameServer implements ResultProvider {
 //class GameReceiver implements ResultProvider {
 //class AdvantageServer implements ResultProvider {
-//class AdvantageReceiver implements ResultProvider {
+
+class AdvantageReceiver : ResultProvider {
+public:
+    AdvantageReceiver(TennisGame4 game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) {
+    }
+
+    TennisResult getResult() const override {
+        if (game.receiverHasAdvantage())
+            return TennisResult("Advantage " + game.receiver, "");
+        return this->nextResult.getResult();
+    }
+
+private:
+    const TennisGame4 game;
+    ResultProvider const & nextResult;
+};
+
 
 class DefaultResult : ResultProvider {
 public:
     explicit DefaultResult(TennisGame4& game) : game(game) { }
 
-    TennisResult getResult() override {
+    TennisResult getResult() const override {
         return TennisResult(scores[game.serverScore], scores[game.receiverScore]);
     }
 
