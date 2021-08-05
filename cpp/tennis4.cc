@@ -179,45 +179,6 @@ class DefaultResult implements ResultProvider {
  */
 
 
-class TennisGame4 {
-public:
-    int serverScore, receiverScore;
-    std::string server;
-    std::string receiver;
-
-    TennisGame4(std::string player1, std::string player2) {
-        this->server = player1;
-        this->receiver = player2;
-    }
-
-    void wonPoint(std::string playerName) {
-        if (server == playerName)
-            serverScore += 1;
-        else
-            receiverScore += 1;
-    }
-
-    bool receiverHasAdvantage() const {
-        return receiverScore >= 4 && (receiverScore - serverScore) == 1;
-    }
-
-    bool serverHasAdvantage() const {
-        return serverScore >= 4 && (serverScore - receiverScore) == 1;
-    }
-
-    bool receiverHasWon() const {
-        return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
-    }
-
-    bool serverHasWon() const {
-        return serverScore >= 4 && (serverScore - receiverScore) >= 2;
-    }
-
-    bool isDeuce() const {
-        return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
-    }
-};
-
 class TennisResult {
 public:
     TennisResult(std::string serverScore, std::string receiverScore) {
@@ -244,6 +205,26 @@ public:
     virtual ~ResultProvider() = default;
 };
 
+class TennisGame4 : ResultProvider {
+public:
+    int serverScore, receiverScore;
+    std::string server;
+    std::string receiver;
+
+    TennisGame4(std::string player1, std::string player2) {
+        this->server = player1;
+        this->receiver = player2;
+    }
+
+    TennisResult getResult() const override;
+    void wonPoint(std::string playerName);
+    bool receiverHasAdvantage() const;
+    bool serverHasAdvantage() const;
+    bool receiverHasWon() const;
+    bool serverHasWon() const;
+    bool isDeuce() const;
+};
+
 class Deuce : ResultProvider {
 public:
     Deuce(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
@@ -260,7 +241,7 @@ private:
 };
 
 
-class GameServer : ResultProvider {
+class GameServer : public ResultProvider {
 public:
     GameServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
 
@@ -275,7 +256,7 @@ private:
     ResultProvider const & nextResult;
 };
 
-class GameReceiver : ResultProvider {
+class GameReceiver : public ResultProvider {
 private:
     TennisGame4 const & game;
     ResultProvider const & nextResult;
@@ -291,7 +272,7 @@ public:
     }
 };
 
-class AdvantageServer : ResultProvider {
+class AdvantageServer : public ResultProvider {
 public:
     AdvantageServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
 
@@ -306,7 +287,7 @@ private:
     ResultProvider const & nextResult;
 };
 
-class AdvantageReceiver : ResultProvider {
+class AdvantageReceiver : public ResultProvider {
 public:
     AdvantageReceiver(TennisGame4 game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
 
@@ -322,7 +303,7 @@ private:
 };
 
 
-class DefaultResult : ResultProvider {
+class DefaultResult : public ResultProvider {
 public:
     explicit DefaultResult(TennisGame4& game) : game(game) { }
 
@@ -332,11 +313,49 @@ public:
 
 private:
     static const std::string scores[];
-    const TennisGame4& game;
+    TennisGame4 const & game;
 };
 
 const std::string DefaultResult::scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
 
+TennisResult TennisGame4::getResult() const {
+    TennisGame4 const & thisGame = *this;
+    TennisResult result = Deuce(
+        thisGame, GameServer(
+        thisGame, GameReceiver(
+        thisGame, AdvantageServer(
+        thisGame, AdvantageReceiver(
+        thisGame, DefaultResult(thisGame)))))
+    ).getResult();
+    return result;
+}
+
+void TennisGame4::wonPoint(std::string playerName) {
+    if (server == playerName)
+        serverScore += 1;
+    else
+        receiverScore += 1;
+}
+
+bool TennisGame4::receiverHasAdvantage() const {
+    return receiverScore >= 4 && (receiverScore - serverScore) == 1;
+}
+
+bool TennisGame4::serverHasAdvantage() const {
+    return serverScore >= 4 && (serverScore - receiverScore) == 1;
+}
+
+bool TennisGame4::receiverHasWon() const {
+    return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
+}
+
+bool TennisGame4::serverHasWon() const {
+    return serverScore >= 4 && (serverScore - receiverScore) >= 2;
+}
+
+bool TennisGame4::isDeuce() const {
+    return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
+}
 
 std::string tennis_score(int player1Score, int player2Score) {
     int highestScore = player1Score >  player2Score ? player1Score : player2Score;
@@ -347,6 +366,6 @@ std::string tennis_score(int player1Score, int player2Score) {
         if (i < player2Score)
             game.wonPoint("player2");
     }
-
-    return "";
+    TennisResult result = game.getResult();
+    return result.format();
 }
