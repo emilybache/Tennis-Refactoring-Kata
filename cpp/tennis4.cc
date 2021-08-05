@@ -229,7 +229,21 @@ public:
 };
 
 //class Deuce implements ResultProvider {
-//class GameServer implements ResultProvider {
+
+class GameServer : ResultProvider {
+public:
+    GameServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+
+    TennisResult getResult() const override {
+        if (game.serverHasWon())
+            return TennisResult("Win for " + game.server, "");
+        return nextResult.getResult();
+    }
+
+private:
+    TennisGame4 const & game;
+    ResultProvider const & nextResult;
+};
 
 class GameReceiver : ResultProvider {
 private:
