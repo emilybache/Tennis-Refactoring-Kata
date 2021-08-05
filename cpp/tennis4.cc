@@ -185,6 +185,18 @@ public:
     std::string server;
     std::string receiver;
 
+    TennisGame4(std::string player1, std::string player2) {
+        this->server = player1;
+        this->receiver = player2;
+    }
+
+    void wonPoint(std::string playerName) {
+        if (server == playerName)
+            serverScore += 1;
+        else
+            receiverScore += 1;
+    }
+
     bool receiverHasAdvantage() const {
         return receiverScore >= 4 && (receiverScore - serverScore) == 1;
     }
@@ -199,6 +211,10 @@ public:
 
     bool serverHasWon() const {
         return serverScore >= 4 && (serverScore - receiverScore) >= 2;
+    }
+
+    bool isDeuce() const {
+        return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
     }
 };
 
@@ -228,7 +244,21 @@ public:
     virtual ~ResultProvider() = default;
 };
 
-//class Deuce implements ResultProvider {
+class Deuce : ResultProvider {
+public:
+    Deuce(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+
+    TennisResult getResult() const override {
+        if (game.isDeuce())
+            return TennisResult("Deuce", "");
+        return this->nextResult.getResult();
+    }
+
+private:
+    TennisGame4 const & game;
+    ResultProvider const & nextResult;
+};
+
 
 class GameServer : ResultProvider {
 public:
@@ -308,31 +338,15 @@ private:
 const std::string DefaultResult::scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
 
 
-// tennis3 function below (TODO: re-implement using class mess above!)
-/* relevant inspiration from Java Unit Test
-    public void checkAllScores(TennisGame game) {
-        int highestScore = Math.max(this.player1Score, this.player2Score);
-        for (int i = 0; i < highestScore; i++) {
-            if (i < this.player1Score)
-                game.wonPoint("player1");
-            if (i < this.player2Score)
-                game.wonPoint("player2");
-        }
-        assertEquals(this.expectedScore, game.getScore());
+std::string tennis_score(int player1Score, int player2Score) {
+    int highestScore = player1Score >  player2Score ? player1Score : player2Score;
+    TennisGame4 game("player1", "player2");
+    for (int i = 0; i < highestScore; i++) {
+        if (i < player1Score)
+            game.wonPoint("player1");
+        if (i < player2Score)
+            game.wonPoint("player2");
     }
-*/
-const std::string tennis_score(int p1, int p2) {
-    std::string s;
-    std::string p1N = "player1";
-    std::string p2N = "player2";
-    if ((p1 < 4 && p2 < 4) && (p1 + p2 < 6)) {
-        std::string p[4] = {"Love", "Fifteen", "Thirty", "Forty"}; 
-        s = p[p1];
-        return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
-    } else {
-        if (p1 == p2)
-            return "Deuce";
-        s = p1 > p2 ? p1N : p2N;
-        return ((p1-p2)*(p1-p2) == 1) ? "Advantage " + s : "Win for " + s;
-    }
+
+    return "";
 }
