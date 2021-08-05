@@ -19,7 +19,9 @@
 
 ## Future Plans
 
-- Style each game via scss so it looks better 
+- Style each game with material design and scss to make GUI look better
+- Write unit tests against important look and feel aspects of the web page. Now the kata allows you to refactor the ts, angular, html, and css product code all under a fast suite of unit tests that cover it all.
 - For each game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
 
+  
