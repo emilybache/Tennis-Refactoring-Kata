@@ -7,7 +7,7 @@ import { TennisGame1Component } from './tennis-game1/tennis-game1.component';
 import { TennisGame3Component } from './tennis-game3/tennis-game3.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule, MatLabel} from '@angular/material';
+import {MatButton, MatButtonModule, MatFormFieldModule, MatInputModule, MatLabel} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,9 @@ import {MatFormFieldModule, MatInputModule, MatLabel} from '@angular/material';
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatButtonModule
   ],
-  providers: [MatLabel],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

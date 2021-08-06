@@ -6,7 +6,13 @@ import {By} from '@angular/platform-browser';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-export const testImports = [FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, BrowserAnimationsModule];
+export const testImports = [
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+  ];
 
 export class TennisComponentTester {
   component: TennisGame;
