@@ -1,14 +1,23 @@
-<h2>Tennis game 2</h2>
-<form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()">
-  <label for="player-one-score">Player 1 Score: </label>
-  <input id="player-one-score" type="number" formControlName="player1Score">
-  <br>
-  <label for="player-two-score">Player 2 Score: </label>
-  <input id="player-two-score" type="number" formControlName="player2Score">
-  <br>
-  <button id="get-score-button" type="submit">Get Score</button>
-  <br>
-  <label>Overall Score: </label>
-  <label id="overall-score" [textContent]="overallScore"></label>
-</form>
-
+<mat-card style="max-width: 400px; margin-left: 20px">
+  <mat-card-header>
+    <mat-card-title>Tennis Game 2</mat-card-title>
+    <mat-card-subtitle>Score Calculator</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Player 1 Score</mat-label>
+      <input matInput id="player-one-score" type="number" formControlName="player1Score">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Player 2 Score</mat-label>
+      <input matInput id="player-two-score" type="number" formControlName="player2Score">
+    </mat-form-field>
+    <br>
+    <button id="get-score-button" type="submit" color="primary" mat-raised-button>Get Score</button>
+    <br>
+    <br>
+    <mat-label>Overall Score: </mat-label>
+    <mat-label id="overall-score" [textContent]="overallScore"></mat-label>
+  </form>
+</mat-card>

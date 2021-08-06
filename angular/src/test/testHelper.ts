@@ -3,7 +3,7 @@ import {TennisGame3Component} from '../app/tennis-game3/tennis-game3.component';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export const testImports = [
@@ -12,6 +12,7 @@ export const testImports = [
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    MatCardModule
   ];
 
 export class TennisComponentTester {
