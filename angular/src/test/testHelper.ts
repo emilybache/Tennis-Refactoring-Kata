@@ -3,6 +3,10 @@ import {TennisGame3Component} from '../app/tennis-game3/tennis-game3.component';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+export const testImports = [FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, BrowserAnimationsModule];
 
 export class TennisComponentTester {
   component: TennisGame;
@@ -12,7 +16,7 @@ export class TennisComponentTester {
 
   async beforeEach(declarations: any[]) {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: testImports,
       declarations
     }).compileComponents();
     this.fixture = TestBed.createComponent(declarations[this.tennisComponentIndex]);
@@ -24,14 +28,14 @@ export class TennisComponentTester {
   }
 
   setInputValue(inputSelector: string, newValue: number | string) {
-    const player1ScoreInput = this.element.querySelector(inputSelector);
-    player1ScoreInput.value = newValue;
-    player1ScoreInput.dispatchEvent(new Event('input'));
+    const player1ScoreInputElement = this.element.querySelector(inputSelector);
+    player1ScoreInputElement.value = newValue;
+    player1ScoreInputElement.dispatchEvent(new Event('input'));
   }
 
   selectElement(elementSelector: string) {
-    const getScoreButton = this.element.querySelector(elementSelector);
-    getScoreButton.click();
+    const getScoreButtonElement = this.element.querySelector(elementSelector);
+    getScoreButtonElement.click();
     this.fixture.detectChanges();
   }
 

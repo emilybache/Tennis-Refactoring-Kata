@@ -1,10 +1,14 @@
 <h2>Tennis game 3</h2>
 <form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()">
-  <label for="player-one-score">Player 1 Score: </label>
-  <input id="player-one-score" type="number" formControlName="player1Score">
+  <mat-form-field>
+    <mat-label>Player 1 Score</mat-label>
+    <input matInput id="player-one-score" type="number" formControlName="player1Score">
+  </mat-form-field>
   <br>
-  <label for="player-two-score">Player 2 Score: </label>
-  <input id="player-two-score" type="number" formControlName="player2Score">
+  <mat-form-field>
+    <mat-label>Player 2 Score</mat-label>
+    <input matInput id="player-two-score" type="number" formControlName="player2Score">
+  </mat-form-field>
   <br>
   <button id="get-score-button" type="submit">Get Score</button>
   <br>
