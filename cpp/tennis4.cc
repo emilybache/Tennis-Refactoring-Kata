@@ -207,7 +207,7 @@ public:
 
 class TennisGame4 : ResultProvider {
 public:
-    int serverScore, receiverScore;
+    int serverScore = 0, receiverScore = 0;
     std::string server;
     std::string receiver;
 
