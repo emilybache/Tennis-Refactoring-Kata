@@ -305,7 +305,7 @@ private:
 
 class DefaultResult : public ResultProvider {
 public:
-    explicit DefaultResult(TennisGame4& game) : game(game) { }
+    explicit DefaultResult(TennisGame4 const & game) : game(game) { }
 
     TennisResult getResult() const override {
         return TennisResult(scores[game.serverScore], scores[game.receiverScore]);
