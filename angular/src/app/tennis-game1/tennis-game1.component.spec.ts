@@ -2,6 +2,7 @@ import {async} from '@angular/core/testing';
 import {TennisGame1Component} from './tennis-game1.component';
 import {TennisComponentTester} from '../../test/tennisTester';
 import {
+  boldFontWeight,
   flex,
   slightlyRoundedBottomCorners,
   spaceBetween,
@@ -9,7 +10,14 @@ import {
   twentyPixels,
   zeroPixels
 } from '../../test/expectedStyles';
-import {getScoreButton, overallScoreLabel, overallScoreSection, player1ScoreInput, player2ScoreInput} from '../../test/selectors';
+import {
+  getScoreButton,
+  overallScore,
+  overallScoreLabel,
+  overallScoreSection,
+  player1ScoreInput,
+  player2ScoreInput
+} from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
 
 describe('Tennis Game 1', () => {
@@ -22,13 +30,13 @@ describe('Tennis Game 1', () => {
 
   expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
     it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
-      tennisTester.verifyLabelText(overallScoreLabel, '');
+      tennisTester.verifyLabelText(overallScore, '');
 
       tennisTester.setInputValue(player1ScoreInput, player1Score);
       tennisTester.setInputValue(player2ScoreInput, player2Score);
       tennisTester.selectElement(getScoreButton);
 
-      tennisTester.verifyLabelText(overallScoreLabel, expectedScore);
+      tennisTester.verifyLabelText(overallScore, expectedScore);
     });
   });
 
@@ -53,6 +61,16 @@ describe('Tennis Game 1', () => {
       expect(overallScoreSectionStyles.marginRight).toBe(zeroPixels);
       expect(overallScoreSectionStyles.display).toBe(flex);
       expect(overallScoreSectionStyles.justifyContent).toBe(spaceBetween);
+    });
+
+    describe('Overall Score Label', () => {
+      it('should be bold to stand out', () => {
+        const overallScoreLabelStyles = tennisTester.getStylesFor(overallScoreLabel);
+
+        const overallScoreLabelFontWeight = overallScoreLabelStyles.fontWeight;
+
+        expect(overallScoreLabelFontWeight).toBe(boldFontWeight);
+      });
     });
   });
 });
