@@ -1,13 +1,10 @@
 import {async} from '@angular/core/testing';
 import {TennisGame3Component} from './tennis-game3.component';
 import {
-  expectedTennisScores,
-  getScoreButton,
-  overallScoreLabel,
-  player1ScoreInput,
-  player2ScoreInput,
   TennisComponentTester
-} from '../../test/testHelper';
+} from '../../test/tennisTester';
+import {getScoreButton, overallScoreLabel, player1ScoreInput, player2ScoreInput} from '../../test/selectors';
+import {expectedTennisScores} from '../../test/expectedResults';
 
 describe('Tennis Game 3', () => {
   let tennisTester: TennisComponentTester;
