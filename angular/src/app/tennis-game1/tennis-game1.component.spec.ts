@@ -43,11 +43,11 @@ describe('Tennis Game 1 Scoring', () => {
 
   describe('Tennis Game Card', () => {
     it('should have some padding so items are are not jammed next to each other', () => {
-      const matCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
+      const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
 
-      const matCardContentsPadding = matCardContentsStyles.padding;
+      const tennisGameCardContentsPadding = tennisGameCardContentsStyles.padding;
 
-      expect(matCardContentsPadding).toBe(twentyPixels);
+      expect(tennisGameCardContentsPadding).toBe(twentyPixels);
     });
 
 
