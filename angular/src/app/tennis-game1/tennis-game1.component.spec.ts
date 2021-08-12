@@ -17,11 +17,11 @@ import {
   overallScoreLabel,
   overallScoreSection,
   player1ScoreInput,
-  player2ScoreInput
+  player2ScoreInput, tennisGameCard
 } from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
 
-describe('Tennis Game 1 Scoring', () => {
+describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
 
   beforeEach(async(() => {
@@ -42,14 +42,23 @@ describe('Tennis Game 1 Scoring', () => {
   });
 
   describe('Tennis Game Card', () => {
-    it('should have some padding so items are are not jammed next to each other', () => {
-      const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
+    it('should not apply extra padding since padding is handled within card contents', () => {
+      const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCard);
 
       const tennisGameCardContentsPadding = tennisGameCardContentsStyles.padding;
 
-      expect(tennisGameCardContentsPadding).toBe(twentyPixels);
+      expect(tennisGameCardContentsPadding).toBe(zeroPixels);
     });
 
+    describe('Contents', () => {
+      it('should have some padding so items are are not jammed next to each other', () => {
+        const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
+
+        const tennisGameCardContentsPadding = tennisGameCardContentsStyles.padding;
+
+        expect(tennisGameCardContentsPadding).toBe(twentyPixels);
+      });
+    });
 
     describe('Overall Score Section', () => {
       let overallScoreSectionStyles;
