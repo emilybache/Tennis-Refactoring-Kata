@@ -3,9 +3,9 @@ import { AppComponent } from './app.component';
 import {TennisGame3Component} from './tennis-game3/tennis-game3.component';
 import {TennisGame1Component} from './tennis-game1/tennis-game1.component';
 import {TennisGame2Component} from './tennis-game2/tennis-game2.component';
-import {testImports} from '../test/testHelper';
+import {testImports} from '../test/tennisTester';
 
-describe('AppComponent', () => {
+describe('App', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: testImports,
@@ -18,7 +18,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
+  it('should be created', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
