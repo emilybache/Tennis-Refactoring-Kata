@@ -1,3 +1,5 @@
+export const tennisGameCardContents = '#tennis-game-card-contents';
+
 export const player1ScoreInput = '#player-one-score';
 export const player2ScoreInput = '#player-two-score';
 

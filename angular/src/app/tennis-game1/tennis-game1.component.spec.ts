@@ -12,6 +12,7 @@ import {
 } from '../../test/expectedStyles';
 import {
   getScoreButton,
+  tennisGameCardContents,
   overallScore,
   overallScoreLabel,
   overallScoreSection,
@@ -20,7 +21,7 @@ import {
 } from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
 
-describe('Tennis Game 1', () => {
+describe('Tennis Game 1 Scoring', () => {
   let tennisTester: TennisComponentTester;
 
   beforeEach(async(() => {
@@ -40,36 +41,47 @@ describe('Tennis Game 1', () => {
     });
   });
 
-  describe('Overall Score Section', () => {
-    let overallScoreSectionStyles;
+  describe('Tennis Game Card', () => {
+    it('should have some padding so items are are not jammed next to each other', () => {
+      const matCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
 
-    beforeEach(() => {
-      overallScoreSectionStyles = tennisTester.getStylesFor(overallScoreSection);
+      const matCardContentsPadding = matCardContentsStyles.padding;
+
+      expect(matCardContentsPadding).toBe(twentyPixels);
     });
 
-    it('should be a bright tennis color so it stands out', () => {
-      expect(overallScoreSectionStyles.backgroundColor).toBe(tennisBallOpticYellowColor);
-    });
 
-    it('should look like the bottom of a card', () => {
-      expect(overallScoreSectionStyles.borderRadius).toBe(slightlyRoundedBottomCorners);
-    });
+    describe('Overall Score Section', () => {
+      let overallScoreSectionStyles;
 
-    it('should be spaced correctly so the label is distinct from the computed score', () => {
-      expect(overallScoreSectionStyles.padding).toBe(twentyPixels);
-      expect(overallScoreSectionStyles.marginLeft).toBe(zeroPixels);
-      expect(overallScoreSectionStyles.marginRight).toBe(zeroPixels);
-      expect(overallScoreSectionStyles.display).toBe(flex);
-      expect(overallScoreSectionStyles.justifyContent).toBe(spaceBetween);
-    });
+      beforeEach(() => {
+        overallScoreSectionStyles = tennisTester.getStylesFor(overallScoreSection);
+      });
 
-    describe('Overall Score Label', () => {
-      it('should be bold to stand out', () => {
-        const overallScoreLabelStyles = tennisTester.getStylesFor(overallScoreLabel);
+      it('should be a bright tennis color so it stands out', () => {
+        expect(overallScoreSectionStyles.backgroundColor).toBe(tennisBallOpticYellowColor);
+      });
 
-        const overallScoreLabelFontWeight = overallScoreLabelStyles.fontWeight;
+      it('should look like the bottom of a card', () => {
+        expect(overallScoreSectionStyles.borderRadius).toBe(slightlyRoundedBottomCorners);
+      });
 
-        expect(overallScoreLabelFontWeight).toBe(boldFontWeight);
+      it('should be spaced correctly so the label is distinct from the computed score', () => {
+        expect(overallScoreSectionStyles.padding).toBe(twentyPixels);
+        expect(overallScoreSectionStyles.marginLeft).toBe(zeroPixels);
+        expect(overallScoreSectionStyles.marginRight).toBe(zeroPixels);
+        expect(overallScoreSectionStyles.display).toBe(flex);
+        expect(overallScoreSectionStyles.justifyContent).toBe(spaceBetween);
+      });
+
+      describe('Overall Score Label', () => {
+        it('should be bold to stand out', () => {
+          const overallScoreLabelStyles = tennisTester.getStylesFor(overallScoreLabel);
+
+          const overallScoreLabelFontWeight = overallScoreLabelStyles.fontWeight;
+
+          expect(overallScoreLabelFontWeight).toBe(boldFontWeight);
+        });
       });
     });
   });
