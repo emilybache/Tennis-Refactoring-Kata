@@ -32,15 +32,17 @@ describe('Tennis Game 1', () => {
     tennisTester.beforeEach([TennisGame1Component]);
   }));
 
-  expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
-    it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
-      tennisTester.verifyLabelText(overallScore, '');
+  describe('Scoring', () => {
+    expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
+      it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
+        tennisTester.verifyLabelText(overallScore, '');
 
-      tennisTester.setInputValue(player1ScoreInput, player1Score);
-      tennisTester.setInputValue(player2ScoreInput, player2Score);
-      tennisTester.selectElement(getScoreButton);
+        tennisTester.setInputValue(player1ScoreInput, player1Score);
+        tennisTester.setInputValue(player2ScoreInput, player2Score);
+        tennisTester.selectElement(getScoreButton);
 
-      tennisTester.verifyLabelText(overallScore, expectedScore);
+        tennisTester.verifyLabelText(overallScore, expectedScore);
+      });
     });
   });
 
