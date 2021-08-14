@@ -11,16 +11,17 @@
 
 1. From this `angular` directory, on the command line run `ng serve -o --watch`
 
-## Current Implementation Status
+## Current Implementation
 
 - Components for tennis games 1, 2, and 3 and the corresponding tests are in `src/app`
 - Html/gui functionality to get a score from either tennis game 1, 2, or 3
 - Updated unit tests to interact with DOM instead of calling class methods
+- Styled each game with material design and scss to make GUI look better
+- Wrote unit tests against important look and feel aspects of the web page. Now the kata allows you to refactor the ts, angular, html, and css product code all under a fast suite of unit tests that cover it all.
+- Added unique html and css code smells to each tennis game for more refactoring opportunities
 
 ## Future Plans
 
-- Style each game with material design and scss to make GUI look better
-- Write unit tests against important look and feel aspects of the web page. Now the kata allows you to refactor the ts, angular, html, and css product code all under a fast suite of unit tests that cover it all.
 - For each game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
 
