@@ -17,9 +17,12 @@ import {
   overallScoreLabel,
   overallScoreSection,
   player1ScoreInput,
-  player2ScoreInput, tennisGameCard
+  player2ScoreInput,
+  tennisGameCard,
+  tennisGameCardTitle, tennisGameCardSubtitle
 } from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
+import {By} from '@angular/platform-browser';
 
 describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
@@ -41,22 +44,28 @@ describe('Tennis Game 1', () => {
     });
   });
 
-  describe('Tennis Game Card', () => {
+  describe('Card', () => {
     it('should not apply extra padding since padding is handled within card contents', () => {
-      const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCard);
+      const tennisGameCardStyles = tennisTester.getStylesFor(tennisGameCard);
 
-      const tennisGameCardContentsPadding = tennisGameCardContentsStyles.padding;
-
-      expect(tennisGameCardContentsPadding).toBe(zeroPixels);
+      expect(tennisGameCardStyles.padding).toBe(zeroPixels);
     });
 
     describe('Contents', () => {
       it('should have some padding so items are are not jammed next to each other', () => {
         const tennisGameCardContentsStyles = tennisTester.getStylesFor(tennisGameCardContents);
 
-        const tennisGameCardContentsPadding = tennisGameCardContentsStyles.padding;
+        expect(tennisGameCardContentsStyles.padding).toBe(twentyPixels);
+      });
+    });
 
-        expect(tennisGameCardContentsPadding).toBe(twentyPixels);
+    describe('Title and Subtitle', () => {
+      it('should have no extra margin so they are left aligned with rest of card contents', () => {
+        const titleParent = tennisTester.getParentStylesFor(tennisGameCardTitle);
+        const subtitleParent = tennisTester.getParentStylesFor(tennisGameCardSubtitle);
+
+        expect(titleParent.margin).toBe(zeroPixels);
+        expect(subtitleParent.margin).toBe(zeroPixels);
       });
     });
 

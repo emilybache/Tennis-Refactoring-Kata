@@ -1,4 +1,6 @@
 export const tennisGameCard = '#tennis-game-card';
+export const tennisGameCardTitle = '#tennis-game-card-title';
+export const tennisGameCardSubtitle = '#tennis-game-card-subtitle';
 export const tennisGameCardContents = '#tennis-game-card-contents';
 
 export const player1ScoreInput = '#player-one-score';
@@ -9,5 +11,3 @@ export const getScoreButton = '#get-score-button';
 export const overallScoreSection = '#overall-score-section';
 export const overallScoreLabel = '#overall-score-label';
 export const overallScore = '#overall-score';
-
-

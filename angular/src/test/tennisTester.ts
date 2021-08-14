@@ -34,27 +34,35 @@ export class TennisComponentTester {
     expect(this.component).toBeTruthy();
   }
 
+  private getElement(elementSelector: string) {
+    return this.fixture.debugElement.query(By.css(elementSelector));
+  }
+
   getStylesFor(selectors: string) {
     const element = this.element.querySelector(selectors);
-    const stylesForElement = getComputedStyle(element);
-    return stylesForElement;
+    return getComputedStyle(element);
+  }
+
+  getParentStylesFor(selectors: string) {
+    const element = this.getElement(selectors);
+    return getComputedStyle(element.parent.nativeElement);
   }
 
   setInputValue(inputSelector: string, newValue: number | string) {
-    const player1ScoreInputElement = this.element.querySelector(inputSelector);
-    player1ScoreInputElement.value = newValue;
-    player1ScoreInputElement.dispatchEvent(new Event('input'));
+    const inputElement = this.element.querySelector(inputSelector);
+    inputElement.value = newValue;
+    inputElement.dispatchEvent(new Event('input'));
   }
 
   selectElement(elementSelector: string) {
-    const getScoreButtonElement = this.element.querySelector(elementSelector);
-    getScoreButtonElement.click();
+    const element = this.element.querySelector(elementSelector);
+    element.click();
     this.fixture.detectChanges();
   }
 
   verifyLabelText(labelSelector: string, expectedText: number | string) {
-    const overallScore = this.fixture.debugElement.query(By.css(labelSelector));
+    const label = this.getElement(labelSelector);
     // @ts-ignore
-    expect(overallScore.nativeElement.outerText).toBe(expectedText);
+    expect(label.nativeElement.outerText).toBe(expectedText);
   }
 }
