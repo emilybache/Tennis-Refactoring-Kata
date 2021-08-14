@@ -20,7 +20,7 @@ import {
   player2ScoreInput,
   tennisGameCard,
   tennisGameCardTitle,
-  tennisGameCardSubtitle
+  tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
 } from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
 
@@ -83,6 +83,13 @@ describe('Tennis Game 1', () => {
       it('should have correct text', () => {
         tennisTester.verifyLabelText(tennisGameCardTitle, 'Tennis Game 1');
         tennisTester.verifyLabelText(tennisGameCardSubtitle, 'Score Calculator');
+      });
+    });
+
+    describe('Player Scores', () => {
+      it('should have correct text labels', () => {
+        tennisTester.verifyLabelText(player1ScoreLabel, 'Player 1 Score');
+        tennisTester.verifyLabelText(player2ScoreLabel, 'Player 2 Score');
       });
     });
 
