@@ -5,7 +5,7 @@
         <mat-card-title id="tennis-game-card-title">Tennis Game 1</mat-card-title>
         <mat-card-subtitle id="tennis-game-card-subtitle">Score Calculator</mat-card-subtitle>
       </mat-card-header>
-      <form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()"> <!-- FIXME support small device -->
         <mat-form-field>
           <mat-label id="player-one-score-label">Player 1 Score</mat-label>
           <input matInput id="player-one-score" type="number" formControlName="player1Score">
@@ -16,7 +16,7 @@
           <input matInput id="player-two-score" type="number" formControlName="player2Score">
         </mat-form-field>
         <br>
-        <!--  <iframe> Gary said he wanted this later-->
+        <!--  TODO: <iframe> Gary said he wanted this later-->
         <button id="get-score-button" type="submit" style="background-color: #177785; color: #fff;" mat-raised-button>
           Get Score
         </button>
