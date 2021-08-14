@@ -6,8 +6,8 @@ import {
   flex,
   slightlyRoundedBottomCorners,
   spaceBetween,
-  tennisBallOpticYellowColor, tennisCardMaxWidth,
-  twentyPixels,
+  tennisBallOpticYellowColor, tennisCardMaxWidth, tennisCourtGreenColor,
+  twentyPixels, whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
 import {
@@ -22,7 +22,7 @@ import {
   tennisGameCardTitle,
   tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
 } from '../../test/selectors';
-import {expectedTennisScores} from '../../test/expectedResults';
+import {expectedTennisScores, expectedText} from '../../test/expectedResults';
 
 describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
@@ -82,14 +82,27 @@ describe('Tennis Game 1', () => {
 
       it('should have correct text', () => {
         tennisTester.verifyLabelText(tennisGameCardTitle, 'Tennis Game 1');
-        tennisTester.verifyLabelText(tennisGameCardSubtitle, 'Score Calculator');
+        tennisTester.verifyLabelText(tennisGameCardSubtitle, expectedText.cardSubtitle);
       });
     });
 
     describe('Player Scores', () => {
       it('should have correct text labels', () => {
-        tennisTester.verifyLabelText(player1ScoreLabel, 'Player 1 Score');
-        tennisTester.verifyLabelText(player2ScoreLabel, 'Player 2 Score');
+        tennisTester.verifyLabelText(player1ScoreLabel, expectedText.player1ScoreLabel);
+        tennisTester.verifyLabelText(player2ScoreLabel, expectedText.player2ScoreLabel);
+      });
+    });
+
+    describe('Get Score Button', () => {
+      it('should have correct text', () => {
+        tennisTester.verifyLabelText(getScoreButton, expectedText.getScoreLabel);
+      });
+
+      it('should be tennis court green color', () => {
+        const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
+
+        expect(getScoreButtonStyles.backgroundColor).toBe(tennisCourtGreenColor);
+        expect(getScoreButtonStyles.color).toBe(whiteColor);
       });
     });
 
@@ -117,12 +130,14 @@ describe('Tennis Game 1', () => {
       });
 
       describe('Overall Score Label', () => {
+        it('should have correct text', () => {
+          tennisTester.verifyLabelText(overallScoreLabel, expectedText.overallScoreLabel);
+        });
+
         it('should be bold to stand out', () => {
           const overallScoreLabelStyles = tennisTester.getStylesFor(overallScoreLabel);
 
-          const overallScoreLabelFontWeight = overallScoreLabelStyles.fontWeight;
-
-          expect(overallScoreLabelFontWeight).toBe(boldFontWeight);
+          expect(overallScoreLabelStyles.fontWeight).toBe(boldFontWeight);
         });
       });
     });

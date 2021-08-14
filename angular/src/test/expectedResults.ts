@@ -1,3 +1,11 @@
+export const expectedText = {
+  cardSubtitle: 'Score Calculator',
+  player1ScoreLabel: 'Player 1 Score',
+  player2ScoreLabel: 'Player 2 Score',
+  getScoreLabel: 'Get Score',
+  overallScoreLabel: 'Overall Score'
+};
+
 export const expectedTennisScores = [
     [0, 0, 'Love-All'],
     [1, 1, 'Fifteen-All'],
