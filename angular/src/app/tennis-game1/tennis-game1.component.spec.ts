@@ -67,6 +67,11 @@ describe('Tennis Game 1', () => {
         expect(titleParent.margin).toBe(zeroPixels);
         expect(subtitleParent.margin).toBe(zeroPixels);
       });
+
+      it('should have correct text', () => {
+        tennisTester.verifyLabelText(tennisGameCardTitle, 'Tennis Game 1');
+        tennisTester.verifyLabelText(tennisGameCardSubtitle, 'Score Calculator');
+      });
     });
 
     describe('Overall Score Section', () => {
