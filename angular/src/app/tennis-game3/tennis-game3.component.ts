@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-tennis-game3',
   templateUrl: './tennis-game3.component.html',
-  styleUrls: ['./tennis-game3.component.scss']
+  styleUrls: ['./tennis-game3.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TennisGame3Component implements OnInit, TennisGame {
   private p2 = 0;
