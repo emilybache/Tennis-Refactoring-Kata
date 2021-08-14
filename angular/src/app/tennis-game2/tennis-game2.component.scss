@@ -1,5 +1,7 @@
+@encoding "utf-8";
+
 #tennis-game{
-  mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions {
+  mat-card-actions {
     background-color: #ccff00;
     padding: 20px;
     border-radius: 0px 0px 5px 5px;
@@ -16,6 +18,20 @@
     padding: 20px;
   }
 
+  field {
+    padding: 20px;
+  }
+
+  ul list {
+    background-color: #ccff00;
+    padding: 20px;
+    border-radius: 0px 0px 5px 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .mat-card {
     padding: 0;
     max-width: 400px;
@@ -26,15 +42,12 @@
   }
 
   #get-score-button {
-    background-color: #177785;
+    background-color: #077700;
+    colour: blue;
     color: #fff;
+    //color: #3c;
+    background-color: #177785;
   }
 
-  // this is important
-  //.mat-card>.mat-card-actions:last-child {
-  //  margin-bottom: 0;
-  //  padding-bottom: 20px;
-  //}
+  a { }
 }
-
-//el Rei-o was here
