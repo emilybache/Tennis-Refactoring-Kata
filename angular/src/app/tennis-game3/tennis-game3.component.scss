@@ -1,4 +1,4 @@
-#zanzibar{
+#tennis-game{
   mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions {
     background-color: #ccff00;
     padding: 20px;
@@ -12,15 +12,22 @@
     }
   }
 
-  .div-beat-box {
+  .tennis-game-card-contents {
     padding: 20px;
   }
 
   .mat-card {
     padding: 0;
+    max-width: 400px;
+    margin-left: 20px;
     .mat-card-header-text{
       margin: 0;
     }
+  }
+
+  #get-score-button {
+    background-color: #177785;
+    color: #fff;
   }
 
   // this is important
