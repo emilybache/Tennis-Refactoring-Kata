@@ -6,7 +6,7 @@ import {
   flex,
   slightlyRoundedBottomCorners,
   spaceBetween,
-  tennisBallOpticYellowColor,
+  tennisBallOpticYellowColor, tennisCardMaxWidth,
   twentyPixels,
   zeroPixels
 } from '../../test/expectedStyles';
@@ -19,10 +19,10 @@ import {
   player1ScoreInput,
   player2ScoreInput,
   tennisGameCard,
-  tennisGameCardTitle, tennisGameCardSubtitle
+  tennisGameCardTitle,
+  tennisGameCardSubtitle
 } from '../../test/selectors';
 import {expectedTennisScores} from '../../test/expectedResults';
-import {By} from '@angular/platform-browser';
 
 describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
@@ -45,10 +45,22 @@ describe('Tennis Game 1', () => {
   });
 
   describe('Card', () => {
-    it('should not apply extra padding since padding is handled within card contents', () => {
-      const tennisGameCardStyles = tennisTester.getStylesFor(tennisGameCard);
+    let tennisGameCardStyles;
 
+    beforeEach(() => {
+      tennisGameCardStyles = tennisTester.getStylesFor(tennisGameCard);
+    });
+
+    it('should not apply extra padding since padding is handled within card contents', () => {
       expect(tennisGameCardStyles.padding).toBe(zeroPixels);
+    });
+
+    it('should be proper width so can full card can be easily seen', () => {
+      expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
+    });
+
+    it('should have some left margin so that it is not jammed up right next to edge of browser', () => {
+      expect(tennisGameCardStyles.marginLeft).toBe(twentyPixels);
     });
 
     describe('Contents', () => {
