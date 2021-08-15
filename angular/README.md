@@ -7,6 +7,8 @@
 3. To run tests via [Karma](https://karma-runner.github.io) and Jasmine, on the command line run `ng t`
 4. For even faster test feedback, add the [Wallaby](https://wallabyjs.com/) extension to your IDE
 
+![alt text](TennisKataIde.PNG)
+
 ## How to Run the Website
 
 1. From this `angular` directory, on the command line run `ng serve -o --watch`
@@ -24,6 +26,7 @@
 
 - Add unit tests from app component level and remove duplicate tests at component level
 - Practice completing the kata at least once for refactoring css
+- Post kata on social media for feedback
 - Maybe mob with UI/UX designer again to make more look and feel improvements to the kata
 - For each tennis game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
