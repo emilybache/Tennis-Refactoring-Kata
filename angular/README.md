@@ -22,7 +22,10 @@
 
 ## Future Plans
 
-- For each game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
+- Add unit tests from app component level and remove duplicate tests at component level
+- Practice completing the kata at least once for refactoring css
+- Maybe mob with UI/UX designer again to make more look and feel improvements to the kata
+- For each tennis game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
 
   
