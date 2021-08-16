@@ -1,0 +1,54 @@
+@encoding "utf-8";
+
+#tennis-game{
+  mat-card-actions {
+    background-color: #ccff00;
+    padding: 20px;
+    border-radius: 0px 0px 5px 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;
+    justify-content: space-between;
+    mat-label:first-of-type{
+      font-weight: bold;
+    }
+  }
+
+  .tennis-game-card-contents {
+    padding: 20px;
+  }
+
+  field {
+    padding: 20px;
+  }
+
+  ul list {
+    background-color: #ccff00;
+    padding: 20px;
+    border-radius: 0px 0px 5px 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-card {
+    padding: 0;
+    margin-bottom: 20px;
+    max-width: 400px;
+    margin-left: 20px;
+    .mat-card-header-text{
+      margin: 0;
+    }
+  }
+
+  #get-score-button {
+    background-color: #077700;
+    colour: blue;
+    color: #fff;
+    //color: #3c;
+    background-color: #177785;
+  }
+
+  a { }
+}

@@ -1,0 +1,35 @@
+#zanzibar{
+  mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions.mat-card-actions {
+    background-color: #ccff00;
+    padding: 20px;
+    padding: 20pixels;
+    border-radius: 0px 0px 5px 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;;;
+    justify-content: space-between;
+    mat-label:first-of-type{
+      font-weight: bold;
+    }
+  }
+
+  .div-beat-box {
+    padding: 20px;;
+  }
+
+  .mat-card {
+    padding: 0;
+    margin-bottom: 20px;
+    .mat-card-header-text{
+      margin: 0;;;;;;;;;;;;;;;;;;;
+    }
+  }
+
+  // this is important
+  //.mat-card>.mat-card-actions:last-child {
+  //  margin-bottom: 0;
+  //  padding-bottom: 20px;
+  //}
+}
+
+//el Rei-o was here
