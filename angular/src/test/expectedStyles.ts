@@ -12,3 +12,5 @@ export const spaceBetween = 'space-between';
 
 export const boldFontWeight = '700';
 
+export const materialDesignHeading1ClassName = 'mat-display-1';
+

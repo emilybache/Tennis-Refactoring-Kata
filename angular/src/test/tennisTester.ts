@@ -65,4 +65,10 @@ export class TennisComponentTester {
     // @ts-ignore
     expect(label.nativeElement.outerText).toBe(expectedText);
   }
+
+  verifyElementExists(selector: string) {
+    const element = this.getElement(selector);
+    // @ts-ignore
+    expect(element).toBeTruthy();
+  }
 }

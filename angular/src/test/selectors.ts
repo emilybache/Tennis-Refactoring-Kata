@@ -1,3 +1,6 @@
+export const tennisKataTitleId = 'tennis-kata-title';
+export const tennisGame = 'app-tennis-game';
+
 export const tennisGameCard = '#tennis-game-card';
 export const tennisGameCardTitle = '#tennis-game-card-title';
 export const tennisGameCardSubtitle = '#tennis-game-card-subtitle';
@@ -13,3 +16,5 @@ export const getScoreButton = '#get-score-button';
 export const overallScoreSection = '#overall-score-section';
 export const overallScoreLabel = '#overall-score-label';
 export const overallScore = '#overall-score';
+
+export const largeHeadingElement = 'h1';

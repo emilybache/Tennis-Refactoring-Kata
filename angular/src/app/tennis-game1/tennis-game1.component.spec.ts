@@ -57,6 +57,10 @@ describe('Tennis Game 1', () => {
       expect(tennisGameCardStyles.padding).toBe(zeroPixels);
     });
 
+    it('should have some space between each tennis game card so that they are not jammed next to each other', () => {
+      expect(tennisGameCardStyles.marginBottom).toBe(twentyPixels);
+    });
+
     it('should be proper width so can full card can be easily seen', () => {
       expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
     });

@@ -1,4 +1,5 @@
 export const expectedText = {
+  kataTitle: 'Tennis Kata',
   cardSubtitle: 'Score Calculator',
   player1ScoreLabel: 'Player 1 Score',
   player2ScoreLabel: 'Player 2 Score',

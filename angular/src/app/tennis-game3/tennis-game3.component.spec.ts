@@ -61,6 +61,10 @@ describe('Tennis Game 3', () => {
       expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
     });
 
+    it('should have some space between each tennis game card so that they are not jammed next to each other', () => {
+      expect(tennisGameCardStyles.marginBottom).toBe(twentyPixels);
+    });
+
     it('should have some left margin so that it is not jammed up right next to edge of browser', () => {
       expect(tennisGameCardStyles.marginLeft).toBe(twentyPixels);
     });
