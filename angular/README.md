@@ -9,7 +9,7 @@
 
 ![alt text](TennisKataIde.PNG)
 
-## How to Run the Website
+## How to Run the Web App
 
 1. From this `angular` directory, on the command line run `ng serve -o --watch`
 
@@ -21,10 +21,10 @@
 - Styled each game with material design and scss to make GUI look better
 - Wrote unit tests against important look and feel aspects of the web page. Now the kata allows you to refactor the ts, angular, html, and css product code all under a fast suite of unit tests that cover it all.
 - Added unique html and css code smells to each tennis game for more refactoring opportunities
+- Added unit tests for app component
 
 ## Future Plans
 
-- Add unit tests from app component level and remove duplicate tests at component level
 - Practice completing the kata at least once for refactoring css
 - Post kata on social media for feedback
 - Maybe mob with UI/UX designer again to make more look and feel improvements to the kata
