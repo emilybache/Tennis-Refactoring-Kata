@@ -22,12 +22,12 @@
 - Wrote unit tests against important look and feel aspects of the web page. Now the kata allows you to refactor the ts, angular, html, and css product code all under a fast suite of unit tests that cover it all.
 - Added unique html and css code smells to each tennis game for more refactoring opportunities
 - Added unit tests for app component
+- Practice completing the kata at least once for refactoring css and html
 
 ## Future Plans
 
-- Practice completing the kata at least once for refactoring css
 - Post kata on social media for feedback
-- Maybe mob with UI/UX designer again to make more look and feel improvements to the kata
+- Maybe mob with UI/UX designer again to make more look and feel improvements to the kata and also make the css/html harder to read
 - For each tennis game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
 
