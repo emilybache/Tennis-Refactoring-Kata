@@ -27,7 +27,7 @@ export class TennisGame2Component implements OnInit, TennisGame {
   }
 
   getScore(): string {
-    if (this.P1point === -1) {
+    if (this.P1point < 0) {
       return 'Invalid Score';
     }
 

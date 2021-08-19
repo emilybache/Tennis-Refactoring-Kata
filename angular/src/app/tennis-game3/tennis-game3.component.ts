@@ -34,7 +34,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
 
   getScore(): string {
     let s: string;
-    if (this.p1 === -1) {
+    if (this.p1 < 0) {
       return 'Invalid Score';
     }
     if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
