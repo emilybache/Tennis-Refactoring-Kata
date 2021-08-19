@@ -23,12 +23,12 @@
 - Added unique html and css code smells to each tennis game for more refactoring opportunities
 - Added unit tests for app component
 - Practice completing the kata at least once for refactoring css and html
+- Post kata on social media for feedback
 
 ## Future Plans
 
-- Post kata on social media for feedback
+- For each tennis game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies)
 - Maybe mob with UI/UX designer again to make more look and feel improvements to the kata and also make the css/html harder to read
-- For each tennis game, test drive all [ZOMBIE cases](https://trello.com/c/5EyJyuzJ/242-test-driven-development-guided-by-zombies) 
 
 
   
