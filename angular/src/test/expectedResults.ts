@@ -49,4 +49,6 @@ export const expectedTennisScores = [
 
     [-1, 0, 'Invalid Score'],
     [-99, 0, 'Invalid Score'],
+    [0, -1, 'Invalid Score'],
+    [0, -99, 'Invalid Score'],
 ];
