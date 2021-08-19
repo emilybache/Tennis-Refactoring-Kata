@@ -6,22 +6,28 @@
 -record(score_test, {
   player1Points = 0 :: integer(),
   player2Points = 0 :: integer(),
-  expectedScore :: binary()
+  expectedScore :: bitstring()
 }).
 
 -define(ALL_SCORES, [
-  #score_test{0, 0, "Love-All"}
+  #score_test{player1Points = 0, player2Points = 0, expectedScore = "Love-All"}
 ]).
 
-test_score1(score_test) ->
-  ?assertMatch("Love-All", 'Tennis1':score(#game{player1 = 0, player2 = 0})).
+-spec the_test_and_assertion(#score_test{}) -> any().
+the_test_and_assertion(Score_test = #score_test{}) ->
+  %% Why can't I use Score_test#score_test.expectedScore here instead of hardcoding the expected result?
+  ?assertMatch("Love-All",
+    'Tennis1':score(#game{
+      player1 = Score_test#score_test.player1Points,
+      player2 = Score_test#score_test.player2Points
+    })).
 
-%%basic_test_() ->
-%%  ?_test(?assert(1 + 1 =:= 2)).
+%%score1_with_map_test_() ->
+%%  lists:map(fun the_test_and_assertion/1, ?ALL_SCORES).
+
 
 score1_test_() ->
-%%  lists:map(fun test_score1/1, ?ALL_SCORES).
-  ?_test(test_score1(lists:nth(0, ?ALL_SCORES))).
+  ?_test(the_test_and_assertion(lists:nth(1, ?ALL_SCORES))).
 
 
 score2_test() ->
