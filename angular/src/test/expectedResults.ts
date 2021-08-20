@@ -52,4 +52,16 @@ export const expectedTennisScores = [
     [0, -1, 'Invalid Score'],
     [0, -99, 'Invalid Score'],
     ['not a number', 0, 'Invalid Score'],
+    [0, 'not a number', 'Invalid Score'],
+    // todo: different kinds of non-numbers for both players
+    // todo: decimal numbers both players
+    // todo: catch exceptions thrown from new inline service called Zanzibar
+    // todo: manual test to find more ZOMBIES
+    // todo: any other ZOMBIES?
+    // todo: test drive add html attributes to limit input range, etc.
+    // todo: separate out error message from score and show it on the gui
+    // todo: expect different error messages for different kinds of issues
+    // todo: any other ZOMBIES?
+    // todo: make product error handling code more dirty (each component different)
+    // todo: make test code for error handling be clean
 ];
