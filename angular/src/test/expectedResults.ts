@@ -8,8 +8,10 @@ export const expectedText = {
 };
 
 export const expectedTennisScores = [
+    [0.0, 0, 'Love-All'],
     [0, 0, 'Love-All'],
     [1, 1, 'Fifteen-All'],
+    [1, 1.0, 'Fifteen-All'],
     [2, 2, 'Thirty-All'],
     [3, 3, 'Deuce'],
     [4, 4, 'Deuce'],
@@ -54,17 +56,22 @@ export const expectedTennisScores = [
     ['not a number', 0, 'Invalid Score'],
     ['!@#$%^&*()_', 0, 'Invalid Score'],
     ['1x', 0, 'Invalid Score'],
+    [1.6, 0, 'Invalid Score'],
+    [0.6, 0, 'Invalid Score'],
+    [1 / 4, 0, 'Invalid Score'],
     [0, 'not a number', 'Invalid Score'],
     [0, '!@#$%^&*()_', 'Invalid Score'],
     [0, '1x', 'Invalid Score'],
-    // todo: different kinds of non-numbers for both players
-    // todo: decimal numbers both players
+    ['1x', 0, 'Invalid Score'],
+    [0, 1.6, 'Invalid Score'],
+    [0, 0.6, 'Invalid Score'],
+    [0, 1 / 4, 'Invalid Score'],
     // todo: catch exceptions thrown from new inline service called Zanzibar
     // todo: extract magic strings above for better names
     // todo: extract blocks of the array into named sub arrays
     // todo: manual test to find more ZOMBIES
     // todo: any other ZOMBIES?
-    // todo: test drive add html attributes to limit input range, etc.
+    // todo: test drive add html attributes to prevent bad input e.g. negative, non-int, etc.
     // todo: separate out error message from score and show it on the gui
     // todo: expect different error messages for different kinds of issues
     // todo: any other ZOMBIES?

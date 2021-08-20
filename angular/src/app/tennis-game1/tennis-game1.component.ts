@@ -67,7 +67,7 @@ export class TennisGame1Component implements OnInit, TennisGame {
       }
     }
 
-    if (this.m_score1 < 0 || this.m_score1 === null || this.m_score2 < 0 || this.m_score2 === null) {
+    if (!Number.isInteger(this.m_score1) || !Number.isInteger(this.m_score2) || this.m_score1 < 0 || this.m_score1 === null || this.m_score2 < 0 || this.m_score2 === null) {
       score = 'Invalid Score';
     }
     return score;
