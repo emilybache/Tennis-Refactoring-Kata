@@ -52,10 +52,16 @@ export const expectedTennisScores = [
     [0, -1, 'Invalid Score'],
     [0, -99, 'Invalid Score'],
     ['not a number', 0, 'Invalid Score'],
+    ['!@#$%^&*()_', 0, 'Invalid Score'],
+    ['1x', 0, 'Invalid Score'],
     [0, 'not a number', 'Invalid Score'],
+    [0, '!@#$%^&*()_', 'Invalid Score'],
+    [0, '1x', 'Invalid Score'],
     // todo: different kinds of non-numbers for both players
     // todo: decimal numbers both players
     // todo: catch exceptions thrown from new inline service called Zanzibar
+    // todo: extract magic strings above for better names
+    // todo: extract blocks of the array into named sub arrays
     // todo: manual test to find more ZOMBIES
     // todo: any other ZOMBIES?
     // todo: test drive add html attributes to limit input range, etc.
