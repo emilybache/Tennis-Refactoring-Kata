@@ -27,6 +27,7 @@ export class TennisGame1Component implements OnInit, TennisGame {
   getScore(): string {
     let score = '';
     let tempScore = 0;
+
     if (this.m_score1 === this.m_score2) {
       switch (this.m_score1) {
         case 0:
@@ -65,10 +66,15 @@ export class TennisGame1Component implements OnInit, TennisGame {
         }
       }
     }
-    if (this.m_score1 < 0 || this.m_score2 < 0) {
+
+    if (this.m_score1 < 0 || this.m_score1 === null || this.m_score2 < 0) {
       score = 'Invalid Score';
     }
     return score;
+  }
+
+  private isNumeric(value) {
+    return /^-?\d+$/.test(value);
   }
 
   wonPoint(playerName: string): void {
