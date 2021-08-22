@@ -23,6 +23,9 @@ import {
   whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
+import {SevenStagesOfNamingService} from '../tennis-game2/SevenStagesOfNamingService';
+import {smartSpyOn} from '../../test/smartSpy';
+import {Zeus} from './zeus';
 
 describe('Tennis Game 3', () => {
   let tennisTester: TennisComponentTester;
@@ -148,4 +151,20 @@ describe('Tennis Game 3', () => {
       });
     });
   });
+
+  it('should notify user when there is an error', () => {
+    SetupScoringServiceToHaveAnError();
+
+    tennisTester.setInputValue(player1ScoreInput, 1);
+    tennisTester.setInputValue(player2ScoreInput, 1);
+    tennisTester.selectElement(getScoreButton);
+
+    tennisTester.verifyLabelText(overallScore, expectedText.errorMessage);
+
+  });
+
+  function SetupScoringServiceToHaveAnError() {
+    const scoringService = tennisTester.fixture.debugElement.injector.get(Zeus);
+    smartSpyOn(scoringService, scoringService.isAnnoying).and.throwError(expectedText.scoringError);
+  }
 });

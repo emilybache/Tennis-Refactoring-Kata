@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Zeus} from './zeus';
 
 @Component({
   selector: 'app-tennis-game3',
@@ -19,7 +20,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
   });
   public overallScore = '';
 
-  constructor() { }
+  constructor(private zeus: Zeus) { }
 
   ngOnInit() {
   }
@@ -34,20 +35,20 @@ export class TennisGame3Component implements OnInit, TennisGame {
 
   getScore() {
     let s: string;
-    if (!Number.isInteger(this.p1) || !Number.isInteger(this.p2) || this.p1 < 0 || this.p1 === null || this.p2 < 0 || this.p2 === null) {
-      return 'Invalid Score';
-    }
-    if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
-      const p: string[] = ['Love', 'Fifteen', 'Thirty', 'Forty'];
-      s = p[this.p1];
-      return (this.p1 === this.p2) ? s + '-All' : s + '-' + p[this.p2];
-    } else {
-      if (this.p1 === this.p2) {
-        return 'Deuce';
+    try {
+      if (!Number.isInteger(this.p1) || !Number.isInteger(this.p2) || this.p1 < 0 || this.p1 === null || this.p2 < 0 || this.p2 === null) {
+        return 'Invalid Score';
       }
-      s = this.p1 > this.p2 ? this.p1N : this.p2N;
-      return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
-    }
+      if (this.zeus.isAnnoying(this.p1, this.p2)) {
+        return this.zeus.getLightning(s, this.p1, this.p2);
+      } else {
+        if (this.p1 === this.p2) {
+          return 'Deuce';
+        }
+        s = this.p1 > this.p2 ? this.p1N : this.p2N;
+        return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
+      }
+    } catch (lightning) { console.log(lightning); return 'Something has gone wrong, please try again';}
   }
 
   onSubmit() {
