@@ -4,7 +4,9 @@ export const expectedText = {
   player1ScoreLabel: 'Player 1 Score',
   player2ScoreLabel: 'Player 2 Score',
   getScoreLabel: 'Get Score',
-  overallScoreLabel: 'Overall Score'
+  overallScoreLabel: 'Overall Score',
+  scoringError: 'Failed to get score',
+  errorMessage: 'Something has gone wrong, please try again'
 };
 
 export const expectedTennisScores = [

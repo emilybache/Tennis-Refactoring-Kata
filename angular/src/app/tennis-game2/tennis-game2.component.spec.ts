@@ -23,13 +23,16 @@ import {
   whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
+import {ManagerOfZanzibar} from '../tennis-game1/ZanzibarManager';
+import {smartSpyOn} from '../../test/smartSpy';
+import {SevenStagesOfNamingService} from './SevenStagesOfNamingService';
 
 describe('Tennis Game 2', () => {
   let tennisTester: TennisComponentTester;
 
-  beforeEach(async(() => {
+  beforeEach(async(async () => {
     tennisTester = new TennisComponentTester();
-    tennisTester.beforeEach([TennisGame2Component]);
+    await tennisTester.beforeEach([TennisGame2Component]);
   }));
 
   describe('Scoring', () => {
@@ -148,4 +151,20 @@ describe('Tennis Game 2', () => {
       });
     });
   });
+
+  it('should notify user when there is an error', () => {
+    SetupScoringServiceToHaveAnError();
+
+    tennisTester.setInputValue(player1ScoreInput, 1);
+    tennisTester.setInputValue(player2ScoreInput, 1);
+    tennisTester.selectElement(getScoreButton);
+
+    tennisTester.verifyLabelText(overallScore, expectedText.errorMessage);
+
+  });
+
+  function SetupScoringServiceToHaveAnError() {
+    const scoringService = tennisTester.fixture.debugElement.injector.get(SevenStagesOfNamingService);
+    smartSpyOn(scoringService, scoringService.isAppleSauce).and.throwError(expectedText.scoringError);
+  }
 });

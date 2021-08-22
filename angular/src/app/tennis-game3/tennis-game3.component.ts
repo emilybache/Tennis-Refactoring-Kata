@@ -24,7 +24,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
   ngOnInit() {
   }
 
-  wonPoint(playerName: string): void {
+  wonPoint(playerName: string) {
     if (playerName === 'player1') {
       this.p1 += 1;
     } else {
@@ -32,7 +32,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
     }
   }
 
-  getScore(): string {
+  getScore() {
     let s: string;
     if (!Number.isInteger(this.p1) || !Number.isInteger(this.p2) || this.p1 < 0 || this.p1 === null || this.p2 < 0 || this.p2 === null) {
       return 'Invalid Score';

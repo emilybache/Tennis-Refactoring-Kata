@@ -27,9 +27,9 @@ import {
 describe('Tennis Game 3', () => {
   let tennisTester: TennisComponentTester;
 
-  beforeEach(async(() => {
+  beforeEach(async(async () => {
     tennisTester = new TennisComponentTester();
-    tennisTester.beforeEach([ TennisGame3Component ]);
+    await tennisTester.beforeEach([ TennisGame3Component ]);
   }));
 
   describe('Scoring', () => {
