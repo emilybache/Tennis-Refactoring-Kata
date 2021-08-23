@@ -111,9 +111,7 @@ const invalidScores = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: manual test to find more ZOMBIES
-// todo: any other ZOMBIES?
-// todo: test drive add html attributes to prevent bad input e.g. negative, non-int, etc.
+// todo: do full fancy reactive forms implementation with subscriptions and validations (max, min, non-negative, non-int, disabled get score button, etc.) like in pluralsight
 // todo: separate out error message from score and show it on the gui (one error message label or one per input?)
 // todo: expect different error messages for different kinds of issues?
 // todo: any other ZOMBIES?

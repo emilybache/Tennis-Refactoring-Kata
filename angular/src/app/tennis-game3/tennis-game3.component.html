@@ -40,12 +40,12 @@ function andSoOnTennis() {
       <form [formGroup]='tennisGameForm' (ngSubmit)='onSubmit()'>
         <mat-form-field>
           <mat-label id='player-one-score-label'>Player 1 Score</mat-label>
-          <input matInput id='player-one-score' type='number' formControlName='player1Score'>
+          <input matInput max="100" id='player-one-score' type='number' formControlName='player1Score' min="0">
         </mat-form-field>
         <br>
         <mat-form-field>
           <mat-label id='player-two-score-label'>Player 2 Score</mat-label>
-          <input matInput id='player-two-score' type='number' formControlName='player2Score'></mat-form-field>
+          <input matInput min="0" id='player-two-score' type='number' formControlName='player2Score' max="100"></mat-form-field>
         <br>
         <button id='get-score-button' type='submit' mat-raised-button>
           Get Score

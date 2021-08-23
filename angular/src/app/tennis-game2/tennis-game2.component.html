@@ -4,7 +4,7 @@
 
 
 
-  <input matInput id="player-one-score" type="number" formControlName="player1Score">
+  <input matInput id="player-one-score" min="0" max="100" type="number" formControlName="player1Score">
 
 
                         </mat-form-field>
@@ -13,7 +13,7 @@
         <br>
 
 
-        <mat-form-field><mat-label id="player-two-score-label">Player 2 Score</mat-label><input matInput id="player-two-score" type="number" formControlName="player2Score"></mat-form-field>
+        <mat-form-field><mat-label id="player-two-score-label">Player 2 Score</mat-label><input matInput id="player-two-score" type="number" formControlName="player2Score" min="0" max="100"></mat-form-field>
   <br>
    <button id="get-score-button" type="submit" mat-raised-button>
           Get Score

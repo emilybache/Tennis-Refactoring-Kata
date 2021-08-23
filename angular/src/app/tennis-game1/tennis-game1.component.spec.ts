@@ -25,6 +25,7 @@ import {
 import {expectedTennisScores, expectedText} from '../../test/expectedResults';
 import {ManagerOfZanzibar} from './ZanzibarManager';
 import {smartSpyOn} from '../../test/smartSpy';
+import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
 
 describe('Tennis Game 1', () => {
   let tennisTester: TennisComponentTester;
@@ -44,6 +45,31 @@ describe('Tennis Game 1', () => {
         tennisTester.selectElement(getScoreButton);
 
         tennisTester.verifyLabelText(overallScore, expectedScore);
+      });
+    });
+
+    describe('Input', () => {
+      let player1ScoreInputElement;
+      let player2ScoreInputElement;
+
+      beforeEach(() => {
+        player1ScoreInputElement = tennisTester.getElement(player1ScoreInput);
+        player2ScoreInputElement = tennisTester.getElement(player2ScoreInput);
+      });
+
+      it('should only allow numbers', () => {
+        expect(player1ScoreInputElement.attributes.type).toBe(numberType);
+        expect(player2ScoreInputElement.attributes.type).toBe(numberType);
+      });
+
+      it('should prevent large numbers via the incrementer button', () => {
+        expect(player1ScoreInputElement.attributes.max).toBe(maxScore);
+        expect(player2ScoreInputElement.attributes.max).toBe(maxScore);
+      });
+
+      it('should prevent negative numbers via the decrementer button', () => {
+        expect(player1ScoreInputElement.attributes.min).toBe(minScore);
+        expect(player2ScoreInputElement.attributes.min).toBe(minScore);
       });
     });
   });

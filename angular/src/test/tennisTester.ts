@@ -34,7 +34,7 @@ export class TennisComponentTester {
     expect(this.component).toBeTruthy();
   }
 
-  private getElement(elementSelector: string) {
+  public getElement(elementSelector: string) {
     return this.fixture.debugElement.query(By.css(elementSelector));
   }
 

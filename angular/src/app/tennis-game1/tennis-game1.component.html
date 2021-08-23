@@ -8,12 +8,12 @@
       <form [formGroup]="tennisGameForm" (ngSubmit)="onSubmit()"> <!-- FIXME support small device -->
         <mat-form-field>
           <mat-label id="player-one-score-label">Player 1 Score</mat-label>
-          <input matInput id="player-one-score" type="number" formControlName="player1Score">
+          <input matInput id="player-one-score" type="number" min="0" max="100" formControlName="player1Score">
         </mat-form-field>
         <br>
         <mat-form-field>
           <mat-label id="player-two-score-label">Player 2 Score</mat-label>
-          <input matInput id="player-two-score" type="number" formControlName="player2Score">
+          <input matInput type="number"  max="100" formControlName="player2Score" min="0" id="player-two-score" >
         </mat-form-field>
         <br>
         <!--  TODO: <iframe> Gary said he wanted this later-->
