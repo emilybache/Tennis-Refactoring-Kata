@@ -31,30 +31,7 @@ export class TennisGame1Component implements OnInit, TennisGame {
 
     try
     {
-      if (this.m_score1 === this.m_score2) {
-        score = this.zanzibar.getTexas(this.m_score1);
-      } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-        const minusResult: number = this.m_score1 - this.m_score2;
-        if (minusResult === 1) { score = 'Advantage player1'; } else if (minusResult === -1) { score = 'Advantage player2'; } else if (minusResult >= 2) { score = 'Win for player1'; } else { score = 'Win for player2'; }
-      } else {
-        for (let i = 1; i < 3; i++) {
-          if (i === 1) { tempScore = this.m_score1; } else { score += '-'; tempScore = this.m_score2; }
-          switch (tempScore) {
-            case 0:
-              score += 'Love';
-              break;
-            case 1:
-              score += 'Fifteen';
-              break;
-            case 2:
-              score += 'Thirty';
-              break;
-            case 3:
-              score += 'Forty';
-              break;
-          }
-        }
-      }
+      score = this.zanzibar.getTexas(this.m_score1, this.m_score2);
 
       if (!Number.isInteger(this.m_score1) || !Number.isInteger(this.m_score2) || this.m_score1 < 0 || this.m_score1 === null || this.m_score2 < 0 || this.m_score2 === null) {
         score = 'Invalid Score';

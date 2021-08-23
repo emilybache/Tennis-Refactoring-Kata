@@ -91,12 +91,13 @@ export const expectedTennisScores = [
     [0, 1.6, invalidScore],
     [0, 0.6, invalidScore],
     [0, 1 / 4, invalidScore],
+    // todo: move all scoring logic into service for each game
     // todo: extract blocks of the array into named sub arrays
     // todo: manual test to find more ZOMBIES
     // todo: any other ZOMBIES?
     // todo: test drive add html attributes to prevent bad input e.g. negative, non-int, etc.
     // todo: separate out error message from score and show it on the gui (one error message label or one per input?)
-    // todo: expect different error messages for different kinds of issues
+    // todo: expect different error messages for different kinds of issues?
     // todo: any other ZOMBIES?
     // todo: make product error handling code more dirty (each component different)
     // todo: make test code for error handling be clean
