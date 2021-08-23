@@ -39,15 +39,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
       if (!Number.isInteger(this.p1) || !Number.isInteger(this.p2) || this.p1 < 0 || this.p1 === null || this.p2 < 0 || this.p2 === null) {
         return 'Invalid Score';
       }
-      if (this.zeus.isAnnoying(this.p1, this.p2)) {
-        return this.zeus.getLightning(s, this.p1, this.p2);
-      } else {
-        if (this.p1 === this.p2) {
-          return 'Deuce';
-        }
-        s = this.p1 > this.p2 ? this.p1N : this.p2N;
-        return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
-      }
+      return this.zeus.getLightning2(s, this.p1, this.p2, this.p1N, this.p2N);
     } catch (lightning) { console.log(lightning); return 'Something has gone wrong, please try again';}
   }
 
