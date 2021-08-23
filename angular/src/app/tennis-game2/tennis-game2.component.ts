@@ -34,71 +34,7 @@ export class TennisGame2Component implements OnInit, TennisGame {
       if (!Number.isInteger(this.P1point) || !Number.isInteger(this.P2point) || this.P1point === null || this.P1point < 0 || this.P2point < 0 || this.P2point === null) {
         return 'Invalid Score';
       }
-
-      if (this.P1point === this.P2point && this.P1point < 4) {
-        if (this.P1point === 0)
-          score = 'Love';
-        if (this.P1point === 1)
-          score = 'Fifteen';
-        if (this.P1point === 2)
-          score = 'Thirty';
-        score += '-All';
-      }
-      if (this.P1point === this.P2point && this.P1point >= 3)
-        score = 'Deuce';
-
-      if (this.P1point > 0 && this.P2point === 0) {
-        if (this.P1point === 1)
-          this.P1res = 'Fifteen';
-        if (this.P1point === 2)
-          this.P1res = 'Thirty';
-        if (this.P1point === 3)
-          this.P1res = 'Forty';
-
-        this.P2res = 'Love';
-        score = this.P1res + '-' + this.P2res;
-      }
-      if (this.P2point > 0 && this.P1point === 0) {
-        if (this.P2point === 1)
-          this.P2res = 'Fifteen';
-        if (this.P2point === 2)
-          this.P2res = 'Thirty';
-        if (this.P2point === 3)
-          this.P2res = 'Forty';
-
-        this.P1res = 'Love';
-        score = this.P1res + '-' + this.P2res;
-      }
-
-      if (this.sevenStagesOfNamingService.isAppleSauce(this.P1point, this.P2point)) {
-        score = this.sevenStagesOfNamingService.getAppleSauce(this.P1res, this.P2res, this.P1point, this.P2point);
-      }
-      if (this.P2point > this.P1point && this.P2point < 4) {
-        if (this.P2point === 2)
-          this.P2res = 'Thirty';
-        if (this.P2point === 3)
-          this.P2res = 'Forty';
-        if (this.P1point === 1)
-          this.P1res = 'Fifteen';
-        if (this.P1point === 2)
-          this.P1res = 'Thirty';
-        score = this.P1res + '-' + this.P2res;
-      }
-
-      if (this.P1point > this.P2point && this.P2point >= 3) {
-        score = 'Advantage player1';
-      }
-
-      if (this.P2point > this.P1point && this.P1point >= 3) {
-        score = 'Advantage player2';
-      }
-
-      if (this.P1point >= 4 && this.P2point >= 0 && (this.P1point - this.P2point) >= 2) {
-        score = 'Win for player1';
-      }
-      if (this.P2point >= 4 && this.P1point >= 0 && (this.P2point - this.P1point) >= 2) {
-        score = 'Win for player2';
-      }
+      score = this.sevenStagesOfNamingService.getAppleSauce(this.P1point, this.P2point, this.P1res, this.P2res);
     }
     catch (x){
       score = 'Something has gone wrong, please try again';

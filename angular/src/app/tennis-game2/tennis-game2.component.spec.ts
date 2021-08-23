@@ -165,6 +165,6 @@ describe('Tennis Game 2', () => {
 
   function SetupScoringServiceToHaveAnError() {
     const scoringService = tennisTester.fixture.debugElement.injector.get(SevenStagesOfNamingService);
-    smartSpyOn(scoringService, scoringService.isAppleSauce).and.throwError(expectedText.scoringError);
+    smartSpyOn(scoringService, scoringService.getAppleSauce).and.throwError(expectedText.scoringError);
   }
 });
