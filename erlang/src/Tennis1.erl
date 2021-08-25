@@ -3,6 +3,6 @@
 -include("Tennis1.hrl").
 -export([score/1]).
 
--spec score(#game{}) -> binary.
-score(Game = #game{player1 = Player1, player2 = Player2}) ->
+-spec score(#game{}) -> string().
+score(#game{player1 = Player1, player2 = Player2, player1_name = P1N, player2_name = P2N}) ->
   "Love-All".
