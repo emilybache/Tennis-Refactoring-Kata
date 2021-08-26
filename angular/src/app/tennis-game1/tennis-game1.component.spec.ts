@@ -1,6 +1,6 @@
 import {async} from '@angular/core/testing';
 import {TennisGame1Component} from './tennis-game1.component';
-import {TennisComponentTester} from '../../test/tennisTester';
+import {TennisComponentTester, testImports} from '../../test/tennisTester';
 import {
   boldFontWeight,
   flex,
@@ -51,13 +51,24 @@ describe('Tennis Game 1', () => {
     describe('Input', () => {
       let player1ScoreInputElement;
       let player2ScoreInputElement;
+      let getScoreButtonElement;
 
       beforeEach(() => {
         player1ScoreInputElement = tennisTester.getElement(player1ScoreInput);
         player2ScoreInputElement = tennisTester.getElement(player2ScoreInput);
+        getScoreButtonElement = tennisTester.getElement(getScoreButton);
       });
 
       it('should only allow numbers', () => {
+        expect(getScoreButtonElement.properties.disabled).toBe(false);
+
+        tennisTester.setInputValue(player1ScoreInput, 1.1);
+        // tennisTester.component.tennisGameForm.controls.player1Score.setValue(1.2);
+        tennisTester.setInputValue(player2ScoreInput, 1.1);
+        tennisTester.fixture.detectChanges();
+
+        console.log(tennisTester.component.tennisGameForm.controls.player1Score.value);
+        expect(getScoreButtonElement.properties.disabled).toBe(true);
         expect(player1ScoreInputElement.attributes.type).toBe(numberType);
         expect(player2ScoreInputElement.attributes.type).toBe(numberType);
       });

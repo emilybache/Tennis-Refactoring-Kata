@@ -17,7 +17,7 @@
         </mat-form-field>
         <br>
         <!--  TODO: <iframe> Gary said he wanted this later-->
-        <button id="get-score-button" type="submit" style="background-color: #177785; color: #fff;" mat-raised-button>
+        <button id="get-score-button" [disabled]="!tennisGameForm.valid" type="submit" mat-raised-button>
           Get Score
         </button>
         <br>

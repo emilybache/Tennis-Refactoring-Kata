@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ManagerOfZanzibar} from './ZanzibarManager';
 
 @Component({
@@ -15,8 +15,8 @@ export class TennisGame1Component implements OnInit, TennisGame {
   private player1Name = 'player1';
   private player2Name = 'player2';
   public tennisGameForm = new FormGroup({
-    player1Score: new FormControl(0),
-    player2Score: new FormControl(0)
+    player1Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]),
+    player2Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)])
   });
   public overallScore = '';
 

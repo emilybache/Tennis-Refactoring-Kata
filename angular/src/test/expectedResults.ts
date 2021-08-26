@@ -111,8 +111,11 @@ const invalidScores = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: do full fancy reactive forms implementation with subscriptions and validations (max, min, non-negative, non-int, disabled get score button, etc.) like in pluralsight
+// todo: do full fancy reactive forms implementation validations (max, min, non-negative, non-int, disabled get score button, etc.) like in pluralsight
+// todo: need tests for the above two and apply to other tennis games other than 1
 // todo: separate out error message from score and show it on the gui (one error message label or one per input?)
+// todo: need tests for the above two and apply to other tennis games other than 1
+// todo: do full fancy reactive forms implementation with subsriptions? not needed
 // todo: expect different error messages for different kinds of issues?
 // todo: any other ZOMBIES?
 // todo: make product error handling code more dirty (each component different)
