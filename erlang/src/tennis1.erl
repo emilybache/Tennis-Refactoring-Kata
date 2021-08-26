@@ -1,7 +1,6 @@
+-module(tennis1).
 
--module('Tennis2').
-
--include("Tennis2.hrl").
+-include("tennis1.hrl").
 -export([score/1]).
 
 -spec score(#game{}) -> string().

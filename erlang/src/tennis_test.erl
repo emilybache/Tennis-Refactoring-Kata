@@ -1,7 +1,7 @@
--module('TennisTest').
+-module(tennis_test).
 
 -include_lib("eunit/include/eunit.hrl").
--include("Tennis1.hrl").
+-include("tennis1.hrl").
 
 test_data() -> [
 {0, 0, "Love-All"},
@@ -44,7 +44,7 @@ test_data() -> [
 {14, 16, "Win for player2"}].
 
 score1_test_() ->
-  [?_test(?assertEqual(Expected, 'Tennis1':score(#game{player1 = P1, player2 = P2,
+  [?_test(?assertEqual(Expected, tennis1:score(#game{player1 = P1, player2 = P2,
     player1_name = "player1",
     player2_name = "player2"})))
     ||  {P1, P2, Expected} <- [hd(test_data())] ].
@@ -54,7 +54,7 @@ score1_test_() ->
 
 
 score2_test_() ->
-  [?_test(?assertEqual(Expected, 'Tennis2':score(#game{
+  [?_test(?assertEqual(Expected, tennis2:score(#game{
     player1 = P1, player2 = P2,
     player1_name = "player1",
     player2_name = "player2"})))
@@ -62,7 +62,7 @@ score2_test_() ->
 
 
 score3_test_() ->
-  [?_test(?assertEqual(Expected, 'Tennis3':score(#game{player1 = P1, player2 = P2,
+  [?_test(?assertEqual(Expected, tennis3:score(#game{player1 = P1, player2 = P2,
     player1_name = "player1",
     player2_name = "player2"})))
     ||  {P1, P2, Expected} <- test_data() ].
