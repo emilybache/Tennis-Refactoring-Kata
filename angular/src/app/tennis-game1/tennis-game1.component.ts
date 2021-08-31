@@ -15,8 +15,6 @@ export class TennisGame1Component implements OnInit, TennisGame {
   private player1Name = 'player1';
   private player2Name = 'player2';
   // todo: left off here <---------------------------------
-  // todo: commmit and push
-  // todo: do we need a test for required? blank value?
   // todo: unit test initial value for both players to be 0
   // todo: do manaul test of all these validators
   public tennisGameForm = new FormGroup({

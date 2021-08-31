@@ -107,10 +107,12 @@ const invalidLargeScores: ExceptedTennisScore[] = [
 ];
 
 const invalidNonNumberScores: ExceptedTennisScore[] = [
+  { player1Score: '', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
   { player1Score: 'not a number', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
   { player1Score: '!@#$%^&*()_', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
   { player1Score: '1x', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
   { player1Score: '1x', player2Score: '1x', expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: '', expectedScore: invalidScore, isScoreValid: false },
   { player1Score: 0, player2Score: 'not a number', expectedScore: invalidScore, isScoreValid: false },
   { player1Score: 0, player2Score: '!@#$%^&*()_', expectedScore: invalidScore, isScoreValid: false },
   { player1Score: 0, player2Score: -99, expectedScore: invalidScore, isScoreValid: false },
