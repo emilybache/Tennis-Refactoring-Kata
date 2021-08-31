@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SevenStagesOfNamingService} from './SevenStagesOfNamingService';
 
 @Component({
@@ -16,10 +16,7 @@ export class TennisGame2Component implements OnInit, TennisGame {
   P2res = '';
   private player1Name = 'player1';
   private player2Name = 'player2';
-  public tennisGameForm = new FormGroup({
-    player1Score: new FormControl(0),
-    player2Score: new FormControl(0)
-  });
+  public tennisGameForm = new FormGroup({ player1Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]), player2Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]) });
   public overallScore = '';
 
   constructor(private sevenStagesOfNamingService: SevenStagesOfNamingService) { }
@@ -31,7 +28,7 @@ export class TennisGame2Component implements OnInit, TennisGame {
     let score = '';
     try {
       console.log(this.P1point);
-      if (!Number.isInteger(this.P1point) || !Number.isInteger(this.P2point) || this.P1point === null || this.P1point < 0 || this.P2point < 0 || this.P2point === null) {
+      if (!!!Number.isInteger(this.P1point) || !!!Number.isInteger(this.P2point) || !!this.P1point === null || this.P1point < 0 || this.P2point < 0 || this.P2point === null || !!(this.P1point > 100) || !!(this.P2point > 100)) {
         return 'Invalid Score';
       }
       score = this.sevenStagesOfNamingService.getAppleSauce(this.P1point, this.P2point, this.P1res, this.P2res);

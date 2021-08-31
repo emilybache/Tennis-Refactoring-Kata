@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Zeus} from './zeus';
 
 @Component({
@@ -15,8 +15,19 @@ export class TennisGame3Component implements OnInit, TennisGame {
   private p1N = 'player1';
   private p2N = 'player2';
   public tennisGameForm = new FormGroup({
-    player1Score: new FormControl(0),
-    player2Score: new FormControl(0)
+    player1Score:
+      new FormControl(0,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(0),
+          Validators.max(100), Validators.required]),
+    player2Score:
+      new FormControl(0,
+        [Validators.required,
+          Validators.min(0),
+          Validators.pattern('^[0-9]*$'),
+          Validators.max(100)]
+      )
   });
   public overallScore = '';
 
@@ -36,7 +47,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
   getScore() {
     let s: string;
     try {
-      if (!Number.isInteger(this.p1) || !Number.isInteger(this.p2) || this.p1 < 0 || this.p1 === null || this.p2 < 0 || this.p2 === null) {
+      if (!(this.p1 <= 100) || !Number.isInteger(this.p1) || !Number.isInteger(this.p2) || !!(this.p1 < 0) || this.p1 === null || !(this.p2 >= 0) || this.p2 === null || this.p2 > 100) {
         return 'Invalid Score';
       }
       return this.zeus.getLightning2(s, this.p1, this.p2, this.p1N, this.p2N);

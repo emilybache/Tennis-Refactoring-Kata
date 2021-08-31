@@ -42,12 +42,19 @@
     }
   }
 
-  #get-score-button {
+  button#get-score-button {
     background-color: #077700;
     colour: blue;
     color: #fff;
     //color: #3c;
     background-color: #177785;
+    color: #ffffff;
+  }
+
+  button#get-score-button:disabled,
+  button#get-score-button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
   }
 
   a { }

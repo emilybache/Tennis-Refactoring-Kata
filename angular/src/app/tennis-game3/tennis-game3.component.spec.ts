@@ -11,10 +11,10 @@ import {
   tennisGameCard,
   tennisGameCardContents, tennisGameCardSubtitle, tennisGameCardTitle
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText} from '../../test/expectedResults';
+import {expectedTennisScores, expectedText, invalidScores} from '../../test/expectedResults';
 import {
-  boldFontWeight,
-  flex,
+  boldFontWeight, darkGrayColor,
+  flex, lightGrayColor,
   slightlyRoundedBottomCorners, spaceBetween,
   tennisBallOpticYellowColor,
   tennisCardMaxWidth,
@@ -23,7 +23,6 @@ import {
   whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
-import {SevenStagesOfNamingService} from '../tennis-game2/SevenStagesOfNamingService';
 import {smartSpyOn} from '../../test/smartSpy';
 import {Zeus} from './zeus';
 import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
@@ -37,14 +36,17 @@ describe('Tennis Game 3', () => {
   }));
 
   describe('Scoring', () => {
-    expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
+
+    expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, isScoreValid}) => {
       it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
         tennisTester.verifyLabelText(overallScore, '');
 
         tennisTester.setInputValue(player1ScoreInput, player1Score);
         tennisTester.setInputValue(player2ScoreInput, player2Score);
         tennisTester.selectElement(getScoreButton);
 
+        tennisTester.verifyButtonIsEnabled(getScoreButton, isScoreValid);
         tennisTester.verifyLabelText(overallScore, expectedScore);
       });
     });
@@ -133,11 +135,24 @@ describe('Tennis Game 3', () => {
         tennisTester.verifyLabelText(getScoreButton, expectedText.getScoreLabel);
       });
 
-      it('should be tennis court green color', () => {
+      it('should be tennis court green color when enabled', () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
+
         const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
 
         expect(getScoreButtonStyles.backgroundColor).toBe(tennisCourtGreenColor);
         expect(getScoreButtonStyles.color).toBe(whiteColor);
+      });
+
+      it('should be grayed out when disabled', () => {
+        tennisTester.setInputValue(player1ScoreInput, invalidScores[0].player1Score);
+        tennisTester.fixture.detectChanges();
+        tennisTester.verifyButtonIsEnabled(getScoreButton, false);
+
+        const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
+
+        expect(getScoreButtonStyles.backgroundColor).toBe(lightGrayColor);
+        expect(getScoreButtonStyles.color).toBe(darkGrayColor);
       });
     });
 

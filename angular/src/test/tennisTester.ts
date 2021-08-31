@@ -66,6 +66,12 @@ export class TennisComponentTester {
     expect(label.nativeElement.outerText).toBe(expectedText);
   }
 
+  verifyButtonIsEnabled(buttonElementSelector: string, isEnabled: boolean = true) {
+    const buttonElement = this.getElement(buttonElementSelector);
+    // @ts-ignore
+    expect(buttonElement.properties.disabled).toBe(!isEnabled);
+  }
+
   verifyElementExists(selector: string) {
     const element = this.getElement(selector);
     // @ts-ignore

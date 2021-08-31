@@ -1,9 +1,9 @@
 import {async} from '@angular/core/testing';
 import {TennisGame1Component} from './tennis-game1.component';
-import {TennisComponentTester, testImports} from '../../test/tennisTester';
+import {TennisComponentTester} from '../../test/tennisTester';
 import {
-  boldFontWeight,
-  flex,
+  boldFontWeight, darkGrayColor,
+  flex, lightGrayColor,
   slightlyRoundedBottomCorners,
   spaceBetween,
   tennisBallOpticYellowColor, tennisCardMaxWidth, tennisCourtGreenColor,
@@ -22,7 +22,7 @@ import {
   tennisGameCardTitle,
   tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText} from '../../test/expectedResults';
+import {expectedTennisScores, expectedText, invalidScores} from '../../test/expectedResults';
 import {ManagerOfZanzibar} from './ZanzibarManager';
 import {smartSpyOn} from '../../test/smartSpy';
 import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
@@ -36,14 +36,17 @@ describe('Tennis Game 1', () => {
   }));
 
   describe('Scoring', () => {
-    expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
+
+    expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, isScoreValid}) => {
       it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
         tennisTester.verifyLabelText(overallScore, '');
 
         tennisTester.setInputValue(player1ScoreInput, player1Score);
         tennisTester.setInputValue(player2ScoreInput, player2Score);
         tennisTester.selectElement(getScoreButton);
 
+        tennisTester.verifyButtonIsEnabled(getScoreButton, isScoreValid);
         tennisTester.verifyLabelText(overallScore, expectedScore);
       });
     });
@@ -51,24 +54,13 @@ describe('Tennis Game 1', () => {
     describe('Input', () => {
       let player1ScoreInputElement;
       let player2ScoreInputElement;
-      let getScoreButtonElement;
 
       beforeEach(() => {
         player1ScoreInputElement = tennisTester.getElement(player1ScoreInput);
         player2ScoreInputElement = tennisTester.getElement(player2ScoreInput);
-        getScoreButtonElement = tennisTester.getElement(getScoreButton);
       });
 
       it('should only allow numbers', () => {
-        expect(getScoreButtonElement.properties.disabled).toBe(false);
-
-        tennisTester.setInputValue(player1ScoreInput, 1.1);
-        // tennisTester.component.tennisGameForm.controls.player1Score.setValue(1.2);
-        tennisTester.setInputValue(player2ScoreInput, 1.1);
-        tennisTester.fixture.detectChanges();
-
-        console.log(tennisTester.component.tennisGameForm.controls.player1Score.value);
-        expect(getScoreButtonElement.properties.disabled).toBe(true);
         expect(player1ScoreInputElement.attributes.type).toBe(numberType);
         expect(player2ScoreInputElement.attributes.type).toBe(numberType);
       });
@@ -143,11 +135,24 @@ describe('Tennis Game 1', () => {
         tennisTester.verifyLabelText(getScoreButton, expectedText.getScoreLabel);
       });
 
-      it('should be tennis court green color', () => {
+      it('should be tennis court green color when enabled', () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
+
         const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
 
         expect(getScoreButtonStyles.backgroundColor).toBe(tennisCourtGreenColor);
         expect(getScoreButtonStyles.color).toBe(whiteColor);
+      });
+
+      it('should be grayed out when disabled', () => {
+        tennisTester.setInputValue(player1ScoreInput, invalidScores[0].player1Score);
+        tennisTester.fixture.detectChanges();
+        tennisTester.verifyButtonIsEnabled(getScoreButton, false);
+
+        const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
+
+        expect(getScoreButtonStyles.backgroundColor).toBe(lightGrayColor);
+        expect(getScoreButtonStyles.color).toBe(darkGrayColor);
       });
     });
 

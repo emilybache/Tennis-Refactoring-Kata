@@ -29,9 +29,15 @@
     }
   }
 
-  #get-score-button {
+  button#get-score-button {
     background-color: #177785;
-    color: #fff;
+    color: #ffffff;
+  }
+
+  button#get-score-button:disabled,
+  button#get-score-button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
   }
 
   .mat-card {

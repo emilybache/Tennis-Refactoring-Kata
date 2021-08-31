@@ -31,87 +31,109 @@ const advantagePlayer1 = 'Advantage player1';
 const advantagePlayer2 = 'Advantage player2';
 const invalidScore = 'Invalid Score';
 
-const tiedScores = [
-  [0.0, 0, loveAll],
-  [0, 0, loveAll],
-  [1, 1, fifteenAll],
-  [1, 1.0, fifteenAll],
-  [2, 2, thirtyAll],
-  [3, 3, deuce],
-  [4, 4, deuce],
+export interface ExceptedTennisScore {
+  player1Score: number | string;
+  player2Score: number | string;
+  expectedScore: string;
+  isScoreValid: boolean;
+}
+
+const tiedScores: ExceptedTennisScore[] = [
+  { player1Score: 0.0, player2Score: 0, expectedScore: loveAll, isScoreValid: true },
+  { player1Score: 0, player2Score: 0, expectedScore: loveAll, isScoreValid: true },
+  { player1Score: 1, player2Score: 1, expectedScore: fifteenAll, isScoreValid: true },
+  { player1Score: 1, player2Score: 1.0, expectedScore: fifteenAll, isScoreValid: true },
+  { player1Score: 2, player2Score: 2, expectedScore: thirtyAll, isScoreValid: true },
 ];
 
-const advantageScores = [
-  [4, 3, advantagePlayer1],
-  [3, 4, advantagePlayer2],
-  [5, 4, advantagePlayer1],
-  [4, 5, advantagePlayer2],
-  [15, 14, advantagePlayer1],
-  [14, 15, advantagePlayer2],
+const leadingScores: ExceptedTennisScore[] = [
+  { player1Score: 1, player2Score: 0, expectedScore: fifteenLove, isScoreValid: true },
+  { player1Score: 0, player2Score: 1, expectedScore: loveFifteen, isScoreValid: true },
+  { player1Score: 2, player2Score: 0, expectedScore: thirtyLove, isScoreValid: true },
+  { player1Score: 0, player2Score: 2, expectedScore: loveThirty, isScoreValid: true },
+  { player1Score: 3, player2Score: 0, expectedScore: fortyLove, isScoreValid: true },
+  { player1Score: 0, player2Score: 3, expectedScore: loveForty, isScoreValid: true },
+  { player1Score: 2, player2Score: 1, expectedScore: thirtyFifteen, isScoreValid: true },
+  { player1Score: 1, player2Score: 2, expectedScore: fifteenThirty, isScoreValid: true },
+  { player1Score: 3, player2Score: 1, expectedScore: fortyFifteen, isScoreValid: true },
+  { player1Score: 1, player2Score: 3, expectedScore: fifteenForty, isScoreValid: true },
+  { player1Score: 3, player2Score: 2, expectedScore: fortyThirty, isScoreValid: true },
+  { player1Score: 2, player2Score: 3, expectedScore: thirtyForty, isScoreValid: true },
 ];
 
-const leadingScores = [
-  [1, 0, fifteenLove],
-  [0, 1, loveFifteen],
-  [2, 0, thirtyLove],
-  [0, 2, loveThirty],
-  [3, 0, fortyLove],
-  [0, 3, loveForty],
-  [2, 1, thirtyFifteen],
-  [1, 2, fifteenThirty],
-  [3, 1, fortyFifteen],
-  [1, 3, fifteenForty],
-  [3, 2, fortyThirty],
-  [2, 3, thirtyForty],
-].concat(advantageScores);
-
-const winningScores = [
-  [4, 0, winForPlayer1],
-  [0, 4, winForPlayer2],
-  [4, 1, winForPlayer1],
-  [1, 4, winForPlayer2],
-  [4, 2, winForPlayer1],
-  [2, 4, winForPlayer2],
-  [6, 4, winForPlayer1],
-  [4, 6, winForPlayer2],
-  [16, 14, winForPlayer1],
-  [14, 16, winForPlayer2],
+const deuceScores: ExceptedTennisScore[] = [
+  { player1Score: 3, player2Score: 3, expectedScore: deuce, isScoreValid: true },
+  { player1Score: 4, player2Score: 4, expectedScore: deuce, isScoreValid: true },
+  { player1Score: 50, player2Score: 50, expectedScore: deuce, isScoreValid: true },
+  { player1Score: 4, player2Score: 3, expectedScore: advantagePlayer1, isScoreValid: true },
+  { player1Score: 3, player2Score: 4, expectedScore: advantagePlayer2, isScoreValid: true },
+  { player1Score: 5, player2Score: 4, expectedScore: advantagePlayer1, isScoreValid: true },
+  { player1Score: 4, player2Score: 5, expectedScore: advantagePlayer2, isScoreValid: true },
+  { player1Score: 15, player2Score: 14, expectedScore: advantagePlayer1, isScoreValid: true },
+  { player1Score: 14, player2Score: 15, expectedScore: advantagePlayer2, isScoreValid: true },
 ];
 
-const invalidNegativeScores = [
-  [-1, 0, invalidScore],
-  [-99, 0, invalidScore],
-  [-99, -99, invalidScore],
-  [0, -1, invalidScore],
-  [0, -99, invalidScore]
+const winningScores: ExceptedTennisScore[] = [
+  { player1Score: 4, player2Score: 0, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 0, player2Score: 4, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 4, player2Score: 1, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 1, player2Score: 4, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 4, player2Score: 2, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 2, player2Score: 4, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 6, player2Score: 4, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 4, player2Score: 6, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 16, player2Score: 14, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 99, player2Score: 14, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 100, player2Score: 14, expectedScore: winForPlayer1, isScoreValid: true },
+  { player1Score: 14, player2Score: 16, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 14, player2Score: 99, expectedScore: winForPlayer2, isScoreValid: true },
+  { player1Score: 14, player2Score: 100, expectedScore: winForPlayer2, isScoreValid: true },
 ];
 
-const invalidNonNumberScores = [
-  ['not a number', 0, invalidScore],
-  ['!@#$%^&*()_', 0, invalidScore],
-  ['1x', 0, invalidScore],
-  ['1x', '1x', invalidScore],
-  [0, 'not a number', invalidScore],
-  [0, '!@#$%^&*()_', invalidScore],
-  [0, '1x', invalidScore],
+const invalidNegativeScores: ExceptedTennisScore[] = [
+  { player1Score: -1, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: -99, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: -99, player2Score: -99, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: -1, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: -99, expectedScore: invalidScore, isScoreValid: false },
 ];
 
-const invalidNonIntegerScores = [
-  [1.6, 0, invalidScore],
-  [0.6, 0, invalidScore],
-  [1 / 4, 0, invalidScore],
-  [1 / 4, 1 / 4, invalidScore],
-  [0, 1.6, invalidScore],
-  [0, 0.6, invalidScore],
-  [0, 1 / 4, invalidScore],
+const invalidLargeScores: ExceptedTennisScore[] = [
+  { player1Score: 101, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 999, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 101, player2Score: 101, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 101, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 999, expectedScore: invalidScore, isScoreValid: false },
 ];
 
-const invalidScores = []
+const invalidNonNumberScores: ExceptedTennisScore[] = [
+  { player1Score: 'not a number', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: '!@#$%^&*()_', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: '1x', player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: '1x', player2Score: '1x', expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 'not a number', expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: '!@#$%^&*()_', expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: -99, expectedScore: invalidScore, isScoreValid: false },
+];
+
+const invalidNonIntegerScores: ExceptedTennisScore[] = [
+  { player1Score: 1.6, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0.6, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 1 / 4, player2Score: 0, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 1 / 4, player2Score: 1 / 4, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 1.6, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 0.6, expectedScore: invalidScore, isScoreValid: false },
+  { player1Score: 0, player2Score: 1 / 4, expectedScore: invalidScore, isScoreValid: false },
+];
+
+export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNegativeScores)
+  .concat(invalidLargeScores)
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: do full fancy reactive forms implementation validations (max, min, non-negative, non-int, disabled get score button, etc.) like in pluralsight
+// todo: do full fancy reactive forms implementation validations
+//      (max, min, non-negative, non-int, disabled get score button, etc.) like in pluralsight
 // todo: need tests for the above two and apply to other tennis games other than 1
 // todo: separate out error message from score and show it on the gui (one error message label or one per input?)
 // todo: need tests for the above two and apply to other tennis games other than 1
@@ -121,8 +143,9 @@ const invalidScores = []
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean
 
-export const expectedTennisScores = []
+export const expectedTennisScores: ExceptedTennisScore[] = []
   .concat(tiedScores)
   .concat(leadingScores)
+  .concat(deuceScores)
   .concat(winningScores)
   .concat(invalidScores);

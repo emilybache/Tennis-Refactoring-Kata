@@ -46,8 +46,7 @@ function andSoOnTennis() {
         <mat-form-field>
           <mat-label id='player-two-score-label'>Player 2 Score</mat-label>
           <input matInput min="0" id='player-two-score' type='number' formControlName='player2Score' max="100"></mat-form-field>
-        <br>
-        <button id='get-score-button' type='submit' mat-raised-button>
+        <br> <button id="get-score-button" [disabled]="!tennisGameForm.valid" type="submit" mat-raised-button>
           Get Score
         </button>
         <br>
