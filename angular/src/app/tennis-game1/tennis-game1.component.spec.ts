@@ -22,7 +22,7 @@ import {
   tennisGameCardTitle,
   tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText, invalidScores} from '../../test/expectedResults';
+import {expectedTennisScores, expectedText, invalidScores, winningScores} from '../../test/expectedResults';
 import {ManagerOfZanzibar} from './ZanzibarManager';
 import {smartSpyOn} from '../../test/smartSpy';
 import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
@@ -37,16 +37,21 @@ describe('Tennis Game 1', () => {
 
   describe('Scoring', () => {
 
-    expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, isScoreValid}) => {
+    it('should have correct initial value before any scores are entered', () => {
+      tennisTester.verifyLabelText(overallScore, '');
+      tennisTester.verifyInputValue(player1ScoreInput, '0');
+      tennisTester.verifyInputValue(player2ScoreInput, '0');
+    });
+
+    // todo: use new extracted function enterPlayersScores in other spec files
+    expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, expectedErrors}) => {
       it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
         tennisTester.verifyButtonIsEnabled(getScoreButton);
-        tennisTester.verifyLabelText(overallScore, '');
 
-        tennisTester.setInputValue(player1ScoreInput, player1Score);
-        tennisTester.setInputValue(player2ScoreInput, player2Score);
+        tennisTester.enterPlayersScores(player1Score, player2Score);
         tennisTester.selectElement(getScoreButton);
 
-        tennisTester.verifyButtonIsEnabled(getScoreButton, isScoreValid);
+        tennisTester.verifyInputValidation(expectedErrors);
         tennisTester.verifyLabelText(overallScore, expectedScore);
       });
     });
@@ -145,7 +150,7 @@ describe('Tennis Game 1', () => {
       });
 
       it('should be grayed out when disabled', () => {
-        tennisTester.setInputValue(player1ScoreInput, invalidScores[0].player1Score);
+        tennisTester.enterPlayersScores(invalidScores[0].player1Score, winningScores[0].player2Score);
         tennisTester.fixture.detectChanges();
         tennisTester.verifyButtonIsEnabled(getScoreButton, false);
 
@@ -196,12 +201,10 @@ describe('Tennis Game 1', () => {
   it('should notify user when there is an error', () => {
     SetupScoringServiceToHaveAnError();
 
-    tennisTester.setInputValue(player1ScoreInput, 1);
-    tennisTester.setInputValue(player2ScoreInput, 1);
+    tennisTester.enterPlayersScores(1, 1);
     tennisTester.selectElement(getScoreButton);
 
     tennisTester.verifyLabelText(overallScore, expectedText.errorMessage);
-
   });
 
   function SetupScoringServiceToHaveAnError() {

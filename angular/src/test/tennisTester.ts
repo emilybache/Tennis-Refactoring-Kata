@@ -5,6 +5,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {getScoreButton, player1ScoreInput, player2ScoreInput} from './selectors';
+import {ExpectedError} from './expectedResults';
 
 export const testImports = [
     FormsModule,
@@ -54,6 +56,13 @@ export class TennisComponentTester {
     inputElement.dispatchEvent(new Event('input'));
   }
 
+  enterPlayersScores(player1Score: string | number, player2Score: string | number) {
+    this.setInputValue(player1ScoreInput, player1Score);
+    this.setInputValue(player2ScoreInput, player2Score);
+    this.component.tennisGameForm.controls.player1Score.markAsTouched();
+    this.component.tennisGameForm.controls.player2Score.markAsTouched();
+  }
+
   selectElement(elementSelector: string) {
     const element = this.element.querySelector(elementSelector);
     element.click();
@@ -66,6 +75,12 @@ export class TennisComponentTester {
     expect(label.nativeElement.outerText).toBe(expectedText);
   }
 
+  verifyInputValue(buttonElementSelector: string, expectedValue: string) {
+    const buttonElement = this.getElement(buttonElementSelector);
+    // @ts-ignore
+    expect(buttonElement.properties.value.toString()).toBe(expectedValue);
+  }
+
   verifyButtonIsEnabled(buttonElementSelector: string, isEnabled: boolean = true) {
     const buttonElement = this.getElement(buttonElementSelector);
     // @ts-ignore
@@ -76,5 +91,32 @@ export class TennisComponentTester {
     const element = this.getElement(selector);
     // @ts-ignore
     expect(element).toBeTruthy();
+  }
+
+  verifyErrorLabelText(selector: string, expectedErrorMessage: string) {
+    this.verifyElementExists(selector);
+    const errorLabel = this.element.querySelector(selector);
+    // @ts-ignore
+    expect(errorLabel.innerText).toBe(expectedErrorMessage);
+  }
+
+  // todo: commit to not lose WIP <---------------- left off here
+  // todo: lots of clean up
+  // todo: make generic reduces instead of hard coded array indexes
+  verifyInputValidation(expectedErrors: ExpectedError[]) {
+    if (expectedErrors && expectedErrors.length > 0) {
+      this.verifyButtonIsEnabled(getScoreButton, false);
+
+      if (expectedErrors[0].player === 1) {
+        this.verifyErrorLabelText('#player-one-error-label', expectedErrors[0].expectedErrorMessage);
+      } if (expectedErrors[0].player === 2) {
+        this.verifyErrorLabelText('#player-two-error-label', expectedErrors[0].expectedErrorMessage);
+      } if (expectedErrors[0].player === 1 && expectedErrors[1] && expectedErrors[1].player === 2) {
+        this.verifyErrorLabelText('#player-one-error-label', expectedErrors[0].expectedErrorMessage);
+        this.verifyErrorLabelText('#player-two-error-label', expectedErrors[1].expectedErrorMessage);
+      }
+    } else {
+      this.verifyButtonIsEnabled(getScoreButton, true);
+    }
   }
 }

@@ -37,10 +37,15 @@ describe('Tennis Game 3', () => {
 
   describe('Scoring', () => {
 
+    it('should have correct initial value before any scores are entered', () => {
+      tennisTester.verifyLabelText(overallScore, '');
+      tennisTester.verifyInputValue(player1ScoreInput, '0');
+      tennisTester.verifyInputValue(player2ScoreInput, '0');
+    });
+
     expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, isScoreValid}) => {
       it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
         tennisTester.verifyButtonIsEnabled(getScoreButton);
-        tennisTester.verifyLabelText(overallScore, '');
 
         tennisTester.setInputValue(player1ScoreInput, player1Score);
         tennisTester.setInputValue(player2ScoreInput, player2Score);

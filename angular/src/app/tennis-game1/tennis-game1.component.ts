@@ -14,9 +14,6 @@ export class TennisGame1Component implements OnInit, TennisGame {
   private m_score2 = 0;
   private player1Name = 'player1';
   private player2Name = 'player2';
-  // todo: left off here <---------------------------------
-  // todo: unit test initial value for both players to be 0
-  // todo: do manaul test of all these validators
   public tennisGameForm = new FormGroup({
     player1Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]),
     player2Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)])
