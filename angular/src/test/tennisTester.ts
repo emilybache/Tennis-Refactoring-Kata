@@ -93,18 +93,30 @@ export class TennisComponentTester {
     expect(element).toBeTruthy();
   }
 
+  private verifyElementIsVisible(selector: string, isVisible: boolean = true) {
+    const element = this.element.querySelector(selector);
+    if (isVisible) {
+      // @ts-ignore
+      expect(element).not.toBeNull();
+    } else {
+      // @ts-ignore
+      expect(element).toBeNull();
+    }
+
+  }
+
   verifyErrorLabelText(selector: string, expectedErrorMessage: string) {
     this.verifyElementExists(selector);
+    this.verifyElementIsVisible(selector);
     const errorLabel = this.element.querySelector(selector);
     // @ts-ignore
     expect(errorLabel.innerText).toBe(expectedErrorMessage);
   }
 
-  // todo: commit to not lose WIP <---------------- left off here
-  // todo: lots of clean up
+  // todo: lots of clean up here
   // todo: make generic reduces instead of hard coded array indexes
   verifyInputValidation(expectedErrors: ExpectedError[]) {
-    if (expectedErrors && expectedErrors.length > 0) {
+    if (this.thereAreAny(expectedErrors)) {
       this.verifyButtonIsEnabled(getScoreButton, false);
 
       if (expectedErrors[0].player === 1) {
@@ -116,7 +128,13 @@ export class TennisComponentTester {
         this.verifyErrorLabelText('#player-two-error-label', expectedErrors[1].expectedErrorMessage);
       }
     } else {
+      this.verifyElementIsVisible('#player-one-error-label', false);
+      this.verifyElementIsVisible('#player-two-error-label', false);
       this.verifyButtonIsEnabled(getScoreButton, true);
     }
+  }
+
+  private thereAreAny(expectedErrors: ExpectedError[]) {
+    return expectedErrors && expectedErrors.length > 0;
   }
 }
