@@ -10,15 +10,15 @@
           <mat-label id="player-one-score-label">Player 1 Score</mat-label>
           <input matInput id="player-one-score" type="number" min="0" max="100" formControlName="player1Score">
           <mat-error id="player-one-error-label" *ngIf="!tennisGameForm.controls.player1Score.valid">
-            Please enter integer score between 1 and 100
+            Please enter an integer score between 1 and 100
           </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field>
           <mat-label id="player-two-score-label">Player 2 Score</mat-label>
-          <input matInput type="number"  max="100" formControlName="player2Score" min="0" id="player-two-score" >
+          <input matInput type="number" max="100" formControlName="player2Score" min="0" id="player-two-score" >
           <mat-error id="player-two-error-label" *ngIf="!tennisGameForm.controls.player2Score.valid">
-            Please enter integer score between 1 and 100
+            Please enter an integer score between 1 and 100
           </mat-error>
         </mat-form-field>
         <br>

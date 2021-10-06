@@ -31,7 +31,7 @@ const advantagePlayer1 = 'Advantage player1';
 const advantagePlayer2 = 'Advantage player2';
 const invalidScore = 'Invalid Score';
 
-export const scoreErrorMessage = 'Please enter integer score between 1 and 100';
+export const scoreErrorMessage = 'Please enter an integer score between 1 and 100';
 export interface ExpectedError {
   player: number;
   expectedErrorMessage: string;
