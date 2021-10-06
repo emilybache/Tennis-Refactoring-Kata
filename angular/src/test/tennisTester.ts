@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {getScoreButton, player1ScoreInput, player2ScoreInput} from './selectors';
+import {getScoreButton, player1ScoreInput, player2ScoreInput, errorLabelForPlayer} from './selectors';
 import {ExpectedError} from './expectedResults';
 
 export const testImports = [
@@ -120,16 +120,16 @@ export class TennisComponentTester {
       this.verifyButtonIsEnabled(getScoreButton, false);
 
       if (expectedErrors[0].player === 1) {
-        this.verifyErrorLabelText('#player-one-error-label', expectedErrors[0].expectedErrorMessage);
+        this.verifyErrorLabelText(errorLabelForPlayer[1], expectedErrors[0].expectedErrorMessage);
       } if (expectedErrors[0].player === 2) {
-        this.verifyErrorLabelText('#player-two-error-label', expectedErrors[0].expectedErrorMessage);
+        this.verifyErrorLabelText(errorLabelForPlayer[2], expectedErrors[0].expectedErrorMessage);
       } if (expectedErrors[0].player === 1 && expectedErrors[1] && expectedErrors[1].player === 2) {
-        this.verifyErrorLabelText('#player-one-error-label', expectedErrors[0].expectedErrorMessage);
-        this.verifyErrorLabelText('#player-two-error-label', expectedErrors[1].expectedErrorMessage);
+        this.verifyErrorLabelText(errorLabelForPlayer[1], expectedErrors[0].expectedErrorMessage);
+        this.verifyErrorLabelText(errorLabelForPlayer[2], expectedErrors[1].expectedErrorMessage);
       }
     } else {
-      this.verifyElementIsVisible('#player-one-error-label', false);
-      this.verifyElementIsVisible('#player-two-error-label', false);
+      this.verifyElementIsVisible(errorLabelForPlayer[1], false);
+      this.verifyElementIsVisible(errorLabelForPlayer[2], false);
       this.verifyButtonIsEnabled(getScoreButton, true);
     }
   }

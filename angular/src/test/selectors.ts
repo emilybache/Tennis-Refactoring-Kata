@@ -10,6 +10,7 @@ export const player1ScoreLabel = '#player-one-score-label';
 export const player1ScoreInput = '#player-one-score';
 export const player2ScoreLabel = '#player-two-score-label';
 export const player2ScoreInput = '#player-two-score';
+export const errorLabelForPlayer = ['#player-zero-error-label', '#player-one-error-label', '#player-two-error-label'];
 
 export const getScoreButton = '#get-score-button';
 
