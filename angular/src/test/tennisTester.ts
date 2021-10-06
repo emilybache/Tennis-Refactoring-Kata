@@ -118,15 +118,14 @@ export class TennisComponentTester {
   verifyInputValidation(expectedErrors: ExpectedError[]) {
     if (this.thereAreAny(expectedErrors)) {
       this.verifyButtonIsEnabled(getScoreButton, false);
-
-      if (expectedErrors[0].player === 1) {
-        this.verifyErrorLabelText(errorLabelForPlayer[1], expectedErrors[0].expectedErrorMessage);
-      } if (expectedErrors[0].player === 2) {
-        this.verifyErrorLabelText(errorLabelForPlayer[2], expectedErrors[0].expectedErrorMessage);
-      } if (expectedErrors[0].player === 1 && expectedErrors[1] && expectedErrors[1].player === 2) {
-        this.verifyErrorLabelText(errorLabelForPlayer[1], expectedErrors[0].expectedErrorMessage);
-        this.verifyErrorLabelText(errorLabelForPlayer[2], expectedErrors[1].expectedErrorMessage);
-      }
+      expectedErrors.forEach(error => {
+        if (error.player === 1) {
+          this.verifyErrorLabelText(errorLabelForPlayer[1], error.expectedErrorMessage);
+        }
+        if (error.player === 2) {
+          this.verifyErrorLabelText(errorLabelForPlayer[2], error.expectedErrorMessage);
+        }
+      });
     } else {
       this.verifyElementIsVisible(errorLabelForPlayer[1], false);
       this.verifyElementIsVisible(errorLabelForPlayer[2], false);
