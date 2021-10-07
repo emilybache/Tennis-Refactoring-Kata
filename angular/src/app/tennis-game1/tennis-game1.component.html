@@ -9,18 +9,20 @@
         <mat-form-field>
           <mat-label id="player-one-score-label">Player 1 Score</mat-label>
           <input matInput id="player-one-score" type="number" min="0" max="100" formControlName="player1Score">
-          <mat-error id="player-one-error-label" *ngIf="!tennisGameForm.controls.player1Score.valid">
+          <mat-error id="player-one-error-label">
             Please enter an integer score between 1 and 100
           </mat-error>
         </mat-form-field>
         <br>
+        <br>
         <mat-form-field>
           <mat-label id="player-two-score-label">Player 2 Score</mat-label>
           <input matInput type="number" max="100" formControlName="player2Score" min="0" id="player-two-score" >
-          <mat-error id="player-two-error-label" *ngIf="!tennisGameForm.controls.player2Score.valid">
+          <mat-error id="player-two-error-label">
             Please enter an integer score between 1 and 100
           </mat-error>
         </mat-form-field>
+        <br>
         <br>
         <!--  TODO: <iframe> Gary said he wanted this later-->
         <button id="get-score-button" [disabled]="!tennisGameForm.valid" type="submit" mat-raised-button>
