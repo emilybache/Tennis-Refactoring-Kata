@@ -114,8 +114,6 @@ export class TennisComponentTester {
     expect(errorLabel.innerText).toBe(expectedErrorMessage);
   }
 
-  // todo: lots of clean up here
-  // todo: make generic reduces instead of hard coded array indexes
   verifyInputValidation(expectedScoreErrors: ExpectedError[]) {
     if (this.thereAreAny(expectedScoreErrors)) {
       this.verifyErrorMessageForInvalidScores(expectedScoreErrors);
