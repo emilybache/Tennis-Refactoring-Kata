@@ -33,7 +33,7 @@ const invalidScore = 'Invalid Score';
 
 export const scoreErrorMessage = 'Please enter an integer score between 1 and 100';
 export interface ExpectedError {
-  player: number;
+  playerNumber: number;
   expectedErrorMessage: string;
 }
 
@@ -99,11 +99,11 @@ export const winningScores: ExceptedTennisScore[] = [
 
 //todo: get rid of isScoreValid after all tests use new expectedErrors
 // todo: extract dups
-const expectedErrorsForPlayer1 = [ { player: 1, expectedErrorMessage: scoreErrorMessage } ];
-const expectedErrorsForPlayer2 = [ { player: 2, expectedErrorMessage: scoreErrorMessage } ];
+const expectedErrorsForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
+const expectedErrorsForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForBothPlayers = [
-  { player: 1, expectedErrorMessage: scoreErrorMessage },
-  { player: 2, expectedErrorMessage: scoreErrorMessage }
+  { playerNumber: 1, expectedErrorMessage: scoreErrorMessage },
+  { playerNumber: 2, expectedErrorMessage: scoreErrorMessage }
 ];
 
 const invalidNegativeScores: ExceptedTennisScore[] = [

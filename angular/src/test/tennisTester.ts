@@ -115,16 +115,31 @@ export class TennisComponentTester {
   }
 
   // todo: lots of clean up here
-  // todo: overall loop for each loop? need to check both when only one validation issue?
   // todo: make generic reduces instead of hard coded array indexes
-  verifyInputValidation(expectedErrors: ExpectedError[]) {
-    if (this.thereAreAny(expectedErrors)) {
-      expectedErrors.forEach(error => this.verifyErrorLabelText(errorLabelForPlayer[error.player], error.expectedErrorMessage));
+  verifyInputValidation(expectedScoreErrors: ExpectedError[]) {
+    if (this.thereAreAny(expectedScoreErrors)) {
+      this.verifyErrorMessageForInvalidScores(expectedScoreErrors);
+      this.verifyNoErrorMessageForValidScores(expectedScoreErrors);
       this.verifyButtonIsEnabled(getScoreButton, false);
     } else {
-      tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
+      this.verifyNoErrorMessages();
       this.verifyButtonIsEnabled(getScoreButton, true);
     }
+  }
+
+  private verifyNoErrorMessages() {
+    tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
+  }
+
+  private verifyNoErrorMessageForValidScores(expectedScoreErrors: ExpectedError[]) {
+    const playerNumbersWithError = [];
+    expectedScoreErrors.forEach(error => playerNumbersWithError.push(error.playerNumber));
+    const playerNumbersWithoutErrors = tennisPlayerNumbers.filter(x => !playerNumbersWithError.includes(x));
+    playerNumbersWithoutErrors.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
+  }
+
+  private verifyErrorMessageForInvalidScores(expectedErrors: ExpectedError[]) {
+    expectedErrors.forEach(error => this.verifyErrorLabelText(errorLabelForPlayer[error.playerNumber], error.expectedErrorMessage));
   }
 
   private thereAreAny(expectedErrors: ExpectedError[]) {
