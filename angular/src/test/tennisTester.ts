@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {getScoreButton, player1ScoreInput, player2ScoreInput, errorLabelForPlayer} from './selectors';
 import {ExpectedError} from './expectedResults';
 
+export const tennisPlayerNumbers = [1, 2];
 export const testImports = [
     FormsModule,
     ReactiveFormsModule,
@@ -114,21 +115,14 @@ export class TennisComponentTester {
   }
 
   // todo: lots of clean up here
+  // todo: overall loop for each loop? need to check both when only one validation issue?
   // todo: make generic reduces instead of hard coded array indexes
   verifyInputValidation(expectedErrors: ExpectedError[]) {
     if (this.thereAreAny(expectedErrors)) {
+      expectedErrors.forEach(error => this.verifyErrorLabelText(errorLabelForPlayer[error.player], error.expectedErrorMessage));
       this.verifyButtonIsEnabled(getScoreButton, false);
-      expectedErrors.forEach(error => {
-        if (error.player === 1) {
-          this.verifyErrorLabelText(errorLabelForPlayer[1], error.expectedErrorMessage);
-        }
-        if (error.player === 2) {
-          this.verifyErrorLabelText(errorLabelForPlayer[2], error.expectedErrorMessage);
-        }
-      });
     } else {
-      this.verifyElementIsVisible(errorLabelForPlayer[1], false);
-      this.verifyElementIsVisible(errorLabelForPlayer[2], false);
+      tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
       this.verifyButtonIsEnabled(getScoreButton, true);
     }
   }
