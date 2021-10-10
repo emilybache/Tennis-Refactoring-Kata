@@ -43,7 +43,6 @@ describe('Tennis Game 1', () => {
       tennisTester.verifyInputValue(player2ScoreInput, '0');
     });
 
-    // todo: use new extracted function enterPlayersScores in other spec files
     expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, expectedErrors}) => {
       it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
         tennisTester.verifyButtonIsEnabled(getScoreButton);

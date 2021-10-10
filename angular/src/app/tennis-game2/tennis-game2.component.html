@@ -5,7 +5,7 @@
 
 
   <input matInput id="player-one-score" min="0" max="100" type="number" formControlName="player1Score">
-
+                                        <mat-error id="player-one-error-label">Please enter an integer score between 1 and 100</mat-error>
 
                         </mat-form-field>
 
@@ -14,7 +14,7 @@
         <br>
 
 
-        <mat-form-field><mat-label id="player-two-score-label">Player 2 Score</mat-label><input matInput id="player-two-score" type="number" formControlName="player2Score" min="0" max="100"></mat-form-field>
+        <mat-form-field><mat-label id="player-two-score-label">Player 2 Score</mat-label><input matInput id="player-two-score" type="number" formControlName="player2Score" min="0" max="100">           <mat-error id="player-two-error-label">Please enter an integer score between 1 and 100</mat-error></mat-form-field>
   <br>
   <br>
   <button id="get-score-button" [disabled]="!tennisGameForm.valid" type="submit" mat-raised-button>
