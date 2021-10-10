@@ -97,6 +97,7 @@ export const winningScores: ExceptedTennisScore[] = [
 ];
 
 // todo: replace all <br> with Tdd'ed css
+// todo: have tennis cards display horizontally instead of vertical stack?
 const expectedErrorsJustForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsJustForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForBothPlayers = expectedErrorsJustForPlayer1.concat(expectedErrorsJustForPlayer2);

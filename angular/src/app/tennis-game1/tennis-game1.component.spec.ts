@@ -132,6 +132,21 @@ describe('Tennis Game 1', () => {
         tennisTester.verifyLabelText(player1ScoreLabel, expectedText.player1ScoreLabel);
         tennisTester.verifyLabelText(player2ScoreLabel, expectedText.player2ScoreLabel);
       });
+
+      // todo: left off here <----------------------------------------------------------------------
+      // todo: extract function for getting playerScoreFormFieldsStyles into tennis helper
+      // todo: extract magic strings in here and in tennis helper
+      // todo: apply test to other spec files to TDD the refactor in tennis game 2 and 3
+      it('should have proper spacing to allow space for validation error messages', () => {
+        const playerScoreFormFieldsStyles = [];
+        playerScoreFormFieldsStyles.push(tennisTester.getStylesFor('#player-one-score-form-field'));
+        playerScoreFormFieldsStyles.push(tennisTester.getStylesFor('#player-two-score-form-field'));
+
+        playerScoreFormFieldsStyles.forEach( playerScoreFormFieldStyles => {
+          expect(playerScoreFormFieldStyles.display).toBe('block');
+          expect(playerScoreFormFieldStyles.marginBottom).toBe('16px');
+        });
+      });
     });
 
     describe('Get Score Button', () => {
