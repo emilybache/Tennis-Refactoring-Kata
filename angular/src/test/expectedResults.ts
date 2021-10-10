@@ -97,8 +97,10 @@ export const winningScores: ExceptedTennisScore[] = [
   { player1Score: 14, player2Score: 100, expectedScore: winForPlayer2, isScoreValid: true },
 ];
 
-//todo: get rid of isScoreValid after all tests use new expectedErrors
+// todo: MAT new error handling validation on tennis 2 and 3
+// todo: get rid of isScoreValid after all tests use new expectedErrors
 // todo: extract dups
+// todo: replace all <br> with Tdd'ed css
 const expectedErrorsForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForBothPlayers = [
@@ -150,6 +152,7 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
+// todo: fix all linting error and warnings in test files
 // todo: separate out error message from score and show it on the gui (one error message label or one per input?
 // https://material.angular.io/components/input/overview
 // https://github.com/DeborahK/Angular-ReactiveForms/blob/master/Demo-Final/src/app/customers/customer.component.html
