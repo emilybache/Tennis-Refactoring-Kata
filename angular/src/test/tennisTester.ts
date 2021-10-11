@@ -5,7 +5,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {getScoreButton, player1ScoreInput, player2ScoreInput, errorLabelForPlayer} from './selectors';
+import {
+  getScoreButton,
+  player1ScoreInput,
+  player2ScoreInput,
+  errorLabelForPlayer,
+  player1ScoreFormField,
+  player2ScoreFormField
+} from './selectors';
 import {ExpectedError} from './expectedResults';
 
 export const tennisPlayerNumbers = [1, 2];
@@ -44,6 +51,13 @@ export class TennisComponentTester {
   getStylesFor(selectors: string) {
     const element = this.element.querySelector(selectors);
     return getComputedStyle(element);
+  }
+
+  getPlayerScoreFormFieldsStyles() {
+    const playerScoreFormFieldsStyles = [];
+    playerScoreFormFieldsStyles.push(this.getStylesFor(player1ScoreFormField));
+    playerScoreFormFieldsStyles.push(this.getStylesFor(player2ScoreFormField));
+    return playerScoreFormFieldsStyles;
   }
 
   getParentStylesFor(selectors: string) {

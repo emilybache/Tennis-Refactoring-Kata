@@ -6,6 +6,8 @@ export const tennisGameCardTitle = '#tennis-game-card-title';
 export const tennisGameCardSubtitle = '#tennis-game-card-subtitle';
 export const tennisGameCardContents = '#tennis-game-card-contents';
 
+export const player1ScoreFormField = '#player-one-score-form-field';
+export const player2ScoreFormField = '#player-two-score-form-field';
 export const player1ScoreLabel = '#player-one-score-label';
 export const player1ScoreInput = '#player-one-score';
 export const player2ScoreLabel = '#player-two-score-label';
