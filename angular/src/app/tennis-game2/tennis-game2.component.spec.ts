@@ -13,7 +13,8 @@ import {
 } from '../../test/selectors';
 import {expectedTennisScores, expectedText, invalidScores, winningScores} from '../../test/expectedResults';
 import {
-  boldFontWeight, darkGrayColor,
+  blockDisplay,
+  boldFontWeight, darkGrayColor, expectedVerticalSpacingBetweenScores,
   flex, lightGrayColor,
   slightlyRoundedBottomCorners, spaceBetween,
   tennisBallOpticYellowColor,
@@ -131,6 +132,15 @@ describe('Tennis Game 2', () => {
       it('should have correct text labels', () => {
         tennisTester.verifyLabelText(player1ScoreLabel, expectedText.player1ScoreLabel);
         tennisTester.verifyLabelText(player2ScoreLabel, expectedText.player2ScoreLabel);
+      });
+
+      it('should have proper spacing to allow space for validation error messages', () => {
+        const playerScoreFormFieldsStyles = tennisTester.getPlayerScoreFormFieldsStyles();
+
+        playerScoreFormFieldsStyles.forEach(playerScoreFormFieldStyles => {
+          expect(playerScoreFormFieldStyles.display).toBe(blockDisplay);
+          expect(playerScoreFormFieldStyles.marginBottom).toBe(expectedVerticalSpacingBetweenScores);
+        });
       });
     });
 

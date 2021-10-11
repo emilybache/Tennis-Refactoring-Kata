@@ -1,6 +1,11 @@
 @encoding "utf-8";
 
 #tennis-game{
+  .form-thing {
+    display: block;
+    margin-bottom: 1em;
+  }
+
   mat-card-actions {
     background-color: #ccff00;
     padding: 20px;
@@ -58,4 +63,9 @@
   }
 
   a { }
+
+  .form-thing {
+    display: block;
+    margin-bottom: 1em;
+  }
 }
