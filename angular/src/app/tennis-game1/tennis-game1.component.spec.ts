@@ -139,7 +139,7 @@ describe('Tennis Game 1', () => {
       it('should have proper spacing to allow space for validation error messages', () => {
         const playerScoreFormFieldsStyles = tennisTester.getPlayerScoreFormFieldsStyles();
 
-        playerScoreFormFieldsStyles.forEach( playerScoreFormFieldStyles => {
+        playerScoreFormFieldsStyles.forEach(playerScoreFormFieldStyles => {
           expect(playerScoreFormFieldStyles.display).toBe(blockDisplay);
           expect(playerScoreFormFieldStyles.marginBottom).toBe(expectedVerticalSpacingBetweenScores);
         });
