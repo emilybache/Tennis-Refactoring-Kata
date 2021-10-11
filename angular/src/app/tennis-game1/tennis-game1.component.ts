@@ -2,6 +2,8 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ManagerOfZanzibar} from './ZanzibarManager';
+import {debounceTime} from 'rxjs/operators';
+import {DeBouncer} from '../debouncer.service';
 
 @Component({
   selector: 'app-tennis-game1',
@@ -20,9 +22,17 @@ export class TennisGame1Component implements OnInit, TennisGame {
   });
   public overallScore = '';
 
-  constructor(private zanzibar: ManagerOfZanzibar) { }
+  constructor(
+    private zanzibar: ManagerOfZanzibar,
+    private deBouncer: DeBouncer,
+  ) { }
 
   ngOnInit() {
+    // todo: need tests for this
+    const player1Score = this.tennisGameForm.get('player1Score');
+    player1Score.valueChanges.pipe(this.deBouncer.debounceTime(3000)).subscribe(() => player1Score.markAsTouched());
+    const player2Score = this.tennisGameForm.get('player2Score');
+    player2Score.valueChanges.pipe(this.deBouncer.debounceTime(3000)).subscribe(() => player2Score.markAsTouched());
   }
 
   getScore() {

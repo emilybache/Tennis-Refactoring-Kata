@@ -96,7 +96,6 @@ export const winningScores: ExceptedTennisScore[] = [
   { player1Score: 14, player2Score: 100, expectedScore: winForPlayer2 },
 ];
 
-// todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
 const expectedErrorsJustForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsJustForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForBothPlayers = expectedErrorsJustForPlayer1.concat(expectedErrorsJustForPlayer2);
@@ -145,8 +144,8 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo do we want hint text for each input?
-// todo: do full fancy reactive forms implementation with subscriptions and delayed feedback while still in value? not needed?
+// todo: do full fancy reactive forms implementation with subscriptions and delayed feedback while still in value
+// todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
 // todo: any other ZOMBIES?
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean
