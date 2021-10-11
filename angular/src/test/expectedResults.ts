@@ -96,8 +96,7 @@ export const winningScores: ExceptedTennisScore[] = [
   { player1Score: 14, player2Score: 100, expectedScore: winForPlayer2 },
 ];
 
-// todo: replace all <br> with Tdd'ed css
-// todo: have tennis cards display horizontally instead of vertical stack?
+// todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
 const expectedErrorsJustForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsJustForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
 const expectedErrorsForBothPlayers = expectedErrorsJustForPlayer1.concat(expectedErrorsJustForPlayer2);
@@ -146,15 +145,8 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: fix all linting error and warnings in test files
-// todo: separate out error message from score and show it on the gui (one error message label or one per input?
-// https://material.angular.io/components/input/overview
-// https://github.com/DeborahK/Angular-ReactiveForms/blob/master/Demo-Final/src/app/customers/customer.component.html
-// todo: get rid of isScoreValid in expected data since that can be inferered from error text
-// todo: need tests for the above two and apply to other tennis games other than 1
 // todo do we want hint text for each input?
-// todo: do full fancy reactive forms implementation with subsriptions and delayed feedback while still in value? not needed?
-// todo: expect different error messages for different kinds of issues?
+// todo: do full fancy reactive forms implementation with subscriptions and delayed feedback while still in value? not needed?
 // todo: any other ZOMBIES?
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean

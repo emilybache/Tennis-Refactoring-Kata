@@ -134,8 +134,6 @@ describe('Tennis Game 1', () => {
         tennisTester.verifyLabelText(player2ScoreLabel, expectedText.player2ScoreLabel);
       });
 
-      // todo: left off here <----------------------------------------------------------------------
-      // todo: apply test to other spec files to TDD the refactor in tennis game 2 and 3
       it('should have proper spacing to allow space for validation error messages', () => {
         const playerScoreFormFieldsStyles = tennisTester.getPlayerScoreFormFieldsStyles();
 
