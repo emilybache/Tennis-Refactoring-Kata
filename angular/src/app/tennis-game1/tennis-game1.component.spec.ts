@@ -80,8 +80,6 @@ describe('Tennis Game 1', () => {
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
       });
 
-      // todo: both player inputs
-      // todo: verify both debounce times and not just the last one
       // todo: switch to be html instead of under the hood
       // todo: replace magic and dups
       // todo: way to get rid of setTimeout
@@ -95,7 +93,9 @@ describe('Tennis Game 1', () => {
         setTimeout(() => {
           expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBeTruthy();
           expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBeTruthy();
-          expect(tennisTester.debounceDueTimeSent).toBe(3000);
+          expect(tennisTester.debounceDueTimesSent[0]).toBe(3000);
+          expect(tennisTester.debounceDueTimesSent[1]).toBe(3000);
+          expect(tennisTester.debounceDueTimesSent.length).toBe(2);
           done();
           }, 0);
       });

@@ -35,7 +35,7 @@ export class TennisComponentTester {
   fixture: ComponentFixture<TennisGame3Component>;
   element: any;
   deBouncer: DeBouncer;
-  debounceDueTimeSent: number;
+  debounceDueTimesSent: number[] = [];
   private readonly tennisComponentIndex = 0;
 
   async beforeEach(declarations: any[]) {
@@ -55,7 +55,7 @@ export class TennisComponentTester {
   private setupDeBouncerMock() {
     this.deBouncer = this.fixture.debugElement.injector.get(DeBouncer);
     this.deBouncer = smartSpyOn(this.deBouncer, this.deBouncer.debounceTime).and.callFake(dueTime => {
-      this.debounceDueTimeSent = dueTime;
+      this.debounceDueTimesSent.push(dueTime);
       return debounceTime(0);
     });
   }
