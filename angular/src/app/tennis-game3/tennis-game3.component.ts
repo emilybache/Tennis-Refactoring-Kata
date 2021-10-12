@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Zeus} from './zeus';
+import {DeBouncer} from '../debouncer.service';
 
 @Component({
   selector: 'app-tennis-game3',
@@ -31,7 +32,10 @@ export class TennisGame3Component implements OnInit, TennisGame {
   });
   public overallScore = '';
 
-  constructor(private zeus: Zeus) { }
+  constructor(
+    private zeus: Zeus,
+    private deBouncer: DeBouncer,
+  ) { }
 
   ngOnInit() {
   }

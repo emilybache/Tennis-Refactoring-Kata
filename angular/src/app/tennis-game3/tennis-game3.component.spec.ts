@@ -56,7 +56,7 @@ describe('Tennis Game 3', () => {
       });
     });
 
-    describe('Input', () => {
+    describe('Score Input', () => {
       let player1ScoreInputElement;
       let player2ScoreInputElement;
 

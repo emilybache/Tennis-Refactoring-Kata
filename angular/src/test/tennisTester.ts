@@ -14,6 +14,11 @@ import {
   player2ScoreFormField
 } from './selectors';
 import {ExpectedError} from './expectedResults';
+import {ManagerOfZanzibar} from '../app/tennis-game1/ZanzibarManager';
+import {DeBouncer} from '../app/debouncer.service';
+import {smartSpyOn} from './smartSpy';
+import {of} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 
 export const tennisPlayerNumbers = [1, 2];
 export const testImports = [
@@ -29,6 +34,8 @@ export class TennisComponentTester {
   component: TennisGame;
   fixture: ComponentFixture<TennisGame3Component>;
   element: any;
+  deBouncer: DeBouncer;
+  debounceDueTimeSent: number;
   private readonly tennisComponentIndex = 0;
 
   async beforeEach(declarations: any[]) {
@@ -39,9 +46,18 @@ export class TennisComponentTester {
     this.fixture = TestBed.createComponent(declarations[this.tennisComponentIndex]);
     this.component = this.fixture.componentInstance;
     this.element = this.fixture.nativeElement;
+    this.setupDeBouncerMock();
     this.fixture.detectChanges();
     // @ts-ignore
     expect(this.component).toBeTruthy();
+  }
+
+  private setupDeBouncerMock() {
+    this.deBouncer = this.fixture.debugElement.injector.get(DeBouncer);
+    this.deBouncer = smartSpyOn(this.deBouncer, this.deBouncer.debounceTime).and.callFake(dueTime => {
+      this.debounceDueTimeSent = dueTime;
+      return debounceTime(0);
+    });
   }
 
   public getElement(elementSelector: string) {

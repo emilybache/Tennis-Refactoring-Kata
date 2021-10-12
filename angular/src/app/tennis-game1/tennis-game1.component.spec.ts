@@ -56,7 +56,7 @@ describe('Tennis Game 1', () => {
       });
     });
 
-    describe('Input', () => {
+    describe('Score Input', () => {
       let player1ScoreInputElement;
       let player2ScoreInputElement;
 
@@ -78,6 +78,26 @@ describe('Tennis Game 1', () => {
       it('should prevent negative numbers via the decrementer button', () => {
         expect(player1ScoreInputElement.attributes.min).toBe(minScore);
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
+      });
+
+      // todo: both player inputs
+      // todo: verify both debounce times and not just the last one
+      // todo: switch to be html instead of under the hood
+      // todo: replace magic and dups
+      // todo: way to get rid of setTimeout
+      it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
+        expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBeFalsy();
+        expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBeFalsy();
+
+        tennisTester.setInputValue(player1ScoreInput, -3);
+        tennisTester.setInputValue(player2ScoreInput, -1);
+
+        setTimeout(() => {
+          expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBeTruthy();
+          expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBeTruthy();
+          expect(tennisTester.debounceDueTimeSent).toBe(3000);
+          done();
+          }, 0);
       });
     });
   });

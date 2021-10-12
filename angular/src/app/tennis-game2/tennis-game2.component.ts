@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SevenStagesOfNamingService} from './SevenStagesOfNamingService';
+import {DeBouncer} from '../debouncer.service';
 
 @Component({
   selector: 'app-tennis-game2',
@@ -19,7 +20,10 @@ export class TennisGame2Component implements OnInit, TennisGame {
   public tennisGameForm = new FormGroup({ player1Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]), player2Score: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$'), Validators.max(100)]) });
   public overallScore = '';
 
-  constructor(private sevenStagesOfNamingService: SevenStagesOfNamingService) { }
+  constructor(
+    private sevenStagesOfNamingService: SevenStagesOfNamingService,
+    private deBouncer: DeBouncer,
+  ) { }
 
   ngOnInit() {
   }

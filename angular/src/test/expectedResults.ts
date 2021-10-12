@@ -146,6 +146,7 @@ export const invalidScores: ExceptedTennisScore[] = []
 
 // todo: do full fancy reactive forms implementation with subscriptions and delayed feedback while still in value
 // todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
+// todo: do all todos and comments
 // todo: any other ZOMBIES?
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean
