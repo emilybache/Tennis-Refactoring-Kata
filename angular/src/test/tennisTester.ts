@@ -14,10 +14,8 @@ import {
   player2ScoreFormField
 } from './selectors';
 import {ExpectedError} from './expectedResults';
-import {ManagerOfZanzibar} from '../app/tennis-game1/ZanzibarManager';
 import {DeBouncer} from '../app/debouncer.service';
 import {smartSpyOn} from './smartSpy';
-import {of} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 
 export const tennisPlayerNumbers = [1, 2];
@@ -150,13 +148,25 @@ export class TennisComponentTester {
       this.verifyNoErrorMessageForValidScores(expectedScoreErrors);
       this.verifyButtonIsEnabled(getScoreButton, false);
     } else {
-      this.verifyNoErrorMessages();
+      this.verifyNoScoreInputErrorMessages();
       this.verifyButtonIsEnabled(getScoreButton, true);
     }
   }
 
-  public verifyNoErrorMessages() {
+  public verifyScoreInputsHaveBeenTouched(isTouched: boolean) {
+    const tennisGameForm = this.component.tennisGameForm;
+    // @ts-ignore
+    expect(tennisGameForm.get('player1Score').touched).toBe(isTouched);
+    // @ts-ignore
+    expect(tennisGameForm.get('player2Score').touched).toBe(isTouched);
+  }
+
+  public verifyNoScoreInputErrorMessages() {
     tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
+  }
+
+  public verifyAllScoreInputsHaveAnErrorMessage() {
+    tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], true));
   }
 
   private verifyNoErrorMessageForValidScores(expectedScoreErrors: ExpectedError[]) {
