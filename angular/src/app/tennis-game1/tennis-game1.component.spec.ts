@@ -21,9 +21,9 @@ import {
   player2ScoreInput,
   tennisGameCard,
   tennisGameCardTitle,
-  tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
+  tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel, errorLabelForPlayer
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText, invalidScores, winningScores} from '../../test/expectedResults';
+import {expectedTennisScores, expectedText, invalidScores, scoreErrorMessage, winningScores} from '../../test/expectedResults';
 import {ManagerOfZanzibar} from './ZanzibarManager';
 import {smartSpyOn} from '../../test/smartSpy';
 import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
@@ -80,19 +80,23 @@ describe('Tennis Game 1', () => {
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
       });
 
-      // todo: switch to be html instead of under the hood
       // todo: replace magic and dups
       // todo: way to get rid of setTimeout
+      // todo: apply this to other tennis games spec files
       it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
-        expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBeFalsy();
-        expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBeFalsy();
+        expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBe(false);
+        expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBe(false);
+        tennisTester.verifyNoErrorMessages();
 
         tennisTester.setInputValue(player1ScoreInput, -3);
         tennisTester.setInputValue(player2ScoreInput, -1);
+        tennisTester.selectElement(getScoreButton);
 
         setTimeout(() => {
-          expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBeTruthy();
-          expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBeTruthy();
+          tennisTester.verifyErrorLabelText(errorLabelForPlayer[1], scoreErrorMessage);
+          tennisTester.verifyErrorLabelText(errorLabelForPlayer[2], scoreErrorMessage);
+          expect(tennisTester.component.tennisGameForm.get('player1Score').touched).toBe(true);
+          expect(tennisTester.component.tennisGameForm.get('player2Score').touched).toBe(true);
           expect(tennisTester.debounceDueTimesSent[0]).toBe(3000);
           expect(tennisTester.debounceDueTimesSent[1]).toBe(3000);
           expect(tennisTester.debounceDueTimesSent.length).toBe(2);

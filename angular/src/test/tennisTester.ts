@@ -144,7 +144,7 @@ export class TennisComponentTester {
     expect(errorLabel.innerText).toBe(expectedErrorMessage);
   }
 
-  verifyInputValidation(expectedScoreErrors: ExpectedError[]) {
+  public verifyInputValidation(expectedScoreErrors: ExpectedError[]) {
     if (this.thereAreAny(expectedScoreErrors)) {
       this.verifyErrorMessageForInvalidScores(expectedScoreErrors);
       this.verifyNoErrorMessageForValidScores(expectedScoreErrors);
@@ -155,7 +155,7 @@ export class TennisComponentTester {
     }
   }
 
-  private verifyNoErrorMessages() {
+  public verifyNoErrorMessages() {
     tennisPlayerNumbers.forEach(playerNumber => this.verifyElementIsVisible(errorLabelForPlayer[playerNumber], false));
   }
 
