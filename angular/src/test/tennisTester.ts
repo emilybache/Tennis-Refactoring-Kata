@@ -62,61 +62,61 @@ export class TennisComponentTester {
     return this.fixture.debugElement.query(By.css(elementSelector));
   }
 
-  getStylesFor(selectors: string) {
+  public getStylesFor(selectors: string) {
     const element = this.element.querySelector(selectors);
     return getComputedStyle(element);
   }
 
-  getPlayerScoreFormFieldsStyles() {
+  public getPlayerScoreFormFieldsStyles() {
     const playerScoreFormFieldsStyles = [];
     playerScoreFormFieldsStyles.push(this.getStylesFor(player1ScoreFormField));
     playerScoreFormFieldsStyles.push(this.getStylesFor(player2ScoreFormField));
     return playerScoreFormFieldsStyles;
   }
 
-  getParentStylesFor(selectors: string) {
+  public getParentStylesFor(selectors: string) {
     const element = this.getElement(selectors);
     return getComputedStyle(element.parent.nativeElement);
   }
 
-  setInputValue(inputSelector: string, newValue: number | string) {
+  public setInputValue(inputSelector: string, newValue: number | string) {
     const inputElement = this.element.querySelector(inputSelector);
     inputElement.value = newValue;
     inputElement.dispatchEvent(new Event('input'));
   }
 
-  enterPlayersScores(player1Score: string | number, player2Score: string | number) {
+  public enterPlayersScores(player1Score: string | number, player2Score: string | number) {
     this.setInputValue(player1ScoreInput, player1Score);
     this.setInputValue(player2ScoreInput, player2Score);
     this.component.tennisGameForm.controls.player1Score.markAsTouched();
     this.component.tennisGameForm.controls.player2Score.markAsTouched();
   }
 
-  selectElement(elementSelector: string) {
+  public selectElement(elementSelector: string) {
     const element = this.element.querySelector(elementSelector);
     element.click();
     this.fixture.detectChanges();
   }
 
-  verifyLabelText(labelSelector: string, expectedText: number | string) {
+  public verifyLabelText(labelSelector: string, expectedText: number | string) {
     const label = this.getElement(labelSelector);
     // @ts-ignore
     expect(label.nativeElement.outerText).toBe(expectedText);
   }
 
-  verifyInputValue(buttonElementSelector: string, expectedValue: string) {
+  public verifyInputValue(buttonElementSelector: string, expectedValue: string) {
     const buttonElement = this.getElement(buttonElementSelector);
     // @ts-ignore
     expect(buttonElement.properties.value.toString()).toBe(expectedValue);
   }
 
-  verifyButtonIsEnabled(buttonElementSelector: string, isEnabled: boolean = true) {
+  public verifyButtonIsEnabled(buttonElementSelector: string, isEnabled: boolean = true) {
     const buttonElement = this.getElement(buttonElementSelector);
     // @ts-ignore
     expect(buttonElement.properties.disabled).toBe(!isEnabled);
   }
 
-  verifyElementExists(selector: string) {
+  public verifyElementExists(selector: string) {
     const element = this.getElement(selector);
     // @ts-ignore
     expect(element).toBeTruthy();
@@ -131,10 +131,9 @@ export class TennisComponentTester {
       // @ts-ignore
       expect(element).toBeNull();
     }
-
   }
 
-  verifyErrorLabelText(selector: string, expectedErrorMessage: string) {
+  public verifyErrorLabelText(selector: string, expectedErrorMessage: string) {
     this.verifyElementExists(selector);
     this.verifyElementIsVisible(selector);
     const errorLabel = this.element.querySelector(selector);
