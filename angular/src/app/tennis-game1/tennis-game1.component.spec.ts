@@ -87,8 +87,6 @@ describe('Tennis Game 1', () => {
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
       });
 
-      // todo: way to get rid of setTimeout?
-      // todo: set all tennis tester functions to explicit public vs. private
       // todo: apply this to other tennis games spec files
       it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
         tennisTester.verifyScoreInputsHaveBeenTouched(false);
@@ -98,14 +96,14 @@ describe('Tennis Game 1', () => {
         tennisTester.setInputValue(player2ScoreInput, -1);
         tennisTester.selectElement(getScoreButton);
 
-        setTimeout(() => {
+        tennisTester.fixture.whenRenderingDone().then(() => {
           tennisTester.verifyAllScoreInputsHaveAnErrorMessage();
           tennisTester.verifyScoreInputsHaveBeenTouched(true);
           expect(tennisTester.debounceDueTimesSent[0]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
           expect(tennisTester.debounceDueTimesSent[1]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
           expect(tennisTester.debounceDueTimesSent.length).toBe(tennisPlayerNumbers.length);
           done();
-          }, 0);
+        });
       });
     });
   });
