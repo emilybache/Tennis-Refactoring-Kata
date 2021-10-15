@@ -28,8 +28,6 @@ export class TennisGame1Component implements OnInit, TennisGame {
   ) { }
 
   ngOnInit() {
-    // todo: need tests for this
-    // todo: any clean up?
     const player1Score = this.tennisGameForm.get('player1Score');
     player1Score.valueChanges.pipe(this.deBouncer.debounceTime(3000)).subscribe(() => player1Score.markAsTouched());
     const player2Score = this.tennisGameForm.get('player2Score');

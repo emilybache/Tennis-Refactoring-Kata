@@ -38,6 +38,20 @@ export class TennisGame3Component implements OnInit, TennisGame {
   ) { }
 
   ngOnInit() {
+    this.
+      tennisGameForm.
+        get('player1Score')
+          .valueChanges.
+            pipe(
+              this.deBouncer.debounceTime(3000)
+            ).subscribe(
+              () => this.tennisGameForm.get('player1Score').markAsTouched()
+            );
+    this.tennisGameForm.get('player2Score').valueChanges.pipe(
+      this.deBouncer.debounceTime(3000)
+    ).subscribe(() =>
+      this.tennisGameForm.get('player2Score').markAsTouched()
+    );
   }
 
   wonPoint(playerName: string) {
@@ -55,7 +69,7 @@ export class TennisGame3Component implements OnInit, TennisGame {
         return 'Invalid Score';
       }
       return this.zeus.getLightning2(s, this.p1, this.p2, this.p1N, this.p2N);
-    } catch (lightning) { console.log(lightning); return 'Something has gone wrong, please try again';}
+    } catch (lightning) { console.log(lightning); return 'Something has gone wrong, please try again'; }
   }
 
   onSubmit() {

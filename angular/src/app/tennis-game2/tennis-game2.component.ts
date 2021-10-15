@@ -26,6 +26,8 @@ export class TennisGame2Component implements OnInit, TennisGame {
   ) { }
 
   ngOnInit() {
+    this.tennisGameForm.get('player1Score').valueChanges.pipe(this.deBouncer.debounceTime(3000)).subscribe(() => this.tennisGameForm.get('player1Score').markAsTouched());
+    this.tennisGameForm.get('player2Score').valueChanges.pipe(this.deBouncer.debounceTime(3000)).subscribe(() => this.tennisGameForm.get('player2Score').markAsTouched());
   }
 
   getScore() {

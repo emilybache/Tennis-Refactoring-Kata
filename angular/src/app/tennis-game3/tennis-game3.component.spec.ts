@@ -1,7 +1,7 @@
 import {async} from '@angular/core/testing';
 import {TennisGame3Component} from './tennis-game3.component';
 import {
-  TennisComponentTester
+  TennisComponentTester, tennisPlayerNumbers
 } from '../../test/tennisTester';
 import {
   getScoreButton,
@@ -11,7 +11,13 @@ import {
   tennisGameCard,
   tennisGameCardContents, tennisGameCardSubtitle, tennisGameCardTitle
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText, invalidScores, winningScores} from '../../test/expectedResults';
+import {
+  expectedTennisScores,
+  expectedText,
+  invalidScores,
+  threeSecondsOfWaitingBeforeGivingInputValidationFeedback,
+  winningScores
+} from '../../test/expectedResults';
 import {
   blockDisplay,
   boldFontWeight, darkGrayColor, expectedVerticalSpacingBetweenScores,
@@ -78,6 +84,24 @@ describe('Tennis Game 3', () => {
       it('should prevent negative numbers via the decrementer button', () => {
         expect(player1ScoreInputElement.attributes.min).toBe(minScore);
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
+      });
+
+      it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
+        tennisTester.verifyScoreInputsHaveBeenTouched(false);
+        tennisTester.verifyNoScoreInputErrorMessages();
+
+        tennisTester.setInputValue(player1ScoreInput, -3);
+        tennisTester.setInputValue(player2ScoreInput, -1);
+        tennisTester.selectElement(getScoreButton);
+
+        tennisTester.fixture.whenRenderingDone().then(() => {
+          tennisTester.verifyAllScoreInputsHaveAnErrorMessage();
+          tennisTester.verifyScoreInputsHaveBeenTouched(true);
+          expect(tennisTester.debounceDueTimesSent[0]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
+          expect(tennisTester.debounceDueTimesSent[1]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
+          expect(tennisTester.debounceDueTimesSent.length).toBe(tennisPlayerNumbers.length);
+          done();
+        });
       });
     });
   });

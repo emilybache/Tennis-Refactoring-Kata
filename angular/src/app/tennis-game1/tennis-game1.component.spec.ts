@@ -87,7 +87,6 @@ describe('Tennis Game 1', () => {
         expect(player2ScoreInputElement.attributes.min).toBe(minScore);
       });
 
-      // todo: apply this to other tennis games spec files
       it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
         tennisTester.verifyScoreInputsHaveBeenTouched(false);
         tennisTester.verifyNoScoreInputErrorMessages();
