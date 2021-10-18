@@ -146,7 +146,6 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: do full fancy reactive forms implementation with subscriptions and delayed feedback while still in value
 // todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
 // todo: rename spec files to have domain file names instead of being about the component
 // todo: do all todos and comments

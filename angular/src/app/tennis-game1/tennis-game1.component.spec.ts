@@ -7,7 +7,7 @@ import {
   flex, lightGrayColor,
   slightlyRoundedBottomCorners,
   spaceBetween,
-  tennisBallOpticYellowColor, tennisCardMaxWidth, tennisCourtGreenColor,
+  tennisBallOpticYellowColor, tennisCardWidth, tennisCourtGreenColor,
   twentyPixels, whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
@@ -21,13 +21,12 @@ import {
   player2ScoreInput,
   tennisGameCard,
   tennisGameCardTitle,
-  tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel, errorLabelForPlayer
+  tennisGameCardSubtitle, player1ScoreLabel, player2ScoreLabel
 } from '../../test/selectors';
 import {
   expectedTennisScores,
   expectedText,
   invalidScores,
-  scoreErrorMessage,
   threeSecondsOfWaitingBeforeGivingInputValidationFeedback,
   winningScores
 } from '../../test/expectedResults';
@@ -123,7 +122,7 @@ describe('Tennis Game 1', () => {
     });
 
     it('should be proper width so can full card can be easily seen', () => {
-      expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
+      expect(tennisGameCardStyles.width).toBe(tennisCardWidth);
     });
 
     it('should have some left margin so that it is not jammed up right next to edge of browser', () => {

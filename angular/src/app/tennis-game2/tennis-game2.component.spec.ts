@@ -24,7 +24,7 @@ import {
   flex, lightGrayColor,
   slightlyRoundedBottomCorners, spaceBetween,
   tennisBallOpticYellowColor,
-  tennisCardMaxWidth,
+  tennisCardWidth,
   tennisCourtGreenColor,
   twentyPixels,
   whiteColor,
@@ -118,7 +118,7 @@ describe('Tennis Game 2', () => {
     });
 
     it('should be proper width so can full card can be easily seen', () => {
-      expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
+      expect(tennisGameCardStyles.width).toBe(tennisCardWidth);
     });
 
     it('should have some space between each tennis game card so that they are not jammed next to each other', () => {

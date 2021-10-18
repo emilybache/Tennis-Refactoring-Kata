@@ -5,9 +5,11 @@ import {TennisGame2Component} from './tennis-game2/tennis-game2.component';
 import {TennisGame3Component} from './tennis-game3/tennis-game3.component';
 import {TennisComponentTester} from '../test/tennisTester';
 import {largeHeadingElement, tennisGame, tennisKataTitleId} from '../test/selectors';
-import {materialDesignHeading1ClassName, twentyPixels} from '../test/expectedStyles';
+import {floatLeft, materialDesignHeading1ClassName, twentyPixels} from '../test/expectedStyles';
 import {classKey, idKey} from '../test/attributes';
 import {expectedText} from '../test/expectedResults';
+
+const tennisGameCardNumbers = [1, 2, 3];
 
 describe('Tennis App', () => {
   let tennisTester: TennisComponentTester;
@@ -44,9 +46,23 @@ describe('Tennis App', () => {
     });
   });
 
-  it('should display tennis games 1-3', () => {
-    tennisTester.verifyElementExists(tennisGame + '1');
-    tennisTester.verifyElementExists(tennisGame + '2');
-    tennisTester.verifyElementExists(tennisGame + '3');
+  describe('Tennis Game Cards', () => {
+    it('should display tennis games 1-3', () => {
+      tennisGameCardNumbers.forEach(tennisGameCardNumber => tennisTester.verifyElementExists(tennisGame + tennisGameCardNumber));
+    });
+
+    it('should display the tennis cards horizontally in a row', () => {
+      const tennisCardsStyles = getTennisCardsStyles();
+
+      tennisCardsStyles.forEach(tennisCardStyles => expect(tennisCardStyles.cssFloat).toBe(floatLeft));
+    });
+
+    function getTennisCardsStyles() {
+      const tennisCardsStyles = [];
+      tennisGameCardNumbers.forEach(tennisGameCardNumber =>
+        tennisCardsStyles.push(tennisTester.getStylesFor(tennisGame + tennisGameCardNumber))
+      );
+      return tennisCardsStyles;
+    }
   });
 });
