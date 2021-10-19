@@ -44,10 +44,12 @@ describe('Tennis Game 1', () => {
 
   describe('Scoring', () => {
 
-    it('should have correct initial value before any scores are entered', () => {
+    it('should have correct initial values before any scores are entered', () => {
       tennisTester.verifyLabelText(overallScore, '');
       tennisTester.verifyInputValue(player1ScoreInput, '0');
       tennisTester.verifyInputValue(player2ScoreInput, '0');
+      tennisTester.verifyInputValidation([]);
+      tennisTester.verifyLabelText(overallScore, '');
     });
 
     expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, expectedErrors}) => {

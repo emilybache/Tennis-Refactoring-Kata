@@ -146,7 +146,7 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: any other ZOMBIES?
+// todo: any other ZOMBIES? zero case?
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean
 // todo: add this to kanban try out TCR on this project
