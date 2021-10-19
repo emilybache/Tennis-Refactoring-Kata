@@ -146,13 +146,11 @@ export const invalidScores: ExceptedTennisScore[] = []
   .concat(invalidNonIntegerScores)
   .concat(invalidNonNumberScores);
 
-// todo: have tennis cards display horizontally instead of vertical stack? wait until MAT can be done
-// todo: rename spec files to have domain file names instead of being about the component
-// todo: do all todos and comments
 // todo: any other ZOMBIES?
 // todo: make product error handling code more dirty (each component different)
 // todo: make test code for error handling be clean
-// todo: try out TCR on this project
+// todo: add this to kanban try out TCR on this project
+// todo: update readme file tasks and image
 
 export const expectedTennisScores: ExceptedTennisScore[] = []
   .concat(tiedScores)
