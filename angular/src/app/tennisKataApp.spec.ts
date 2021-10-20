@@ -11,7 +11,7 @@ import {expectedText} from '../test/expectedResults';
 
 const tennisGameCardNumbers = [1, 2, 3];
 
-describe('Tennis App', () => {
+describe('Tennis Kata App', () => {
   let tennisTester: TennisComponentTester;
 
   beforeEach(async(() => {
