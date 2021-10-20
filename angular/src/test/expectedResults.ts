@@ -127,7 +127,6 @@ const invalidNonNumberScores: ExceptedTennisScore[] = [
   { player1Score: 0, player2Score: '', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
   { player1Score: 0, player2Score: 'not a number', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
   { player1Score: 0, player2Score: '!@#$%^&*()_', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
-  { player1Score: 0, player2Score: -99, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
 ];
 
 const invalidNonIntegerScores: ExceptedTennisScore[] = [
