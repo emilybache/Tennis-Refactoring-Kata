@@ -17,6 +17,17 @@
     padding: 20px;;
   }
 
+  button#get-score-button {
+    background-color: #177785;
+    color: #ffffff;
+  }
+
+  button#get-score-button:disabled,
+  button#get-score-button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
+  }
+
   .mat-card {
     padding: 0;
     margin-bottom: 20px;

@@ -1,7 +1,7 @@
 import {async} from '@angular/core/testing';
 import {TennisGame2Component} from './tennis-game2.component';
 import {
-  TennisComponentTester
+  TennisComponentTester, tennisPlayerNumbers
 } from '../../test/tennisTester';
 import {
   getScoreButton,
@@ -11,37 +11,99 @@ import {
   tennisGameCard,
   tennisGameCardContents, tennisGameCardSubtitle, tennisGameCardTitle
 } from '../../test/selectors';
-import {expectedTennisScores, expectedText} from '../../test/expectedResults';
 import {
-  boldFontWeight,
-  flex,
+  expectedTennisScores,
+  expectedText,
+  invalidScores,
+  threeSecondsOfWaitingBeforeGivingInputValidationFeedback,
+  winningScores
+} from '../../test/expectedResults';
+import {
+  blockDisplay,
+  boldFontWeight, darkGrayColor, expectedVerticalSpacingBetweenScores,
+  flex, lightGrayColor,
   slightlyRoundedBottomCorners, spaceBetween,
   tennisBallOpticYellowColor,
-  tennisCardMaxWidth,
+  tennisCardWidth,
   tennisCourtGreenColor,
   twentyPixels,
   whiteColor,
   zeroPixels
 } from '../../test/expectedStyles';
+import {smartSpyOn} from '../../test/smartSpy';
+import {SevenStagesOfNamingService} from './SevenStagesOfNamingService';
+import {maxScore, minScore, numberType} from '../../test/expectedElementAttributes';
 
 describe('Tennis Game 2', () => {
   let tennisTester: TennisComponentTester;
 
-  beforeEach(async(() => {
+  beforeEach(async(async () => {
     tennisTester = new TennisComponentTester();
-    tennisTester.beforeEach([TennisGame2Component]);
+    await tennisTester.beforeEach([TennisGame2Component]);
   }));
 
   describe('Scoring', () => {
-    expectedTennisScores.forEach(([player1Score, player2Score, expectedScore]) => {
-      it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
-        tennisTester.verifyLabelText(overallScore, '');
 
-        tennisTester.setInputValue(player1ScoreInput, player1Score);
-        tennisTester.setInputValue(player2ScoreInput, player2Score);
+    it('should have correct initial values before any scores are entered', () => {
+      tennisTester.verifyLabelText(overallScore, '');
+      tennisTester.verifyInputValue(player1ScoreInput, '0');
+      tennisTester.verifyInputValue(player2ScoreInput, '0');
+      tennisTester.verifyInputValidation([]);
+      tennisTester.verifyLabelText(overallScore, '');
+    });
+
+    expectedTennisScores.forEach(({player1Score, player2Score, expectedScore, expectedErrors}) => {
+      it(`should score '${expectedScore}' when player 1 has '${player1Score}' and player 2 has '${player2Score}'`, () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
+
+        tennisTester.enterPlayersScores(player1Score, player2Score);
         tennisTester.selectElement(getScoreButton);
 
+        tennisTester.verifyInputValidation(expectedErrors);
         tennisTester.verifyLabelText(overallScore, expectedScore);
+      });
+    });
+
+    describe('Score Input', () => {
+      let player1ScoreInputElement;
+      let player2ScoreInputElement;
+
+      beforeEach(() => {
+        player1ScoreInputElement = tennisTester.getElement(player1ScoreInput);
+        player2ScoreInputElement = tennisTester.getElement(player2ScoreInput);
+      });
+
+      it('should only allow numbers', () => {
+        expect(player1ScoreInputElement.attributes.type).toBe(numberType);
+        expect(player2ScoreInputElement.attributes.type).toBe(numberType);
+      });
+
+      it('should prevent large numbers via the incrementer button', () => {
+        expect(player1ScoreInputElement.attributes.max).toBe(maxScore);
+        expect(player2ScoreInputElement.attributes.max).toBe(maxScore);
+      });
+
+      it('should prevent negative numbers via the decrementer button', () => {
+        expect(player1ScoreInputElement.attributes.min).toBe(minScore);
+        expect(player2ScoreInputElement.attributes.min).toBe(minScore);
+      });
+
+      it('should show validation feedback after user starts entering data for more than 3 seconds', (done) => {
+        tennisTester.verifyScoreInputsHaveBeenTouched(false);
+        tennisTester.verifyNoScoreInputErrorMessages();
+
+        tennisTester.setInputValue(player1ScoreInput, -3);
+        tennisTester.setInputValue(player2ScoreInput, -1);
+        tennisTester.selectElement(getScoreButton);
+
+        tennisTester.fixture.whenRenderingDone().then(() => {
+          tennisTester.verifyAllScoreInputsHaveAnErrorMessage();
+          tennisTester.verifyScoreInputsHaveBeenTouched(true);
+          expect(tennisTester.debounceDueTimesSent[0]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
+          expect(tennisTester.debounceDueTimesSent[1]).toBe(threeSecondsOfWaitingBeforeGivingInputValidationFeedback);
+          expect(tennisTester.debounceDueTimesSent.length).toBe(tennisPlayerNumbers.length);
+          done();
+        });
       });
     });
   });
@@ -58,7 +120,7 @@ describe('Tennis Game 2', () => {
     });
 
     it('should be proper width so can full card can be easily seen', () => {
-      expect(tennisGameCardStyles.maxWidth).toBe(tennisCardMaxWidth);
+      expect(tennisGameCardStyles.width).toBe(tennisCardWidth);
     });
 
     it('should have some space between each tennis game card so that they are not jammed next to each other', () => {
@@ -97,6 +159,15 @@ describe('Tennis Game 2', () => {
         tennisTester.verifyLabelText(player1ScoreLabel, expectedText.player1ScoreLabel);
         tennisTester.verifyLabelText(player2ScoreLabel, expectedText.player2ScoreLabel);
       });
+
+      it('should have proper spacing to allow space for validation error messages', () => {
+        const playerScoreFormFieldsStyles = tennisTester.getPlayerScoreFormFieldsStyles();
+
+        playerScoreFormFieldsStyles.forEach(playerScoreFormFieldStyles => {
+          expect(playerScoreFormFieldStyles.display).toBe(blockDisplay);
+          expect(playerScoreFormFieldStyles.marginBottom).toBe(expectedVerticalSpacingBetweenScores);
+        });
+      });
     });
 
     describe('Get Score Button', () => {
@@ -104,11 +175,24 @@ describe('Tennis Game 2', () => {
         tennisTester.verifyLabelText(getScoreButton, expectedText.getScoreLabel);
       });
 
-      it('should be tennis court green color', () => {
+      it('should be tennis court green color when enabled', () => {
+        tennisTester.verifyButtonIsEnabled(getScoreButton);
+
         const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
 
         expect(getScoreButtonStyles.backgroundColor).toBe(tennisCourtGreenColor);
         expect(getScoreButtonStyles.color).toBe(whiteColor);
+      });
+
+      it('should be grayed out when disabled', () => {
+        tennisTester.enterPlayersScores(invalidScores[0].player1Score, winningScores[0].player2Score);
+        tennisTester.fixture.detectChanges();
+        tennisTester.verifyButtonIsEnabled(getScoreButton, false);
+
+        const getScoreButtonStyles = tennisTester.getStylesFor(getScoreButton);
+
+        expect(getScoreButtonStyles.backgroundColor).toBe(lightGrayColor);
+        expect(getScoreButtonStyles.color).toBe(darkGrayColor);
       });
     });
 
@@ -148,4 +232,18 @@ describe('Tennis Game 2', () => {
       });
     });
   });
+
+  it('should notify user when there is an error', () => {
+    SetupScoringServiceToHaveAnError();
+
+    tennisTester.enterPlayersScores(1, 1);
+    tennisTester.selectElement(getScoreButton);
+
+    tennisTester.verifyLabelText(overallScore, expectedText.errorMessage);
+  });
+
+  function SetupScoringServiceToHaveAnError() {
+    const scoringService = tennisTester.fixture.debugElement.injector.get(SevenStagesOfNamingService);
+    smartSpyOn(scoringService, scoringService.getAppleSauce).and.throwError(expectedText.scoringError);
+  }
 });

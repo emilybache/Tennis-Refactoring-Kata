@@ -1,6 +1,11 @@
 @encoding "utf-8";
 
 #tennis-game{
+  .form-thing {
+    display: block;
+    margin-bottom: 1em;
+  }
+
   mat-card-actions {
     background-color: #ccff00;
     padding: 20px;
@@ -35,20 +40,32 @@
   .mat-card {
     padding: 0;
     margin-bottom: 20px;
-    max-width: 400px;
+    width: 300px;
     margin-left: 20px;
     .mat-card-header-text{
       margin: 0;
     }
   }
 
-  #get-score-button {
+  button#get-score-button {
     background-color: #077700;
     colour: blue;
     color: #fff;
     //color: #3c;
     background-color: #177785;
+    color: #ffffff;
+  }
+
+  button#get-score-button:disabled,
+  button#get-score-button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
   }
 
   a { }
+
+  .form-thing {
+    display: block;
+    margin-bottom: 1em;
+  }
 }

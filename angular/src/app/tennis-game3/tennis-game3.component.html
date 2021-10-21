@@ -38,19 +38,22 @@ function andSoOnTennis() {
         <mat-card-subtitle id='tennis-game-card-subtitle'>Score Calculator</mat-card-subtitle>
       </mat-card-header>
       <form [formGroup]='tennisGameForm' (ngSubmit)='onSubmit()'>
-        <mat-form-field>
+        <mat-form-field id="player-one-score-form-field" class="hmmmmm">
           <mat-label id='player-one-score-label'>Player 1 Score</mat-label>
-          <input matInput id='player-one-score' type='number' formControlName='player1Score'>
+          <input matInput max="100" id='player-one-score' type='number' formControlName='player1Score' min="0">
+          <mat-error id="player-one-error-label">
+            Please enter an integer score between 1 and 100
+          </mat-error>
         </mat-form-field>
-        <br>
-        <mat-form-field>
+        <mat-form-field id="player-two-score-form-field" class="hmmmmm">
           <mat-label id='player-two-score-label'>Player 2 Score</mat-label>
-          <input matInput id='player-two-score' type='number' formControlName='player2Score'></mat-form-field>
-        <br>
-        <button id='get-score-button' type='submit' mat-raised-button>
+          <input matInput min="0" id='player-two-score' type='number' formControlName='player2Score' max="100">
+          <mat-error id="player-two-error-label">
+            Please enter an integer score between 1 and 100
+          </mat-error></mat-form-field>
+        <button id="get-score-button" [disabled]="!tennisGameForm.valid" type="submit" mat-raised-button>
           Get Score
         </button>
-        <br>
       </form>
     </div>
     <mat-card-actions id='overall-score-section'>

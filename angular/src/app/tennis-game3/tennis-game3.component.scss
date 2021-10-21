@@ -20,24 +20,38 @@
     padding: 20px;
   }
 
+  .hmmmmm {
+    display: table;
+    margin-bottom: 10em;
+    //margin-bottom: 3em;
+    display: block;
+    margin-bottom: 1em;
+  }
+
   .mat-card {
     padding: 0;
-    max-width: 400px;
+    width: 300px;
     margin-left: 20px;
     .mat-card-header-text{
       margin: 0;
     }
   }
 
-  #get-score-button {
+  button#get-score-button {
     background-color: #177785;
-    color: #fff;
+    color: #ffffff;
+  }
+
+  button#get-score-button:disabled,
+  button#get-score-button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
   }
 
   .mat-card {
     padding: 0;
     margin-bottom: 20px;
-    max-width: 400px;
+    width: 300px;
     margin-left: 20px;
     .mat-card-header-text{
       margin: 0;

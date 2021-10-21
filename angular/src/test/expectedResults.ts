@@ -4,46 +4,150 @@ export const expectedText = {
   player1ScoreLabel: 'Player 1 Score',
   player2ScoreLabel: 'Player 2 Score',
   getScoreLabel: 'Get Score',
-  overallScoreLabel: 'Overall Score'
+  overallScoreLabel: 'Overall Score',
+  scoringError: 'Failed to get score',
+  errorMessage: 'Something has gone wrong, please try again'
 };
 
-export const expectedTennisScores = [
-    [0, 0, 'Love-All'],
-    [1, 1, 'Fifteen-All'],
-    [2, 2, 'Thirty-All'],
-    [3, 3, 'Deuce'],
-    [4, 4, 'Deuce'],
+const loveAll = 'Love-All';
+const fifteenAll = 'Fifteen-All';
+const thirtyAll = 'Thirty-All';
+const deuce = 'Deuce';
+const fifteenLove = 'Fifteen-Love';
+const loveFifteen = 'Love-Fifteen';
+const thirtyLove = 'Thirty-Love';
+const loveThirty = 'Love-Thirty';
+const fortyLove = 'Forty-Love';
+const loveForty = 'Love-Forty';
+const winForPlayer1 = 'Win for player1';
+const winForPlayer2 = 'Win for player2';
+const thirtyFifteen = 'Thirty-Fifteen';
+const fifteenThirty = 'Fifteen-Thirty';
+const fortyFifteen = 'Forty-Fifteen';
+const fifteenForty = 'Fifteen-Forty';
+const fortyThirty = 'Forty-Thirty';
+const thirtyForty = 'Thirty-Forty';
+const advantagePlayer1 = 'Advantage player1';
+const advantagePlayer2 = 'Advantage player2';
+const invalidScore = 'Invalid Score';
 
-    [1, 0, 'Fifteen-Love'],
-    [0, 1, 'Love-Fifteen'],
-    [2, 0, 'Thirty-Love'],
-    [0, 2, 'Love-Thirty'],
-    [3, 0, 'Forty-Love'],
-    [0, 3, 'Love-Forty'],
-    [4, 0, 'Win for player1'],
-    [0, 4, 'Win for player2'],
+export const threeSecondsOfWaitingBeforeGivingInputValidationFeedback = 3000;
+export const scoreErrorMessage = 'Please enter an integer score between 1 and 100';
 
-    [2, 1, 'Thirty-Fifteen'],
-    [1, 2, 'Fifteen-Thirty'],
-    [3, 1, 'Forty-Fifteen'],
-    [1, 3, 'Fifteen-Forty'],
-    [4, 1, 'Win for player1'],
-    [1, 4, 'Win for player2'],
+export interface ExpectedError {
+  playerNumber: number;
+  expectedErrorMessage: string;
+}
 
-    [3, 2, 'Forty-Thirty'],
-    [2, 3, 'Thirty-Forty'],
-    [4, 2, 'Win for player1'],
-    [2, 4, 'Win for player2'],
+export interface ExceptedTennisScore {
+  player1Score: number | string;
+  player2Score: number | string;
+  expectedScore: string;
+  expectedErrors?: ExpectedError[];
+}
 
-    [4, 3, 'Advantage player1'],
-    [3, 4, 'Advantage player2'],
-    [5, 4, 'Advantage player1'],
-    [4, 5, 'Advantage player2'],
-    [15, 14, 'Advantage player1'],
-    [14, 15, 'Advantage player2'],
-
-    [6, 4, 'Win for player1'],
-    [4, 6, 'Win for player2'],
-    [16, 14, 'Win for player1'],
-    [14, 16, 'Win for player2']
+const tiedScores: ExceptedTennisScore[] = [
+  { player1Score: 0.0, player2Score: 0, expectedScore: loveAll },
+  { player1Score: 0, player2Score: 0, expectedScore: loveAll },
+  { player1Score: 1, player2Score: 1, expectedScore: fifteenAll },
+  { player1Score: 1, player2Score: 1.0, expectedScore: fifteenAll },
+  { player1Score: 2, player2Score: 2, expectedScore: thirtyAll },
 ];
+
+const leadingScores: ExceptedTennisScore[] = [
+  { player1Score: 1, player2Score: 0, expectedScore: fifteenLove },
+  { player1Score: 0, player2Score: 1, expectedScore: loveFifteen },
+  { player1Score: 2, player2Score: 0, expectedScore: thirtyLove },
+  { player1Score: 0, player2Score: 2, expectedScore: loveThirty },
+  { player1Score: 3, player2Score: 0, expectedScore: fortyLove },
+  { player1Score: 0, player2Score: 3, expectedScore: loveForty },
+  { player1Score: 2, player2Score: 1, expectedScore: thirtyFifteen },
+  { player1Score: 1, player2Score: 2, expectedScore: fifteenThirty },
+  { player1Score: 3, player2Score: 1, expectedScore: fortyFifteen },
+  { player1Score: 1, player2Score: 3, expectedScore: fifteenForty },
+  { player1Score: 3, player2Score: 2, expectedScore: fortyThirty },
+  { player1Score: 2, player2Score: 3, expectedScore: thirtyForty },
+];
+
+const deuceScores: ExceptedTennisScore[] = [
+  { player1Score: 3, player2Score: 3, expectedScore: deuce },
+  { player1Score: 4, player2Score: 4, expectedScore: deuce },
+  { player1Score: 50, player2Score: 50, expectedScore: deuce },
+  { player1Score: 4, player2Score: 3, expectedScore: advantagePlayer1 },
+  { player1Score: 3, player2Score: 4, expectedScore: advantagePlayer2 },
+  { player1Score: 5, player2Score: 4, expectedScore: advantagePlayer1 },
+  { player1Score: 4, player2Score: 5, expectedScore: advantagePlayer2 },
+  { player1Score: 15, player2Score: 14, expectedScore: advantagePlayer1 },
+  { player1Score: 14, player2Score: 15, expectedScore: advantagePlayer2 },
+];
+
+export const winningScores: ExceptedTennisScore[] = [
+  { player1Score: 4, player2Score: 0, expectedScore: winForPlayer1 },
+  { player1Score: 0, player2Score: 4, expectedScore: winForPlayer2 },
+  { player1Score: 4, player2Score: 1, expectedScore: winForPlayer1 },
+  { player1Score: 1, player2Score: 4, expectedScore: winForPlayer2 },
+  { player1Score: 4, player2Score: 2, expectedScore: winForPlayer1 },
+  { player1Score: 2, player2Score: 4, expectedScore: winForPlayer2 },
+  { player1Score: 6, player2Score: 4, expectedScore: winForPlayer1 },
+  { player1Score: 4, player2Score: 6, expectedScore: winForPlayer2 },
+  { player1Score: 16, player2Score: 14, expectedScore: winForPlayer1 },
+  { player1Score: 99, player2Score: 14, expectedScore: winForPlayer1 },
+  { player1Score: 100, player2Score: 14, expectedScore: winForPlayer1 },
+  { player1Score: 14, player2Score: 16, expectedScore: winForPlayer2 },
+  { player1Score: 14, player2Score: 99, expectedScore: winForPlayer2 },
+  { player1Score: 14, player2Score: 100, expectedScore: winForPlayer2 },
+];
+
+const expectedErrorsJustForPlayer1 = [ { playerNumber: 1, expectedErrorMessage: scoreErrorMessage } ];
+const expectedErrorsJustForPlayer2 = [ { playerNumber: 2, expectedErrorMessage: scoreErrorMessage } ];
+const expectedErrorsForBothPlayers = expectedErrorsJustForPlayer1.concat(expectedErrorsJustForPlayer2);
+
+const invalidNegativeScores: ExceptedTennisScore[] = [
+  { player1Score: -1, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: -99, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: -99, player2Score: -99, expectedScore: invalidScore, expectedErrors: expectedErrorsForBothPlayers },
+  { player1Score: 0, player2Score: -1, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: -99, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+];
+
+const invalidLargeScores: ExceptedTennisScore[] = [
+  { player1Score: 101, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 999, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 101, player2Score: 101, expectedScore: invalidScore, expectedErrors: expectedErrorsForBothPlayers },
+  { player1Score: 0, player2Score: 101, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: 999, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+];
+
+const invalidNonNumberScores: ExceptedTennisScore[] = [
+  { player1Score: '', player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 'not a number', player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: '!@#$%^&*()_', player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: '1x', player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: '1x', player2Score: '1x', expectedScore: invalidScore, expectedErrors: expectedErrorsForBothPlayers },
+  { player1Score: 0, player2Score: '', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: 'not a number', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: '!@#$%^&*()_', expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+];
+
+const invalidNonIntegerScores: ExceptedTennisScore[] = [
+  { player1Score: 1.6, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 0.6, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 1 / 4, player2Score: 0, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer1 },
+  { player1Score: 1 / 4, player2Score: 1 / 4, expectedScore: invalidScore, expectedErrors: expectedErrorsForBothPlayers },
+  { player1Score: 0, player2Score: 1.6, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: 0.6, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+  { player1Score: 0, player2Score: 1 / 4, expectedScore: invalidScore, expectedErrors: expectedErrorsJustForPlayer2 },
+];
+
+export const invalidScores: ExceptedTennisScore[] = []
+  .concat(invalidNegativeScores)
+  .concat(invalidLargeScores)
+  .concat(invalidNonIntegerScores)
+  .concat(invalidNonNumberScores);
+
+export const expectedTennisScores: ExceptedTennisScore[] = []
+  .concat(tiedScores)
+  .concat(leadingScores)
+  .concat(deuceScores)
+  .concat(winningScores)
+  .concat(invalidScores);

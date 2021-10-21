@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TennisGame} from '../TennisGame';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Zeus} from './zeus';
+import {DeBouncer} from '../debouncer.service';
 
 @Component({
   selector: 'app-tennis-game3',
@@ -14,35 +16,60 @@ export class TennisGame3Component implements OnInit, TennisGame {
   private p1N = 'player1';
   private p2N = 'player2';
   public tennisGameForm = new FormGroup({
-    player1Score: new FormControl(0),
-    player2Score: new FormControl(0)
+    player1Score:
+      new FormControl(0,
+        [
+          Validators.pattern('^[0-9]*$'),
+          Validators.min(0),
+          Validators.max(100), Validators.required]),
+    player2Score:
+      new FormControl(0,
+        [Validators.required,
+          Validators.min(0),
+          Validators.pattern('^[0-9]*$'),
+          Validators.max(100)]
+      )
   });
   public overallScore = '';
 
-  constructor() { }
+  constructor(
+    private zeus: Zeus,
+    private deBouncer: DeBouncer,
+  ) { }
 
   ngOnInit() {
+    this.
+      tennisGameForm.
+        get('player1Score')
+          .valueChanges.
+            pipe(
+              this.deBouncer.debounceTime(3000)
+            ).subscribe(
+              () => this.tennisGameForm.get('player1Score').markAsTouched()
+            );
+    this.tennisGameForm.get('player2Score').valueChanges.pipe(
+      this.deBouncer.debounceTime(3000)
+    ).subscribe(() =>
+      this.tennisGameForm.get('player2Score').markAsTouched()
+    );
   }
 
-  wonPoint(playerName: string): void {
-    if (playerName === 'player1')
+  wonPoint(playerName: string) {
+    if (playerName === 'player1') {
       this.p1 += 1;
-    else
+    } else {
       this.p2 += 1;
+    }
   }
 
-  getScore(): string {
+  getScore() {
     let s: string;
-    if (this.p1 < 4 && this.p2 < 4 && !(this.p1 + this.p2 === 6)) {
-      const p: string[] = ['Love', 'Fifteen', 'Thirty', 'Forty'];
-      s = p[this.p1];
-      return (this.p1 === this.p2) ? s + '-All' : s + '-' + p[this.p2];
-    } else {
-      if (this.p1 === this.p2)
-        return 'Deuce';
-      s = this.p1 > this.p2 ? this.p1N : this.p2N;
-      return (((this.p1 - this.p2) * (this.p1 - this.p2)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
-    }
+    try {
+      if (!(this.p1 <= 100) || !Number.isInteger(this.p1) || !Number.isInteger(this.p2) || !!(this.p1 < 0) || this.p1 === null || !(this.p2 >= 0) || this.p2 === null || this.p2 > 100) {
+        return 'Invalid Score';
+      }
+      return this.zeus.getLightning2(s, this.p1, this.p2, this.p1N, this.p2N);
+    } catch (lightning) { console.log(lightning); return 'Something has gone wrong, please try again'; }
   }
 
   onSubmit() {
