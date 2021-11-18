@@ -8,7 +8,7 @@ If you like this Kata, you may be interested in [my books](https://leanpub.com/u
 
 ## Kata Description
 
-Here is a description of the problem this code is designed to solve: [Tennis Kata](https://sammancoaching.org/kata_descriptions/tennis.html). 
+Here is a description of the problem this code is designed to solve: [Tennis Kata](https://sammancoaching.org/kata_descriptions/tennis.html).
 
 ## Questions to discuss afterwards
 
@@ -18,4 +18,3 @@ Here is a description of the problem this code is designed to solve: [Tennis Kat
 * Did you ever make any refactoring mistakes and then back out your changes? How did it feel to throw away code?
 * What would you say to your colleague if they had written this code?
 * What would you say to your boss about the value of this refactoring work? Was there more reason to do it over and above the extra billable hour or so?
-
