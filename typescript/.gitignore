@@ -1,6 +1,9 @@
-.idea
-.vscode
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
 *.log
 build
 tests_build
-node_modules

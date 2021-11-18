@@ -1,15 +1,14 @@
-*.class
-*.pyc
-.idea/workspace.xml
-/cpp/run.tests
-/ocaml/_build
-/ocaml/*.native
-csharp/packages/
-csharp/Tennis/bin/
-csharp/Tennis/obj/
-csharp/*.suo
-*.swp
 .DS_Store
-csharp/.vs
-.vs
-.phpunit.result.cache
+*.swp
+
+# Eclipse files
+.project
+.settings/
+
+# IntelliJ files
+*.iml
+.idea/
+
+# VS
+.vs/
+.vscode/
