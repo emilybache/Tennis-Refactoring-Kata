@@ -1,0 +1,32 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./build/",
+    "noEmitOnError": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "forceConsistentCasingInFileNames": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "./node_modules/@types",
+    ],
+  },
+  "include": [
+    "./src/**.ts",
+    "./test/*.spec.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
