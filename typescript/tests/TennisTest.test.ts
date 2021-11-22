@@ -6,12 +6,8 @@ import { TennisGame, TennisGame1, TennisGame2, TennisGame3 } from '../src';
 function getAllScores(): Array<[number, number, string]> {
   const testCases = path.resolve(__dirname, 'scores.json');
   const scoreData = fs.readFileSync(testCases).toString();
-  try {
-    const scores = JSON.parse(scoreData);
-    return JSON.parse(JSON.stringify(scores));
-  } catch (err) {
-    throw new Error(`There was an error parsing the scores: "${err.message}"`);
-  }
+  const scores = JSON.parse(scoreData);
+  return JSON.parse(JSON.stringify(scores));
 }
 
 const scores: Array<[number, number, string]> = getAllScores();
