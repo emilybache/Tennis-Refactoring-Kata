@@ -1,3 +1,1 @@
-
-rootProject.name = "kotlin4"
-
+rootProject.name = "tennis-kata"
