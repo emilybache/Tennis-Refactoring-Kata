@@ -98,5 +98,4 @@ function getScore(P1point, P2point) {
     return score;
 }
 
-
 module.exports = getScore;
