@@ -1,6 +1,5 @@
 import { TennisGame } from './TennisGame';
 
-
 export class TennisGame2 implements TennisGame {
   P1point: number = 0;
   P2point: number = 0;
@@ -94,19 +93,15 @@ export class TennisGame2 implements TennisGame {
   }
 
   SetP1Score(score: number): void {
-
     for (let i = 0; i < score; i++) {
       this.P1Score();
     }
-
   }
 
   SetP2Score(score: number): void {
-
     for (let i = 0; i < score; i++) {
       this.P2Score();
     }
-
   }
 
   P1Score(): void {

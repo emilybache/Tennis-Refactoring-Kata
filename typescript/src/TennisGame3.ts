@@ -1,6 +1,5 @@
 import { TennisGame } from './TennisGame';
 
-
 export class TennisGame3 implements TennisGame {
   private p2: number = 0;
   private p1: number = 0;
@@ -31,6 +30,5 @@ export class TennisGame3 implements TennisGame {
       this.p1 += 1;
     else
       this.p2 += 1;
-
   }
 }

@@ -1,6 +1,5 @@
 import { TennisGame } from './TennisGame';
 
-
 export class TennisGame1 implements TennisGame {
   private m_score1: number = 0;
   private m_score2: number = 0;
