@@ -3,6 +3,17 @@
 
 #include "TennisGame2.h"
 
+struct TennisGame
+{
+    int P1point;
+    int P2point;
+    const char* player1Name;
+    const char* player2Name;
+    const char* P1res;
+    const char* P2res;
+    char score[18];
+};
+
 struct TennisGame* TennisGame_Create(const char* player1Name, const char* player2Name)
 {
     struct TennisGame* newGame = malloc(sizeof(struct TennisGame));
