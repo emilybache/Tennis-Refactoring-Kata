@@ -8,7 +8,7 @@ test_files := $(src_files:.cc=$(exec_extension))
 
 .PHONY: test
 test: ${test_files}
-	# for exe in ${test_files}; do $$exe || exit; done
+#	for exe in ${test_files}; do $$exe || exit; done
 	./tennis1
 	./tennis2
 	./tennis3
