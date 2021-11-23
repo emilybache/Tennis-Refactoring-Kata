@@ -1,6 +1,5 @@
 package tennis
 
-
 class TennisGame3 (val p1N : String, val p2N : String) extends TennisGame {
 
   var p2 : Int = 0

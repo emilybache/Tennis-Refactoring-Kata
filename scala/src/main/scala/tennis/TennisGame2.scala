@@ -1,7 +1,5 @@
 package tennis
 
-
-
 class TennisGame2 (val player1Name : String, val player2Name : String) extends TennisGame {
 
     var P1point = 0
@@ -97,21 +95,17 @@ class TennisGame2 (val player1Name : String, val player2Name : String) extends T
     }
 
     def SetP1Score(number : Int) {
-
         for (i <- 0 until number by 1)
         {
             P1Score()
         }
-
     }
 
-    def SetP2Score(number : Int){
-
+    def SetP2Score(number : Int) {
       for (i <- 0 until number by 1)
         {
             P2Score()
         }
-
     }
 
     def P1Score(){
