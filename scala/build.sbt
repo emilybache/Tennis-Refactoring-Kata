@@ -1,4 +1,4 @@
-name := "Tennis"
+name := "tennis-kata"
 
 version := "1.0"
 
