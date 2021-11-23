@@ -1,81 +1,47 @@
 cmake_minimum_required(VERSION 3.11)
-project(Tennis-Refactoring)
+project(Tennis-Kata)
 
-option(USE_GOOGLE_TEST "If to use google test" ON)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+include(FetchContent)
 
-if (USE_GOOGLE_TEST)
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    include(FetchContent)
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG        release-1.10.0
+)
 
-    FetchContent_Declare(
-            googletest
-            GIT_REPOSITORY https://github.com/google/googletest.git
-            GIT_TAG        release-1.10.0
-    )
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+    FetchContent_Populate(googletest)
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()
 
-    FetchContent_GetProperties(googletest)
-    if(NOT googletest_POPULATED)
-        FetchContent_Populate(googletest)
-        add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
-    endif()
+include(GoogleTest)
 
-    include(GoogleTest)
-
-    add_executable(tennis1_google_test
-            tennis1.cc
-            gtest_all.cpp)
-    target_link_libraries(tennis1_google_test gtest gmock gtest_main)
-    target_compile_features(tennis1_google_test PUBLIC cxx_std_11)
-    gtest_discover_tests(tennis1_google_test)
-
-    add_executable(tennis2_google_test
-            tennis2.cc
-            gtest_all.cpp)
-    target_link_libraries(tennis2_google_test gtest gmock gtest_main)
-    target_compile_features(tennis2_google_test PUBLIC cxx_std_11)
-    gtest_discover_tests(tennis2_google_test)
-
-    add_executable(tennis3_google_test
-            tennis3.cc
-            gtest_all.cpp)
-    target_link_libraries(tennis3_google_test gtest gmock gtest_main)
-    target_compile_features(tennis3_google_test PUBLIC cxx_std_11)
-    gtest_discover_tests(tennis3_google_test)
-
-    add_executable(tennis4_google_test
-            tennis4.cc
-            gtest_all.cpp)
-    target_link_libraries(tennis4_google_test gtest gmock gtest_main)
-    target_compile_features(tennis4_google_test PUBLIC cxx_std_11)
-    gtest_discover_tests(tennis4_google_test)
-
-
-else()
-
-    add_definitions(-DUSE_CMAKE)
-    include_directories(${CMAKE_SOURCE_DIR})
-
-    enable_testing()
-    set(trivial_test_sources all_tests.cpp all_tests.hpp test_suite.tests.cpp)
-
-    add_executable(tennis1_tests
+add_executable(tennis1_google_test
         tennis1.cc
-        ${trivial_test_sources})
-    add_test(NAME tennis1_tests COMMAND tennis1_tests)
+        gtest_all.cpp)
+target_link_libraries(tennis1_google_test gtest gmock gtest_main)
+target_compile_features(tennis1_google_test PUBLIC cxx_std_11)
+gtest_discover_tests(tennis1_google_test)
 
-    add_executable(tennis2_tests
+add_executable(tennis2_google_test
         tennis2.cc
-        ${trivial_test_sources})
-    add_test(NAME tennis2_tests COMMAND tennis2_tests)
+        gtest_all.cpp)
+target_link_libraries(tennis2_google_test gtest gmock gtest_main)
+target_compile_features(tennis2_google_test PUBLIC cxx_std_11)
+gtest_discover_tests(tennis2_google_test)
 
-    add_executable(tennis3_tests
+add_executable(tennis3_google_test
         tennis3.cc
-        ${trivial_test_sources})
-    add_test(NAME tennis3_tests COMMAND tennis3_tests)
+        gtest_all.cpp)
+target_link_libraries(tennis3_google_test gtest gmock gtest_main)
+target_compile_features(tennis3_google_test PUBLIC cxx_std_11)
+gtest_discover_tests(tennis3_google_test)
 
-    add_executable(tennis4_tests
+add_executable(tennis4_google_test
         tennis4.cc
-        ${trivial_test_sources})
-    add_test(NAME tennis4_tests COMMAND tennis4_tests)
-
-endif ()
+        gtest_all.cpp)
+target_link_libraries(tennis4_google_test gtest gmock gtest_main)
+target_compile_features(tennis4_google_test PUBLIC cxx_std_11)
+gtest_discover_tests(tennis4_google_test)
