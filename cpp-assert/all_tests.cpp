@@ -1,21 +1,6 @@
 #include "all_tests.hpp"
-
-
-
-#ifndef USE_CMAKE
-/*
-*
-* change this to the version of tennis you want to work on 
-*
-* NOTE: If you are using CMake rather than makefile, you
-*       don't have to touch this.
-* 
-*/
-#include "tennis1.cc"
-#else
 #include <string>
 const std::string tennis_score(int p1Score, int p2Score);
-#endif
 
 #include <cassert>
 

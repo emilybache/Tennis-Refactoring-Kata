@@ -1,0 +1,9 @@
+build
+cmake-build-debug
+
+.idea
+*.iml
+.vscode
+
+tennis*
+tennis*.exe
