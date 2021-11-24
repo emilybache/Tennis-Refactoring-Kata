@@ -53,7 +53,6 @@ def create_testcase_dicts():
 
 testcase_dicts = create_testcase_dicts()
 
-# This is not currently being used
 gtest_template = """\
 TEST(TennisTest, %(testcase_name)s) {
   EXPECT_EQ("%(score)s", tennis_score(%(p1Points)s, %(p2Points)s));
@@ -66,14 +65,18 @@ void test_%(testcase_name)s()
     assert("%(score)s" == tennis_score(%(p1Points)s, %(p2Points)s));
 }
 """
-# test cases for all_tests.cpp
+print(">>> test cases for gtest_all.cpp (folder ../cpp)")
 for test in testcase_dicts:
     print(gtest_template % test)
 
-# test_suite.tests.cpp
+print(">>> test cases for all_tests.cpp")
+for test in testcase_dicts:
+    print(template % test)
+
+print(">>> test_suite.tests.cpp")
 for test in testcase_dicts:
     print("    test_%(testcase_name)s," % test)
 
-# all_tests.hpp
+print(">>> all_tests.hpp")
 for test in testcase_dicts:
     print("void test_%(testcase_name)s();" % test)
