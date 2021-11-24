@@ -21,3 +21,13 @@ Visual Studio should start with the projects in it.
 You will have three different project, each one for a
 specific version of initial source code (1, 2 and 3).
 Tests are already complete, code is ready to refactor!
+
+## Using CMake and Mingw, under Windows
+
+```
+mkdir build
+cd build
+cmake .. -G "MSYS Makefiles"
+cmake --build .
+ctest
+```
