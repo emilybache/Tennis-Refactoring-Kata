@@ -300,3 +300,5 @@ __pycache__/
 
 Tennis/bin/
 Tennis/obj/
+Tennis.Tests/bin/
+Tennis.Tests/obj/

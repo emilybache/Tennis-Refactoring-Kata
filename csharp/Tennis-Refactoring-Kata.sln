@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis", "Tennis\Tennis.csproj", "{4257EA3A-E7D8-45A9-B865-B632AAC1F9EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tennis.Tests", "Tennis.Tests\Tennis.Tests.csproj", "{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{4257EA3A-E7D8-45A9-B865-B632AAC1F9EB}.Release|x64.Build.0 = Release|Any CPU
 		{4257EA3A-E7D8-45A9-B865-B632AAC1F9EB}.Release|x86.ActiveCfg = Release|Any CPU
 		{4257EA3A-E7D8-45A9-B865-B632AAC1F9EB}.Release|x86.Build.0 = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|x64.Build.0 = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Debug|x86.Build.0 = Debug|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|x64.ActiveCfg = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|x64.Build.0 = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|x86.ActiveCfg = Release|Any CPU
+		{173B2D39-AEB3-4B75-B0B6-D4B09997F65C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

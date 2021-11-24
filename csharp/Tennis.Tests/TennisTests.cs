@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Tennis
+namespace Tennis.Tests
 {
     public class TestDataGenerator : IEnumerable<object[]>
     {
