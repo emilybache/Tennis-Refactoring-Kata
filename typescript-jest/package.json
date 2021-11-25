@@ -1,0 +1,17 @@
+{
+  "name": "tennis-kata",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.0",
+    "@types/node": "^10.0.0",
+    "jest": "^27.0.0",
+    "ts-jest": "^27.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}

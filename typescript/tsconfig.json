@@ -1,15 +1,21 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
+    "lib": [
+      "esnext"
+    ],
     "module": "commonjs",
-    "declaration": false,
     "sourceMap": true,
     "outDir": "build",
-    "rootDir": ".",
-    "importHelpers": true,
-    "newLine": "LF",
-    "pretty": true,
-    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "forceConsistentCasingInFileNames": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -19,10 +25,11 @@
     ]
   },
   "include": [
-    "tests",
-    "src"
+    "./test/*.ts",
+    "./src/**.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "build"
   ]
 }

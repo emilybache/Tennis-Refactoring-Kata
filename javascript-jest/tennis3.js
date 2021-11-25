@@ -17,6 +17,4 @@ function getScore(p1, p2) {
     }
 }
 
-
 module.exports = getScore;
-

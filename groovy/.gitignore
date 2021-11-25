@@ -1,6 +1,3 @@
-*.class
-target/
-
 # Eclipse files
 .classpath
 .project

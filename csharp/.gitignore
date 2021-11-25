@@ -297,3 +297,8 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+Tennis/bin/
+Tennis/obj/
+Tennis.Tests/bin/
+Tennis.Tests/obj/

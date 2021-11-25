@@ -1,0 +1,10 @@
+build
+cmake-build-debug
+
+.idea
+*.iml
+.vscode
+
+.project
+.cproject
+.settings
