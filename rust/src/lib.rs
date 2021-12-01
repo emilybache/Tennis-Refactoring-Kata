@@ -1,4 +1,3 @@
-
 pub trait TennisGame {
     fn clear(&mut self);
     fn won_point(&mut self, player_name: &str);
@@ -68,49 +67,6 @@ impl TennisGame for TennisGame1 {
                 }
                 return score;
             }
-        }
-    }
-}
-
-#[derive(Default)]
-pub struct TennisGame2 {
-    score1: i8,
-    score2: i8,
-    _player1_name: String,
-    _player2_name: String,
-}
-
-impl TennisGame2 {
-    pub fn new() -> Self {
-        TennisGame2::default()
-    }
-}
-
-impl TennisGame for TennisGame2 {
-    fn clear(&mut self) {
-        self.score1 = 0;
-        self.score2 = 0;
-    }
-    fn won_point(&mut self, player_name: &str) {
-        if player_name == "player1" {
-            self.score1 += 1;
-        } else {
-            self.score2 += 1;
-        }
-    }
-    fn get_score(&self) -> String {
-        let scoring = vec!["Love", "Fifteen", "Thirty", "Forty"];
-        match (self.score1, self.score2) {
-            (a, b) if a == b && a == 0 => "Love-All".to_owned(),
-            (a, b) if a == b && a == 1 => "Fifteen-All".to_owned(),
-            (a, b) if a == b && a == 2 => "Thirty-All".to_owned(),
-            (a, b) if a == b => "Deuce".to_owned(),
-            (a, b) if (a >= 4 || b >= 4) && (a  - b == 1) => "Advantage player1".to_owned(),
-            (a, b) if (a >= 4 || b >= 4) && (b  - a  == 1) => "Advantage player2".to_owned(),
-            (a, b) if (a >= 4 || b >= 4) && (a  - b  >= 2) => "Win for player1".to_owned(),
-            (a, b) if (a >= 4 || b >= 4) && (b  - a  >= 2) => "Win for player2".to_owned(),
-            (a,b) => format!("{}-{}", scoring[a as usize],scoring[b as usize])
-           
         }
     }
 }

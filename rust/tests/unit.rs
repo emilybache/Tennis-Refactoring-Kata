@@ -1,5 +1,5 @@
 mod tests {
-    use rust::{TennisGame, TennisGame1, TennisGame2};
+    use rust::{TennisGame, TennisGame1};
 
     fn all_scores() -> Vec<(u8, u8, &'static str)> {
         vec![
@@ -51,18 +51,13 @@ mod tests {
                     fixture.won_point("player2")
                 }
             }
-            assert_eq!(fixture.get_score(), expected_result, "{},{}", p1,p2);
+            assert_eq!(fixture.get_score(), expected_result, "{},{}", p1, p2);
         }
     }
 
     #[test]
     fn test_game1() {
         let mut game = TennisGame1::new();
-        run(&mut game);
-    }
-    #[test]
-    fn test_game2() {
-        let mut game = TennisGame2::new();
         run(&mut game);
     }
 }
