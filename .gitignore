@@ -12,3 +12,5 @@
 # VS
 .vs/
 .vscode/
+
+rust/target
