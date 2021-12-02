@@ -178,7 +178,7 @@ bool TennisGame4::isDeuce() const {
     return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
 }
 
-std::string tennis_score(int player1Score, int player2Score) {
+const std::string tennis_score(int player1Score, int player2Score) {
     int highestScore = player1Score >  player2Score ? player1Score : player2Score;
     TennisGame4 game("player1", "player2");
     for (int i = 0; i < highestScore; i++) {
