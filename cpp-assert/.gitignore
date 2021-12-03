@@ -5,5 +5,5 @@ cmake-build-debug
 *.iml
 .vscode
 
-tennis*
-tennis*.exe
+tennis?
+tennis?.exe
