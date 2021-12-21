@@ -1,85 +1,50 @@
+import java.lang.RuntimeException
+
 class TennisGame2(private val player1Name: String, private val player2Name: String) : TennisGame {
+
     var P1point: Int = 0
     var P2point: Int = 0
 
-    var P1res: String = ""
-    var P2res: String = ""
-
     override fun getScore(): String {
-        var score = ""
-        if (P1point == P2point && P1point < 4) {
-            if (P1point == 0)
-                score = "Love"
-            if (P1point == 1)
-                score = "Fifteen"
-            if (P1point == 2)
-                score = "Thirty"
-            score += "-All"
+        if (P1point.hasWon(P2point)) {
+            return "Win for player1"
         }
-        if (P1point == P2point && P1point >= 3)
-            score = "Deuce"
-
-        if (P1point > 0 && P2point == 0) {
-            if (P1point == 1)
-                P1res = "Fifteen"
-            if (P1point == 2)
-                P1res = "Thirty"
-            if (P1point == 3)
-                P1res = "Forty"
-
-            P2res = "Love"
-            score = "$P1res-$P2res"
-        }
-        if (P2point > 0 && P1point == 0) {
-            if (P2point == 1)
-                P2res = "Fifteen"
-            if (P2point == 2)
-                P2res = "Thirty"
-            if (P2point == 3)
-                P2res = "Forty"
-
-            P1res = "Love"
-            score = "$P1res-$P2res"
+        if (P2point.hasWon(P1point)) {
+            return "Win for player2"
         }
 
-        if (P1point > P2point && P1point < 4) {
-            if (P1point == 2)
-                P1res = "Thirty"
-            if (P1point == 3)
-                P1res = "Forty"
-            if (P2point == 1)
-                P2res = "Fifteen"
-            if (P2point == 2)
-                P2res = "Thirty"
-            score = "$P1res-$P2res"
-        }
-        if (P2point > P1point && P2point < 4) {
-            if (P2point == 2)
-                P2res = "Thirty"
-            if (P2point == 3)
-                P2res = "Forty"
-            if (P1point == 1)
-                P1res = "Fifteen"
-            if (P1point == 2)
-                P1res = "Thirty"
-            score = "$P1res-$P2res"
+        if (P1point.isDeuce(P2point))
+            return "Deuce"
+
+        if (P1point.hasAdvantage(P2point))
+            return "Advantage player1"
+
+        if (P2point.hasAdvantage(P1point))
+            return "Advantage player2"
+
+        if (P1point < 4 && P2point < 4) {
+            val score1 = P1point.getScoreAsString()
+            val score2 = P2point.getScoreAsString()
+            return if (score1 == score2)
+                "$score1-All"
+            else
+                "$score1-$score2"
         }
 
-        if (P1point > P2point && P2point >= 3) {
-            score = "Advantage player1"
-        }
+        throw RuntimeException("Invalid game result")
+    }
 
-        if (P2point > P1point && P1point >= 3) {
-            score = "Advantage player2"
-        }
+    private fun Int.hasAdvantage(p2point: Int) = this > p2point && p2point >= 3
+    private fun Int.isDeuce(p2point: Int) = this == p2point && this >= 3
 
-        if (P1point >= 4 && P2point >= 0 && P1point - P2point >= 2) {
-            score = "Win for player1"
-        }
-        if (P2point >= 4 && P1point >= 0 && P2point - P1point >= 2) {
-            score = "Win for player2"
-        }
-        return score
+    private fun Int.hasWon(competitor: Int) = this >= 4 && competitor >= 0 && this - competitor >= 2
+
+    private fun Int.getScoreAsString(): String? = when (this) {
+        0 -> "Love"
+        1 -> "Fifteen"
+        2 -> "Thirty"
+        3 -> "Forty"
+        else -> null
     }
 
     fun SetP1Score(number: Int) {
