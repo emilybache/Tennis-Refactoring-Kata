@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Wallaby" type="wallaby" factoryName="wallaby" singleton="false" configType="Automatic" configFolder="$PROJECT_DIR$" wsl="No">
-    <method v="2" />
-  </configuration>
-</component>

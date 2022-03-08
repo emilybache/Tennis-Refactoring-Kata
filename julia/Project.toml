@@ -1,7 +1,0 @@
-name = "Tenniskata"
-uuid = "e8ea7c87-1fb4-4e26-a338-fb47bba8a06d"
-authors = ["Gabrielle Gasse <ggasse@benevity.com>"]
-version = "1.0.0"
-
-[deps]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

@@ -1,7 +1,0 @@
-/.idea
-/.phpstorm.meta.php
-/vendor
-/.phpunit.result.cache
-/build/
-
-composer.lock

@@ -1,7 +1,0 @@
-build
-cmake-build-debug
-.idea
-.vscode
-*.iml
-
-run.tests
