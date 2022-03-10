@@ -52,7 +52,7 @@ export class TennisComponentTester {
 
   private setupDeBouncerMock() {
     this.deBouncer = this.fixture.debugElement.injector.get(DeBouncer);
-    this.deBouncer = smartSpyOn(this.deBouncer, this.deBouncer.debounceTime).and.callFake(dueTime => {
+    smartSpyOn(this.deBouncer, this.deBouncer.debounceTime).and.callFake(dueTime => {
       this.debounceDueTimesSent.push(dueTime);
       return debounceTime(0);
     });
