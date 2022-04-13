@@ -37,7 +37,7 @@ class TennisGame:
             points_list = ["Love", "Fifteen", "Thirty", "Forty"]
             point = points_list[self.player1.points]
             return (
-                points_list + "-All"
+                point + "-All"
                 if (self.player1.points == self.player2.points)
                 else points_list + "-" + point[self.player2.points]
             )
@@ -46,10 +46,10 @@ class TennisGame:
                 return "Deuce"
             points_list = self.player1.name if self.player1.points > self.player2.points else self.player2.name
             return (
-                "Advantage " + points_list
+                "Advantage " + point
                 if (
                     (self.player1.points - self.player2.points) * (self.player1.points - self.player2.points)
                     == 1
                 )
-                else "Win for " + points_list
+                else "Win for " + point
             )
