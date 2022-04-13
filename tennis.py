@@ -169,15 +169,15 @@ class TennisGame3:
 
     def score(self):
         if (self.p1 < 4 and self.p2 < 4) and (self.p1 + self.p2 < 6):
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            score = p[self.p1]
-            return score + "-All" if (self.p1 == self.p2) else score + "-" + p[self.p2]
+            points_list = ["Love", "Fifteen", "Thirty", "Forty"]
+            point = points_list[self.p1]
+            return point + "-All" if (self.p1 == self.p2) else point + "-" + points_list[self.p2]
         else:
             if self.p1 == self.p2:
                 return "Deuce"
-            s = self.p1N if self.p1 > self.p2 else self.p2N
+            player_name = self.p1N if self.p1 > self.p2 else self.p2N
             return (
-                "Advantage " + s
+                "Advantage " + player_name
                 if ((self.p1 - self.p2) * (self.p1 - self.p2) == 1)
-                else "Win for " + s
+                else "Win for " + player_name
             )
