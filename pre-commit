@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ! pipenv run python -m pytest *test.py; then
+    echo "Tests have failed."
+    exit 1
+elif ! pipenv run python -m flake8; then
+    # Unstaged changes have been found
+    echo "Code is not well formatted, reformatting..."
+    pipenv run python -m black *.py
+    exit 1
+fi
