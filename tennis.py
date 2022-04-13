@@ -4,6 +4,7 @@ class Player:
         self.name = name
         self.points = 0
 
+
 class TennisGame:
     def __init__(self, player1Name, player2Name):
         self.player1 = Player(player1Name)
@@ -43,7 +44,7 @@ class TennisGame:
         else:
             if self.p1points == self.p2points:
                 return "Deuce"
-            s = self.player1Name if self.p1points > self.p2points else self.player2Name
+            points_list = self.player1Name if self.p1points > self.p2points else self.player2Name
             return (
                 "Advantage " + points_list
                 if (
@@ -51,4 +52,3 @@ class TennisGame:
                     == 1
                 )
                 else "Win for " + points_list
-            )
