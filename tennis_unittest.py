@@ -2,7 +2,7 @@
 
 import unittest
 
-from tennis import TennisGame1
+from tennis import TennisGame
 
 test_cases = [
     (0, 0, "Love-All", "player1", "player2"),
