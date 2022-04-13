@@ -30,8 +30,8 @@ class TennisGame:
         if (self.p1points < 4 and self.p2points < 4) and (
             self.p1points + self.p2points < 6
         ):
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            s = p[self.p1points]
+            points_list = ["Love", "Fifteen", "Thirty", "Forty"]
+            point = points_list[self.p1points]
             return (
                 s + "-All"
                 if (self.p1points == self.p2points)
