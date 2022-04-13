@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class TennisGame:
-    
+
     def __init__(self, player1Name, player2Name):
         self.player1Name = player1Name
         self.player2Name = player2Name
@@ -34,19 +34,19 @@ class TennisGame:
             points_list = ["Love", "Fifteen", "Thirty", "Forty"]
             point = points_list[self.p1points]
             return (
-                s + "-All"
+                points_list + "-All"
                 if (self.p1points == self.p2points)
-                else s + "-" + p[self.p2points]
+                else points_list + "-" + point[self.p2points]
             )
         else:
             if self.p1points == self.p2points:
                 return "Deuce"
             s = self.player1Name if self.p1points > self.p2points else self.player2Name
             return (
-                "Advantage " + s
+                "Advantage " + points_list
                 if (
                     (self.p1points - self.p2points) * (self.p1points - self.p2points)
                     == 1
                 )
-                else "Win for " + s
+                else "Win for " + points_list
             )
