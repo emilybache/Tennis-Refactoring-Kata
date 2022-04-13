@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-class TennisGame:
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.points = 0
 
+class TennisGame:
     def __init__(self, player1Name, player2Name):
-        self.player1Name = player1Name
-        self.player2Name = player2Name
-        self.p1points = 0
-        self.p2points = 0
+        self.player1 = Player(player1Name)
+        self.player2 = Player(player2Name)
 
     def won_point(self, playerName):
-        if playerName == self.player1Name:
-            self.p1points += 1
+        if playerName == self.player1.name:
+            self.player1.points += 1
         else:
-            self.p2points += 1
+            self.player2.points += 1
 
     def SetP1Score(self, number):
         for i in range(number):
@@ -22,10 +24,10 @@ class TennisGame:
             self.P2Score()
 
     def P1Score(self):
-        self.p1points += 1
+        self.player1.points += 1
 
     def P2Score(self):
-        self.p2points += 1
+        self.player2.points += 1
 
     def score(self):
         if (self.p1points < 4 and self.p2points < 4) and (
