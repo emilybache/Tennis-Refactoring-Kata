@@ -31,24 +31,24 @@ class TennisGame:
         self.player2.points += 1
 
     def score(self):
-        if (self.p1points < 4 and self.p2points < 4) and (
-            self.p1points + self.p2points < 6
+        if (self.player1.points < 4 and self.player2.points < 4) and (
+            self.player1.points + self.player2.points < 6
         ):
             points_list = ["Love", "Fifteen", "Thirty", "Forty"]
-            point = points_list[self.p1points]
+            point = points_list[self.player1.points]
             return (
                 points_list + "-All"
-                if (self.p1points == self.p2points)
-                else points_list + "-" + point[self.p2points]
+                if (self.player1.points == self.player2.points)
+                else points_list + "-" + point[self.player2.points]
             )
         else:
-            if self.p1points == self.p2points:
+            if self.player1.points == self.player2.points:
                 return "Deuce"
-            points_list = self.player1Name if self.p1points > self.p2points else self.player2Name
+            points_list = self.player1.name if self.player1.points > self.player2.points else self.player2.name
             return (
                 "Advantage " + points_list
                 if (
-                    (self.p1points - self.p2points) * (self.p1points - self.p2points)
+                    (self.player1.points - self.player2.points) * (self.player1.points - self.player2.points)
                     == 1
                 )
                 else "Win for " + points_list
