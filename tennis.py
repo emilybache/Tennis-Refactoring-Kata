@@ -2,10 +2,12 @@
 
 from logging import raiseExceptions
 
+
 class Player:
     def __init__(self, name):
         self.name = name
         self.points = 0
+
 
 class TennisGame:
     def __init__(self, player1Name, player2Name):
@@ -48,5 +50,6 @@ class TennisGame:
                     * (self.player1.points - self.player2.points)
                     == 1
                 )
+                
                 else "Win for " + s
             )
