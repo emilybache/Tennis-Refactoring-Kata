@@ -72,11 +72,11 @@ class TennisGame2:
         result = ""
         if (self.p1points == self.p2points and self.p1points < 3):
             if (self.p1points == 0):
-                result = "Love"
+                result = pointToResult[self.p1points]
             if (self.p1points == 1):
-                result = "Fifteen"
+                result = pointToResult[self.p1points]
             if (self.p1points == 2):
-                result = "Thirty"
+                result = pointToResult[self.p1points]
             result += "-All"
         if (self.p1points == self.p2points and self.p1points > 2):
             result = "Deuce"
