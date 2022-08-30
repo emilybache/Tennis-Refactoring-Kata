@@ -91,9 +91,7 @@ class TennisGame2:
         if (self.p2points > self.p1points and self.p1points >= 3):
             result = "Advantage " + self.player2Name
 
-        if (maxPoints >= 4 and self.p1points > self.p2points and gap >= 2):
-            result = "Win for " + leader
-        if (maxPoints >= 4 and self.p2points > self.p1points and gap >= 2):
+        if (maxPoints >= 4 and (self.p1points > self.p2points or self.p2points > self.p1points) and gap >= 2):
             result = "Win for " + leader
         return result
 
