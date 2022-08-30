@@ -69,11 +69,13 @@ class TennisGame2:
             2: "Thirty",
             3: "Forty",
         }
+
+        equality = self.p1points == self.p2points
         minPoints = min(self.p1points, self.p2points)
         maxPoints = max(self.p1points, self.p2points)
-        equality = self.p1points == self.p2points
-        leader = self.player1Name if self.p1points > self.p2points else self.player2Name
         gap = maxPoints - minPoints
+        leader = self.player1Name if self.p1points > self.p2points else self.player2Name
+
         if equality:
             if self.p1points < 3:
                 return pointToResult[self.p1points] + "-All"
