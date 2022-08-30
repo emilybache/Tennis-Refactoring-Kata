@@ -75,8 +75,6 @@ class TennisGame2:
         if (self.p1points == self.p2points and self.p1points > 2):
             result = "Deuce"
 
-        P1res = ""
-        P2res = ""
         if (self.p1points != self.p2points and min(self.p1points, self.p2points) == 0):
             P1res = pointToResult.get(self.p1points, '')
             P2res = pointToResult.get(self.p2points, '')
