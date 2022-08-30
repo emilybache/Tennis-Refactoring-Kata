@@ -85,8 +85,8 @@ class TennisGame2:
             result = "Deuce"
 
         if (not equality and maxPoints < 4):
-            P1res = pointToResult.get(self.p1points, '')
-            P2res = pointToResult.get(self.p2points, '')
+            P1res = pointToResult[self.p1points]
+            P2res = pointToResult[self.p2points]
             result = P1res + "-" + P2res
 
         return result
