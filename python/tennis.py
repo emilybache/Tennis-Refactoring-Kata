@@ -88,10 +88,10 @@ class TennisGame2:
             result = P1res + "-" + P2res
 
         if (self.p1points > self.p2points and self.p2points >= 3):
-            result = "Advantage " + self.player1Name
+            result = "Advantage " + leader
 
         if (self.p2points > self.p1points and self.p1points >= 3):
-            result = "Advantage " + self.player2Name
+            result = "Advantage " + leader
 
         return result
 
