@@ -88,13 +88,9 @@ class TennisGame2:
             P1res = "Love"
             result = P1res + "-" + P2res
 
-        if (self.p1points > self.p2points and self.p1points < 4):
+        if (self.p1points > self.p2points and self.p1points < 4 or self.p2points > self.p1points and self.p2points < 4):
             P1res = pointToResult.get(self.p1points, '')
             P2res = pointToResult.get(self.p2points, '')
-            result = P1res + "-" + P2res
-        if (self.p2points > self.p1points and self.p2points < 4):
-            P2res = pointToResult.get(self.p2points, '')
-            P1res = pointToResult.get(self.p1points, '')
             result = P1res + "-" + P2res
 
         if (self.p1points > self.p2points and self.p2points >= 3):
