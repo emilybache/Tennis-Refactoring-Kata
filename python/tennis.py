@@ -75,12 +75,13 @@ class TennisGame2:
         equality = self.p1points == self.p2points
         leader = self.player1Name if self.p1points > self.p2points else self.player2Name
         gap = maxPoints - minPoints
-        if (not equality and maxPoints >= 4 and gap >= 2):
-            return "Win for " + leader
-        if (not equality and maxPoints >= 4):
-            return "Advantage " + leader
-        if (not equality and maxPoints < 4):
-            return pointToResult[self.p1points] + "-" + pointToResult[self.p2points]
+        if not equality:
+            if maxPoints >= 4 and gap >= 2:
+                return "Win for " + leader
+            if maxPoints >= 4:
+                return "Advantage " + leader
+            if maxPoints < 4:
+                return pointToResult[self.p1points] + "-" + pointToResult[self.p2points]
         if (equality and self.p1points < 3):
             result = pointToResult[self.p1points] + "-All"
         if (equality and self.p1points > 2):
