@@ -73,6 +73,7 @@ class TennisGame2:
         minPoints = min(self.p1points, self.p2points)
         maxPoints = max(self.p1points, self.p2points)
         equality = self.p1points == self.p2points
+        leader = self.player1Name if self.p1points > self.p2points else self.player2Name
         if (equality and self.p1points < 3):
             result = pointToResult[self.p1points] + "-All"
         if (equality and self.p1points > 2):
@@ -90,9 +91,9 @@ class TennisGame2:
             result = "Advantage " + self.player2Name
 
         if (self.p1points >= 4 and (self.p1points-self.p2points) >= 2):
-            result = "Win for " + self.player1Name
+            result = "Win for " + leader
         if (self.p2points >= 4 and (self.p2points-self.p1points) >= 2):
-            result = "Win for " + self.player2Name
+            result = "Win for " + leader
         return result
 
     def SetP1Score(self, number):
