@@ -167,8 +167,9 @@ class TennisGame3:
         if (self.p1 >= 4 or self.p2 >= 4):
             if (self.p1 == self.p2):
                 return "Deuce"
-            s = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+            else:
+                s = self.p1N if self.p1 > self.p2 else self.p2N
+                return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
 
         if self.p1 == self.p2 == 3:
             return "Deuce"
