@@ -163,10 +163,10 @@ class TennisGame3:
         if self.p1 == self.p2 >= 3:
             return "Deuce"
         if (self.p1 < 4 and self.p2 < 4):
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            s = p[self.p1]
-            return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
+            points = ["Love", "Fifteen", "Thirty", "Forty"]
+            score = points[self.p1]
+            return score + "-All" if (self.p1 == self.p2) else score + "-" + points[self.p2]
 
         if (self.p1 >= 4 or self.p2 >= 4):
-            s = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+            leader = self.p1N if self.p1 > self.p2 else self.p2N
+            return "Advantage " + leader if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + leader
