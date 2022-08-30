@@ -80,11 +80,12 @@ class TennisGame2:
             else:
                 return "Deuce"
         else:
-            if maxPoints >= 4 and gap >= 2:
-                return "Win for " + leader
             if maxPoints >= 4:
-                return "Advantage " + leader
-            if maxPoints < 4:
+                if gap >= 2:
+                    return "Win for " + leader
+                else:
+                    return "Advantage " + leader
+            else:
                 return pointToResult[self.p1points] + "-" + pointToResult[self.p2points]
 
     def SetP1Score(self, number):
