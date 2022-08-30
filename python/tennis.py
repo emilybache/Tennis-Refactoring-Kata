@@ -69,7 +69,6 @@ class TennisGame2:
             2: "Thirty",
             3: "Forty",
         }
-        result = ""
         minPoints = min(self.p1points, self.p2points)
         maxPoints = max(self.p1points, self.p2points)
         equality = self.p1points == self.p2points
@@ -82,12 +81,11 @@ class TennisGame2:
                 return "Advantage " + leader
             if maxPoints < 4:
                 return pointToResult[self.p1points] + "-" + pointToResult[self.p2points]
-        if (equality and self.p1points < 3):
-            result = pointToResult[self.p1points] + "-All"
-        if (equality and self.p1points > 2):
-            result = "Deuce"
-
-        return result
+        if equality:
+            if self.p1points < 3:
+                return pointToResult[self.p1points] + "-All"
+            else:
+                return "Deuce"
 
     def SetP1Score(self, number):
         for i in range(number):
