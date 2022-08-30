@@ -164,8 +164,12 @@ class TennisGame3:
             return "Deuce"
         if max(self.p1, self.p2) < 4:
             points = ["Love", "Fifteen", "Thirty", "Forty"]
-            score = points[self.p1]
-            return score + "-All" if (self.p1 == self.p2) else score + "-" + points[self.p2]
+            result = points[self.p1]
+            result += "-All" if (self.p1 == self.p2) else "-" + points[self.p2]
+            return result
         else:
             leader = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + leader if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + leader
+            result = "Advantage " if (
+                abs(self.p1-self.p2) == 1) else "Win for "
+            result += leader
+            return result
