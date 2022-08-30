@@ -87,7 +87,7 @@ class TennisGame2:
             P2res = pointToResult.get(self.p2points, '')
             result = P1res + "-" + P2res
 
-        if ((self.p1points > self.p2points or self.p2points > self.p1points) and self.p1points >= 3 and self.p2points >= 3):
+        if (not equality and minPoints >= 3):
             result = "Advantage " + leader
 
         return result
