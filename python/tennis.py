@@ -79,15 +79,12 @@ class TennisGame2:
             return "Win for " + leader
         if (not equality and maxPoints >= 4):
             return "Advantage " + leader
+        if (not equality and maxPoints < 4):
+            return pointToResult[self.p1points] + "-" + pointToResult[self.p2points]
         if (equality and self.p1points < 3):
             result = pointToResult[self.p1points] + "-All"
         if (equality and self.p1points > 2):
             result = "Deuce"
-
-        if (not equality and maxPoints < 4):
-            P1res = pointToResult[self.p1points]
-            P2res = pointToResult[self.p2points]
-            result = P1res + "-" + P2res
 
         return result
 
