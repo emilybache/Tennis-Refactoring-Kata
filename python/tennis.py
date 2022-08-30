@@ -160,9 +160,7 @@ class TennisGame3:
             self.p2 += 1
 
     def score(self):
-        if self.p1 == self.p2 >= 4:
-            return "Deuce"
-        if self.p1 == self.p2 == 3:
+        if self.p1 == self.p2 >= 3:
             return "Deuce"
         if (self.p1 < 4 and self.p2 < 4):
             p = ["Love", "Fifteen", "Thirty", "Forty"]
