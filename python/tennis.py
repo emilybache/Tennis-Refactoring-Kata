@@ -164,7 +164,7 @@ class TennisGame3:
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.p1]
             return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
-        if not ((self.p1 < 4 and self.p2 < 4) and (not self.p1 == self.p2 == 3)):
+        if (not (self.p1 < 4 and self.p2 < 4) or not (not self.p1 == self.p2 == 3)):
             if (self.p1 == self.p2):
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
