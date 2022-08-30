@@ -77,7 +77,7 @@ class TennisGame2:
         gap = maxPoints - minPoints
         if (not equality and maxPoints >= 4 and gap >= 2):
             return "Win for " + leader
-        if (not equality and minPoints >= 3):
+        if (not equality and maxPoints >= 4):
             return "Advantage " + leader
         if (equality and self.p1points < 3):
             result = pointToResult[self.p1points] + "-All"
