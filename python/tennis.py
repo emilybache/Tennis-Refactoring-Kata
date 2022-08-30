@@ -70,17 +70,19 @@ class TennisGame2:
             3: "Forty",
         }
         result = ""
+        minPoints = min(self.p1points, self.p2points)
+        maxPoints = max(self.p1points, self.p2points)
         if (self.p1points == self.p2points and self.p1points < 3):
             result = pointToResult[self.p1points] + "-All"
         if (self.p1points == self.p2points and self.p1points > 2):
             result = "Deuce"
 
-        if (self.p1points != self.p2points and min(self.p1points, self.p2points) == 0):
+        if (self.p1points != self.p2points and minPoints == 0):
             P1res = pointToResult.get(self.p1points, '')
             P2res = pointToResult.get(self.p2points, '')
             result = P1res + "-" + P2res
 
-        if (self.p2points != self.p1points and max(self.p1points, self.p2points) < 4):
+        if (self.p2points != self.p1points and maxPoints < 4):
             P1res = pointToResult.get(self.p1points, '')
             P2res = pointToResult.get(self.p2points, '')
             result = P1res + "-" + P2res
