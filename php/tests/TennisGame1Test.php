@@ -25,7 +25,9 @@ class TennisGame1Test extends TestMaster
      */
     public function testScores(int $score1, int $score2, string $expectedResult): void
     {
+        // act
         $this->seedScores($score1, $score2);
+        // assert
         $this->assertSame($expectedResult, $this->game->getScore());
     }
 }

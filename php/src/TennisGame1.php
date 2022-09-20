@@ -2,80 +2,64 @@
 
 namespace TennisGame;
 
+
 class TennisGame1 implements TennisGame
 {
-    private $m_score1 = 0;
-    private $m_score2 = 0;
-    private $player1Name = '';
-    private $player2Name = '';
+    /**
+     * @var Player
+     */
+    private $player1;
+
+    /**
+     * @var Player
+     */
+    private $player2;
 
     public function __construct($player1Name, $player2Name)
     {
-        $this->player1Name = $player1Name;
-        $this->player2Name = $player2Name;
+        $this->player1 = new Player($player1Name);
+        $this->player2 = new Player($player2Name);
     }
 
     public function wonPoint($playerName)
     {
         if ('player1' == $playerName) {
-            $this->m_score1++;
+            $this->player1->incrementScore();
         } else {
-            $this->m_score2++;
+            $this->player2->incrementScore();
         }
     }
 
-    public function getScore()
+    public function getScore(): string
     {
-        $score = "";
-        if ($this->m_score1 == $this->m_score2) {
-            switch ($this->m_score1) {
-                case 0:
-                    $score = "Love-All";
-                    break;
-                case 1:
-                    $score = "Fifteen-All";
-                    break;
-                case 2:
-                    $score = "Thirty-All";
-                    break;
-                default:
-                    $score = "Deuce";
-                    break;
+        $EnglishScore = [
+            0 => 'Love',
+            1 => 'Fifteen',// +15
+            2 => 'Thirty', // +15
+            3 => 'Forty',  // +10
+        ];
+        $maxScore = max($this->player1->getScore(), $this->player2->getScore());
+
+        if ($this->player1->getScore() == $this->player2->getScore()) {
+            $allString = '-All';
+            if ($this->player1->getScore() >= 3) {
+                return "Deuce";
             }
-        } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            $minusResult = $this->m_score1 - $this->m_score2;
-            if ($minusResult == 1) {
-                $score = "Advantage player1";
-            } elseif ($minusResult == -1) {
-                $score = "Advantage player2";
-            } elseif ($minusResult >= 2) {
-                $score = "Win for player1";
+            return $EnglishScore[$this->player1->getScore()] . $allString;
+        } elseif ($maxScore >= 4) {
+            if ($this->player1->getScore() > $this->player2->getScore()) {
+                $HasMaxScoreName = $this->player1->getName();
             } else {
-                $score = "Win for player2";
+                $HasMaxScoreName = $this->player2->getName();
             }
+            if (abs($this->player1->getScore() - $this->player2->getScore()) == 1) {
+                $score = "Advantage";
+            } else {
+                $score = "Win for";
+            }
+            $score .= ' ' . $HasMaxScoreName;
         } else {
-            for ($i = 1; $i < 3; $i++) {
-                if ($i == 1) {
-                    $tempScore = $this->m_score1;
-                } else {
-                    $score .= "-";
-                    $tempScore = $this->m_score2;
-                }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= "Love";
-                        break;
-                    case 1:
-                        $score .= "Fifteen";
-                        break;
-                    case 2:
-                        $score .= "Thirty";
-                        break;
-                    case 3:
-                        $score .= "Forty";
-                        break;
-                }
-            }
+            $score = $EnglishScore[$this->player1->getScore()] . "-" . $EnglishScore[$this->player2->getScore()];
         }
         return $score;
     }
