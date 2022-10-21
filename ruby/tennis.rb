@@ -9,50 +9,70 @@ class TennisGame1
   end
         
   def won_point(playerName)
-    if playerName == "player1"
-      @p1points += 1
-    else
-      @p2points += 1
-    end
+    playerName == 'player1' ? @p1points += 1 : @p2points += 1
   end
   
   def score
-    result = ""
-    tempScore=0
-    if (@p1points==@p2points)
-      result = {
-          0 => "Love-All",
-          1 => "Fifteen-All",
-          2 => "Thirty-All",
-      }.fetch(@p1points, "Deuce")
-    elsif (@p1points>=4 or @p2points>=4)
-      minusResult = @p1points-@p2points
-      if (minusResult==1)
-        result ="Advantage player1"
-      elsif (minusResult ==-1)
-        result ="Advantage player2"
-      elsif (minusResult>=2)
-        result = "Win for player1"
-      else
-        result ="Win for player2"
-      end
+    result = ''
+    tempScore = 0
+
+    return equal_score if @p1points == @p2points
+
+    minusResult = @p1points - @p2points
+    return minus_score(minusResult) if @p1points >= 4 || @p2points >= 4 
+     
+    other_score(result: result, tempScore: tempScore)
+  end
+
+  def base_hash
+    {
+      0 => 'Love',
+      1 => 'Fifteen',
+      2 => 'Thirty'
+    }
+  end
+
+  def equal_score
+    hash = base_hash
+
+    hash.each do |key, value|
+      hash[key] = value + '-All'
+    end
+
+    hash.fetch(@p1points, 'Deuce')
+  end
+
+  def minus_score(minusResult)
+    case minusResult
+    when 1
+      'Advantage player1'
+    when -1
+      'Advantage player2'
+    when (2..Float::INFINITY)
+      'Win for player1'
     else
-      (1...3).each do |i|
-        if (i==1)
-          tempScore = @p1points
-        else
-          result+="-"
-          tempScore = @p2points
-        end
-        result += {
-            0 => "Love",
-            1 => "Fifteen",
-            2 => "Thirty",
-            3 => "Forty",
-        }[tempScore]
+      'Win for player2'
+    end
+  end
+
+  def other_score(result: , tempScore: )
+    (1...3).each do |i|
+      if i == 1
+        tempScore = @p1points
+      else
+        result += '-'
+        tempScore = @p2points
       end
+      result += score_hash(tempScore)
     end
     result
+  end
+
+  def score_hash(tempScore)
+    bh = base_hash
+    bh[3] = 'Forty'
+
+    hash = bh[tempScore]
   end
 end
 
