@@ -85,109 +85,66 @@ class TennisGame2
   end
       
   def won_point(playerName)
-    if playerName == @player1Name
-      p1Score()
-    else
-      p2Score()
-    end
+    playerName == @player1Name ? p1Score() : p2Score()
   end
 
   def score
-    result = ""
-    if (@p1points == @p2points and @p1points < 3)
-      if (@p1points==0)
-        result = "Love"
-      end
-      if (@p1points==1)
-        result = "Fifteen"
-      end
-      if (@p1points==2)
-        result = "Thirty"
-      end
-      result += "-All"
+    result = ''
+
+    case 
+    when @p1points == @p2points # Equal
+      return equal_points
+    when @p1points > 0 && @p2points == 0 && @p1points <= 3 
+      return base_hash[@p1points] + '-Love'
+    when @p1points > @p2points # First greater
+      result = first_greater
+    when @p2points > @p1points # Second greater
+      result = second_greater
     end
-    if (@p1points==@p2points and @p1points>2)
-        result = "Deuce"
-    end
-    
-    p1res = ""
-    p2res = ""
-    if (@p1points > 0 and @p2points==0)
-      if (@p1points==1)
-        p1res = "Fifteen"
-      end
-      if (@p1points==2)
-        p1res = "Thirty"
-      end
-      if (@p1points==3)
-        p1res = "Forty"
-      end
-      p2res = "Love"
-      result = p1res + "-" + p2res
-    end
-    if (@p2points > 0 and @p1points==0)
-      if (@p2points==1)
-        p2res = "Fifteen"
-      end
-      if (@p2points==2)
-        p2res = "Thirty"
-      end
-      if (@p2points==3)
-        p2res = "Forty"
-      end
-      
-      p1res = "Love"
-      result = p1res + "-" + p2res
-    end
-    
-    if (@p1points>@p2points and @p1points < 4)
-      if (@p1points==2)
-        p1res="Thirty"
-      end
-      if (@p1points==3)
-        p1res="Forty"
-      end
-      if (@p2points==1)
-        p2res="Fifteen"
-      end
-      if (@p2points==2)
-        p2res="Thirty"
-      end
-      result = p1res + "-" + p2res
-    end
-    if (@p2points>@p1points and @p2points < 4)
-      if (@p2points==2)
-        p2res="Thirty"
-      end
-      if (@p2points==3)
-        p2res="Forty"
-      end
-      if (@p1points==1)
-        p1res="Fifteen"
-      end
-      if (@p1points==2)
-        p1res="Thirty"
-      end
-      result = p1res + "-" + p2res
-    end
-    if (@p1points > @p2points and @p2points >= 3)
-      result = "Advantage " + @player1Name
-    end
-    if (@p2points > @p1points and @p1points >= 3)
-      result = "Advantage " + @player2Name
-    end
-    if (@p1points>=4 and @p2points>=0 and (@p1points-@p2points)>=2)
-      result = "Win for " + @player1Name
-    end
-    if (@p2points>=4 and @p1points>=0 and (@p2points-@p1points)>=2)
-      result = "Win for " + @player2Name
-    end
+
+    win = any_win?
+    result = win unless win.nil?
+
     result
+  end
+
+  def equal_points
+    @p1points < 3 ? base_hash[@p1points] + '-All' : 'Deuce'
+  end
+
+  def first_greater
+    result = base_hash[@p1points] + '-' +  base_hash[@p2points] if @p1points < 4
+    result = 'Advantage ' + @player1Name if @p2points >= 3
+
+    result
+  end
+
+  def second_greater
+    result = base_hash[@p1points] + '-' +  base_hash[@p2points] if @p2points < 4
+    result = 'Advantage ' + @player2Name if @p1points >= 3
+
+    result
+  end
+
+  def any_win?
+    result = 'Win for ' + @player1Name if @p1points >= 4 && @p2points >= 0 && (@p1points-@p2points) >= 2
+    result = 'Win for ' + @player2Name if @p2points >= 4 && @p1points >= 0 && (@p2points-@p1points) >= 2
+
+    result
+  end
+
+  def base_hash
+    {
+      0 => 'Love',
+      1 => 'Fifteen',
+      2 => 'Thirty',
+      3 => 'Forty'
+    }
   end
 
   def setp1Score(number)
     (0..number).each do |i|
-        p1Score()
+      p1Score()
     end
   end
 
@@ -205,6 +162,7 @@ class TennisGame2
     @p2points +=1
   end
 end
+
 
 class TennisGame3
   def initialize(player1Name, player2Name)
