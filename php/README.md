@@ -7,13 +7,14 @@ See the [top level readme](../README.md) for general information about this exer
 
 The kata uses:
 
-- [PHP 7.2-7.4 or 8.0+](https://www.php.net/downloads.php)
+- [PHP 8.0+](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org)
 
 Recommended:
 - [Git](https://git-scm.com/downloads)
 
-Clone the repository
+See [GitHub cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to 
+create a local copy of this project on your computer.
 
 ```sh
 git clone git@github.com:emilybache/Tennis-Refactoring-Kata.git
@@ -35,7 +36,7 @@ composer install
 Run all the tests
 
 ```shell script
-composer test
+composer tests
 ```
 
 ## Dependencies
@@ -60,19 +61,19 @@ PHPUnit is pre-configured to run tests. PHPUnit can be run using a composer scri
  root of the PHP kata run:
 
 ```shell script
-composer test
+composer tests
 ```
 
 On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g. `alias pu="composer test"`), the same
  PHPUnit `composer test` can be run:
 
 ```shell script
-pu
+pu.bat
 ```
 
 ### Tests with Coverage Report
 
-To run all test and generate a html coverage report run:
+To run all test and generate a html coverage report run (requires [xdebug](https://xdebug.org/download)):
 
 ```shell script
 composer test-coverage
@@ -97,7 +98,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
  same `composer check-cs` can be run:
 
 ```shell script
-cc
+cc.bat
 ```
 
 ### Fix Code
@@ -112,7 +113,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
  `composer fix-cs` can be run:
 
 ```shell script
-fc
+fc.bat
 ```
 
 ## Static Analysis
@@ -127,7 +128,7 @@ On Windows a batch file has been created, similar to an alias on Linux/Mac (e.g.
  same `composer phpstan` can be run:
 
 ```shell script
-ps
+ps.bat
 ```
 
 **Happy coding**!
