@@ -9,10 +9,7 @@ use TennisGame\TennisGame;
 
 abstract class TestMaster extends TestCase
 {
-    /**
-     * @var TennisGame
-     */
-    protected $game = null;
+    protected TennisGame $game;
 
     /**
      * @return mixed[][]

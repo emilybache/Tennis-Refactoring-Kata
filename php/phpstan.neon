@@ -7,5 +7,5 @@ parameters:
         - src
         - tests
 
-    # The level 8 is the highest level
-    level: 8
+    # max is the highest level
+    level: max
