@@ -3,7 +3,7 @@
 
 #include "TennisGame2.h"
 
-struct TennisGame
+struct TennisGame2
 {
     int P1point;
     int P2point;
@@ -14,9 +14,9 @@ struct TennisGame
     char score[18];
 };
 
-struct TennisGame* TennisGame_Create(const char* player1Name, const char* player2Name)
+struct TennisGame2* TennisGame2_Create(const char* player1Name, const char* player2Name)
 {
-    struct TennisGame* newGame = malloc(sizeof(struct TennisGame));
+    struct TennisGame2* newGame = malloc(sizeof(struct TennisGame2));
     newGame->P1point = 0;
     newGame->P2point = 0;
     newGame->P1res = "";
@@ -26,7 +26,7 @@ struct TennisGame* TennisGame_Create(const char* player1Name, const char* player
     return newGame;
 }
 
-const char* TennisGame_GetScore(struct TennisGame* game)
+const char* TennisGame2_GetScore(struct TennisGame2* game)
 {
     game->score[0] = '\0';
     if (game->P1point == game->P2point && game->P1point < 4)
@@ -113,7 +113,7 @@ const char* TennisGame_GetScore(struct TennisGame* game)
     return game->score;
 }
 
-void TennisGame_SetP1Score(struct TennisGame* game, int number)
+void TennisGame_SetP1Score(struct TennisGame2* game, int number)
 {
     for (int i = 0; i < number; i++)
     {
@@ -121,7 +121,7 @@ void TennisGame_SetP1Score(struct TennisGame* game, int number)
     }
 }
 
-void TennisGame_SetP2Score(struct TennisGame* game, int number)
+void TennisGame_SetP2Score(struct TennisGame2* game, int number)
 {
     for (int i = 0; i < number; i++)
     {
@@ -129,19 +129,19 @@ void TennisGame_SetP2Score(struct TennisGame* game, int number)
     }
 }
 
-void TennisGame_P1Score(struct TennisGame* game)
+void TennisGame_P1Score(struct TennisGame2* game)
 {
     game->P1point++;
 }
 
-void TennisGame_P2Score(struct TennisGame* game)
+void TennisGame_P2Score(struct TennisGame2* game)
 {
     game->P2point++;
 }
 
-void TennisGame_WonPoint(struct TennisGame* game, const char* player)
+void TennisGame2_WonPoint(struct TennisGame2* game, const char* playerName)
 {
-    if (strcmp(player, "player1") == 0)
+    if (strcmp(playerName, "player1") == 0)
         TennisGame_P1Score(game);
     else
         TennisGame_P2Score(game);

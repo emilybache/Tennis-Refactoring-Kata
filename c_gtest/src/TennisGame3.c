@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "TennisGame.h"
+#include "TennisGame3.h"
 
-struct TennisGame
+struct TennisGame3
 {
     int p2;
     int p1;
@@ -12,9 +12,9 @@ struct TennisGame
     char s[18];
 };
 
-struct TennisGame* TennisGame_Create(const char* p1N, const char* p2N)
+struct TennisGame3* TennisGame3_Create(const char* p1N, const char* p2N)
 {
-    struct TennisGame* newGame = malloc(sizeof(struct TennisGame));
+    struct TennisGame3* newGame = malloc(sizeof(struct TennisGame3));
     newGame->p2 = 0;
     newGame->p1 = 0;
     newGame->p1N = p1N;
@@ -22,27 +22,27 @@ struct TennisGame* TennisGame_Create(const char* p1N, const char* p2N)
     return newGame;
 }
 
-const char* TennisGame_GetScore(struct TennisGame* g)
+const char* TennisGame3_GetScore(struct TennisGame3* game)
 {
-    if (g->p1 < 4 && g->p2 < 4 && !(g->p1 + g->p2 == 6))
+    if (game->p1 < 4 && game->p2 < 4 && !(game->p1 + game->p2 == 6))
     {
         const char* p[4] = { "Love", "Fifteen", "Thirty", "Forty" };
-        strcpy(g->s, p[g->p1]);
-        return g->p1 == g->p2 ? strcat(g->s, "-All") : strcat(strcat(g->s, "-"), p[g->p2]);
+        strcpy(game->s, p[game->p1]);
+        return game->p1 == game->p2 ? strcat(game->s, "-All") : strcat(strcat(game->s, "-"), p[game->p2]);
     }
     else
     {
-        if (g->p1 == g->p2)
-            return strcpy(g->s, "Deuce");
-        strcpy(g->s, (g->p1 - g->p2) * (g->p1 - g->p2) == 1 ? "Advantage " : "Win for ");
-        return strcat(g->s, g->p1 > g->p2 ? g->p1N : g->p2N);
+        if (game->p1 == game->p2)
+            return strcpy(game->s, "Deuce");
+        strcpy(game->s, (game->p1 - game->p2) * (game->p1 - game->p2) == 1 ? "Advantage " : "Win for ");
+        return strcat(game->s, game->p1 > game->p2 ? game->p1N : game->p2N);
     }
 }
 
-void TennisGame_WonPoint(struct TennisGame* g, const char* pN)
+void TennisGame3_WonPoint(struct TennisGame3* game, const char* playerName)
 {
-    if (strcmp(pN, "player1") == 0)
-        g->p1 += 1;
+    if (strcmp(playerName, "player1") == 0)
+        game->p1 += 1;
     else
-        g->p2 += 1;
+        game->p2 += 1;
 }

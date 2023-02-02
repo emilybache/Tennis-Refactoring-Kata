@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "TennisGame.h"
+#include "TennisGame1.h"
 
-struct TennisGame
+struct TennisGame1
 {
     int m_score1;
     int m_score2;
@@ -12,9 +12,9 @@ struct TennisGame
     char score[18];
 };
 
-struct TennisGame* TennisGame_Create(const char* player1Name, const char* player2Name)
+struct TennisGame1* TennisGame1_Create(const char* player1Name, const char* player2Name)
 {
-    struct TennisGame* newGame = malloc(sizeof(struct TennisGame));
+    struct TennisGame1* newGame = malloc(sizeof(struct TennisGame1));
     newGame->m_score1 = 0;
     newGame->m_score2 = 0;
     newGame->player1Name = player1Name;
@@ -22,7 +22,7 @@ struct TennisGame* TennisGame_Create(const char* player1Name, const char* player
     return newGame;
 }
 
-void TennisGame_WonPoint(struct TennisGame* game, const char* playerName)
+void TennisGame1_WonPoint(struct TennisGame1* game, const char* playerName)
 {
     if (strcmp(playerName, "player1") == 0)
         game->m_score1 += 1;
@@ -30,7 +30,7 @@ void TennisGame_WonPoint(struct TennisGame* game, const char* playerName)
         game->m_score2 += 1;
 }
 
-const char* TennisGame_GetScore(struct TennisGame* game)
+const char* TennisGame1_GetScore(struct TennisGame1* game)
 {
     game->score[0] = '\0';
     int tempScore = 0;
