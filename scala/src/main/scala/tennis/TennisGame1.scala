@@ -5,7 +5,7 @@ class TennisGame1 (val player1Name : String, val player2Name : String) extends T
   var m_score2: Int = 0
 
   def wonPoint(playerName : String) {
-          if (playerName == "player1")
+          if (playerName == player1Name)
               m_score1 += 1
           else
               m_score2 += 1
@@ -27,10 +27,10 @@ class TennisGame1 (val player1Name : String, val player2Name : String) extends T
       else if (m_score1>=4 || m_score2>=4)
       {
           val minusResult = m_score1-m_score2
-          if (minusResult==1) score ="Advantage player1"
-          else if (minusResult == -1) score ="Advantage player2"
-          else if (minusResult>=2) score = "Win for player1"
-          else score ="Win for player2"
+          if (minusResult==1) score =s"Advantage $player1Name"
+          else if (minusResult == -1) score =s"Advantage $player2Name"
+          else if (minusResult>=2) score = s"Win for $player1Name"
+          else score =s"Win for $player2Name"
       }
       else
       {

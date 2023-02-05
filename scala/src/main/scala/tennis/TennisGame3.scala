@@ -22,7 +22,7 @@ class TennisGame3 (val p1N : String, val p2N : String) extends TennisGame {
   }
 
   def wonPoint(playerName : String) {
-    if (playerName == "player1")
+    if (playerName == p1N)
       this.p1 += 1
     else
       this.p2 += 1
