@@ -7,78 +7,58 @@ const std::string tennis_score(int p1Score, int p2Score) {
     if (p1Score == p2Score)
     {
         if(p1Score < 4)
-        {
-            if(p1Score>2)
-            {
-                score = "Deuce";
-            }    
-            else if (p1Score==0)
+        {   
+            if (p1Score==0)
                 score = "Love-All";
             else if (p1Score==1)
                 score = "Fifteen-All";
             else if (p1Score==2)
                 score = "Thirty-All";
         }
+        if(p1Score > 2)
+        {
+            score = "Deuce";
+        }    
     }
     
-    if (p1Score > 0 && p2Score==0)
+    else if (p1Score > 0 && p2Score==0)
     {
         if (p1Score==1)
-            P1res = "Fifteen";
+            score = "Fifteen-Love";
         if (p1Score==2)
-            P1res = "Thirty";
+            score = "Thirty-Love";
         if (p1Score==3)
-            P1res = "Forty";
-        
-        P2res = "Love";
-        score = P1res + "-" + P2res;
+            score = "Forty-Love";
     }
-    if (p2Score > 0 && p1Score==0)
+    else if (p2Score > 0 && p1Score==0)
     {
         if (p2Score==1)
-            P2res = "Fifteen";
+            score = "Love-Fifteen";
         if (p2Score==2)
-            P2res = "Thirty";
+            score = "Love-Thirty";
         if (p2Score==3)
-            P2res = "Forty";
-        
-        P1res = "Love";
-        score = P1res + "-" + P2res;
+            score = "Love-Forty";
     }
     
-    if (p1Score>p2Score && p1Score < 4)
+    if (p1Score > p2Score)
     {
-        if (p1Score==2)
-            P1res="Thirty";
-        if (p1Score==3)
-            P1res="Forty";
-        if (p2Score==1)
-            P2res="Fifteen";
-        if (p2Score==2)
-            P2res="Thirty";
-        score = P1res + "-" + P2res;
-    }
-    if (p2Score>p1Score && p2Score < 4)
-    {
-        if (p2Score==2)
-            P2res="Thirty";
-        if (p2Score==3)
-            P2res="Forty";
-        if (p1Score==1)
-            P1res="Fifteen";
-        if (p1Score==2)
-            P1res="Thirty";
-        score = P1res + "-" + P2res;
+        if(p2Score >= 3)
+            score = "Advantage player1";
+        else if(p1Score < 4)
+            P1res = (p1Score==2) ? "Thirty" : ((p1Score==3) ? "Forty" : "");
+            P2res = (p2Score==2) ? "Thirty" : ((p2Score==1) ? "Fifteen" : "");
+            score = P1res + "-" + P2res;
     }
     
-    if (p1Score > p2Score && p2Score >= 3)
+    else
     {
-        score = "Advantage player1";
-    }
-    
-    if (p2Score > p1Score && p1Score >= 3)
-    {
-        score = "Advantage player2";
+        if(p1Score >= 3)
+            score = "Advantage player2";
+        else if (p2Score < 4)
+            P2res = (p2Score==2) ? "Thirty" : ((p2Score==3) ? "Forty" : "");
+            P1res = (p1Score==2) ? "Thirty" : ((p1Score==1) ? "Fifteen" : "");
+            score = P1res + "-" + P2res;
+            
     }
     
     if (p1Score>=4 && p2Score>=0 && (p1Score-p2Score)>=2)
