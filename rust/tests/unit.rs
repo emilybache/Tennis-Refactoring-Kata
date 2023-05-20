@@ -1,6 +1,12 @@
-mod tests {
-    use rust::{TennisGame, TennisGame1};
+//У модулі tests використовую ключове слово super для імпортування символів з батьківського модуля
+//це дозволяє отримати доступ до структури TennisGame та TennisGame1 з основного модуля lib.rs
+// в функції run зробила зміну, оголосивши параметр fixture як &mut impl TennisGame 
+//тобто, fixture повинен бути типом, який реалізує трейт TennisGame.
+//це дає нам більшу гнучкість і загальну можливість тестувати різні реалізації TennisGame
 
+mod tests {
+    use super::TennisGame;
+    use super::TennisGame1;
     fn all_scores() -> Vec<(u8, u8, &'static str)> {
         vec![
             (0, 0, "Love-All"),
@@ -38,26 +44,26 @@ mod tests {
             (14, 16, "Win for player2"),
         ]
     }
-
+    
     fn run(fixture: &mut impl TennisGame) {
         for (p1, p2, expected_result) in all_scores() {
             fixture.clear();
             let highest_score = u8::max(p1, p2);
             for i in 0..highest_score {
                 if i < p1 {
-                    fixture.won_point("player1")
+                    fixture.won_point("player1");
                 }
                 if i < p2 {
-                    fixture.won_point("player2")
+                    fixture.won_point("player2");
                 }
             }
             assert_eq!(fixture.get_score(), expected_result, "{},{}", p1, p2);
         }
     }
-
+    
     #[test]
     fn test_game1() {
         let mut game = TennisGame1::new();
         run(&mut game);
     }
-}
+}    
