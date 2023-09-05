@@ -1,5 +1,5 @@
 mod tests {
-    use rust::{TennisGame, TennisGame1};
+    use rust::{TennisGame, TennisGame1, TennisGame2, TennisGame3};
 
     fn all_scores() -> Vec<(u8, u8, &'static str)> {
         vec![
@@ -58,6 +58,18 @@ mod tests {
     #[test]
     fn test_game1() {
         let mut game = TennisGame1::new();
+        run(&mut game);
+    }
+
+    #[test]
+    fn test_game2() {
+        let mut game = TennisGame2::new();
+        run(&mut game);
+    }
+
+    #[test]
+    fn test_game3() {
+        let mut game = TennisGame3::new();
         run(&mut game);
     }
 }
