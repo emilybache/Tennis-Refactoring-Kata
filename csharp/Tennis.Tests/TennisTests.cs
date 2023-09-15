@@ -76,6 +76,13 @@ namespace Tennis.Tests
         }
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
+        public void Tennis4Test(int p1, int p2, string expected)
+        {
+            var game = new TennisGame4("player1", "player2");
+            CheckAllScores(game, p1, p2, expected);
+        }
+        [Theory]
+        [ClassData(typeof(TestDataGenerator))]
         public void Tennis5Test(int p1, int p2, string expected)
         {
             var game = new TennisGame5("player1", "player2");
