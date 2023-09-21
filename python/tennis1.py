@@ -20,10 +20,10 @@ class TennisGame1:
 
     def score(self):
         """ Return what score would be announced by the referee """
-        if self.delta_score == 0:
+        if self.scores_delta == 0:
             return self._tie_round
         elif self.p1points >= 4 or self.p2points >= 4:
-            return self._final_round
+            return self._final_rounds
         return self._winning_round
 
     @property
@@ -35,13 +35,13 @@ class TennisGame1:
         return f"{self._scores[ self.p1points ]}-All" if self.p1points < 3 else "Deuce"
 
     @property
-    def _final_round(self):
-        if self.delta_score >= 2:
-            return "Win for player1"
-        elif self.delta_score > -2:
-            return "Advantage player1" if self.delta_score > 0 else "Advantage player2"
-        return "Win for player2"
+    def _final_rounds(self):
+        winning_player = 1 if self.scores_delta > 0 else 2
+        if abs(self.scores_delta) >= 2:
+            return f"Win for player{winning_player}"
+        return f"Advantage player{winning_player}"
 
     @property
-    def delta_score(self):
+    def scores_delta(self):
+        """ Return the delta of the players' score """
         return self.p1points - self.p2points
