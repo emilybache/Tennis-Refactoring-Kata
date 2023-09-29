@@ -29,3 +29,7 @@ add_test(TennisGame2Test TennisGame2Test)
 add_executable(TennisGame3Test TennisTest.c TennisGame.h TennisGame3.c)
 target_link_libraries(TennisGame3Test cmocka-static)
 add_test(TennisGame3Test TennisGame3Test)
+
+add_executable(TennisGame6Test TennisTest.c TennisGame.h TennisGame6.c)
+target_link_libraries(TennisGame6Test cmocka-static)
+add_test(TennisGame6Test TennisGame6Test)
