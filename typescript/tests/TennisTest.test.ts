@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { expect } from 'chai';
-import { TennisGame, TennisGame1, TennisGame2, TennisGame3 } from '../src';
+import {TennisGame, TennisGame1, TennisGame2, TennisGame3, TennisGame5, TennisGame6} from '../src';
 
 function getAllScores(): Array<[number, number, string]> {
   const testCases = path.resolve(__dirname, 'scores.json');
@@ -47,6 +47,22 @@ describe('TennisGame', function () {
     scores.forEach(([player1Score, player2Score, expectedScore]) => {
       it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
         checkScore(new TennisGame3('player1', 'player2'), player1Score, player2Score, expectedScore);
+      });
+    });
+  });
+
+  describe('TennisGame5', function () {
+    scores.forEach(([player1Score, player2Score, expectedScore]) => {
+      it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
+        checkScore(new TennisGame5('player1', 'player2'), player1Score, player2Score, expectedScore);
+      });
+    });
+  });
+
+  describe('TennisGame6', function () {
+    scores.forEach(([player1Score, player2Score, expectedScore]) => {
+      it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
+        checkScore(new TennisGame6('player1', 'player2'), player1Score, player2Score, expectedScore);
       });
     });
   });
