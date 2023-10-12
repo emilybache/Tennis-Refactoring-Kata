@@ -5,6 +5,8 @@ var getScore1 = require('./tennis1');
 var getScore2 = require('./tennis2');
 var getScore3 = require('./tennis3');
 var getScore4 = require('./tennis4');
+var getScore5 = require('./tennis5');
+var getScore6 = require('./tennis6');
 
 var allScores = [
   [0, 0, "Love-All"],
@@ -68,5 +70,17 @@ describe('getScore3', function() {
 describe('getScore4', function() {
   each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
     expect(getScore4(p1, p2)).toEqual(expected);
+  });
+});
+
+describe('getScore5', function() {
+  each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
+    expect(getScore5(p1, p2)).toEqual(expected);
+  });
+});
+
+describe('getScore6', function() {
+  each(allScores).it("when the points are %s:%s is %s", function(p1, p2, expected) {
+    expect(getScore6(p1, p2)).toEqual(expected);
   });
 });
