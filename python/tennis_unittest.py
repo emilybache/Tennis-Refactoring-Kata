@@ -6,6 +6,8 @@ from tennis1 import TennisGame1
 from tennis2 import TennisGame2
 from tennis3 import TennisGame3
 from tennis4 import TennisGame4
+from tennis5 import TennisGame5
+from tennis6 import TennisGame6
 
 
 test_cases = [
@@ -85,6 +87,18 @@ class TestTennis(unittest.TestCase):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
             game = play_game(TennisGame4, p1Points, p2Points, p1Name, p2Name)
+            self.assertEqual(score, game.score())
+
+    def test_Score_Game5(self):
+        for testcase in test_cases:
+            (p1Points, p2Points, score, p1Name, p2Name) = testcase
+            game = play_game(TennisGame5, p1Points, p2Points, p1Name, p2Name)
+            self.assertEqual(score, game.score())
+
+    def test_Score_Game6(self):
+        for testcase in test_cases:
+            (p1Points, p2Points, score, p1Name, p2Name) = testcase
+            game = play_game(TennisGame6, p1Points, p2Points, p1Name, p2Name)
             self.assertEqual(score, game.score())
 
 
