@@ -8,3 +8,7 @@ cmake-build-debug
 .project
 .cproject
 .settings
+CMakeCache.txt
+chat
+_deps
+CMakeFiles
