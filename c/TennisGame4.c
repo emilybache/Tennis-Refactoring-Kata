@@ -1,89 +1,122 @@
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <stdbool.h>
 
 #include "TennisGame.h"
 
-struct TennisGame {
-    int serverScore;
-    int receiverScore;
-    const char *server;
-    const char *receiver;
-    char result[18];
-};
+typedef struct TennisGame {
+  int serverScore;
+  int receiverScore;
+  char *server;
+  char *receiver;
+} TennisGame4;
 
-
-struct TennisGame *TennisGame_Create(const char *player1Name, const char *player2Name) {
-    struct TennisGame *newGame = malloc(sizeof(struct TennisGame));
-    newGame->serverScore = 0;
-    newGame->receiverScore = 0;
-    newGame->server = player1Name;
-    newGame->receiver = player2Name;
-    return newGame;
+TennisGame4 *TennisGame_Create(const char *player1, const char *player2) {
+  TennisGame4 *game = malloc(sizeof(TennisGame4));
+  game->serverScore = 0;
+  game->receiverScore = 0;
+  game->server = strdup(player1);
+  game->receiver = strdup(player2);
+  return game;
 }
 
-void TennisGame_WonPoint(struct TennisGame *game, const char *playerName) {
-    if (strcmp(playerName, "player1") == 0)
-        game->server += 1;
-    else
-        game->receiver += 1;
+void TennisGame_WonPoint(TennisGame4 *game, const char *playerName) {
+  if (strcmp(game->server, playerName) == 0)
+    game->serverScore += 1;
+  else
+    game->receiverScore += 1;
 }
 
+typedef struct TennisResult *(*getResultFunc)(void *self);
 
-bool receiverHasAdvantage(struct TennisGame *game) {
-    return game->receiverScore >= 4 && (game->receiverScore - game->serverScore) == 1;
+typedef struct TennisResult {
+  char *serverScore;
+  char *receiverScore;
+} TennisResult;
+
+char *format(TennisResult *result) {
+  if (result->receiverScore == NULL || strcmp(result->receiverScore, "") == 0)
+    return result->serverScore;
+
+  if (strcmp(result->serverScore, result->receiverScore) == 0) {
+    char *output = malloc(strlen(result->serverScore) + strlen("-All") + 1);
+    strcpy(output, result->serverScore);
+    strcat(output, "-All");
+    return output;
+  }
+
+  char *output = malloc(strlen(result->serverScore) +
+                        strlen(result->receiverScore) + strlen("-") + 1);
+  strcpy(output, result->serverScore);
+  strcat(output, "-");
+  strcat(output, result->receiverScore);
+  return output;
 }
 
-bool serverHasAdvantage(struct TennisGame *game) {
-    return game->serverScore >= 4 && (game->serverScore - game->receiverScore) == 1;
+typedef struct ResultProvider {
+  TennisGame4 *game;
+  getResultFunc getResult;
+  struct ResultProvider *nextResult;
+} ResultProvider;
+
+bool isDeuce(TennisGame4 *game) {
+  return game->serverScore >= 3 && game->receiverScore >= 3 &&
+         game->serverScore == game->receiverScore;
 }
 
-bool receiverHasWon(struct TennisGame *game) {
-    return game->receiverScore >= 4 && (game->receiverScore - game->serverScore) >= 2;
+TennisResult *getResultDeuce(void *self) {
+  ResultProvider *rp = (ResultProvider *)self;
+  if (isDeuce(rp->game)) {
+    TennisResult *result = malloc(sizeof(TennisResult));
+    result->serverScore = "Deuce";
+    result->receiverScore = "";
+    return result;
+  }
+  return rp->nextResult->getResult(rp->nextResult);
 }
 
-bool serverHasWon(struct TennisGame *game) {
-    return game->serverScore >= 4 && (game->serverScore - game->receiverScore) >= 2;
+ResultProvider *Deuce(TennisGame4 *game, ResultProvider *nextResult) {
+  ResultProvider *temp = malloc(sizeof(ResultProvider));
+  temp->game = game;
+  temp->getResult = getResultDeuce;
+  temp->nextResult = nextResult;
+  return temp;
 }
 
-bool isDeuce(struct TennisGame *game) {
-    return game->serverScore >= 3 && game->receiverScore >= 3 && (game->serverScore == game->receiverScore);
+bool serverHasWon(TennisGame4 *game) {
+  return game->serverScore >= 4 &&
+         (game->serverScore - game->receiverScore) >= 2;
 }
 
-struct TennisResult {
-    char* serverScore;
-    char* receiverScore;
-};
-
-void formatTennisResult(struct TennisResult *result, char* score) {
-    if (strcmp("", result->receiverScore) == 0)
-        sprintf(score, "%s", result->serverScore);
-    else if (strcmp(result->serverScore, result->receiverScore) == 0)
-        sprintf(score, "%s-All", result->serverScore);
-    else
-        sprintf(score, "%s-%s", result->serverScore, result->receiverScore);
+TennisResult *getResultServerWon(void *self) {
+  ResultProvider *rp = (ResultProvider *)self;
+  if (serverHasWon(rp->game)) {
+    TennisResult *result = malloc(sizeof(TennisResult));
+    char *output = malloc(strlen("Win for ") + strlen(rp->game->server) + 1);
+    strcpy(output, "Win for ");
+    strcat(output, rp->game->server);
+    result->serverScore = output;
+    result->receiverScore = "";
+    return result;
+  }
+  return rp->nextResult->getResult(rp->nextResult);
 }
 
-typedef struct ResultProvider *ResultProvider_t;
-typedef struct TennisResult (*getResult)(struct ResultProvider resultProvider, struct TennisGame *game);
-
-struct ResultProvider {
-    struct TennisGame* game;
-    // TODO: work out how to have a function pointer
-    getResult* functionPtr;
-    ResultProvider_t * nextInChain;
-};
-
-struct TennisResult* deuce(struct ResultProvider *this, struct TennisGame *game, struct TennisResult *result) {
-    if (isDeuce(game))
-        result->serverScore = "Deuce";
-    else
-        this->functionPtr(this->nextInChain, game, result);
+ResultProvider *GameServer(TennisGame4 *game, ResultProvider *nextResult) {
+  ResultProvider *temp = malloc(sizeof(ResultProvider));
+  temp->game = game;
+  temp->getResult = getResultServerWon;
+  temp->nextResult = nextResult;
+  return temp;
 }
 
+const char *TennisGame_GetScore(TennisGame4 *game) {
+  ResultProvider *rp = Deuce(game, GameServer(game, NULL));
+  TennisResult *result = rp->getResult(rp);
 
-const char *TennisGame_GetScore(struct TennisGame *game) {
-    return "Love-All";
+  char *score = format(result);
+
+  free(result);
+
+  return score;
 }
-
