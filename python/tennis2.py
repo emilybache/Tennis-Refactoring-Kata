@@ -8,7 +8,7 @@ class TennisGame2:
         self.p2points = 0
 
     def won_point(self, playerName):
-        if playerName == self.player1Name:
+        if playerName == "player1":
             self.P1Score()
         else:
             self.P2Score()
