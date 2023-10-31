@@ -64,21 +64,21 @@ public class TennisTest {
     @ParameterizedTest
     @MethodSource("getAllScores")
     public void checkAllScoresTennisGame1(int player1Points, int player2Points, String expectedScore) {
-        TennisGame1 game = new TennisGame1("player1", "player2");
+        TennisGame game = new TennisGame1("player1", "player2");
         checkAllScores(player1Points, player2Points, expectedScore, game);
     }
 
     @ParameterizedTest
     @MethodSource("getAllScores")
     public void checkAllScoresTennisGame2(int player1Points, int player2Points, String expectedScore) {
-        TennisGame2 game = new TennisGame2("player1", "player2");
+        TennisGame game = new TennisGame2("player1", "player2");
         checkAllScores(player1Points, player2Points, expectedScore, game);
     }
 
     @ParameterizedTest
     @MethodSource("getAllScores")
     public void checkAllScoresTennisGame3(int player1Points, int player2Points, String expectedScore) {
-        TennisGame3 game = new TennisGame3("player1", "player2");
+        TennisGame game = new TennisGame3("player1", "player2");
         checkAllScores(player1Points, player2Points, expectedScore, game);
     }
 
@@ -95,7 +95,6 @@ public class TennisTest {
         TennisGame game = new TennisGame5("player1", "player2");
         checkAllScores(player1Points, player2Points, expectedScore, game);
     }
-
 
     @ParameterizedTest
     @MethodSource("getAllScores")

@@ -1,11 +1,16 @@
 # Maven
-target/
+target
 
 # Eclipse files
 .classpath
 .project
 .settings/
 
-# IntelliJ files
-*.iml
+# IntelliJ IDEA files
 .idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/

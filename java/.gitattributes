@@ -1,0 +1,31 @@
+# see https://help.github.com/articles/dealing-with-line-endings
+# see http://timclem.wordpress.com/2012/03/01/mind-the-end-of-your-line/
+
+# Handle line endings automatically for files detected as text
+# and leave all files detected as binary untouched.
+* text=auto
+ 
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+*.java text
+*.xml text
+*.txt text
+*.html text
+*.properties text 
+ 
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.jar binary
+*.so binary
+*.dll binary
+ 
+ # Behaviour for images
+*.png binary
+*.jpg binary
+*.gif binary
+
+# These are explicitly windows files and should use crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
