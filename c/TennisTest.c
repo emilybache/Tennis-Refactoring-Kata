@@ -53,6 +53,14 @@ static void checkRealisticTennisGame(void** state)
 
 }
 
+static void checkSwedishGame(void** state) {
+    struct TennisGame* game = TennisGame_Create("player1", "player2");
+
+    // TODO: write test code here to check it can do scores in Swedish
+
+    free(game);
+}
+
 int main(void)
 {
     struct Parameter param[] =
@@ -91,15 +99,22 @@ int main(void)
     { 16, 14, "Win for player1" },
     { 14, 16, "Win for player2" }, };
 
-    struct CMUnitTest TennisTests[sizeof param / sizeof param[0] + 1] =
-    { cmocka_unit_test(checkRealisticTennisGame) };
+    int extraTestCount = 2;
+    // the number in this initializer must match the extraTestCount
+    struct CMUnitTest TennisTests[sizeof param / sizeof param[0] + 2] =
+    {
+            // additional unit tests here - don't forget to increment extraTestCount
+            cmocka_unit_test(checkRealisticTennisGame),
+            cmocka_unit_test(checkSwedishGame),
+    };
 
     for (int i = 0; i < (sizeof param / sizeof param[0]); i++)
     {
-        TennisTests[i + 1].name = param[i].expectedScore;
-        TennisTests[i + 1].test_func = checkScore;
-        TennisTests[i + 1].initial_state = &param[i];
+        TennisTests[i + extraTestCount].name = param[i].expectedScore;
+        TennisTests[i + extraTestCount].test_func = checkScore;
+        TennisTests[i + extraTestCount].initial_state = &param[i];
     }
+
 
     return cmocka_run_group_tests(TennisTests, NULL, NULL);
 }
