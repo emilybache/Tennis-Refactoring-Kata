@@ -1,13 +1,11 @@
-# Tennis in JavaScript
+# Tennis in JavaScript with Jest
 
 For main description, see [top level README](../README.md).
 
-Tests are available to be run both with node.js and in the browser.
-For node, simply call
-  node TennisTest.js
-(Only failures will be shown on the console)
+To run the tests:
 
-For the browser, open TennisTest.html and refresh after change.
+  npm test
+
 
 ## Code Reading Practice
 Here is a list of github urls of all the TennisGame Javascript modules:

@@ -1,5 +1,7 @@
 # Tennis-Refactoring-Kata C++ with Google test
 
+For main description, see [top level README](../README.md).
+
 If working with an IDE with google test
 support, such as CLion, the google-test gives a better overview
 of issues. Downside is that google-test has to be obtained (by
@@ -83,3 +85,11 @@ cmake .. -G "Unix Makefiles"
 cmake --build .
 ctest
 ```
+
+## Code Reading Practice
+Here is a list of github urls of all the TennisGame C++ classes:
+
+* https://github.com/emilybache/Tennis-Refactoring-Kata/blob/main/cpp/tennis1.cc
+* https://github.com/emilybache/Tennis-Refactoring-Kata/blob/main/cpp/tennis2.cc
+* https://github.com/emilybache/Tennis-Refactoring-Kata/blob/main/cpp/tennis3.cc
+* https://github.com/emilybache/Tennis-Refactoring-Kata/blob/main/cpp/tennis4.cc
