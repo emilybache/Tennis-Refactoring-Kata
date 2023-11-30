@@ -27,3 +27,18 @@ Here is a description of the problem this code is designed to solve: [Tennis Kat
 * Did you ever make any refactoring mistakes and then back out your changes? How did it feel to throw away code?
 * What would you say to your colleague if they had written this code?
 * What would you say to your boss about the value of this refactoring work? Was there more reason to do it over and above the extra billable hour or so?
+
+## Code Reading Practice
+Test your code reading skills.
+
+* Get a notebook and write the names of any [code smells](https://sammancoaching.org/reference/code_smells/index.html) you want to practice spotting as headings.
+* Open all the code urls in a browser in different tabs (see the README in each language version for these).
+* Start your stopwatch.
+* Look at each tab in turn and scroll through the code.
+* Name any code smells you notice and note down on your notebook which variant number had that smell.
+* Stop the timer when you've looked at all the code.
+
+Compare notes with others who have done the same exercise - did you find the smells in the same places? Was anyone faster and more accurate than most? Why do you think that is? Discuss how to get better at code reading.
+
+### Opening the code urls quickly and conveniently
+There are browser plugins that will open a list of urls in different tabs, search for "Open Multiple URLs" in your brower's extensions or add-ons marketplace. Or you could hold down 'Alt' (Windows/Linux) or 'Cmd' (Mac) while clicking on each url in turn.
