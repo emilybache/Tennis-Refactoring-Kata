@@ -78,7 +78,7 @@ void deuce_getResult(struct ResultProvider *this, struct TennisResult *result) {
         strcpy(result->serverScore, "Deuce");
     }
     else
-        this->functionPtr(this->nextResult, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
 void gameServer_getResult(struct ResultProvider *this, struct TennisResult *result) {
@@ -88,7 +88,7 @@ void gameServer_getResult(struct ResultProvider *this, struct TennisResult *resu
         strcat(result->serverScore, this->game->server);
     }
     else
-        this->functionPtr(this->nextResult, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
 void gameReceiver_getResult(struct ResultProvider *this, struct TennisResult *result) {
@@ -98,7 +98,7 @@ void gameReceiver_getResult(struct ResultProvider *this, struct TennisResult *re
         strcat(result->serverScore, this->game->receiver);
     }
     else
-        this->functionPtr(this->nextResult, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
 void advantageServer_getResult(struct ResultProvider *this, struct TennisResult *result) {
@@ -108,7 +108,7 @@ void advantageServer_getResult(struct ResultProvider *this, struct TennisResult 
         strcat(result->serverScore, this->game->server);
     }
     else
-        this->functionPtr(this->nextResult, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
 void advantageReceiver_getResult(struct ResultProvider *this, struct TennisResult *result) {
@@ -118,14 +118,13 @@ void advantageReceiver_getResult(struct ResultProvider *this, struct TennisResul
         strcat(result->serverScore, this->game->receiver);
     }
     else
-        this->functionPtr(this->nextResult, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
 void defaultResult_getResult(struct ResultProvider *this, struct TennisResult *result) {
-    // printf("GAME %s, %s, %d, %d\n", this->game->server, this->game->receiver, this->game->serverScore, this->game->receiverScore);
-    // const char *scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
-    // strcpy(result->serverScore, scores[this->game->serverScore]);
-    // strcpy(result->receiverScore, scores[this->game->receiverScore]);
+    const char *scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
+    strcpy(result->serverScore, scores[this->game->serverScore]);
+    strcpy(result->receiverScore, scores[this->game->receiverScore]);
 }
 
 const char *TennisGame_GetScore(struct TennisGame *game) {
