@@ -24,9 +24,9 @@ struct TennisGame *TennisGame_Create(const char *player1, const char *player2) {
 
 void TennisGame_WonPoint(struct TennisGame *game, const char *playerName) {
     if (strcmp(game->server, playerName) == 0)
-        game->server += 1;
+        game->serverScore += 1;
     else
-        game->receiver += 1;
+        game->receiverScore += 1;
 }
 
 bool receiverHasAdvantage(struct TennisGame *game) {
@@ -74,7 +74,9 @@ struct ResultProvider {
 
 void deuce_getResult(struct ResultProvider *this, struct TennisResult *result) {
     if (isDeuce(this->game))
+    {
         strcpy(result->serverScore, "Deuce");
+    }
     else
         this->functionPtr(this->nextResult, result);
 }
@@ -120,9 +122,10 @@ void advantageReceiver_getResult(struct ResultProvider *this, struct TennisResul
 }
 
 void defaultResult_getResult(struct ResultProvider *this, struct TennisResult *result) {
-    const char *scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
-    strcpy(result->serverScore, scores[this->game->serverScore]);
-    strcpy(result->receiverScore, scores[this->game->receiverScore]);
+    // printf("GAME %s, %s, %d, %d\n", this->game->server, this->game->receiver, this->game->serverScore, this->game->receiverScore);
+    // const char *scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
+    // strcpy(result->serverScore, scores[this->game->serverScore]);
+    // strcpy(result->receiverScore, scores[this->game->receiverScore]);
 }
 
 const char *TennisGame_GetScore(struct TennisGame *game) {
