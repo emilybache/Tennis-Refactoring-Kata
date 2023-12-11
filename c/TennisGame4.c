@@ -13,23 +13,21 @@ struct TennisGame {
     char result[18];
 };
 
-
-struct TennisGame *TennisGame_Create(const char *player1Name, const char *player2Name) {
+struct TennisGame *TennisGame_Create(const char *player1, const char *player2) {
     struct TennisGame *newGame = malloc(sizeof(struct TennisGame));
     newGame->serverScore = 0;
     newGame->receiverScore = 0;
-    newGame->server = player1Name;
-    newGame->receiver = player2Name;
+    newGame->server = player1;
+    newGame->receiver = player2;
     return newGame;
 }
 
 void TennisGame_WonPoint(struct TennisGame *game, const char *playerName) {
-    if (strcmp(playerName, "player1") == 0)
-        game->server += 1;
+    if (strcmp(game->server, playerName) == 0)
+        game->serverScore += 1;
     else
-        game->receiver += 1;
+        game->receiverScore += 1;
 }
-
 
 bool receiverHasAdvantage(struct TennisGame *game) {
     return game->receiverScore >= 4 && (game->receiverScore - game->serverScore) == 1;
@@ -52,11 +50,11 @@ bool isDeuce(struct TennisGame *game) {
 }
 
 struct TennisResult {
-    char* serverScore;
-    char* receiverScore;
+    char serverScore[18];
+    char receiverScore[18];
 };
 
-void formatTennisResult(struct TennisResult *result, char* score) {
+void formatTennisResult(struct TennisResult *result, char *score) {
     if (strcmp("", result->receiverScore) == 0)
         sprintf(score, "%s", result->serverScore);
     else if (strcmp(result->serverScore, result->receiverScore) == 0)
@@ -66,24 +64,83 @@ void formatTennisResult(struct TennisResult *result, char* score) {
 }
 
 typedef struct ResultProvider *ResultProvider_t;
-typedef struct TennisResult (*getResult)(struct ResultProvider resultProvider, struct TennisGame *game);
+typedef void (*getResult)(struct ResultProvider *resultProvider, struct TennisResult *result);
 
 struct ResultProvider {
-    struct TennisGame* game;
-    // TODO: work out how to have a function pointer
-    getResult* functionPtr;
-    ResultProvider_t * nextInChain;
+    struct TennisGame *game;
+    getResult functionPtr;
+    ResultProvider_t nextResult;
 };
 
-struct TennisResult* deuce(struct ResultProvider *this, struct TennisGame *game, struct TennisResult *result) {
-    if (isDeuce(game))
-        result->serverScore = "Deuce";
+void deuce_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    if (isDeuce(this->game))
+    {
+        strcpy(result->serverScore, "Deuce");
+    }
     else
-        this->functionPtr(this->nextInChain, game, result);
+        this->nextResult->functionPtr(this->nextResult, result);
 }
 
+void gameServer_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    if (serverHasWon(this->game))
+    {
+        strcpy(result->serverScore, "Win for ");
+        strcat(result->serverScore, this->game->server);
+    }
+    else
+        this->nextResult->functionPtr(this->nextResult, result);
+}
+
+void gameReceiver_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    if (receiverHasWon(this->game))
+    {
+        strcpy(result->serverScore, "Win for ");
+        strcat(result->serverScore, this->game->receiver);
+    }
+    else
+        this->nextResult->functionPtr(this->nextResult, result);
+}
+
+void advantageServer_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    if (serverHasAdvantage(this->game))
+    {
+        strcpy(result->serverScore, "Advantage ");
+        strcat(result->serverScore, this->game->server);
+    }
+    else
+        this->nextResult->functionPtr(this->nextResult, result);
+}
+
+void advantageReceiver_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    if (receiverHasAdvantage(this->game))
+    {
+        strcpy(result->serverScore, "Advantage ");
+        strcat(result->serverScore, this->game->receiver);
+    }
+    else
+        this->nextResult->functionPtr(this->nextResult, result);
+}
+
+void defaultResult_getResult(struct ResultProvider *this, struct TennisResult *result) {
+    const char *scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
+    strcpy(result->serverScore, scores[this->game->serverScore]);
+    strcpy(result->receiverScore, scores[this->game->receiverScore]);
+}
 
 const char *TennisGame_GetScore(struct TennisGame *game) {
-    return "Love-All";
-}
+    struct TennisResult result;
+    result.serverScore[0] = '\0';
+    result.receiverScore[0] = '\0';
 
+    struct ResultProvider defaultResult = {game, defaultResult_getResult, NULL};
+    struct ResultProvider advantageReceiver = {game, advantageReceiver_getResult, &defaultResult};
+    struct ResultProvider advantageServer = {game, advantageServer_getResult, &advantageReceiver};
+    struct ResultProvider gameReceiver = {game, gameReceiver_getResult, &advantageServer};
+    struct ResultProvider gameServer = {game, gameServer_getResult, &gameReceiver};
+    struct ResultProvider deuce = {game, deuce_getResult, &gameServer};
+
+    deuce.functionPtr(&deuce, &result);
+    formatTennisResult(&result, game->result);
+
+    return game->result;
+}

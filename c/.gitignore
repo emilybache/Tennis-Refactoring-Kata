@@ -8,3 +8,6 @@ cmake-build-debug
 .project
 .cproject
 .settings
+
+*.exe
+_test.bat
