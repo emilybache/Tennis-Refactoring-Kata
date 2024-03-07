@@ -1,3 +1,5 @@
+_Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)_
+
 # Tennis Refactoring Kata
 
 You can find out more about this exercise and where it comes from in [this YouTube video](https://youtu.be/XifUs1FhWRc). There are also some Guided Learning Hour videos that include demos of me solving parts of it.
