@@ -2,18 +2,18 @@ namespace Tennis
 {
     public class TennisGame1 : ITennisGame
     {
-        private readonly Player player1;
-        private readonly Player player2;
-
         private Player advantage;
         private Player winner;
         private string scoreDescription;
 
         public TennisGame1(string player1Name, string player2Name)
         {
-            player1 = new Player(player1Name);
-            player2 = new Player(player2Name);
+            Player1 = new Player(player1Name);
+            Player2 = new Player(player2Name);
         }
+
+        public Player Player1 { get; }
+        public Player Player2 { get; }
 
         public int NumberOfGamesWon { get; private set; }
 
@@ -30,11 +30,11 @@ namespace Tennis
             // if (playerName == player1.Name)
             if (playerName == "player1")
             {
-                player1.IncreaseScore();
+                Player1.IncreaseScore();
             }
             else
             {
-                player2.IncreaseScore();
+                Player2.IncreaseScore();
             }
         }
 
@@ -60,24 +60,24 @@ namespace Tennis
             // to improve readability. It does result in extra mathmatical
             // operations at runtime, but the performance implications will be
             // negligible.
-            if (player1.HasAdvantageOver(player2))
+            if (Player1.HasAdvantageOver(Player2))
             {
-                advantage = player1;
+                advantage = Player1;
             }
-            else if (player2.HasAdvantageOver(player1))
+            else if (Player2.HasAdvantageOver(Player1))
             {
-                advantage = player2;
+                advantage = Player2;
             }
-            else if (player1.HasWinningScoreAgainst(player2))
+            else if (Player1.HasWinningScoreAgainst(Player2))
             {
-                winner = player1;
+                winner = Player1;
 
                 NumberOfGamesWon++;
             }
             else
             {
                 // Player 2 must have a 2 point lead, and is therefore the winner
-                winner = player2;
+                winner = Player2;
 
                 NumberOfGamesWon++;
             }
@@ -87,7 +87,7 @@ namespace Tennis
         {
             if (PlayerScoresAreEqual())
             {
-                scoreDescription = DetermineEqualScoreState(player1.Score);
+                scoreDescription = DetermineEqualScoreState(Player1.Score);
             }
             else if (EitherPlayerScoreIsWinner())
             {
@@ -95,14 +95,14 @@ namespace Tennis
             }
             else
             {
-                scoreDescription = $"{player1.ScoreString}-{player2.ScoreString}";
+                scoreDescription = $"{Player1.ScoreString}-{Player2.ScoreString}";
             }
         }
 
-        private bool PlayerScoresAreEqual() => player1.Score == player2.Score;
+        private bool PlayerScoresAreEqual() => Player1.Score == Player2.Score;
 
         // TODO: Use a meaningful constant value instead of a magic number here.
-        private bool EitherPlayerScoreIsWinner() => player1.Score >= 4 || player2.Score >= 4;
+        private bool EitherPlayerScoreIsWinner() => Player1.Score >= 4 || Player2.Score >= 4;
 
         private static string DetermineEqualScoreState(int score)
         {
@@ -140,8 +140,8 @@ namespace Tennis
                 advantage = null;
                 winner = null;
 
-                player1.ResetScore();
-                player2.ResetScore();
+                Player1.ResetScore();
+                Player1.ResetScore();
             }
         }
 

@@ -41,8 +41,8 @@ namespace Tennis.Tests
 
             game.CheckForWinner();
 
-            Assert.Equal(2, game.NumberOfGamesWon);
-            Assert.Equal("Win for player1", game.GetScore());
+            Assert.Equal(2, game.Player1.NumberOfGamesWon);
+            Assert.Equal(0, game.Player2.NumberOfGamesWon);
         }
 
         [Fact]
@@ -58,8 +58,41 @@ namespace Tennis.Tests
 
             game.CheckForWinner();
 
-            Assert.Equal(1, game.NumberOfGamesWon);
-            Assert.Equal("Win for player2", game.GetScore());
+            Assert.Equal(0, game.Player1.NumberOfGamesWon);
+            Assert.Equal(1, game.Player2.NumberOfGamesWon);
+        }
+
+        [Fact]
+        public void Player1Wins2GamesAndPlayer2Wins1Game()
+        {
+            var game = new TennisGame1(Player1, Player2);
+
+            // First match: player1 wins 4 points, player2 wins none
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+
+            game.CheckForWinner();
+
+            // Second match: player1 wins 4 points, player2 wins none
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+            game.WonPoint(Player1);
+
+            game.CheckForWinner();
+
+            // Third match: player2 wins 4 points, player1 wins none
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+
+            game.CheckForWinner();
+
+            Assert.Equal(2, game.Player1.NumberOfGamesWon);
+            Assert.Equal(1, game.Player2.NumberOfGamesWon);
         }
     }
 }
