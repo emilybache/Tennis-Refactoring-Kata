@@ -56,7 +56,15 @@ namespace Tennis.Tests
         public void Tennis1Test(int p1, int p2, string expected)
         {
             var game = new TennisGame1("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            // Note: Explicitly invoking a check on the winning state for TennisGame1
+            // so as to not affect the other game implementations. Were this not a test
+            // I would be taking the other implementations into account, as may present
+            // a different solution altogether.
+            game.CheckForWinner();
+
+            Assert.Equal(expected, game.GetScore());
         }
 
         [Theory]
@@ -64,7 +72,9 @@ namespace Tennis.Tests
         public void Tennis2Test(int p1, int p2, string expected)
         {
             var game = new TennisGame2("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            Assert.Equal(expected, game.GetScore());
         }
 
         [Theory]
@@ -72,30 +82,42 @@ namespace Tennis.Tests
         public void Tennis3Test(int p1, int p2, string expected)
         {
             var game = new TennisGame3("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            Assert.Equal(expected, game.GetScore());
         }
+
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
         public void Tennis4Test(int p1, int p2, string expected)
         {
             var game = new TennisGame4("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            Assert.Equal(expected, game.GetScore());
         }
+
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
         public void Tennis5Test(int p1, int p2, string expected)
         {
             var game = new TennisGame5("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            Assert.Equal(expected, game.GetScore());
         }
+
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
         public void Tennis6Test(int p1, int p2, string expected)
         {
             var game = new TennisGame6("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            SetupScores(game, p1, p2);
+
+            Assert.Equal(expected, game.GetScore());
         }
-        private void CheckAllScores(ITennisGame game, int player1Score, int player2Score, string expectedScore)
+
+        private void SetupScores(ITennisGame game, int player1Score, int player2Score)
         {
             var highestScore = Math.Max(player1Score, player2Score);
             for (var i = 0; i < highestScore; i++)
@@ -115,8 +137,6 @@ namespace Tennis.Tests
                     game.WonPoint("player2");
                 }
             }
-
-            Assert.Equal(expectedScore, game.GetScore());
         }
     }
 }

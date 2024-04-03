@@ -33,6 +33,7 @@ namespace Tennis
         public string ScoreString => ScoreStrings[Score];
 
         public void IncreaseScore() => Score++;
+        public void ResetScore() => Score = 0;
 
         /// <summary>
         /// Returns true if the current player has a 1-point lead over the other player.

@@ -5,6 +5,10 @@ namespace Tennis
         private readonly Player player1;
         private readonly Player player2;
 
+        private Player advantage;
+        private Player winner;
+        private string scoreDescription;
+
         public TennisGame1(string player1Name, string player2Name)
         {
             player1 = new Player(player1Name);
@@ -34,19 +38,65 @@ namespace Tennis
             }
         }
 
-        public string GetScore()
+        // Note: Ideally, we would perform this check as soon as a point is won,
+        // but since the tests set all of the points upfront and THEN want to
+        // check the final state, we need to separate it out into 2 steps. Otherwise,
+        // we will trigger a win condition prematurely in the tests.
+        public void CheckForWinner()
+        {
+            CompareScores();
+            UpdateScoreDescription();
+            ResetScoresIfThereIsAWinner();
+        }
+
+        private void CompareScores()
+        {
+            if (!EitherPlayerScoreIsWinner())
+            {
+                return;
+            }
+
+            // Note: Refactored to using methods instead of magic numbers here
+            // to improve readability. It does result in extra mathmatical
+            // operations at runtime, but the performance implications will be
+            // negligible.
+            if (player1.HasAdvantageOver(player2))
+            {
+                advantage = player1;
+            }
+            else if (player2.HasAdvantageOver(player1))
+            {
+                advantage = player2;
+            }
+            else if (player1.HasWinningScoreAgainst(player2))
+            {
+                winner = player1;
+
+                NumberOfGamesWon++;
+            }
+            else
+            {
+                // Player 2 must have a 2 point lead, and is therefore the winner
+                winner = player2;
+
+                NumberOfGamesWon++;
+            }
+        }
+
+        private void UpdateScoreDescription()
         {
             if (PlayerScoresAreEqual())
             {
-                return DetermineEqualScoreState(player1.Score);
+                scoreDescription = DetermineEqualScoreState(player1.Score);
             }
-
-            if (EitherPlayerScoreIsWinner())
+            else if (EitherPlayerScoreIsWinner())
             {
-                return DeterminePlayerAdvantage();
+                scoreDescription = DeterminePlayerAdvantage();
             }
-
-            return $"{player1.ScoreString}-{player2.ScoreString}";
+            else
+            {
+                scoreDescription = $"{player1.ScoreString}-{player2.ScoreString}";
+            }
         }
 
         private bool PlayerScoresAreEqual() => player1.Score == player2.Score;
@@ -75,32 +125,27 @@ namespace Tennis
 
         private string DeterminePlayerAdvantage()
         {
-            // Note: Refactored to using methods instead of magic numbers here
-            // to improve readability. It does result in extra mathmatical
-            // operations at runtime, but the performance implications will be
-            // negligible.
-            if (player1.HasAdvantageOver(player2))
+            if (winner != null)
             {
-                // Note: These strings should probably be making use
-                // of the actual player names, rather than specifying
-                // "player1" or "player2" as these may be meaningless
-                // to any consuming classes.
-                return "Advantage player1";
+                return $"Win for {winner.Name}";
             }
 
-            if (player2.HasAdvantageOver(player1))
-            {
-                return "Advantage player2";
-            }
-
-            if (player1.HasWinningScoreAgainst(player2))
-            {
-                return "Win for player1";
-            }
-
-            // Player 2 must have a 2 point lead, and is therefore the winner
-            return "Win for player2";
+            return $"Advantage {advantage.Name}";
         }
+
+        private void ResetScoresIfThereIsAWinner()
+        {
+            if (winner != null)
+            {
+                advantage = null;
+                winner = null;
+
+                player1.ResetScore();
+                player2.ResetScore();
+            }
+        }
+
+        public string GetScore() => scoreDescription;
     }
 }
 

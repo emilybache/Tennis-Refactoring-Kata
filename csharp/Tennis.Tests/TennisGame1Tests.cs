@@ -31,11 +31,15 @@ namespace Tennis.Tests
             game.WonPoint(Player1);
             game.WonPoint(Player1);
 
+            game.CheckForWinner();
+
             // Second match: player1 wins 4 points, player2 wins none
             game.WonPoint(Player1);
             game.WonPoint(Player1);
             game.WonPoint(Player1);
             game.WonPoint(Player1);
+
+            game.CheckForWinner();
 
             Assert.Equal(2, game.NumberOfGamesWon);
             Assert.Equal("Win for player1", game.GetScore());
@@ -47,10 +51,12 @@ namespace Tennis.Tests
             var game = new TennisGame1(Player1, Player2);
 
             // player2 wins 4 points, player1 wins none
-            game.WonPoint(Player1);
-            game.WonPoint(Player1);
-            game.WonPoint(Player1);
-            game.WonPoint(Player1);
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+            game.WonPoint(Player2);
+
+            game.CheckForWinner();
 
             Assert.Equal(1, game.NumberOfGamesWon);
             Assert.Equal("Win for player2", game.GetScore());
