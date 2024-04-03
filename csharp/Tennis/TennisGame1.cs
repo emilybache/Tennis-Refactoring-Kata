@@ -1,5 +1,34 @@
 namespace Tennis
 {
+    /// <summary>
+    /// POSSIBLE IMPROVEMENTS:
+    /// 
+    /// I've added notes to most parts of the code where there is an observation of
+    /// code that could be improved or a potential issue. I've also tried to explain
+    /// what the improvement or issue could be. Aside from what is already noted,
+    /// here are some additional changes that could be made to further improve
+    /// the codebase.
+    /// 
+    /// 1. Score tracking logic could be moved out into a purpose-built class. This would
+    ///    reduce the size of this code file and better adhere to the Single Responsibility
+    ///    Principal.
+    ///    
+    /// 2. The concept of the Player object could be reused in other game implementations,
+    ///    which would also allow for the test logic to be simplified.
+    ///    
+    /// 3. All game implementations follow the same "track point, calculate and return final score"
+    ///    workflow, whereas the changes I've made move the final score calculation onto
+    ///    an explicit "write" operation (rather than on the "read"). To simplify the test setup,
+    ///    if this approach was determined to be the better approach, then the same structure
+    ///    should be applied to all game implementations.
+    ///    
+    /// 4. Arguably, with the introduction of the Player class (and potentially others), tests
+    ///    could be moved to test those specific units, rather than all logic tested from the top.
+    ///    
+    /// 4. Outside of the code, the developer experience could also be improved by adding IDE-specific
+    ///    commands, such as build, test and debug commands for VSCode. Instructions for how to
+    ///    use the code would normally also be included in the README.md file.
+    /// </summary>
     public class TennisGame1 : ITennisGame
     {
         private Player advantage;
