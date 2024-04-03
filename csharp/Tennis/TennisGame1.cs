@@ -2,80 +2,95 @@ namespace Tennis
 {
     public class TennisGame1 : ITennisGame
     {
-        private int m_score1 = 0;
-        private int m_score2 = 0;
-        private string player1Name;
-        private string player2Name;
+        private readonly Player player1;
+        private readonly Player player2;
 
         public TennisGame1(string player1Name, string player2Name)
         {
-            this.player1Name = player1Name;
-            this.player2Name = player2Name;
+            player1 = new Player(player1Name);
+            player2 = new Player(player2Name);
         }
 
         public void WonPoint(string playerName)
         {
+            // Note: Comparing the player name against a magic string is prone to
+            // encounter errors, as it relies on the player1Name variable passed
+            // to the constructor being set to "player1". Requiring this internally
+            // will either lead to a bug if the name is not that, or makes the
+            // specification of the player name redundant.
+            // 
+            // An improvement would be:
+            //
+            // if (playerName == player1.Name)
             if (playerName == "player1")
-                m_score1 += 1;
+            {
+                player1.IncreaseScore();
+            }
             else
-                m_score2 += 1;
+            {
+                player2.IncreaseScore();
+            }
         }
 
         public string GetScore()
         {
-            string score = "";
-            var tempScore = 0;
-            if (m_score1 == m_score2)
+            if (PlayerScoresAreEqual())
             {
-                switch (m_score1)
-                {
-                    case 0:
-                        score = "Love-All";
-                        break;
-                    case 1:
-                        score = "Fifteen-All";
-                        break;
-                    case 2:
-                        score = "Thirty-All";
-                        break;
-                    default:
-                        score = "Deuce";
-                        break;
+                return DetermineEqualScoreState(player1.Score);
+            }
 
-                }
-            }
-            else if (m_score1 >= 4 || m_score2 >= 4)
+            if (EitherPlayerScoreIsWinner())
             {
-                var minusResult = m_score1 - m_score2;
-                if (minusResult == 1) score = "Advantage player1";
-                else if (minusResult == -1) score = "Advantage player2";
-                else if (minusResult >= 2) score = "Win for player1";
-                else score = "Win for player2";
+                return DeterminePlayerAdvantage();
             }
-            else
+
+            return $"{player1.ScoreString}-{player2.ScoreString}";
+        }
+
+        private bool PlayerScoresAreEqual() => player1.Score == player2.Score;
+
+        // TODO: Use a meaningful constant value instead of a magic number here.
+        private bool EitherPlayerScoreIsWinner() => player1.Score >= 4 || player2.Score >= 4;
+
+        private static string DetermineEqualScoreState(int score)
+        {
+            // TODO: Use const values instead of magic strings.
+            switch (score)
             {
-                for (var i = 1; i < 3; i++)
-                {
-                    if (i == 1) tempScore = m_score1;
-                    else { score += "-"; tempScore = m_score2; }
-                    switch (tempScore)
-                    {
-                        case 0:
-                            score += "Love";
-                            break;
-                        case 1:
-                            score += "Fifteen";
-                            break;
-                        case 2:
-                            score += "Thirty";
-                            break;
-                        case 3:
-                            score += "Forty";
-                            break;
-                    }
-                }
+                case 0:
+                    return "Love-All";
+
+                case 1:
+                    return "Fifteen-All";
+
+                case 2:
+                    return "Thirty-All";
+
+                default:
+                    return "Deuce";
             }
-            return score;
+        }
+
+        private string DeterminePlayerAdvantage()
+        {
+            int scoreDifference = player1.Score - player2.Score;
+
+            if (scoreDifference == 1)
+            {
+                return "Advantage player1";
+            }
+
+            if (scoreDifference == -1)
+            {
+                return "Advantage player2";
+            }
+
+            if (scoreDifference >= 2)
+            {
+                return "Win for player1";
+            }
+
+            return "Win for player2";
         }
     }
 }
