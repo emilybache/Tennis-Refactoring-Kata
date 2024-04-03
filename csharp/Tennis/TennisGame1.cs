@@ -73,23 +73,30 @@ namespace Tennis
 
         private string DeterminePlayerAdvantage()
         {
-            int scoreDifference = player1.Score - player2.Score;
-
-            if (scoreDifference == 1)
+            // Note: Refactored to using methods instead of magic numbers here
+            // to improve readability. It does result in extra mathmatical
+            // operations at runtime, but the performance implications will be
+            // negligible.
+            if (player1.HasAdvantageOver(player2))
             {
+                // Note: These strings should probably be making use
+                // of the actual player names, rather than specifying
+                // "player1" or "player2" as these may be meaningless
+                // to any consuming classes.
                 return "Advantage player1";
             }
 
-            if (scoreDifference == -1)
+            if (player2.HasAdvantageOver(player1))
             {
                 return "Advantage player2";
             }
 
-            if (scoreDifference >= 2)
+            if (player1.HasWinningScoreAgainst(player2))
             {
                 return "Win for player1";
             }
 
+            // Player 2 must have a 2 point lead, and is therefore the winner
             return "Win for player2";
         }
     }

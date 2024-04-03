@@ -33,5 +33,19 @@ namespace Tennis
         public string ScoreString => ScoreStrings[Score];
 
         public void IncreaseScore() => Score++;
+
+        /// <summary>
+        /// Returns true if the current player has a 1-point lead over the other player.
+        /// </summary>
+        /// <param name="otherPlayer">The other player to compare against.</param>
+        /// <returns>True if the current player has the advantage.</returns>
+        public bool HasAdvantageOver(Player otherPlayer) => (Score - otherPlayer.Score) == 1;
+
+        /// <summary>
+        /// Returns true if the current player has at least a 2-point lead over the other player.
+        /// </summary>
+        /// <param name="otherPlayer">The other player to compare against.</param>
+        /// <returns>True if the current player has a winning score.</returns>
+        public bool HasWinningScoreAgainst(Player otherPlayer) => (Score - otherPlayer.Score) >= 2;
     }
 }
