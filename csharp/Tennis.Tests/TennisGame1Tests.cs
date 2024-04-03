@@ -17,7 +17,8 @@ namespace Tennis.Tests
         {
             var game = new TennisGame1(Player1, Player2);
 
-            Assert.Equal(0, game.NumberOfGamesWon);
+            Assert.Equal(0, game.Player1.NumberOfGamesWon);
+            Assert.Equal(0, game.Player2.NumberOfGamesWon);
         }
 
         [Fact]

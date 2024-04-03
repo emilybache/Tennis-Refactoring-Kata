@@ -15,8 +15,6 @@ namespace Tennis
         public Player Player1 { get; }
         public Player Player2 { get; }
 
-        public int NumberOfGamesWon { get; private set; }
-
         public void WonPoint(string playerName)
         {
             // Note: Comparing the player name against a magic string is prone to
@@ -72,14 +70,14 @@ namespace Tennis
             {
                 winner = Player1;
 
-                NumberOfGamesWon++;
+                winner.TrackWin();
             }
             else
             {
                 // Player 2 must have a 2 point lead, and is therefore the winner
                 winner = Player2;
 
-                NumberOfGamesWon++;
+                winner.TrackWin();
             }
         }
 
