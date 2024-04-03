@@ -101,9 +101,19 @@ namespace Tennis.Tests
             for (var i = 0; i < highestScore; i++)
             {
                 if (i < player1Score)
+                {
+                    // Note: This could be improved by operating on the Player
+                    // objects directly instead of specifying the player name.
+                    // However, I've omitted that improvement here, as the focus
+                    // is to improve the TennisGame1 code and making that change
+                    // here would affect all other implementations.
                     game.WonPoint("player1");
+                }
+
                 if (i < player2Score)
+                {
                     game.WonPoint("player2");
+                }
             }
 
             Assert.Equal(expectedScore, game.GetScore());

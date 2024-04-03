@@ -11,6 +11,8 @@ namespace Tennis
             player2 = new Player(player2Name);
         }
 
+        public int NumberOfGamesWon { get; private set; }
+
         public void WonPoint(string playerName)
         {
             // Note: Comparing the player name against a magic string is prone to
