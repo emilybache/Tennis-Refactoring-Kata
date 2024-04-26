@@ -25,6 +25,24 @@ work, in addition to the extra billable hours.
 
 # How to
 
+## load all function
+
+``` r
+source("R/tennis.R")
+# devtools::load_all()
+# or do a proper package installation
+# devtools::document()
+# remotes::install_local()
+```
+
+## run tests
+
+``` r
+testthat::test_file(path = "tests/testthat/test-tennis.R")
+```
+
+## Play a game
+
 ``` r
 
 tennis_game <-
