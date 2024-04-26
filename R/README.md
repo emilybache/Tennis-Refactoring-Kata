@@ -1,11 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-``` r
-library(tennis)
-```
-
-# tennis
+# Tennis Refactoring Kata
 
 Imagine you work for a consulting company, and one of your colleagues
 has done some work for the FFT (French Tennis Federation). The contract
@@ -25,20 +21,16 @@ work, in addition to the extra billable hours.
 
 # How to
 
-## load all function
+## Load all functions
 
 ``` r
 source("R/tennis.R")
-# devtools::load_all()
-# or do a proper package installation
-# devtools::document()
-# remotes::install_local()
 ```
 
-## run tests
+## Run tests
 
 ``` r
-testthat::test_file(path = "tests/testthat/test-tennis.R")
+testthat::test_file(path = "tests/test-tennis.R")
 ```
 
 ## Play a game
