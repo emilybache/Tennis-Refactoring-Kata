@@ -18,7 +18,8 @@ enable_testing()
 
 add_executable(tennis1_google_test
         tennis1.cc
-        gtest_all.cpp)
+        gtest_all.cpp
+        tennis6.cc)
 target_link_libraries(tennis1_google_test GTest::gtest_main)
 gtest_discover_tests(tennis1_google_test)
 
@@ -39,3 +40,9 @@ add_executable(tennis4_google_test
         gtest_all.cpp)
 target_link_libraries(tennis4_google_test GTest::gtest_main)
 gtest_discover_tests(tennis4_google_test)
+
+add_executable(tennis6_google_test
+        tennis6.cc
+        gtest_all.cpp)
+target_link_libraries(tennis6_google_test GTest::gtest_main)
+gtest_discover_tests(tennis6_google_test)
