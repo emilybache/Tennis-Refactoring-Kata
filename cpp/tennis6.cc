@@ -17,14 +17,12 @@ std::string tennis_score(int player1Score, int player2Score)
             case 2: tieScore = "Thirty-All"; break;
             default: tieScore = "Deuce"; break;
         }
-
         result = tieScore;
     }
     else if (player1Score >= 4 || player2Score >= 4)
     {
         // end-game score
         std::string endGameScore;
-
         if (player1Score - player2Score == 1)
         {
             endGameScore = "Advantage " + player1Name;
@@ -41,13 +39,10 @@ std::string tennis_score(int player1Score, int player2Score)
         {
             endGameScore = "Win for " + player2Name;
         }
-        
-
         result = endGameScore;
     } else {
         // regular score
         std::string regularScore;
-
         std::string score1;
         switch (player1Score) {
             case 0:
@@ -81,7 +76,6 @@ std::string tennis_score(int player1Score, int player2Score)
         }
 
         regularScore = score1 + "-" + score2;
-
         result = regularScore;
     }
 
