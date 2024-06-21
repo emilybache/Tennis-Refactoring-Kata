@@ -20,6 +20,17 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "1.8"
+val javaVersion = JavaVersion.VERSION_1_8
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion.majorVersion))
+    }
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion.majorVersion))
+    }
+}
+
