@@ -2,13 +2,13 @@
 
 This is the Java version of the [Tennis Refactoring Kata](../README.md).
 
-It uses Java 17 and the [Maven Wrapper](https://maven.apache.org/wrapper/) to build the project with [Maven](https://maven.apache.org/).
+It uses Java 21 and the [Maven Wrapper](https://maven.apache.org/wrapper/) to build the project with [Maven](https://maven.apache.org/).
 
 ## Build and run tests
 
 `./mvnw clean verify`
 
-Prerequisites: a Java 17 Development Kit must be installed.
+Prerequisites: a Java 21 Development Kit must be installed.
 
 ## Code Reading Practice
 Here is a list of github urls of all the TennisGame Java classes:
