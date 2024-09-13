@@ -25,13 +25,17 @@ class TennisGame4:
         return result.format()
 
     def receiver_has_advantage(self):
-        return self.receiver_score >= 4 and (self.receiver_score - self.server_score) == 1
+        return (
+            self.receiver_score >= 4 and (self.receiver_score - self.server_score) == 1
+        )
 
     def server_has_advantage(self):
         return self.server_score >= 4 and (self.server_score - self.receiver_score) == 1
 
     def receiver_has_won(self):
-        return self.receiver_score >= 4 and (self.receiver_score - self.server_score) >= 2
+        return (
+            self.receiver_score >= 4 and (self.receiver_score - self.server_score) >= 2
+        )
 
     def server_has_won(self):
         return self.server_score >= 4 and (self.server_score - self.receiver_score) >= 2
