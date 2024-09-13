@@ -2,9 +2,9 @@
 
 
 class TennisGame3:
-    def __init__(self, player1Name, player2Name):
-        self.p1N = player1Name
-        self.p2N = player2Name
+    def __init__(self, player1_name, player2_name):
+        self.p1_n = player1_name
+        self.p2_n = player2_name
         self.p1 = 0
         self.p2 = 0
 
@@ -22,7 +22,7 @@ class TennisGame3:
         else:
             if self.p1 == self.p2:
                 return "Deuce"
-            s = self.p1N if self.p1 > self.p2 else self.p2N
+            s = self.p1_n if self.p1 > self.p2 else self.p2_n
             return (
                 "Advantage " + s
                 if ((self.p1 - self.p2) * (self.p1 - self.p2) == 1)

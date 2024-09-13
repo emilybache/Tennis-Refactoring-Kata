@@ -2,23 +2,23 @@
 
 
 class TennisGame5:
-    def __init__(self, player1Name, player2Name):
-        self.player1Name = player1Name
-        self.player2Name = player2Name
-        self.player1Score = 0
-        self.player2Score = 0
+    def __init__(self, player1_name, player2_name):
+        self.player1_name = player1_name
+        self.player2_name = player2_name
+        self.player1_score = 0
+        self.player2_score = 0
 
-    def won_point(self, playerName):
-        if playerName == "player1":
-            self.player1Score += 1
-        elif playerName == "player2":
-            self.player2Score += 1
+    def won_point(self, player_name):
+        if player_name == "player1":
+            self.player1_score += 1
+        elif player_name == "player2":
+            self.player2_score += 1
         else:
             raise ValueError("Invalid player name.")
 
     def score(self):
-        p1 = self.player1Score
-        p2 = self.player2Score
+        p1 = self.player1_score
+        p2 = self.player2_score
 
         while p1 > 4 or p2 > 4:
             p1 -= 1
