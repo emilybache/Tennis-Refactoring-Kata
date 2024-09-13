@@ -11,50 +11,23 @@ from tennis_unittest import play_game, test_cases
 
 
 @pytest.mark.parametrize(
-    "p1_points p2_points score p1_name p2_name".split(), test_cases
+    "TennisGameClass",
+    [
+        TennisGame1,
+        TennisGame2,
+        TennisGame3,
+        TennisGame4,
+        TennisGame5,
+        TennisGame6,
+    ],
 )
-def test_get_score_game1(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame1, p1_points, p2_points, p1_name, p2_name)
-    assert score == game.score()
-
-
 @pytest.mark.parametrize(
     "p1_points p2_points score p1_name p2_name".split(), test_cases
 )
-def test_get_score_game2(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame2, p1_points, p2_points, p1_name, p2_name)
-    assert score == game.score()
-
-
-@pytest.mark.parametrize(
-    "p1_points p2_points score p1_name p2_name".split(), test_cases
-)
-def test_get_score_game3(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame3, p1_points, p2_points, p1_name, p2_name)
-    assert score == game.score()
-
-
-@pytest.mark.parametrize(
-    "p1_points p2_points score p1_name p2_name".split(), test_cases
-)
-def test_get_score_game4(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame4, p1_points, p2_points, p1_name, p2_name)
-    assert score == game.score()
-
-
-@pytest.mark.parametrize(
-    "p1_points p2_points score p1_name p2_name".split(), test_cases
-)
-def test_get_score_game5(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame5, p1_points, p2_points, p1_name, p2_name)
-    assert score == game.score()
-
-
-@pytest.mark.parametrize(
-    "p1_points p2_points score p1_name p2_name".split(), test_cases
-)
-def test_get_score_game6(p1_points, p2_points, score, p1_name, p2_name):
-    game = play_game(TennisGame6, p1_points, p2_points, p1_name, p2_name)
+def test_get_score_most_games(
+    TennisGameClass, p1_points, p2_points, score, p1_name, p2_name
+):
+    game = play_game(TennisGameClass, p1_points, p2_points, p1_name, p2_name)
     assert score == game.score()
 
 
