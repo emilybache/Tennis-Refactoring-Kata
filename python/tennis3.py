@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class TennisGame3:
     def __init__(self, player1_name, player2_name):
         self.p1_n = player1_name

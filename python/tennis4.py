@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 class TennisGame4:
     def __init__(self, player1_name, player2_name):
         self.server = player1_name
