@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class TennisGame5:
     def __init__(self, player1Name, player2Name):
         self.player1Name = player1Name
@@ -8,9 +9,9 @@ class TennisGame5:
         self.player2Score = 0
 
     def won_point(self, playerName):
-        if (playerName == "player1"):
+        if playerName == "player1":
             self.player1Score += 1
-        elif (playerName == "player2"):
+        elif playerName == "player2":
             self.player2Score += 1
         else:
             raise ValueError("Invalid player name.")
@@ -19,7 +20,7 @@ class TennisGame5:
         p1 = self.player1Score
         p2 = self.player2Score
 
-        while (p1 > 4 or p2 > 4):
+        while p1 > 4 or p2 > 4:
             p1 -= 1
             p2 -= 1
 
@@ -52,7 +53,7 @@ class TennisGame5:
         }
 
         entry = (p1, p2)
-        if (entry in lookup):
+        if entry in lookup:
             return lookup[entry]
         else:
             raise ValueError("Invalid score.")

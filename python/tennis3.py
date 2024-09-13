@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class TennisGame3:
     def __init__(self, player1Name, player2Name):
         self.p1N = player1Name
@@ -19,7 +20,11 @@ class TennisGame3:
             s = p[self.p1]
             return s + "-All" if (self.p1 == self.p2) else s + "-" + p[self.p2]
         else:
-            if (self.p1 == self.p2):
+            if self.p1 == self.p2:
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
-            return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+            return (
+                "Advantage " + s
+                if ((self.p1 - self.p2) * (self.p1 - self.p2) == 1)
+                else "Win for " + s
+            )
