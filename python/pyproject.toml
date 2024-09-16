@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tennis-kata"
+version = "0"
+
+# most requts are deliberately unpinned so we stay up to date with deps,
+# and CI will warn when things change.
+dependencies = [
+    "pytest",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # pylint
+    "PL",
+]
+ignore = [
+    "E741",  # single-letter variable
+    "PLR2004",  # magic values
+]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
