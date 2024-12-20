@@ -89,18 +89,4 @@ class TennisGame6 implements TennisGame {
 
         return $result;
     }
-
-    private function getScoreName($score)
-    {
-        switch ($score) {
-            case 0:
-                return "Love";
-            case 1:
-                return "Fifteen";
-            case 2:
-                return "Thirty";
-            default:
-                return "Forty";
-        }
-    }
 }
