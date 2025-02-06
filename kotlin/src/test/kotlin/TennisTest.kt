@@ -33,6 +33,27 @@ class TennisTest {
         checkAllScores(game, player1Score, player2Score, expectedScore)
     }
 
+    @ParameterizedTest
+    @MethodSource("allScores")
+    fun checkAllScoresTennisGame5(player1Score: Int, player2Score: Int, expectedScore: String) {
+        val game = TennisGame5("player1", "player2")
+        checkAllScores(game, player1Score, player2Score, expectedScore)
+    }
+
+    @ParameterizedTest
+    @MethodSource("allScores")
+    fun checkAllScoresTennisGame6(player1Score: Int, player2Score: Int, expectedScore: String) {
+        val game = TennisGame6("player1", "player2")
+        checkAllScores(game, player1Score, player2Score, expectedScore)
+    }
+
+    @ParameterizedTest
+    @MethodSource("allScores")
+    fun checkAllScoresTennisGame7(player1Score: Int, player2Score: Int, expectedScore: String) {
+        val game = TennisGame7("player1", "player2")
+        checkAllScores(game, player1Score, player2Score, "Current score: $expectedScore, enjoy your game!")
+    }
+
     fun checkAllScores(game: TennisGame, player1Score: Int, player2Score: Int, expectedScore: String) {
         val highestScore = Math.max(player1Score, player2Score)
         for (i in 0 until highestScore) {
