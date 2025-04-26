@@ -1,6 +1,8 @@
 name: tennis_game
 version: 0.0.1
 description: A simple console application.
+environment:
+  sdk: "^3.0.0"
 
 dev_dependencies:
   test: any
