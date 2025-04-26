@@ -10,10 +10,7 @@ class TennisGame3 implements TennisGame {
     String _p1N;
     String _p2N;
 
-    TennisGame3(String p1N, String p2N) {
-        this._p1N = p1N;
-        this._p2N = p2N;
-    }
+  TennisGame3(String this._p1N, String this._p2N);
 
     String getScore() {
         String s;

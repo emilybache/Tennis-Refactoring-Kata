@@ -13,10 +13,7 @@ class TennisGame2 implements TennisGame
     String _player1Name;
     String _player2Name;
 
-    TennisGame2(String player1Name, String player2Name) {
-        this._player1Name = player1Name;
-        this._player2Name = player2Name;
-    }
+  TennisGame2(String this._player1Name, String this._player2Name);
 
     String getScore(){
         String score = "";
