@@ -10,10 +10,7 @@ class TennisGame1 implements TennisGame {
     String _player1Name;
     String _player2Name;
 
-    TennisGame1(String player1Name, String player2Name) {
-        this._player1Name = player1Name;
-        this._player2Name = player2Name;
-    }
+  TennisGame1(String this._player1Name, String this._player2Name);
 
     void wonPoint(String playerName) {
         if (playerName == "player1")
