@@ -49,39 +49,39 @@ TEST_CASES = [
 ]
 
 class TestTennis < Minitest::Test
-  def play_game(tennisGameClass, p1Points, p2Points, p1Name, p2Name)
-    game = tennisGameClass.new(p1Name, p2Name)
-    (0..[p1Points, p2Points].max).each do |i|
-      if i < p1Points
-        game.won_point(p1Name)
+  def play_game(tennis_game_class, p1_points, p2_points, p1_name, p2_name)
+    game = tennis_game_class.new(p1_name, p2_name)
+    (0..[p1_points, p2_points].max).each do |i|
+      if i < p1_points
+        game.won_point(p1_name)
       end
-      if i < p2Points
-        game.won_point(p2Name)
+      if i < p2_points
+        game.won_point(p2_name)
       end
     end
     game
   end
 
-  def test_Score_Game1
+  def test_score_game1
     TEST_CASES.each do |testcase|
-      (p1Points, p2Points, score, p1Name, p2Name) = testcase
-      game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
+      (p1_points, p2_points, score, p1_name, p2_name) = testcase
+      game = play_game(TennisGame1, p1_points, p2_points, p1_name, p2_name)
       assert_equal(score, game.score)
     end
   end
 
-  def test_Score_Game2
+  def test_score_game2
     TEST_CASES.each do |testcase|
-      (p1Points, p2Points, score, p1Name, p2Name) = testcase
-      game = play_game(TennisGame2, p1Points, p2Points, p1Name, p2Name)
+      (p1_points, p2_points, score, p1_name, p2_name) = testcase
+      game = play_game(TennisGame2, p1_points, p2_points, p1_name, p2_name)
       assert_equal(score, game.score)
     end
   end
 
-  def test_Score_Game3
+  def test_score_game3
     TEST_CASES.each do |testcase|
-      (p1Points, p2Points, score, p1Name, p2Name) = testcase
-      game = play_game(TennisGame3, p1Points, p2Points, p1Name, p2Name)
+      (p1_points, p2_points, score, p1_name, p2_name) = testcase
+      game = play_game(TennisGame3, p1_points, p2_points, p1_name, p2_name)
       assert_equal(score, game.score)
     end
   end
