@@ -11,15 +11,20 @@ class TennisGame1:
         else:
             self.p2points += 1
 
-    def score(self):
-        result = ""
-        temp_score = 0
-        if self.p1points == self.p2points:
-            result = {
+    def __get_equal_points_score(self, score):
+        """
+        """
+        return {
                 0: "Love-All",
                 1: "Fifteen-All",
                 2: "Thirty-All",
             }.get(self.p1points, "Deuce")
+
+    def score(self):
+        result = ""
+        temp_score = 0
+        if self.p1points == self.p2points:
+            result = self.__get_equal_points_score(self.p1points)
         elif self.p1points >= 4 or self.p2points >= 4:
             minus_result = self.p1points - self.p2points
             if minus_result == 1:
