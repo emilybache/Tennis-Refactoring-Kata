@@ -35,7 +35,7 @@ func (game *tennisGame1) GetScore() string {
 	
 	if game.isWin() {
 		return getWinScore(game)
-	} 
+	}
 	
 	return getTempScore(game)
 }
@@ -51,47 +51,47 @@ func (game *tennisGame1) isWin() bool {
 func getEvenScore(score int) string {
 	switch score {
 	case 0:
-		return "Love-All"
+		return LOVE + SCORE_SEPARATOR + ALL
 	case 1:
-		return "Fifteen-All"
+		return FIFTEEN + SCORE_SEPARATOR + ALL
 	case 2:
-		return "Thirty-All"
+		return THIRTY + SCORE_SEPARATOR + ALL
 	default:
-		return "Deuce"
+		return DEUCE
 	}
 }
 
 func getWinScore(game *tennisGame1) string {
 	minusResult := game.FirstPlayer.Score - game.SecondPlayer.Score
 	if minusResult == 1 {
-		return "Advantage " + game.FirstPlayer.Name
+		return ADVANTAGE + " " + game.FirstPlayer.Name
 	} 
 	
 	if minusResult == -1 {
-		return "Advantage " + game.SecondPlayer.Name
+		return ADVANTAGE + " " + game.SecondPlayer.Name
 	} 
 	
 	if minusResult >= 2 {
-		return "Win for " + game.FirstPlayer.Name
+		return WIN + " " + game.FirstPlayer.Name
 	} 
 	
-	return "Win for " + game.SecondPlayer.Name
+	return WIN + " " + game.SecondPlayer.Name
 }
 
 func getTempScore(game *tennisGame1) string {
-	return getSinglePlayerTempScore(game.FirstPlayer.Score) + "-" + getSinglePlayerTempScore(game.SecondPlayer.Score)
+	return getSinglePlayerTempScore(game.FirstPlayer.Score) + SCORE_SEPARATOR + getSinglePlayerTempScore(game.SecondPlayer.Score)
 }
 
 func getSinglePlayerTempScore(playerScore int) string {
 	switch playerScore {
 	case 0:
-		return "Love"
+		return LOVE
 	case 1:
-		return "Fifteen"
+		return FIFTEEN
 	case 2:
-		return "Thirty"
+		return THIRTY
 	case 3:
-		return "Forty"
+		return FORTY
 	default:
 		return ""
 	}
