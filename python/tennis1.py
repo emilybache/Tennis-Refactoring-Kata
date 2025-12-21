@@ -18,7 +18,7 @@ class TennisGame1:
                 0: "Love-All",
                 1: "Fifteen-All",
                 2: "Thirty-All",
-            }.get(self.p1points, "Deuce")
+            }.get(score, "Deuce")
 
     def __get_4_or_more_score(self, p1points, p2points):
         """
