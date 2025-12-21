@@ -24,33 +24,16 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func (game *tennisGame1) GetScore() string {
-	score := ""
-	tempScore := 0
+	
 	if game.m_score1 == game.m_score2 {
-		score = getEvenScore(game.m_score1)
-	} else if game.m_score1 >= 4 || game.m_score2 >= 4 {
-		score = getWinScore(game.m_score1, game.m_score2)
-	} else {
-		for i := 1; i < 3; i++ {
-			if i == 1 {
-				tempScore = game.m_score1
-			} else {
-				score += "-"
-				tempScore = game.m_score2
-			}
-			switch tempScore {
-			case 0:
-				score += "Love"
-			case 1:
-				score += "Fifteen"
-			case 2:
-				score += "Thirty"
-			case 3:
-				score += "Forty"
-			}
-		}
-	}
-	return score
+		return getEvenScore(game.m_score1)
+	} 
+	
+	if game.m_score1 >= 4 || game.m_score2 >= 4 {
+		return getWinScore(game.m_score1, game.m_score2)
+	} 
+	
+	return getTempScore(game)
 }
 
 
@@ -82,4 +65,28 @@ func getWinScore(firstScore int, secondScore int) string {
 	} 
 	
 	return "Win for player2"
+}
+
+func getTempScore(game *tennisGame1) string {
+	score := ""
+	tempScore := 0
+	for i := 1; i < 3; i++ {
+		if i == 1 {
+			tempScore = game.m_score1
+		} else {
+			score += "-"
+			tempScore = game.m_score2
+		}
+		switch tempScore {
+		case 0:
+			score += "Love"
+		case 1:
+			score += "Fifteen"
+		case 2:
+			score += "Thirty"
+		case 3:
+			score += "Forty"
+		}
+	}
+	return score
 }
