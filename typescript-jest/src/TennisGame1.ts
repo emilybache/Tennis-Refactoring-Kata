@@ -29,12 +29,17 @@ export class TennisGame1 implements TennisGame {
     }
     else {
       for (let i = 1; i < 3; i++) {
-        if (i === 1) tempScore = this.m_score1;
-        else { score += '-'; tempScore = this.m_score2; }
+        ({ tempScore, score } = this.appendScoreForPlayer(i, tempScore, score));
         score = this.convertScoreToText(tempScore, score);
       }
     }
     return score;
+  }
+
+  private appendScoreForPlayer(i: number, tempScore: number, score: string) {
+    if (i === 1) tempScore = this.m_score1;
+    else { score += '-'; tempScore = this.m_score2; }
+    return { tempScore, score };
   }
 
   private convertScoreToText(tempScore: number, score: string) {
