@@ -34,7 +34,7 @@ func (game *tennisGame1) GetScore() string {
 	} 
 	
 	if game.isWin() {
-		return getWinScore(game.FirstPlayer.Score, game.SecondPlayer.Score)
+		return getWinScore(game)
 	} 
 	
 	return getTempScore(game)
@@ -61,21 +61,21 @@ func getEvenScore(score int) string {
 	}
 }
 
-func getWinScore(firstScore int, secondScore int) string {
-	minusResult := firstScore - secondScore
+func getWinScore(game *tennisGame1) string {
+	minusResult := game.FirstPlayer.Score - game.SecondPlayer.Score
 	if minusResult == 1 {
-		return "Advantage player1"
+		return "Advantage " + game.FirstPlayer.Name
 	} 
 	
 	if minusResult == -1 {
-		return "Advantage player2"
+		return "Advantage " + game.SecondPlayer.Name
 	} 
 	
 	if minusResult >= 2 {
-		return "Win for player1"
+		return "Win for " + game.FirstPlayer.Name
 	} 
 	
-	return "Win for player2"
+	return "Win for " + game.SecondPlayer.Name
 }
 
 func getTempScore(game *tennisGame1) string {
