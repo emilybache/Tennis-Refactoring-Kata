@@ -41,6 +41,35 @@ class TennisGame1:
             result = "Win for player2"
         return result
 
+    def __get_delta_players_scores(self):
+        """
+        """
+        return self.p1points - self.p2points
+    
+    def __has_winner(self, delta_score):
+        """
+        """
+        return abs(delta_score) >= 2
+
+    def __has_advantage(self, delta_score):
+        """
+        """
+        return abs(delta_score) == 1
+    
+    def __who_is_leading(self, delta_score):
+        """
+        """
+        if delta_score > 0:
+            return {"name": self.player1_name, "score": self.p1points}
+        elif delta_score < 0:
+            return {"name": self.player2_name, "score": self.p2points}
+        return None
+
+    def __has_equal_score(self, delta_score):
+        """
+        """
+        return abs(delta_score) == 0
+
     def __calculate_score(self):
         """
         """
