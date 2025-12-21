@@ -70,11 +70,23 @@ class TennisGame1:
         """
         return abs(delta_score) == 0
 
-    def __calculate_score(self):
+    def __has_deuce(self):
         """
         """
-        return f"{self.scores[self.p1points]}-{self.scores[self.p2points]}"
+        return self.p1points == self.p2points == 3
 
+    def __calculate_score(self, delta_score=None):
+        """
+        """
+        return f"{self.scores[self.p1points]}-{'All' if delta_score else self.scores[self.p2points]}"
+
+    def __winner_score_result(player):
+        return f"Win for {player['name']}"
+    def __advantage_score_result(player):
+        return f"Advantage {player['name']}"
+    def __deuce_score_result():
+        return "Deuce"
+    
     def score(self):
         if self.p1points == self.p2points:
             result = self.__get_equal_points_score(self.p1points)
