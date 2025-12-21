@@ -22,10 +22,15 @@ export class TennisGame1 implements TennisGame {
     if (this.m_score1 === this.m_score2) {
       return this.getEqualScore();
     }
-    else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
+
+    return this.getNonEqualScore();
+  }
+
+  private getNonEqualScore() {
+    if (this.m_score1 >= 4 || this.m_score2 >= 4) {
       return this.determineMatchOutcome();
     }
-    
+
     return this.calculateScoreText();
   }
 
