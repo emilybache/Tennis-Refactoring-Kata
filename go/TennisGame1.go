@@ -29,16 +29,7 @@ func (game *tennisGame1) GetScore() string {
 	if game.m_score1 == game.m_score2 {
 		score = getEvenScore(game.m_score1)
 	} else if game.m_score1 >= 4 || game.m_score2 >= 4 {
-		minusResult := game.m_score1 - game.m_score2
-		if minusResult == 1 {
-			score = "Advantage player1"
-		} else if minusResult == -1 {
-			score = "Advantage player2"
-		} else if minusResult >= 2 {
-			score = "Win for player1"
-		} else {
-			score = "Win for player2"
-		}
+		score = getWinScore(game.m_score1, game.m_score2)
 	} else {
 		for i := 1; i < 3; i++ {
 			if i == 1 {
@@ -74,4 +65,21 @@ func getEvenScore(score int) string {
 	default:
 		return "Deuce"
 	}
+}
+
+func getWinScore(firstScore int, secondScore int) string {
+	minusResult := firstScore - secondScore
+	if minusResult == 1 {
+		return "Advantage player1"
+	} 
+	
+	if minusResult == -1 {
+		return "Advantage player2"
+	} 
+	
+	if minusResult >= 2 {
+		return "Win for player1"
+	} 
+	
+	return "Win for player2"
 }
