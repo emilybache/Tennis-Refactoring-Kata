@@ -20,21 +20,27 @@ class TennisGame1:
                 2: "Thirty-All",
             }.get(self.p1points, "Deuce")
 
+    def __get_4_or_more_score(self, p1points, p2points):
+        """
+        """
+        minus_result = p1points - p2points
+        if minus_result == 1:
+            result = "Advantage player1"
+        elif minus_result == -1:
+            result = "Advantage player2"
+        elif minus_result >= 2:
+            result = "Win for player1"
+        else:
+            result = "Win for player2"
+        return result
+
     def score(self):
         result = ""
         temp_score = 0
         if self.p1points == self.p2points:
             result = self.__get_equal_points_score(self.p1points)
         elif self.p1points >= 4 or self.p2points >= 4:
-            minus_result = self.p1points - self.p2points
-            if minus_result == 1:
-                result = "Advantage player1"
-            elif minus_result == -1:
-                result = "Advantage player2"
-            elif minus_result >= 2:
-                result = "Win for player1"
-            else:
-                result = "Win for player2"
+            result = self.__get_4_or_more_score(self.p1points, self.p2points)
         else:
             for i in range(1, 3):
                 if i == 1:
