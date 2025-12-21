@@ -1,36 +1,40 @@
 package tenniskata
 
-type tennisGame1 struct {
-	m_score1    int
-	m_score2    int
-	player1Name string
-	player2Name string
+
+type Player struct {
+	Name string
+	Score int
 }
 
-func TennisGame1(player1Name string, player2Name string) TennisGame {
+type tennisGame1 struct {
+	FirstPlayer Player
+	SecondPlayer Player
+}
+
+func TennisGame1(firstPlayerName string, secondPlayerName string) TennisGame {
 	game := &tennisGame1{
-		player1Name: player1Name,
-		player2Name: player2Name}
+		FirstPlayer: Player{Name: firstPlayerName},
+		SecondPlayer: Player{Name: secondPlayerName},
+	}
 
 	return game
 }
 
 func (game *tennisGame1) WonPoint(playerName string) {
-	if playerName == "player1" {
-		game.m_score1 += 1
+	if playerName == game.FirstPlayer.Name {
+		game.FirstPlayer.Score += 1
 	} else {
-		game.m_score2 += 1
+		game.SecondPlayer.Score += 1
 	}
 }
 
 func (game *tennisGame1) GetScore() string {
-	
-	if game.m_score1 == game.m_score2 {
-		return getEvenScore(game.m_score1)
+	if game.FirstPlayer.Score == game.SecondPlayer.Score {
+		return getEvenScore(game.FirstPlayer.Score)
 	} 
 	
-	if game.m_score1 >= 4 || game.m_score2 >= 4 {
-		return getWinScore(game.m_score1, game.m_score2)
+	if game.FirstPlayer.Score >= 4 || game.SecondPlayer.Score >= 4 {
+		return getWinScore(game.FirstPlayer.Score, game.SecondPlayer.Score)
 	} 
 	
 	return getTempScore(game)
@@ -68,7 +72,7 @@ func getWinScore(firstScore int, secondScore int) string {
 }
 
 func getTempScore(game *tennisGame1) string {
-	return getSinglePlayerTempScore(game.m_score1) + "-" + getSinglePlayerTempScore(game.m_score2)
+	return getSinglePlayerTempScore(game.FirstPlayer.Score) + "-" + getSinglePlayerTempScore(game.SecondPlayer.Score)
 }
 
 func getSinglePlayerTempScore(playerScore int) string {
