@@ -22,15 +22,13 @@ export class TennisGame1 implements TennisGame {
     let score: string = '';
     let tempScore: number = 0;
     if (this.m_score1 === this.m_score2) {
-      score = this.getEqualScore(score);
+      return this.getEqualScore(score);
     }
     else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-      score = this.determineMatchOutcome(score);
+      return this.determineMatchOutcome(score);
     }
-    else {
-      score = this.calculateScoreText(tempScore, score);
-    }
-    return score;
+    
+    return this.calculateScoreText(tempScore, score);
   }
 
   private calculateScoreText(tempScore: number, score: string) {
