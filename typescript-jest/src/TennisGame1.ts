@@ -19,19 +19,19 @@ export class TennisGame1 implements TennisGame {
   }
 
   getScore(): string {
-    let score: string = '';
-    let tempScore: number = 0;
     if (this.m_score1 === this.m_score2) {
-      return this.getEqualScore(score);
+      return this.getEqualScore();
     }
     else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-      return this.determineMatchOutcome(score);
+      return this.determineMatchOutcome();
     }
     
-    return this.calculateScoreText(tempScore, score);
+    return this.calculateScoreText();
   }
 
-  private calculateScoreText(tempScore: number, score: string) {
+  private calculateScoreText() {
+    let score: string = '';
+    let tempScore: number = 0;
     for (let i = 1; i < 3; i++) {
       ({ tempScore, score } = this.appendScoreForPlayer(i, tempScore, score));
       score = this.convertScoreToText(tempScore, score);
@@ -63,7 +63,8 @@ export class TennisGame1 implements TennisGame {
     return score;
   }
 
-  private determineMatchOutcome(score: string) {
+  private determineMatchOutcome() {
+    let score: string = '';
     const minusResult: number = this.m_score1 - this.m_score2;
     if (minusResult === 1) score = 'Advantage player1';
     else if (minusResult === -1) score = 'Advantage player2';
@@ -72,7 +73,8 @@ export class TennisGame1 implements TennisGame {
     return score;
   }
 
-  private getEqualScore(score: string) {
+  private getEqualScore() {
+    let score: string = '';
     switch (this.m_score1) {
       case 0:
         score = 'Love-All';
