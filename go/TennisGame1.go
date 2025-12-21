@@ -68,25 +68,20 @@ func getWinScore(firstScore int, secondScore int) string {
 }
 
 func getTempScore(game *tennisGame1) string {
-	score := ""
-	tempScore := 0
-	for i := 1; i < 3; i++ {
-		if i == 1 {
-			tempScore = game.m_score1
-		} else {
-			score += "-"
-			tempScore = game.m_score2
-		}
-		switch tempScore {
-		case 0:
-			score += "Love"
-		case 1:
-			score += "Fifteen"
-		case 2:
-			score += "Thirty"
-		case 3:
-			score += "Forty"
-		}
+	return getSinglePlayerTempScore(game.m_score1) + "-" + getSinglePlayerTempScore(game.m_score2)
+}
+
+func getSinglePlayerTempScore(playerScore int) string {
+	switch playerScore {
+	case 0:
+		return "Love"
+	case 1:
+		return "Fifteen"
+	case 2:
+		return "Thirty"
+	case 3:
+		return "Forty"
+	default:
+		return ""
 	}
-	return score
 }
