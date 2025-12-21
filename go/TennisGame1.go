@@ -29,17 +29,24 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func (game *tennisGame1) GetScore() string {
-	if game.FirstPlayer.Score == game.SecondPlayer.Score {
+	if game.isEven() {
 		return getEvenScore(game.FirstPlayer.Score)
 	} 
 	
-	if game.FirstPlayer.Score >= 4 || game.SecondPlayer.Score >= 4 {
+	if game.isWin() {
 		return getWinScore(game.FirstPlayer.Score, game.SecondPlayer.Score)
 	} 
 	
 	return getTempScore(game)
 }
 
+func (game *tennisGame1) isEven() bool {
+	return game.FirstPlayer.Score == game.SecondPlayer.Score
+}
+
+func (game *tennisGame1) isWin() bool {
+	return game.FirstPlayer.Score >= 4 || game.SecondPlayer.Score >= 4
+}
 
 func getEvenScore(score int) string {
 	switch score {
