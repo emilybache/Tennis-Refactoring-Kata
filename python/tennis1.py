@@ -34,6 +34,24 @@ class TennisGame1:
             result = "Win for player2"
         return result
 
+    def __get_game_score(self, p1points, p2points):
+        """
+        """
+        result = ""
+        for i in range(1, 3):
+                if i == 1:
+                    temp_score = p1points
+                else:
+                    result += "-"
+                    temp_score = p2points
+                result += {
+                    0: "Love",
+                    1: "Fifteen",
+                    2: "Thirty",
+                    3: "Forty",
+                }[temp_score]
+        return result
+
     def score(self):
         result = ""
         temp_score = 0
@@ -42,16 +60,5 @@ class TennisGame1:
         elif self.p1points >= 4 or self.p2points >= 4:
             result = self.__get_4_or_more_score(self.p1points, self.p2points)
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.p1points
-                else:
-                    result += "-"
-                    temp_score = self.p2points
-                result += {
-                    0: "Love",
-                    1: "Fifteen",
-                    2: "Thirty",
-                    3: "Forty",
-                }[temp_score]
+            result = self.__get_game_score(self.p1points, self.p2points)
         return result
