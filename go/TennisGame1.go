@@ -1,19 +1,18 @@
 package tenniskata
 
-
 type Player struct {
-	Name string
+	Name  string
 	Score int
 }
 
 type tennisGame1 struct {
-	FirstPlayer Player
+	FirstPlayer  Player
 	SecondPlayer Player
 }
 
 func TennisGame1(firstPlayerName string, secondPlayerName string) TennisGame {
 	game := &tennisGame1{
-		FirstPlayer: Player{Name: firstPlayerName},
+		FirstPlayer:  Player{Name: firstPlayerName},
 		SecondPlayer: Player{Name: secondPlayerName},
 	}
 
@@ -31,12 +30,12 @@ func (game *tennisGame1) WonPoint(playerName string) {
 func (game *tennisGame1) GetScore() string {
 	if game.isEven() {
 		return getEvenScore(game.FirstPlayer.Score)
-	} 
-	
+	}
+
 	if game.isWin() {
 		return getWinScore(game)
 	}
-	
+
 	return getTempScore(game)
 }
 
@@ -65,16 +64,16 @@ func getWinScore(game *tennisGame1) string {
 	minusResult := game.FirstPlayer.Score - game.SecondPlayer.Score
 	if minusResult == 1 {
 		return ADVANTAGE + " " + game.FirstPlayer.Name
-	} 
-	
+	}
+
 	if minusResult == -1 {
 		return ADVANTAGE + " " + game.SecondPlayer.Name
-	} 
-	
+	}
+
 	if minusResult >= 2 {
 		return WIN + " " + game.FirstPlayer.Name
-	} 
-	
+	}
+
 	return WIN + " " + game.SecondPlayer.Name
 }
 
