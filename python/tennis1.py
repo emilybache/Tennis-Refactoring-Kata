@@ -18,33 +18,15 @@ class TennisGame1:
         else:
             self.p2points += 1
 
-    def __get_equal_points_score(self, score):
-        """
-        """
-        return {
-                0: "Love-All",
-                1: "Fifteen-All",
-                2: "Thirty-All",
-            }.get(score, "Deuce")
-
-    def __get_4_or_more_score(self):
-        """
-        """
-        minus_result = self.p1points - self.p2points
-        if minus_result == 1:
-            result = "Advantage player1"
-        elif minus_result == -1:
-            result = "Advantage player2"
-        elif minus_result >= 2:
-            result = "Win for player1"
-        else:
-            result = "Win for player2"
-        return result
-
     def __get_delta_players_scores(self):
         """
         """
         return self.p1points - self.p2points
+
+    def __player_has_4_or_more_points(self):
+        """
+        """
+        return self.p1points >= 4 or self.p2points >= 4
     
     def __has_winner(self, delta_score):
         """
@@ -73,25 +55,36 @@ class TennisGame1:
     def __has_deuce(self):
         """
         """
-        return self.p1points == self.p2points == 3
+        return self.p1points == self.p2points and self.p1points in [3, 4]
 
-    def __calculate_score(self, delta_score=None):
+    def __calculate_score(self):
         """
         """
-        return f"{self.scores[self.p1points]}-{'All' if delta_score else self.scores[self.p2points]}"
+        return f"{self.scores[self.p1points]}-{self.scores[self.p2points]}"
 
-    def __winner_score_result(player):
+    def __all_score(self):
+        """
+        """
+        return f"{self.scores[self.p1points]}-All"
+
+    def __winner_score_result(self, player):
         return f"Win for {player['name']}"
-    def __advantage_score_result(player):
+    def __advantage_score_result(self, player):
         return f"Advantage {player['name']}"
-    def __deuce_score_result():
+    def __deuce_score_result(self):
         return "Deuce"
     
     def score(self):
-        if self.p1points == self.p2points:
-            result = self.__get_equal_points_score(self.p1points)
-        elif self.p1points >= 4 or self.p2points >= 4:
-            result = self.__get_4_or_more_score()
+        delta = self.__get_delta_players_scores()
+        leading_player = self.__who_is_leading(delta)
+        if self.__has_winner(delta) and self.__player_has_4_or_more_points():
+            result = self.__winner_score_result(leading_player)
+        elif self.__has_advantage(delta) and self.__player_has_4_or_more_points():
+            result = self.__advantage_score_result(leading_player)
+        elif self.__has_deuce():
+            result = self.__deuce_score_result()
+        elif self.__has_equal_score(delta):
+            result = self.__all_score()
         else:
             result = self.__calculate_score()
         return result
