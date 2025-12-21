@@ -28,10 +28,15 @@ export class TennisGame1 implements TennisGame {
       score = this.determineMatchOutcome(score);
     }
     else {
-      for (let i = 1; i < 3; i++) {
-        ({ tempScore, score } = this.appendScoreForPlayer(i, tempScore, score));
-        score = this.convertScoreToText(tempScore, score);
-      }
+      score = this.calculateScoreText(tempScore, score);
+    }
+    return score;
+  }
+
+  private calculateScoreText(tempScore: number, score: string) {
+    for (let i = 1; i < 3; i++) {
+      ({ tempScore, score } = this.appendScoreForPlayer(i, tempScore, score));
+      score = this.convertScoreToText(tempScore, score);
     }
     return score;
   }
