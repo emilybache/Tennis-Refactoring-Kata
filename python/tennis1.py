@@ -38,6 +38,7 @@ class TennisGame1:
         """
         """
         result = ""
+        temp_score = 0
         for i in range(1, 3):
                 if i == 1:
                     temp_score = self.p1points
@@ -53,8 +54,6 @@ class TennisGame1:
         return result
 
     def score(self):
-        result = ""
-        temp_score = 0
         if self.p1points == self.p2points:
             result = self.__get_equal_points_score(self.p1points)
         elif self.p1points >= 4 or self.p2points >= 4:
