@@ -1,4 +1,11 @@
 class TennisGame1:
+
+    scores = {
+        0: "Love",
+        1: "Fifteen",
+        2: "Thirty",
+        3: "Forty",
+    }
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
@@ -45,12 +52,7 @@ class TennisGame1:
                 else:
                     result += "-"
                     temp_score = self.p2points
-                result += {
-                    0: "Love",
-                    1: "Fifteen",
-                    2: "Thirty",
-                    3: "Forty",
-                }[temp_score]
+                result += self.scores[temp_score]
         return result
 
     def score(self):
