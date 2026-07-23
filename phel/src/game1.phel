@@ -1,0 +1,52 @@
+(ns tennis.game1)
+
+;; Deliberately messy port of the classic TennisGame1 — this IS the refactoring
+;; target. Keep the smells (three-way branch, magic 4, manual separator loop);
+;; refactor with the test suite as the safety net, don't rewrite from scratch.
+
+;; An atom (not a pure value) so won-point mirrors the original stateful API.
+(defn new-game [^string player1-name ^string player2-name]
+  (atom {:m-score1 0
+         :m-score2 0
+         :player1-name player1-name
+         :player2-name player2-name}))
+
+(defn won-point [game ^string player-name]
+  (if (= player-name "player1")
+    (swap! game update :m-score1 inc)
+    (swap! game update :m-score2 inc))
+  nil)
+
+(defn ^string get-score [game]
+  (let [state @game
+        m-score1 (:m-score1 state)
+        m-score2 (:m-score2 state)]
+    (cond
+      (= m-score1 m-score2)
+      (case m-score1
+        0 "Love-All"
+        1 "Fifteen-All"
+        2 "Thirty-All"
+        "Deuce")
+
+      (or (>= m-score1 4) (>= m-score2 4))
+      (let [minus-result (- m-score1 m-score2)]
+        (cond
+          (= minus-result 1) "Advantage player1"
+          (= minus-result -1) "Advantage player2"
+          (>= minus-result 2) "Win for player1"
+          :else "Win for player2"))
+
+      :else
+      (loop [i 1 score ""]
+        (if (< i 3)
+          (let [temp-score (if (= i 1) m-score1 m-score2)
+                score (if (= i 1) score (str score "-"))
+                piece (case temp-score
+                        0 "Love"
+                        1 "Fifteen"
+                        2 "Thirty"
+                        3 "Forty"
+                        "")]
+            (recur (inc i) (str score piece)))
+          score)))))

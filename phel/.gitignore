@@ -1,0 +1,7 @@
+/vendor/
+/out/
+/src/PhelGenerated/
+*.phar
+.phpunit.result.cache
+phel-config-local.php
+composer.lock

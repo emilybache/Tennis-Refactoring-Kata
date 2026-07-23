@@ -1,0 +1,19 @@
+{
+    "name": "chemaclass/tennis-refactoring-kata-phel",
+    "description": "Tennis Refactoring Kata in Phel (phel-lang)",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "phel-lang/phel-lang": "^0.49.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phel-lang/phel-lang": true
+        }
+    },
+    "scripts": {
+        "test": "phel test",
+        "start": "phel run src/main.phel"
+    }
+}
