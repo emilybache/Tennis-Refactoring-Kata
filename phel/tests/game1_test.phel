@@ -2,8 +2,6 @@
   (:require phel.test :refer [deftest is])
   (:require tennis.game1 :as g))
 
-;; Same comprehensive score table as the other languages' TestMaster — the
-;; refactoring safety net. Don't change it; just run it often while refactoring.
 (def cases
   [[0 0 "Love-All"]
    [1 1 "Fifteen-All"]
@@ -47,7 +45,7 @@
         (when (< i score2) (g/won-point game "player2"))
         (recur (inc i))))))
 
-(deftest test-scores
+(deftest test-all-scores-tennis-game-1
   (foreach [[score1 score2 expected] cases]
     (let [game (g/new-game "player1" "player2")]
       (seed-scores game score1 score2)

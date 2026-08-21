@@ -1,10 +1,5 @@
 (ns tennis.game1)
 
-;; Deliberately messy port of the classic TennisGame1 — this IS the refactoring
-;; target. Keep the smells (three-way branch, magic 4, manual separator loop);
-;; refactor with the test suite as the safety net, don't rewrite from scratch.
-
-;; An atom (not a pure value) so won-point mirrors the original stateful API.
 (defn new-game [^string player1-name ^string player2-name]
   (atom {:m-score1 0
          :m-score2 0
