@@ -2,10 +2,6 @@
   (:require tennis.game1 :as g))
 
 (defn main []
-  (let [game (g/new-game "player1" "player2")]
-    (g/won-point game "player1")
-    (g/won-point game "player1")
-    (g/won-point game "player2")
-    (println (g/get-score game))))
+  )
 
 (main)
