@@ -13,7 +13,6 @@
         }
     },
     "scripts": {
-        "test": "phel test",
-        "start": "phel run src/main.phel"
+        "test": "phel test"
     }
 }
